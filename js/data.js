@@ -63,31 +63,31 @@ const filmsData = [
         ]
     },
     {
-    id: 6,
-    judul: "Oppenheimer",
-    genre: ["Biography", "Drama", "History"],
-    durasi: 180,
-    rating: 8.6,
-    tahun: 2023,
-    sutradara: "Christopher Nolan",
-    pemeran: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr.", "Matt Damon", "Florence Pugh"],
-    sinopsis: "Kisah ilmuwan jenius J. Robert Oppenheimer dan perannya dalam pengembangan bom atom selama Proyek Manhattan. Film ini mengeksplorasi dilema moral, tekanan politik, dan dampak psikologis yang dialami Oppenheimer sebagai 'bapak bom atom'.",
-    poster: "../img/assets/2.jpeg",
-    trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg",
-    status: "coming_soon",
-    jadwal: [
-        {
-            bioskop: "XXI Kota Kasablanka",
-            tanggal: "2024-06-07",
-            jam: ["13:00", "16:30", "20:00"]
-        },
-        {
-            bioskop: "CGV Grand Indonesia",
-            tanggal: "2024-06-07",
-            jam: ["11:00", "14:30", "18:00", "21:30"]
-        }
-    ]
-},
+        id: 6,
+        judul: "Oppenheimer",
+        genre: ["Biography", "Drama", "History"],
+        durasi: 180,
+        rating: 8.6,
+        tahun: 2023,
+        sutradara: "Christopher Nolan",
+        pemeran: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr.", "Matt Damon", "Florence Pugh"],
+        sinopsis: "Kisah ilmuwan jenius J. Robert Oppenheimer dan perannya dalam pengembangan bom atom selama Proyek Manhattan. Film ini mengeksplorasi dilema moral, tekanan politik, dan dampak psikologis yang dialami Oppenheimer sebagai 'bapak bom atom'.",
+        poster: "../img/assets/2.jpeg",
+        trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg",
+        status: "coming_soon",
+        jadwal: [
+            {
+                bioskop: "XXI Kota Kasablanka",
+                tanggal: "2024-06-07",
+                jam: ["13:00", "16:30", "20:00"]
+            },
+            {
+                bioskop: "CGV Grand Indonesia",
+                tanggal: "2024-06-07",
+                jam: ["11:00", "14:30", "18:00", "21:30"]
+            }
+        ]
+    },
     {
         id: 3,
         judul: "The Batman",
@@ -139,7 +139,7 @@ const filmsData = [
                 jam: ["11:00", "14:30", "18:00", "21:30"]
             },
             {
-                bioskop: "CGV Pacific Place", 
+                bioskop: "CGV Pacific Place",
                 tanggal: "2024-06-01",
                 jam: ["10:30", "14:00", "17:30", "21:00"]
             },
@@ -171,13 +171,94 @@ const filmsData = [
             },
             {
                 bioskop: "CGV Pacific Place",
-                tanggal: "2024-06-05", 
+                tanggal: "2024-06-05",
                 jam: ["12:00", "15:00", "18:00", "21:00"]
             },
             {
                 bioskop: "Cinépolis Plaza Senayan",
                 tanggal: "2024-06-06",
                 jam: ["11:30", "14:30", "17:30", "20:30"]
+            }
+        ]
+    },
+    {
+        id: 6,
+        judul: "Oppenheimer",
+        genre: ["Biography", "Drama", "History"],
+        durasi: 180,
+        rating: 8.6,
+        tahun: 2023,
+        sutradara: "Christopher Nolan",
+        pemeran: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr.", "Matt Damon", "Florence Pugh"],
+        sinopsis: "Kisah ilmuwan jenius J. Robert Oppenheimer dan perannya dalam pengembangan bom atom selama Proyek Manhattan. Film ini mengeksplorasi dilema moral, tekanan politik, dan dampak psikologis yang dialami Oppenheimer sebagai 'bapak bom atom'.",
+        // poster: "https://via.placeholder.com/300x450/000000/fff?text=Oppenheimer",
+        poster: "../img/assets/2.jpeg",
+        trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg",
+        status: "coming_soon",
+        jadwal: [
+            {
+                bioskop: "XXI Kota Kasablanka",
+                tanggal: "2024-06-07",
+                jam: ["13:00", "16:30", "20:00"]
+            },
+            {
+                bioskop: "CGV Grand Indonesia",
+                tanggal: "2024-06-07",
+                jam: ["11:00", "14:30", "18:00", "21:30"]
+            }
+        ]
+    },
+    {
+        id: 7,
+        judul: "Dune: Part Two",
+        genre: ["Adventure", "Drama", "Sci-Fi"],
+        durasi: 166,
+        rating: 8.8,
+        tahun: 2024,
+        sutradara: "Denis Villeneuve",
+        pemeran: ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson", "Austin Butler", "Florence Pugh"],
+        sinopsis: "Paul Atreides bersatu dengan kaum Fremen untuk membalas dendam atas kehancuran keluarganya. Ia harus memilih antara cinta dan takdir sebagai penyelamat umat manusia sembari menghadapi peperangan antargalaksi.",
+        // poster: "https://via.placeholder.com/300x450/2e7d32/fff?text=Dune+Part+Two",
+        poster: "../img/assets/1.jpg",
+        trailer: "https://www.youtube.com/watch?v=Way9Dexny3w",
+        status: "coming_soon",
+        jadwal: [
+            {
+                bioskop: "Cinépolis FX Sudirman",
+                tanggal: "2024-06-08",
+                jam: ["12:00", "15:30", "19:00"]
+            },
+            {
+                bioskop: "CGV AEON Mall BSD City",
+                tanggal: "2024-06-08",
+                jam: ["13:30", "17:00", "20:30"]
+            }
+        ]
+    },
+    {
+        id: 8,
+        judul: "Spider-Man: No Way Home",
+        genre: ["Action", "Adventure", "Fantasy"],
+        durasi: 148,
+        rating: 8.2,
+        tahun: 2021,
+        sutradara: "Jon Watts",
+        pemeran: ["Tom Holland", "Zendaya", "Benedict Cumberbatch", "Willem Dafoe", "Alfred Molina"],
+        sinopsis: "Setelah identitasnya terbongkar, Peter Parker meminta bantuan Doctor Strange. Namun sihir yang digunakan malah membuka multiverse, menghadirkan musuh-musuh dari dunia lain.",
+        // poster: "https://via.placeholder.com/300x450/1565c0/fff?text=Spider-Man+No+Way+Home",
+        poster: "../img/assets/2.jpeg",
+        trailer: "https://www.youtube.com/watch?v=JfVOs4VSpmA",
+        status: "coming_soon",
+        jadwal: [
+            {
+                bioskop: "XXI Plaza Indonesia",
+                tanggal: "2024-06-09",
+                jam: ["11:00", "14:00", "17:00", "20:00"]
+            },
+            {
+                bioskop: "CGV Central Park",
+                tanggal: "2024-06-09",
+                jam: ["10:30", "13:30", "16:30", "19:30"]
             }
         ]
     }
@@ -230,7 +311,7 @@ const cinemaData = [
     {
         id: 2,
         nama: "CGV Pacific Place",
-        alamat: "Pacific Place Mall, Jakarta Selatan", 
+        alamat: "Pacific Place Mall, Jakarta Selatan",
         fasilitas: ["4DX", "Premium", "Gold Class"]
     },
     {
@@ -251,40 +332,40 @@ const cinemaData = [
 const DataHelper = {
     // Film functions
     getAllFilms: () => filmsData,
-    
+
     getFilmById: (id) => filmsData.find(film => film.id === parseInt(id)),
-    
+
     getFilmsByStatus: (status) => filmsData.filter(film => film.status === status),
-    
+
     searchFilms: (query) => {
         const searchTerm = query.toLowerCase();
-        return filmsData.filter(film => 
+        return filmsData.filter(film =>
             film.judul.toLowerCase().includes(searchTerm) ||
             film.genre.some(g => g.toLowerCase().includes(searchTerm)) ||
             film.sutradara.toLowerCase().includes(searchTerm) ||
             film.pemeran.some(p => p.toLowerCase().includes(searchTerm))
         );
     },
-    
+
     // Food functions
     getAllFood: () => foodData,
-    
+
     getFoodById: (id) => foodData.find(food => food.id === parseInt(id)),
-    
+
     getFoodByCategory: (category) => foodData.filter(food => food.kategori === category),
-    
+
     // Cinema functions
     getAllCinemas: () => cinemaData,
-    
+
     getCinemaById: (id) => cinemaData.find(cinema => cinema.id === parseInt(id)),
-    
+
     // Utility functions
     formatDuration: (minutes) => {
         const hours = Math.floor(minutes / 60);
         const mins = minutes % 60;
         return `${hours}j ${mins}m`;
     },
-    
+
     formatPrice: (price) => {
         return new Intl.NumberFormat('id-ID', {
             style: 'currency',
@@ -292,13 +373,13 @@ const DataHelper = {
             minimumFractionDigits: 0
         }).format(price);
     },
-    
+
     formatDate: (dateString) => {
-        const options = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         };
         return new Date(dateString).toLocaleDateString('id-ID', options);
     }

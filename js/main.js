@@ -51,7 +51,7 @@ function loadFallbackNavbar() {
                     <ul class="nav-links">
                         <li><a href="/index.html">Beranda</a></li>
                         <li><a href="/film/list-film.html">Film</a></li>
-                        <li><a href="/food/list-menu.html">Makanan</a></li>
+                        <li><a href="/food/menu.html">Makanan</a></li>
                     </ul>
                 </div>
                 <div class="nav-actions">
