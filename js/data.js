@@ -12,7 +12,7 @@ const filmsData = [
         sinopsis: "Setelah peristiwa dahsyat Avengers: Infinity War, alam semesta berada dalam reruntuhan karena ulah Thanos yang telah memusnahkan setengah dari semua kehidupan. Dengan bantuan dari sekutu yang tersisa, Avengers berkumpul sekali lagi untuk membalikkan tindakan Thanos dan memulihkan keseimbangan alam semesta sekali dan untuk selamanya.",
         poster: "../img/assets/ave.jpg",
         trailer: "https://www.youtube.com/watch?v=TcMBFSGVi1c",
-        status: "now_showing",
+        status: "coming_soon",
         jadwal: [
             {
                 bioskop: "XXI Grand Indonesia",
@@ -63,6 +63,32 @@ const filmsData = [
         ]
     },
     {
+    id: 6,
+    judul: "Oppenheimer",
+    genre: ["Biography", "Drama", "History"],
+    durasi: 180,
+    rating: 8.6,
+    tahun: 2023,
+    sutradara: "Christopher Nolan",
+    pemeran: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr.", "Matt Damon", "Florence Pugh"],
+    sinopsis: "Kisah ilmuwan jenius J. Robert Oppenheimer dan perannya dalam pengembangan bom atom selama Proyek Manhattan. Film ini mengeksplorasi dilema moral, tekanan politik, dan dampak psikologis yang dialami Oppenheimer sebagai 'bapak bom atom'.",
+    poster: "../img/assets/2.jpeg",
+    trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg",
+    status: "coming_soon",
+    jadwal: [
+        {
+            bioskop: "XXI Kota Kasablanka",
+            tanggal: "2024-06-07",
+            jam: ["13:00", "16:30", "20:00"]
+        },
+        {
+            bioskop: "CGV Grand Indonesia",
+            tanggal: "2024-06-07",
+            jam: ["11:00", "14:30", "18:00", "21:30"]
+        }
+    ]
+},
+    {
         id: 3,
         judul: "The Batman",
         genre: ["Action", "Crime", "Drama"],
@@ -105,7 +131,7 @@ const filmsData = [
         sinopsis: "Dr. Stephen Strange melanjutkan penelitiannya tentang Time Stone. Namun, seorang teman lama yang berubah menjadi musuh menempatkan rencana untuk menghancurkan setiap penyihir di Bumi. Strange harus menjelajahi Multiverse untuk menghadapi versi alternatif dirinya sendiri dan menghadapi ancaman misterius yang baru muncul.",
         poster: "../img/assets/dr.jpg",
         trailer: "https://www.youtube.com/watch?v=aWzlQ2N6qqg",
-        status: "coming_soon",
+        status: "now_showing",
         jadwal: [
             {
                 bioskop: "XXI Grand Indonesia",
@@ -154,9 +180,6 @@ const filmsData = [
                 jam: ["11:30", "14:30", "17:30", "20:30"]
             }
         ]
-    },
-    {
-        
     }
 ];
 
