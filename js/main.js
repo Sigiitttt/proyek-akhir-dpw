@@ -3,19 +3,19 @@
 
 // Fungsi untuk mendapatkan base path relatif berdasarkan lokasi file
 function getBasePath() {
-    const currentPath = window.location.pathname.toLowerCase();
-    const pathParts = currentPath.split('/').filter(Boolean); // Buang elemen kosong
-    const projectRoot = 'TIX-ID-WEB';
-    const rootIndex = pathParts.indexOf(projectRoot);
-
-    // Jika tidak ditemukan, berarti kita di luar struktur yang diharapkan
-    if (rootIndex === -1) return './';
-
-    // Hitung seberapa dalam halaman ini dari root proyek
-    const depth = pathParts.length - rootIndex - 1;
-
-    return depth > 0 ? '../'.repeat(depth) : './';
+    const currentPath = window.location.pathname;
+    const pathParts = currentPath.split('/');
+    
+    // Cek apakah kita di root atau di subfolder
+    if (currentPath.includes('/TIX-ID-WEB/')) {
+        const tixIndex = pathParts.indexOf('tix-id-web');
+        const depth = pathParts.length - tixIndex - 2; // -2 untuk tix-id-web dan file saat ini
+        return depth > 0 ? '../'.repeat(depth) : './';
+    }
+    
+    return './';
 }
+
 
 // Fungsi untuk memuat konten HTML
 async function loadHTML(url, containerId) {
