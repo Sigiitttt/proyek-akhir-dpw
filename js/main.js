@@ -3,17 +3,18 @@
 
 // Fungsi untuk mendapatkan base path relatif berdasarkan lokasi file
 function getBasePath() {
-    const currentPath = window.location.pathname;
-    const pathParts = currentPath.split('/');
-    
-    // Cek apakah kita di root atau di subfolder
-    if (currentPath.includes('/tix-id-web/')) {
-        const tixIndex = pathParts.indexOf('tix-id-web');
-        const depth = pathParts.length - tixIndex - 2; // -2 untuk tix-id-web dan file saat ini
-        return depth > 0 ? '../'.repeat(depth) : './';
-    }
-    
-    return './';
+    const currentPath = window.location.pathname.toLowerCase();
+    const pathParts = currentPath.split('/').filter(Boolean); // Buang elemen kosong
+    const projectRoot = 'TIX-ID-WEB';
+    const rootIndex = pathParts.indexOf(projectRoot);
+
+    // Jika tidak ditemukan, berarti kita di luar struktur yang diharapkan
+    if (rootIndex === -1) return './';
+
+    // Hitung seberapa dalam halaman ini dari root proyek
+    const depth = pathParts.length - rootIndex - 1;
+
+    return depth > 0 ? '../'.repeat(depth) : './';
 }
 
 // Fungsi untuk memuat konten HTML
@@ -42,21 +43,21 @@ function loadFallbackNavbar() {
         <nav class="navbar">
             <div class="container">
                 <div class="nav-brand">
-                    <a href="index.html" class="logo">
+                    <a href="/index.html" class="logo">
                         <span class="logo-text">TIX.ID</span>
                     </a>
                 </div>
                 <div class="nav-menu">
                     <ul class="nav-links">
-                        <li><a href="index.html">Beranda</a></li>
-                        <li><a href="film/list-film.html">Film</a></li>
-                        <li><a href="food/list-menu.html">Makanan</a></li>
+                        <li><a href="/index.html">Beranda</a></li>
+                        <li><a href="/film/list-film.html">Film</a></li>
+                        <li><a href="/food/list-menu.html">Makanan</a></li>
                     </ul>
                 </div>
                 <div class="nav-actions">
                     <div class="auth-buttons">
-                        <a href="login.html" class="btn btn-outline">Masuk</a>
-                        <a href="register.html" class="btn btn-primary">Daftar</a>
+                        <a href="/login.html" class="btn btn-outline">Masuk</a>
+                        <a href="/register.html" class="btn btn-primary">Daftar</a>
                     </div>
                 </div>
             </div>
