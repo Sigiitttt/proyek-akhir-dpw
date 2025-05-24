@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringkasan Booking - Cinema Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-row.total {
+            border-top: 2px solid #e2e8f0;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #2d3748;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn.back-btn {
+            background: #718096;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .movie-poster {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            display: inline-block;
+            margin-right: 20px;
+            position: relative;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .movie-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .movie-title {
+            flex: 1;
+        }
+
+        .movie-title h2 {
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .movie-title p {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .summary-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .button-container {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ringkasan Booking</h1>
+        
+        <div class="summary-card">
+            <div class="movie-header">
+                <div class="movie-poster">
+                    MOVIE<br>POSTER
+                </div>
+                <div class="movie-title">
+                    <h2>AVENGERS: ENDGAME</h2>
+                    <p>Action, Adventure, Drama • 181 menit</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <h3>Detail Pemesanan</h3>
+            <div class="summary-row">
+                <span>Film:</span>
+                <span><strong>AVENGERS: ENDGAME</strong></span>
+            </div>
+            <div class="summary-row">
+                <span>Studio:</span>
+                <span>Studio 1</span>
+            </div>
+            <div class="summary-row">
+                <span>Waktu:</span>
+                <span>19:30 WIB</span>
+            </div>
+            <div class="summary-row">
+                <span>Tanggal:</span>
+                <span>24 Mei 2025</span>
+            </div>
+            <div class="summary-row">
+                <span>Kursi:</span>
+                <span id="summarySeats">-</span>
+            </div>
+            <div class="summary-row">
+                <span>Jumlah Tiket:</span>
+                <span id="ticketCount">0</span>
+            </div>
+            <div class="summary-row">
+                <span>Harga per Tiket:</span>
+                <span>Rp 50.000</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total Bayar:</span>
+                <span id="summaryTotal">Rp 0</span>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="btn back-btn" onclick="window.location.href='seat.html'">Kembali</button>
+            <button class="btn" onclick="window.location.href='payment.html'">Lanjut ke Pembayaran</button>
+        </div>
+    </div>
+
+    <script src="../js/booking.js"></script>
+    <script>
+        // Load summary data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CinemaBooking !== 'undefined') {
+                const booking = new CinemaBooking();
+                booking.loadSummaryPage();
+            }
+        });
+    </script>
+</body>
+</html>

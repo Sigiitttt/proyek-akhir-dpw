@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Film - TIX.ID</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Tambahan styling untuk tombol booking */
+        .booking-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .booking-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .showtime-item {
+            display: inline-block;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 15px 20px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .showtime-item:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateY(-2px);
+        }
+        
+        .showtime-time {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .showtime-info {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .showtimes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar akan dimuat di sini -->
+    <div id="navbar-container"></div>
+    
+    <!-- Loading State -->
+    <div id="loadingDetail" class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Memuat detail film...</p>
+    </div>
+    
+    <!-- Film Detail Content -->
+    <div id="filmDetailContent" style="display: none;">
+        <!-- Film Hero Section -->
+        <section class="film-hero">
+            <div class="film-hero-bg"></div>
+            <div class="container">
+                <div class="film-hero-content">
+                    <div class="film-poster">
+                        <img id="filmPoster" src="" alt="Film Poster">
+                        <div class="film-rating">
+                            <span class="rating-star">⭐</span>
+                            <span id="filmRating">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="film-info">
+                        <h1 id="filmTitle">Judul Film</h1>
+                        <div class="film-meta">
+                            <span id="filmYear" class="meta-item">2024</span>
+                            <span id="filmDuration" class="meta-item">120 menit</span>
+                            <span id="filmGenres" class="meta-item">Action, Adventure</span>
+                        </div>
+                        
+                        <div class="film-crew">
+                            <p><strong>Sutradara:</strong> <span id="filmDirector">-</span></p>
+                            <p><strong>Pemeran:</strong> <span id="filmCast">-</span></p>
+                        </div>
+                        
+                        <div class="film-actions">
+                            <button id="watchTrailerBtn" class="btn btn-secondary">
+                                ▶️ Tonton Trailer
+                            </button>
+                            <button id="addToFavoriteBtn" class="btn btn-outline">
+                                ❤️ Tambah ke Favorit
+                            </button>
+                            <!-- Tombol Booking Utama -->
+                            <button id="bookNowBtn" class="booking-btn">
+                                🎫 Pesan Tiket Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Film Synopsis -->
+        <section class="film-synopsis">
+            <div class="container">
+                <h2>Sinopsis</h2>
+                <p id="filmSynopsis">Loading synopsis...</p>
+            </div>
+        </section>
+        
+        <!-- Showtimes -->
+        <section class="showtimes">
+            <div class="container">
+                <h2>Jadwal Tayang</h2>
+                <div id="showtimesContainer" class="showtimes-grid">
+                    <!-- Jadwal akan dimuat di sini -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Related Films -->
+        <section class="related-films">
+            <div class="container">
+                <h2>Film Lainnya</h2>
+                <div id="relatedFilmsGrid" class="films-grid">
+                    <!-- Film terkait akan dimuat di sini -->
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Film Not Found -->
+    <div id="filmNotFound" class="not-found" style="display: none;">
+        <div class="container">
+            <div class="not-found-content">
+                <div class="not-found-icon">🎬</div>
+                <h2>Film Tidak Ditemukan</h2>
+                <p>Film yang Anda cari tidak ada atau telah dihapus.</p>
+                <a href="list-film.html" class="btn btn-primary">Kembali ke Daftar Film</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Trailer Modal -->
+    <div id="trailerModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Trailer Film</h3>
+                <button class="modal-close" id="closeTrailerModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="video-container">
+                    <iframe id="trailerVideo" width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer akan dimuat di sini -->
+    <div id="footer-container"></div>
+    
+    <script src="../js/data.js"></script>
+    <script src="../js/film.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // Fungsi untuk menangani tombol booking
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookNowBtn = document.getElementById('bookNowBtn');
+            
+            if (bookNowBtn) {
+                bookNowBtn.addEventListener('click', function() {
+                    // Ambil ID film dari URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const filmId = urlParams.get('id');
+                    
+                    if (filmId) {
+                        // Redirect ke halaman seat dengan parameter film ID
+                        window.location.href = `../booking/seat.html?filmId=${filmId}`;
+                    } else {
+                        alert('Film ID tidak ditemukan!');
+                    }
+                });
+            }
+            
+            // Event listener untuk jadwal tayang (jika ada)
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('showtime-item')) {
+                    e.preventDefault();
+                    
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const filmId = urlParams.get('id');
+                    const showtime = e.target.dataset.showtime || 'default';
+                    
+                    if (filmId) {
+                        window.location.href = `../booking/seat.html?filmId=${filmId}&showtime=${showtime}`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

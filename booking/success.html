@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Berhasil - Cinema Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            color: #48bb78;
+            margin-bottom: 20px;
+            animation: checkmark 0.5s ease-in-out;
+        }
+
+        @keyframes checkmark {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .success-message {
+            color: #718096;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .summary-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .summary-card h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .booking-id {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin: 10px 0;
+        }
+
+        .status-badge {
+            background: #48bb78;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn.secondary {
+            background: #718096;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .confirmation-details {
+            background: #e6fffa;
+            border: 1px solid #38b2ac;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-details h4 {
+            color: #234e52;
+            margin-bottom: 10px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .email-notice {
+            background: #fff5cd;
+            border: 1px solid #f6ad55;
+            color: #744210;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .success-icon {
+                font-size: 60px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .button-container {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">✓</div>
+        <h1>Pembayaran Berhasil!</h1>
+        <p class="success-message">
+            Selamat! Pembayaran Anda telah berhasil diproses.<br>
+            Tiket digital Anda sudah siap dan dapat digunakan di bioskop.
+        </p>
+        
+        <div class="confirmation-details">
+            <h4>📧 Konfirmasi Booking</h4>
+            <div class="detail-item">
+                <span>Booking ID:</span>
+                <span class="booking-id" id="bookingId">-</span>
+            </div>
+            <div class="detail-item">
+                <span>Status Pembayaran:</span>
+                <span class="status-badge">LUNAS</span>
+            </div>
+            <div class="detail-item">
+                <span>Waktu Transaksi:</span>
+                <span id="transactionTime">-</span>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <h3>Detail Pemesanan</h3>
+            <div class="summary-row">
+                <span>Film:</span>
+                <span><strong>AVENGERS: ENDGAME</strong></span>
+            </div>
+            <div class="summary-row">
+                <span>Studio:</span>
+                <span>Studio 1</span>
+            </div>
+            <div class="summary-row">
+                <span>Tanggal & Waktu:</span>
+                <span>24 Mei 2025, 19:30 WIB</span>
+            </div>
+            <div class="summary-row">
+                <span>Kursi:</span>
+                <span id="successSeats">-</span>
+            </div>
+            <div class="summary-row">
+                <span>Total Bayar:</span>
+                <span id="successTotal">Rp 0</span>
+            </div>
+        </div>
+
+        <div class="email-notice">
+            📨 <strong>Email konfirmasi</strong> telah dikirim ke alamat email Anda dengan detail lengkap pemesanan.
+        </div>
+
+        <div class="button-container">
+            <a href="ticket.html" class="btn">📱 Lihat Tiket Digital</a>
+            <a href="seat.html" class="btn secondary">🎬 Booking Baru</a>
+        </div>
+    </div>
+
+    <script src="../js/booking.js"></script>
+    <script>
+        // Load success data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CinemaBooking !== 'undefined') {
+                const booking = new CinemaBooking();
+                booking.loadSuccessPage();
+            }
+        });
+    </script>
+</body>
+</html>

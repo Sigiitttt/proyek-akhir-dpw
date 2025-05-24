@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Management - Admin Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 5px solid #667eea;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-edit {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-edit:hover {
+            background: #218838;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        .table-section {
+            margin-top: 40px;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .film-count {
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+            transform: scale(1.01);
+        }
+
+        .film-poster {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .film-title {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .film-year {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .film-rating {
+            display: inline-block;
+            background: #ffc107;
+            color: #212529;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 600px;
+            }
+
+            .table-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Film Management</h1>
+            <p>Admin Panel untuk Mengelola Database Film</p>
+        </div>
+
+        <div class="main-content">
+            <div id="alertContainer"></div>
+
+            <div class="form-section">
+                <h2 class="form-title">
+                    <span id="formIcon">➕</span>
+                    <span id="formTitle">Tambah Film Baru</span>
+                </h2>
+                
+                <form id="filmForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="title">Judul Film *</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="year">Tahun Rilis *</label>
+                            <input type="number" id="year" name="year" min="1900" max="2030" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="genre">Genre *</label>
+                            <select id="genre" name="genre" required>
+                                <option value="">Pilih Genre</option>
+                                <option value="Action">Action</option>
+                                <option value="Adventure">Adventure</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Sci-Fi">Sci-Fi</option>
+                                <option value="Thriller">Thriller</option>
+                                <option value="Animation">Animation</option>
+                                <option value="Documentary">Documentary</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="director">Sutradara *</label>
+                            <input type="text" id="director" name="director" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">Rating (1-10)</label>
+                            <input type="number" id="rating" name="rating" min="1" max="10" step="0.1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="poster">URL Poster</label>
+                            <input type="url" id="poster" name="poster" placeholder="https://example.com/poster.jpg">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Deskripsi</label>
+                        <textarea id="description" name="description" placeholder="Masukkan deskripsi film..."></textarea>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span id="submitText">Tambah Film</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none;">
+                            Batal Edit
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-section">
+                <div class="table-header">
+                    <h2 class="table-title">Daftar Film</h2>
+                    <div class="film-count" id="filmCount">0 Film</div>
+                </div>
+
+                <div class="table-container">
+                    <table id="filmTable">
+                        <thead>
+                            <tr>
+                                <th>Poster</th>
+                                <th>Judul</th>
+                                <th>Tahun</th>
+                                <th>Genre</th>
+                                <th>Sutradara</th>
+                                <th>Rating</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="filmTableBody">
+                            <!-- Data film akan dimuat di sini -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Film Management System
+        class FilmManager {
+            constructor() {
+                this.films = [];
+                this.currentEditId = null;
+                this.init();
+            }
+
+            init() {
+                this.loadFilms();
+                this.bindEvents();
+                this.renderFilms();
+            }
+
+            bindEvents() {
+                const form = document.getElementById('filmForm');
+                const cancelBtn = document.getElementById('cancelBtn');
+
+                form.addEventListener('submit', (e) => this.handleSubmit(e));
+                cancelBtn.addEventListener('click', () => this.cancelEdit());
+            }
+
+            handleSubmit(e) {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const filmData = Object.fromEntries(formData);
+
+                // Validasi data
+                if (!this.validateFilm(filmData)) {
+                    return;
+                }
+
+                if (this.currentEditId) {
+                    this.updateFilm(this.currentEditId, filmData);
+                } else {
+                    this.addFilm(filmData);
+                }
+            }
+
+            validateFilm(filmData) {
+                if (!filmData.title.trim()) {
+                    this.showAlert('Judul film harus diisi!', 'error');
+                    return false;
+                }
+                if (!filmData.year || filmData.year < 1900 || filmData.year > 2030) {
+                    this.showAlert('Tahun rilis tidak valid!', 'error');
+                    return false;
+                }
+                if (!filmData.genre) {
+                    this.showAlert('Genre harus dipilih!', 'error');
+                    return false;
+                }
+                if (!filmData.director.trim()) {
+                    this.showAlert('Sutradara harus diisi!', 'error');
+                    return false;
+                }
+                return true;
+            }
+
+            addFilm(filmData) {
+                const newFilm = {
+                    id: Date.now().toString(),
+                    title: filmData.title.trim(),
+                    year: parseInt(filmData.year),
+                    genre: filmData.genre,
+                    director: filmData.director.trim(),
+                    rating: filmData.rating ? parseFloat(filmData.rating) : null,
+                    poster: filmData.poster || '',
+                    description: filmData.description.trim(),
+                    createdAt: new Date().toISOString()
+                };
+
+                this.films.push(newFilm);
+                this.saveFilms();
+                this.renderFilms();
+                this.resetForm();
+                this.showAlert(`Film "${newFilm.title}" berhasil ditambahkan!`, 'success');
+            }
+
+            updateFilm(id, filmData) {
+                const index = this.films.findIndex(film => film.id === id);
+                if (index !== -1) {
+                    this.films[index] = {
+                        ...this.films[index],
+                        title: filmData.title.trim(),
+                        year: parseInt(filmData.year),
+                        genre: filmData.genre,
+                        director: filmData.director.trim(),
+                        rating: filmData.rating ? parseFloat(filmData.rating) : null,
+                        poster: filmData.poster || '',
+                        description: filmData.description.trim(),
+                        updatedAt: new Date().toISOString()
+                    };
+
+                    this.saveFilms();
+                    this.renderFilms();
+                    this.cancelEdit();
+                    this.showAlert(`Film "${this.films[index].title}" berhasil diperbarui!`, 'success');
+                }
+            }
+
+            deleteFilm(id) {
+                const film = this.films.find(f => f.id === id);
+                if (film && confirm(`Yakin ingin menghapus film "${film.title}"?`)) {
+                    this.films = this.films.filter(f => f.id !== id);
+                    this.saveFilms();
+                    this.renderFilms();
+                    this.showAlert(`Film "${film.title}" berhasil dihapus!`, 'success');
+                }
+            }
+
+            editFilm(id) {
+                const film = this.films.find(f => f.id === id);
+                if (film) {
+                    this.currentEditId = id;
+                    this.populateForm(film);
+                    this.updateFormUI(true);
+                    document.getElementById('title').focus();
+                }
+            }
+
+            populateForm(film) {
+                document.getElementById('title').value = film.title;
+                document.getElementById('year').value = film.year;
+                document.getElementById('genre').value = film.genre;
+                document.getElementById('director').value = film.director;
+                document.getElementById('rating').value = film.rating || '';
+                document.getElementById('poster').value = film.poster || '';
+                document.getElementById('description').value = film.description || '';
+            }
+
+            cancelEdit() {
+                this.currentEditId = null;
+                this.resetForm();
+                this.updateFormUI(false);
+            }
+
+            resetForm() {
+                document.getElementById('filmForm').reset();
+            }
+
+            updateFormUI(isEditing) {
+                const formTitle = document.getElementById('formTitle');
+                const formIcon = document.getElementById('formIcon');
+                const submitText = document.getElementById('submitText');
+                const cancelBtn = document.getElementById('cancelBtn');
+
+                if (isEditing) {
+                    formTitle.textContent = 'Edit Film';
+                    formIcon.textContent = '✏️';
+                    submitText.textContent = 'Update Film';
+                    cancelBtn.style.display = 'inline-block';
+                } else {
+                    formTitle.textContent = 'Tambah Film Baru';
+                    formIcon.textContent = '➕';
+                    submitText.textContent = 'Tambah Film';
+                    cancelBtn.style.display = 'none';
+                }
+            }
+
+            renderFilms() {
+                const tbody = document.getElementById('filmTableBody');
+                const filmCount = document.getElementById('filmCount');
+
+                filmCount.textContent = `${this.films.length} Film`;
+
+                if (this.films.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="7" class="empty-state">
+                                <h3>Belum ada film</h3>
+                                <p>Tambahkan film pertama Anda menggunakan form di atas</p>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tbody.innerHTML = this.films.map(film => `
+                    <tr>
+                        <td>
+                            <img src="${film.poster || 'https://via.placeholder.com/60x80?text=No+Image'}" 
+                                 alt="${film.title}" class="film-poster"
+                                 onerror="this.src='https://via.placeholder.com/60x80?text=No+Image'">
+                        </td>
+                        <td>
+                            <div class="film-title">${film.title}</div>
+                            <div class="film-year">${film.year}</div>
+                        </td>
+                        <td>${film.year}</td>
+                        <td>${film.genre}</td>
+                        <td>${film.director}</td>
+                        <td>
+                            ${film.rating ? `<span class="film-rating">⭐ ${film.rating}</span>` : '-'}
+                        </td>
+                        <td>
+                            <button class="btn btn-edit" onclick="filmManager.editFilm('${film.id}')">
+                                Edit
+                            </button>
+                            <button class="btn btn-delete" onclick="filmManager.deleteFilm('${film.id}')">
+                                Hapus
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            saveFilms() {
+                // Dalam environment ini, data hanya tersimpan selama sesi
+                // Pada implementasi nyata, gunakan localStorage:
+                localStorage.setItem('films', JSON.stringify(this.films));
+                console.log('Data films tersimpan:', this.films);
+            }
+
+            loadFilms() {
+                // Pada implementasi nyata, gunakan:
+                const saved = localStorage.getItem('films');
+                if (saved) {
+                    this.films = JSON.parse(saved);
+                }
+                
+                // Demo data untuk testing
+                this.films = [
+                    {
+                        id: '1',
+                        title: 'Avengers: Endgame',
+                        year: 2019,
+                        genre: 'Action',
+                        director: 'Anthony Russo, Joe Russo',
+                        rating: 8.4,
+                        poster: 'https://via.placeholder.com/60x80?text=Avengers',
+                        description: 'Film superhero epik dari Marvel Cinematic Universe.',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: '2',
+                        title: 'Parasite',
+                        year: 2019,
+                        genre: 'Thriller',
+                        director: 'Bong Joon-ho',
+                        rating: 8.6,
+                        poster: 'https://via.placeholder.com/60x80?text=Parasite',
+                        description: 'Film thriller Korea yang memenangkan Oscar.',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+            }
+
+            showAlert(message, type = 'success') {
+                const alertContainer = document.getElementById('alertContainer');
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type}`;
+                alertDiv.textContent = message;
+
+                alertContainer.appendChild(alertDiv);
+
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 5000);
+            }
+        }
+
+        // Initialize the film manager
+        const filmManager = new FilmManager();
+    </script>
+</body>
+</html>

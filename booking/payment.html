@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - Cinema Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+
+        .summary-row.total {
+            border-top: 2px solid #e2e8f0;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #2d3748;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .payment-method {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            background: white;
+        }
+
+        .payment-method:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .payment-method.selected {
+            border-color: #667eea;
+            background: #ebf8ff;
+            transform: translateY(-2px);
+        }
+
+        .payment-method h4 {
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .payment-method p {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .payment-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn.back-btn {
+            background: #718096;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .order-summary {
+            background: #edf2f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .order-summary h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .button-container {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pembayaran</h1>
+        
+        <div class="summary-card">
+            <div class="order-summary">
+                <h4>Ringkasan Pesanan</h4>
+                <div class="order-item">
+                    <span>Film: AVENGERS: ENDGAME</span>
+                </div>
+                <div class="order-item">
+                    <span>Kursi: <span id="orderSeats">-</span></span>
+                </div>
+                <div class="order-item">
+                    <span>Jumlah Tiket: <span id="orderTicketCount">0</span></span>
+                </div>
+            </div>
+            
+            <div class="summary-row total">
+                <span>Total Bayar:</span>
+                <span id="paymentTotal">Rp 0</span>
+            </div>
+        </div>
+
+        <h3>Pilih Metode Pembayaran</h3>
+        <div class="payment-methods">
+            <div class="payment-method" data-method="gopay">
+                <div class="payment-icon">📱</div>
+                <h4>GoPay</h4>
+                <p>Bayar dengan GoPay</p>
+            </div>
+            <div class="payment-method" data-method="ovo">
+                <div class="payment-icon">💳</div>
+                <h4>OVO</h4>
+                <p>Bayar dengan OVO</p>
+            </div>
+            <div class="payment-method" data-method="dana">
+                <div class="payment-icon">💰</div>
+                <h4>DANA</h4>
+                <p>Bayar dengan DANA</p>
+            </div>
+            <div class="payment-method" data-method="bank">
+                <div class="payment-icon">🏦</div>
+                <h4>Transfer Bank</h4>
+                <p>Transfer ke rekening</p>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="btn back-btn" onclick="window.location.href='summary.html'">Kembali</button>
+            <button class="btn" id="payButton" disabled>Bayar Sekarang</button>
+        </div>
+    </div>
+
+    <script src="../js/booking.js"></script>
+    <script>
+        // Load payment data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CinemaBooking !== 'undefined') {
+                const booking = new CinemaBooking();
+                booking.loadPaymentPage();
+                booking.setupPaymentListeners();
+            }
+        });
+    </script>
+</body>
+</html>

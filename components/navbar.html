@@ -1,0 +1,63 @@
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-brand">
+            <a href="/tix-id-web/index.html" class="logo">
+                <span class="logo-text">TIX.ID</span>
+            </a>
+        </div>
+
+        <div class="nav-menu" id="navMenu">
+            <ul class="nav-links">
+                <li><a href="/tix-id-web/index.html">Beranda</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Film <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/tix-id-web/film/list-film.html">Sedang Tayang</a></li>
+                        <li><a href="/tix-id-web/film/list-film.html">Akan Tayang</a></li>
+                    </ul>
+                </li>
+                <li><a href="/tix-id-web/food/list-menu.html">Makanan</a></li>
+                <li><a href="/tix-id-web/news/news.html">Berita</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-actions">
+            <div class="search-box">
+                <input type="text" placeholder="Cari film..." class="search-input">
+                <button class="search-btn">🔍</button>
+            </div>
+
+            <div class="auth-buttons" id="auth-Buttons">
+                <a href="/tix-id-web/login.html" class="btn btn-outline">Masuk</a>
+                <a href="/tix-id-web/register.html" class="btn btn-primary">Daftar</a>
+                <div id="user-info" style="display: none;"></div>
+            </div>
+
+            <div class="user-menu" id="userMenu" style="display: none;">
+                <div class="dropdown">
+                    <a href="#" class="user-avatar dropdown-toggle">
+                        <span class="avatar-icon">👤</span>
+                        <span class="username" id="username">User</span>
+                        <span class="arrow">▼</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/tix-id-web/user/profile.html">Profil</a></li>
+                        <li><a href="/tix-id-web/user/history.html">Riwayat</a></li>
+                        <li><a href="/tix-id-web/user/favorite.html">Favorit</a></li>
+                        <li><a href="/tix-id-web/user/settings.html">Pengaturan</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a href="#" onclick="logout()">Keluar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>

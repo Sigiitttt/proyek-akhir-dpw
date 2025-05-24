@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiket Digital - Cinema Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+
+        .ticket {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .ticket::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .ticket::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .ticket-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px dashed rgba(255,255,255,0.3);
+            padding-bottom: 20px;
+        }
+
+        .ticket-header h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ticket-header .cinema-name {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .ticket-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .ticket-section h4 {
+            font-size: 12px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .ticket-section .value {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .qr-section {
+            text-align: center;
+            border-top: 2px dashed rgba(255,255,255,0.3);
+            padding-top: 20px;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: white;
+            margin: 0 auto 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 12px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .qr-code::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid #333;
+            background: 
+                repeating-linear-gradient(0deg, #333, #333 2px, transparent 2px, transparent 4px),
+                repeating-linear-gradient(90deg, #333, #333 2px, transparent 2px, transparent 4px);
+        }
+
+        .booking-id {
+            font-family: monospace;
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .qr-instruction {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn.secondary {
+            background: #718096;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .ticket-actions {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .ticket-actions h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .action-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .important-notice {
+            background: #fff5cd;
+            border: 1px solid #f6ad55;
+            color: #744210;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .important-notice h4 {
+            margin-bottom: 8px;
+            color: #744210;
+        }
+
+        .important-notice ul {
+            padding-left: 20px;
+        }
+
+        .important-notice li {
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .ticket-info {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .qr-code {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .button-container {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Tiket Digital</h1>
+        
+        <div class="ticket">
+            <div class="ticket-header">
+                <h2 id="ticketMovie">AVENGERS: ENDGAME</h2>
+                <div class="cinema-name">BIOSKOP DIGITAL</div>
+            </div>
+            
+            <div class="ticket-info">
+                <div class="ticket-section">
+                    <h4>Studio & Waktu</h4>
+                    <div class="value">Studio 1</div>
+                    <div class="value">24 Mei 2025</div>
+                    <div class="value">19:30 WIB</div>
+                </div>
+                <div class="ticket-section">
+                    <h4>Kursi & Total</h4>
+                    <div class="value" id="ticketSeats">-</div>
+                    <div class="value" id="ticketTotal">Rp 0</div>
+                </div>
+            </div>
+            
+            <div class="qr-section">
+                <div class="qr-code">
+                    QR CODE
+                </div>
+                <div class="booking-id" id="ticketBookingId">-</div>
+                <div class="qr-instruction">
+                    Tunjukkan QR Code ini di loket bioskop
+                </div>
+            </div>
+        </div>
+
+        <div class="ticket-actions">
+            <h3>🎫 Aksi Tiket</h3>
+            <div class="action-buttons">
+                <button class="action-btn" onclick="downloadTicket()">📥 Download</button>
+                <button class="action-btn" onclick="shareTicket()">📤 Share</button>
+                <button class="action-btn" onclick="printTicket()">🖨️ Print</button>
+                <button class="action-btn" onclick="addToCalendar()">📅 Tambah ke Kalender</button>
+            </div>
+        </div>
+
+        <div class="important-notice">
+            <h4>⚠️ Penting untuk Diperhatikan:</h4>
+            <ul>
+                <li>Datang 15 menit sebelum jam tayang</li>
+                <li>Tunjukkan tiket digital ini dan identitas diri</li>
+                <li>Tiket tidak dapat dikembalikan atau ditukar</li>
+                <li>Dilarang membawa makanan dan minuman dari luar</li>
+                <li>Simpan tiket ini hingga selesai menonton</li>
+            </ul>
+        </div>
+
+        <div class="button-container">
+            <a href="../index.html" class="btn secondary">← Kembali</a>
+            <a href="seat.html" class="btn">🎬 Booking Baru</a>
+        </div>
+    </div>
+
+    <script src="../js/booking.js"></script>
+    <script>
+        // Load ticket data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CinemaBooking !== 'undefined') {
+                const booking = new CinemaBooking();
+                booking.loadTicketPage();
+            }
+        });
+
+        // Ticket action functions
+        function downloadTicket() {
+            alert('Fitur download tiket akan segera tersedia!');
+        }
+
+        function shareTicket() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Tiket Bioskop - AVENGERS: ENDGAME',
+                    text: 'Saya sudah booking tiket untuk AVENGERS: ENDGAME!',
+                    url: window.location.href
+                });
+            } else {
+                alert('Fitur share tidak didukung di browser ini');
+            }
+        }
+
+        function printTicket() {
+            window.print();
+        }
+
+        function addToCalendar() {
+            const event = {
+                title: 'Nonton AVENGERS: ENDGAME',
+                start: '2025-05-24T19:30:00',
+                end: '2025-05-24T22:30:00',
+                description: 'Studio 1 - Kursi: ' + (document.getElementById('ticketSeats').textContent || '-')
+            };
+            
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.start.replace(/[-:]/g, '')}/${event.end.replace(/[-:]/g, '')}&details=${encodeURIComponent(event.description)}`;
+            
+            window.open(calendarUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
