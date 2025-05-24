@@ -103,7 +103,7 @@ const filmsData = [
         sutradara: "Sam Raimi",
         pemeran: ["Benedict Cumberbatch", "Elizabeth Olsen", "Chiwetel Ejiofor", "Benedict Wong", "Xochitl Gomez"],
         sinopsis: "Dr. Stephen Strange melanjutkan penelitiannya tentang Time Stone. Namun, seorang teman lama yang berubah menjadi musuh menempatkan rencana untuk menghancurkan setiap penyihir di Bumi. Strange harus menjelajahi Multiverse untuk menghadapi versi alternatif dirinya sendiri dan menghadapi ancaman misterius yang baru muncul.",
-        // poster: "https://via.placeholder.com/300x450/8e24aa/fff?text=Doctor+Strange+2",
+        poster: "../img/assets/dr.jpg",
         trailer: "https://www.youtube.com/watch?v=aWzlQ2N6qqg",
         status: "coming_soon",
         jadwal: [
@@ -134,7 +134,7 @@ const filmsData = [
         sutradara: "Joseph Kosinski",
         pemeran: ["Tom Cruise", "Miles Teller", "Jennifer Connelly", "Jon Hamm", "Glen Powell"],
         sinopsis: "Setelah lebih dari tiga puluh tahun bertugas sebagai salah satu penerbang angkatan laut terbaik, Pete 'Maverick' Mitchell berada di tempat yang tepat, mendorong amplop sebagai pilot uji coba yang berani dan menghindari kemajuan pangkat yang akan membuatnya darat. Ketika dia menemukan dirinya melatih detasemen lulusan TOP GUN untuk misi khusus tidak seperti yang pernah dilihat pilot hidup, Maverick menghadapi masa lalu yang tidak pasti dan ketakutan terdalamnya.",
-        // poster: "https://via.placeholder.com/300x450/f57c00/fff?text=Top+Gun+Maverick",
+        poster: "../img/assets/1.jpg",
         trailer: "https://www.youtube.com/watch?v=qSqVVswa420",
         status: "coming_soon",
         jadwal: [
@@ -154,6 +154,9 @@ const filmsData = [
                 jam: ["11:30", "14:30", "17:30", "20:30"]
             }
         ]
+    },
+    {
+        
     }
 ];
 
