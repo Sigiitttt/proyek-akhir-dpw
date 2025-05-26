@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.header .back {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #e0e0e0;
+    margin-top: 10px;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    font-weight: bold;
+}
+
+.tab.active {
+    color: #2196f3;
+    border-color: #2196f3;
+}
+
+.film-container {
+    display: none;
+    padding: 10px;
+}
+
+.film-container.active {
+    display: block;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.filter-buttons button {
+    padding: 6px 12px;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filter-buttons .active-button {
+    background: #2196f3;
+    color: #fff;
+}
+
+.watchlist-info {
+    display: flex;
+    gap: 10px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.watchlist-info img {
+    width: 40px;
+    height: 40px;
+}
+
+.info-btn {
+    margin-top: 8px;
+    background: none;
+    border: 1px solid #333;
+    padding: 4px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.movies {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.movie {
+    text-align: center;
+}
+
+.movie img {
+    width: 60%;
+    border-radius: 8px;
+    object-fit: cover;
+    height: 250px;
+}
+
+.label.age {
+    display: inline-block;
+    padding: 2px 6px;
+    background: #e53935;
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.genre {
+    font-size: 12px;
+    color: #555;
+}
+
+.rating {
+    color: orange;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.rating.upcoming {
+    color: #555;
+    font-weight: normal;
+}

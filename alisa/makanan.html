@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu Makanan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Modal Trigger -->
+  <input type="checkbox" id="toggleMenu">
+
+  <div class="header">
+    <h1>MENU MAKANAN XXI</h1>
+    <p>Jam operasional F&amp;B 11:00 - 20:40 WIB</p>
+  </div>
+
+  <div class="menu-section" id="combo">
+    <h2>Combo</h2>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Combo A</h3>
+        <p>Popcorn Small Salt + XXI Java Tea/Soft Drink Small</p>
+        <div class="combo-price">Rp45.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Combo B</h3>
+        <p>Popcorn Small Sweet Glaze + XXI Java Tea/Soft Drink Small</p>
+        <div class="combo-price">Rp50.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Combo C</h3>
+        <p>Popcorn Cornell Small + XXI Java Tea/Soft Drink Small</p>
+        <div class="combo-price">Rp55.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Snack Combo 2</h3>
+        <p>Popcorn Large Mix + 2 XXI Java Tea/Soft Drink Small</p>
+        <div class="combo-price">Rp105.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-section" id="popcorn">
+    <h2>Popcorn</h2>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Popcron Toffe Nut</h3>
+        <p></p>
+        <div class="combo-price">Rp55.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Popcron BBQ</h3>
+        <p>Popcron XXI Cafe yang renyah dibalut dengan bumbu barbeque khas yang gurih, smoky dan sedikit manis</p>
+        <div class="combo-price">Rp40.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Popcron Milo Dinosaurs M</h3>
+        <p></p>
+        <div class="combo-price">Rp70.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Popcron Milo Dinosaurs </h3>
+        <p></p>
+        <div class="combo-price">Rp60.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+  </div>
+  <div class="menu-section" id="bakery">
+    <h2>Bakery & Pastry</h2>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Dark Choco Peanut</h3>
+        <p></p>
+        <div class="combo-price">Rp10.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Croffle Original (Mini)</h3>
+        <p></p>
+        <div class="combo-price">Rp25.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Java Pia Pandan</h3>
+        <p></p>
+        <div class="combo-price">Rp15.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+
+    <div class="combo">
+      <img src="">
+      <div class="combo-details">
+        <h3>Java Pia Ube</h3>
+        <p></p>
+        <div class="combo-price">Rp15.000</div>
+        <button class="btn-pesan">PESAN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <label for="toggleMenu" class="semua-menu-btn">SEMUA MENU</label>
+    <button class="btn-lanjut" disabled>LANJUTKAN</button>
+  </div>
+
+  <!-- Modal Content -->
+  <div class="menu-modal">
+    <div class="menu-content">
+      <label for="toggleMenu" class="close-button">✕</label>
+      <div class="handle"></div>
+      <h3 class="menu-title">Semua Menu</h3>
+      <ul class="menu-list">
+        <li><a href="#combo">Combo</a></li>
+        <li><a href="#popcorn">Popcorn</a></li>
+        <li><a href="#bakery">Bakery & Pastry</a></li>
+        <!-- Tambahkan menu lainnya -->
+      </ul>
+    </div>
+  </div>
+
+  <div id="orderModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h3 id="modalTitle">Tambahkan ke keranjang?</h3>
+    <div class="modal-buttons">
+      <button id="yesButton">Ya</button>
+      <button id="noButton">Tidak</button>
+    </div>
+  </div>
+</div>
+
+  <script>
+
+    const modal       = document.getElementById('orderModal');
+    const closeModal  = document.getElementById('closeModal');
+    const modalTitle  = document.getElementById('modalTitle');
+    const yesButton   = document.getElementById('yesButton');
+    const noButton    = document.getElementById('noButton');
+
+    // Ambil semua tombol PESAN di seluruh halaman
+    const pesanButtons = document.querySelectorAll('.btn-pesan');
+
+    pesanButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const itemName = button.parentElement.querySelector('h3').textContent;
+        modalTitle.textContent = 'Tambahkan "' + itemName + '" ke keranjang?';
+        modal.style.display = 'block';
+      });
+    });
+
+    // Tombol close & tidak
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    noButton.addEventListener('click', () => modal.style.display = 'none');
+
+    // Tombol ya
+    yesButton.addEventListener('click', () => {
+      alert('Item ditambahkan ke keranjang!');
+      modal.style.display = 'none';
+    });
+
+    // Klik luar modal
+    window.addEventListener('click', e => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+  // Smooth scroll and auto-close modal
+  document.querySelectorAll('.menu-list a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // prevent default jump
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      // Scroll smooth ke target
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Tutup modal (uncheck checkbox)
+      document.getElementById('toggleMenu').checked = false;
+    });
+  });
+</script>
+
+</body>
+</html>

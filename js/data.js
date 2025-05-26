@@ -993,44 +993,6 @@ const kotaList = {
     "cilegon": "Cilegon"
 };
 
-
-// Data makanan dan minuman dummy
-const foodData = [
-    {
-        id: 1,
-        nama: "Popcorn Large",
-        kategori: "snack",
-        harga: 35000,
-        deskripsi: "Popcorn rasa original ukuran large",
-        // gambar: "https://via.placeholder.com/300x200/ffc107/000?text=Popcorn+Large"
-    },
-    {
-        id: 2,
-        nama: "Nachos Cheese",
-        kategori: "snack",
-        harga: 45000,
-        deskripsi: "Nachos dengan keju leleh yang gurih",
-        // gambar: "https://via.placeholder.com/300x200/ff9800/000?text=Nachos+Cheese"
-    },
-    {
-        id: 3,
-        nama: "Coca Cola Large",
-        kategori: "minuman",
-        harga: 25000,
-        deskripsi: "Minuman soda segar ukuran large",
-        // gambar: "https://via.placeholder.com/300x200/d32f2f/fff?text=Coca+Cola"
-    },
-    {
-        id: 4,
-        nama: "Combo Popcorn + Drink",
-        kategori: "combo",
-        harga: 55000,
-        deskripsi: "Paket hemat popcorn medium + minuman large",
-        // gambar: "https://via.placeholder.com/300x200/4caf50/fff?text=Combo+Deal"
-    }
-];
-
-
 // Fungsi helper untuk mengambil data
 const DataHelper = {
     // Film functions

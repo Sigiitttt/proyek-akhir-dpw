@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Bioskop</title>
+    <link rel="stylesheet" href="bioskop.css">
+    <style>
+        /* Tambahkan style aktif untuk tombol filter */
+        .filter-buttons button.active-button {
+            background-color: #444;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="back">&larr;</div>
+        <h2>Film Bioskop</h2>
+    </div>
+
+    <div class="tab-container">
+        <button class="tab active" onclick="showTab('sedang')">SEDANG TAYANG</button>
+        <button class="tab" onclick="showTab('akan')">AKAN DATANG</button>
+    </div>
+
+    <div id="sedang" class="film-container active">
+        <div class="filter-buttons">
+            <button class="active-button" onclick="filterBioskop(this)">Semua Film</button>
+            <button onclick="filterBioskop(this)">XXI</button>
+            <button onclick="filterBioskop(this)">Cinépolis</button>
+        </div>
+
+        <div class="watchlist-info">
+            <div>
+                <strong>Tambahkan film ke watchlistmu!</strong>
+                <p>Kami akan mengingatkanmu film-film di watchlist supaya kamu tidak kelewatan!</p>
+            </div>
+        </div>
+
+        <div class="movies">
+            <div class="movie">
+                <img src="https://awsimages.detik.net.id/community/media/visual/2025/05/21/poster-film-mission-impossible-the-final-reckoning-1747797808686_34.webp?w=500&q=90" alt="Mission Impossible">
+                <h4>MISSION: IMPOSSIBLE - THE FINAL RECKONING</h4>
+                <span class="label age">R 13+</span><span class="genre">Action</span>
+                <div class="rating">&#9733; 9.6</div>
+            </div>
+            <div class="movie">
+                <img src="https://asset.tix.id/wp-content/uploads/2025/05/063372fa-a116-40f8-bafd-8669c9e477b4-600x885.webp" alt="Gundik">
+                <h4>GUNDIK</h4>
+                <span class="label age">D 17+</span><span class="genre">Horror</span>
+                <div class="rating">&#9733; 8.3</div>
+            </div>
+            <div class="movie">
+                <img src="https://upload.wikimedia.org/wikipedia/id/thumb/a/ab/Final_Destination_Bloodlines_%282025%29_poster.jpg/250px-Final_Destination_Bloodlines_%282025%29_poster.jpg" alt="Skull Fire">
+                <h4>FINAL DESTINATION: BLOODLINES</h4>
+                <span class="label age">R 17+</span><span class="genre">Thriller</span>
+                <div class="rating">&#9733; 8.9</div>
+            </div>
+            <div class="movie">
+                <img src="https://awsimages.detik.net.id/community/media/visual/2025/05/22/poster-film-lilo-stitch-1747884638126_916.webp?w=600&q=90" alt="Stitch">
+                <h4>LILO & STITCH</h4>
+                <span class="label age">SU</span><span class="genre">Family</span>
+                <div class="rating">&#9733; 9.1</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="akan" class="film-container">
+        <div class="movies">
+            <div class="movie">
+                <img src="https://upload.wikimedia.org/wikipedia/id/thumb/8/88/Karate_Kid_Legends_Poster.jpg/250px-Karate_Kid_Legends_Poster.jpg" alt="Karate kid: legends">
+                <h4>KARATE KID: LEGENDS</h4>
+                <span class="label age">R 13+</span><span class="genre">Action</span>
+                <div class="rating upcoming">Tayang 28 Juni 2025</div>
+            </div>
+            <div class="movie">
+                <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/124/2025/04/25/Poster-Waktu-Maghrib-2-1548716583.jpg" alt="Waktu magrib 2">
+                <h4>WAKTU MAGRIB 2</h4>
+                <span class="label age">SU</span><span class="genre">Animation</span>
+                <div class="rating upcoming">Tayang 15 Juli 2025</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tab) {
+            document.getElementById('sedang').classList.remove('active');
+            document.getElementById('akan').classList.remove('active');
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+            document.getElementById(tab).classList.add('active');
+            document.querySelectorAll('.tab-container .tab')[tab === 'sedang' ? 0 : 1].classList.add('active');
+        }
+
+        function filterBioskop(button) {
+            // Hapus tombol aktif sebelumnya
+            document.querySelectorAll('.filter-buttons button').forEach(btn => {
+                btn.classList.remove('active-button');
+            });
+
+            // Tambahkan ke tombol yang diklik
+            button.classList.add('active-button');
+
+            // Saat ini belum ada filter. Nanti bisa ditambahkan filter berdasarkan bioskop di sini
+        }
+    </script>
+</body>
+</html>

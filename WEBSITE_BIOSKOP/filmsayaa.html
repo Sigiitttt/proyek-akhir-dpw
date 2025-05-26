@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Saya - TIX ID</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            margin-right: 16px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-button:hover {
+            background-color: #f1f3f4;
+            border-radius: 50%;
+        }
+
+        .header-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            background-color: #fff;
+            padding: 0 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 40px;
+        }
+
+        .tab {
+            background: none;
+            border: none;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #718096;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .tab.active {
+            color: #1a365d;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #1a365d;
+        }
+
+        .tab:hover {
+            color: #1a365d;
+        }
+
+        /* Main Tabs (for movie browsing page) */
+        .main-tabs-container {
+            background-color: #fff;
+            padding: 0 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .main-tabs {
+            display: flex;
+            gap: 40px;
+        }
+
+        .main-tab {
+            background: none;
+            border: none;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #718096;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .main-tab.active {
+            color: #1a365d;
+        }
+
+        .main-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #1a365d;
+        }
+
+        .main-tab:hover {
+            color: #1a365d;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs-container {
+            background-color: #fff;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab.active {
+            background: #1a365d;
+            color: white;
+            border-color: #1a365d;
+        }
+
+        .filter-tab:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .filter-tab.active:hover {
+            background: #2d4a6b;
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+            min-height: calc(100vh - 140px);
+        }
+
+        /* Empty State */
+        .empty-state {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .empty-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+            background: #f1f3f4;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .movie-icon {
+            width: 60px;
+            height: 45px;
+            background: #cbd5e0;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .movie-icon::before {
+            content: '▶';
+            color: #718096;
+            font-size: 20px;
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            width: 30px;
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .speech-bubble::before {
+            content: '💬';
+            font-size: 12px;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #e2e8f0;
+        }
+
+        .empty-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+
+        .empty-description {
+            font-size: 16px;
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            background-color: #1a365d;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .cta-button:hover {
+            background-color: #2d4a6b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Promotional Banner */
+        .promo-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 20px;
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20px;
+            width: 100px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(15deg);
+        }
+
+        .promo-content {
+            flex: 1;
+        }
+
+        .promo-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .promo-description {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .promo-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .promo-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .promo-icon {
+            font-size: 40px;
+            opacity: 0.8;
+        }
+
+        /* Movies Grid */
+        .movies-container {
+            padding: 20px;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .movie-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+            background: #f1f3f4;
+        }
+
+        .movie-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .movie-card:hover .movie-poster img {
+            transform: scale(1.05);
+        }
+
+        .movie-poster-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.2;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .favorite-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 16px;
+            z-index: 10;
+        }
+
+        .favorite-button:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        .favorite-button.active {
+            color: #e53e3e;
+        }
+
+        .movie-info {
+            padding: 16px;
+        }
+
+        .movie-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .movie-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 12px;
+        }
+
+        .star.empty {
+            color: #e2e8f0;
+        }
+
+        .age-rating {
+            background: #e53e3e;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .age-rating.pg13 {
+            background: #f56500;
+        }
+
+        .age-rating.r {
+            background: #e53e3e;
+        }
+
+        .age-rating.general {
+            background: #38a169;
+        }
+
+        /* Page transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a365d;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1a365d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Empty state for movies grid */
+        .movies-empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #718096;
+        }
+
+        .movies-empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .movies-empty-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #4a5568;
+        }
+
+        .movies-empty-description {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .movies-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 16px;
+            }
+
+            .movie-poster {
+                height: 200px;
+            }
+
+            .promo-banner {
+                margin: 16px;
+                padding: 16px;
+            }
+
+            .movies-container {
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 16px;
+            }
+
+            .tabs-container,
+            .main-tabs-container,
+            .filter-tabs-container {
+                padding: 0 16px;
+            }
+
+            .filter-tabs-container {
+                padding: 12px 16px;
+            }
+
+            .tabs,
+            .main-tabs {
+                gap: 30px;
+            }
+
+            .content {
+                padding: 40px 16px;
+                min-height: calc(100vh - 120px);
+            }
+
+            .empty-title {
+                font-size: 20px;
+            }
+
+            .empty-description {
+                font-size: 14px;
+            }
+
+            .movies-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .movie-poster {
+                height: 180px;
+            }
+
+            .movie-info {
+                padding: 12px;
+            }
+
+            .promo-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+        }
+
+        /* Fade animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Toast animations */
+        @keyframes slideUp {
+            from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(0); opacity: 1; }
+            to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+        }
+
+        /* Hide elements for different pages */
+        .film-saya-page .movie-browsing-elements {
+            display: none !important;
+        }
+
+        .movie-browsing-page .film-saya-elements {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="film-saya-page">
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="pageTransition">
+        <div>
+            <div class="loading" style="margin-bottom: 16px;"></div>
+            Memuat halaman film...
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <button class="back-button" onclick="goBack()">←</button>
+        <h1 class="header-title" id="headerTitle">Film Saya</h1>
+    </div>
+
+    <!-- Film Saya Tabs -->
+    <div class="tabs-container film-saya-elements">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('watched')">SUDAH DITONTON</button>
+            <button class="tab" onclick="switchTab('watchlist')">WATCHLIST</button>
+        </div>
+    </div>
+
+    <!-- Movie Browsing Main Tabs -->
+    <div class="main-tabs-container movie-browsing-elements">
+        <div class="main-tabs">
+            <button class="main-tab active" onclick="switchMainTab('sedang-tayang')">SEDANG TAYANG</button>
+            <button class="main-tab" onclick="switchMainTab('akan-datang')">AKAN DATANG</button>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs-container movie-browsing-elements">
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterMovies('all')">Semua Film</button>
+            <button class="filter-tab" onclick="filterMovies('2d')">2D</button>
+            <button class="filter-tab" onclick="filterMovies('3d')">3D</button>
+            <button class="filter-tab" onclick="filterMovies('imax')">IMAX</button>
+        </div>
+    </div>
+
+    <!-- Promotional Banner -->
+    <div class="promo-banner movie-browsing-elements">
+        <div class="promo-content">
+            <div class="promo-title">Tonton bersama teman-temanmu!</div>
+            <div class="promo-description">
+                Buat grup menonton bersama teman dan dapatkan diskon spesial hingga 25%
+            </div>
+            <button class="promo-button" onclick="createGroup()">BUAT GRUP</button>
+        </div>
+        <div class="promo-icon">👥</div>
+    </div>
+
+    <!-- Film Saya Content -->
+    <div class="content film-saya-elements">
+        <!-- Watched Movies Tab -->
+        <div id="watched-content" class="tab-content active">
+            <div class="empty-state fade-in">
+                <div class="empty-icon">
+                    <div class="movie-icon"></div>
+                    <div class="speech-bubble"></div>
+                </div>
+                <h2 class="empty-title">Mulai Nonton Film Seru</h2>
+                <p class="empty-description">
+                    Dapatkan tiket nonton film terbaru di bioskop favoritmu dengan mudah!
+                </p>
+                <button class="cta-button" onclick="browseMovies()">Lihat Film</button>
+            </div>
+        </div>
+
+        <!-- Watchlist Tab -->
+        <div id="watchlist-content" class="tab-content">
+            <div class="empty-state fade-in">
+                <div class="empty-icon">
+                    <div class="movie-icon"></div>
+                    <div class="speech-bubble"></div>
+                </div>
+                <h2 class="empty-title">Watchlist Kosong</h2>
+                <p class="empty-description">
+                    Tambahkan film yang ingin kamu tonton ke dalam watchlist untuk memudahkan pencarian nanti!
+                </p>
+                <button class="cta-button" onclick="browseMovies()">Jelajahi Film</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movies Container -->
+    <div class="movies-container movie-browsing-elements">
+        <div class="movies-grid" id="moviesGrid">
+            <!-- Movies will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentPage = 'film-saya';
+        let currentTab = 'watched';
+        let currentMainTab = 'sedang-tayang';
+        let currentFilter = 'all';
+        let favoriteMovies = new Set();
+        let watchedMovies = [];
+        let watchlistMovies = [];
+
+        // COMBINED MOVIE DATA - Movies from both original files
+        const movies = {
+            'sedang-tayang': [
+                // Movies from first file (currently playing)
+                {
+                    id: 1,
+                    title: 'Mission: Impossible - The Final Reckoning',
+                    rating: 4.5,
+                    ageRating: '13+',
+                    type: ['2d', 'imax'],
+                    poster: '/assets/mission.jpg',
+                    fallback: '🕵️‍♂️\nMISSION\nIMPOSSIBLE\nFINAL RECKONING'
+                },
+                {
+                    id: 2,
+                    title: 'Lilo & Stitch',
+                    rating: 4.8,
+                    ageRating: 'SU',
+                    type: ['2d', '3d'],
+                    poster: '/assets/lilo & stitch.jpg',
+                    fallback: '🌺\nLILO &\nSTITCH'
+                },
+                {
+                    id: 3,
+                    title: 'Final Destination: Bloodlines',
+                    rating: 4.2,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/final destination.jpg',
+                    fallback: '💀\nFINAL\nDESTINATION\nBLOODLINES'
+                },
+                {
+                    id: 4,
+                    title: 'Gundik',
+                    rating: 4.0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/gundik.jpg',
+                    fallback: '👑\nGUNDIK'
+                },
+                {
+                    id: 5,
+                    title: 'Jumbo',
+                    rating: 4.3,
+                    ageRating: 'SU',
+                    type: ['2d', '3d'],
+                    poster: '/assets/jumboo.jpg',
+                    fallback: '🐘\nJUMBO'
+                },
+                {
+                    id: 6,
+                    title: 'Cocote Tonggo',
+                    rating: 4.1,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/cocote tonggo.jpg',
+                    fallback: '😂\nCOCOTE\nTONGGO'
+                },
+                {
+                    id: 7,
+                    title: 'Thunderbolts*',
+                    rating: 4.6,
+                    ageRating: '13+',
+                    type: ['2d', 'imax'],
+                    poster: '/assets/thunderbolts.jpg',
+                    fallback: '⚡\nTHUNDER\nBOLTS'
+                },
+                {
+                    id: 8,
+                    title: 'Angkara Murka',
+                    rating: 4.4,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/angkara murka.jpg',
+                    fallback: '😡\nANGKARA\nMURKA'
+                },
+                {
+                    id: 9,
+                    title: 'Dasim',
+                    rating: 4.2,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/dasim.jpg',
+                    fallback: '🎭\nDASIM'
+                },
+                {
+                    id: 10,
+                    title: 'Colorful Stage The Movie: A Miku Who Can\'t Sing',
+                    rating: 4.7,
+                    ageRating: 'SU',
+                    type: ['2d', '3d'],
+                    poster: '/assets/colorful.jpg',
+                    fallback: '🎤\nMIKU\nMOVIE'
+                },
+                {
+                    id: 11,
+                    title: 'Karate Kid: Legends',
+                    rating: 4.3,
+                    ageRating: '13+',
+                    type: ['2d', 'imax'],
+                    poster: '/assets/karate.jpg',
+                    fallback: '🥋\nKARATE\nKID\nLEGENDS'
+                },
+                {
+                    id: 12,
+                    title: 'Waktu Maghrib 2',
+                    rating: 4.0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/waktu magrib 2.jpg',
+                    fallback: '🌅\nWAKTU\nMAGHRIB 2'
+                }
+            ],
+            'akan-datang': [
+                // Movies from second file (coming soon) - expanded catalog
+                {
+                    id: 13,
+                    title: 'GJLS: Ibuku Ibu Ibu',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/gjls.jpg',
+                    fallback: '👩‍👧‍👦\nGJLS\nIBUKU IBU IBU'
+                },
+                {
+                    id: 14,
+                    title: 'Narik Sukmo',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/narik sukmo.jpg',
+                    fallback: '👻\nNARIK\nSUKMO'
+                },
+                {
+                    id: 15,
+                    title: 'Halabala',
+                    rating: 0,
+                    ageRating: 'SU',
+                    type: ['2d'],
+                    poster: '/assets/halabala.jpg',
+                    fallback: '🎭\nHALABALA'
+                },
+                {
+                    id: 16,
+                    title: 'Dendam Malam Kelam',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/dendam.jpg',
+                    fallback: '🌙\nDENDAM\nMALAM KELAM'
+                },
+                {
+                    id: 17,
+                    title: 'J-Hope Tour \'Hope on the Stage in Japan: Live Viewing\'',
+                    rating: 0,
+                    ageRating: 'SU',
+                    type: ['2d'],
+                    poster: '/assets/j-hope.jpg',
+                    fallback: '🎤\nJ-HOPE\nTOUR'
+                },
+                {
+                    id: 18,
+                    title: 'Ballerina',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d', 'imax'],
+                    poster: '/assets/ballerina.jpg',
+                    fallback: '🩰\nBALLERINA'
+                },
+                {
+                    id: 19,
+                    title: 'The Phoenician Scheme',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/the.jpg',
+                    fallback: '🏛️\nPHOENICIAN\nSCHEME'
+                },
+                {
+                    id: 20,
+                    title: 'Tenung by Risa Saraswati & Dimasti',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/tenung.jpg',
+                    fallback: '🔮\nTENUNG'
+                },
+                {
+                    id: 21,
+                    title: 'Gowok Kamasutra Jawa',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/gowok.jpg',
+                    fallback: '🎭\nGOWOK\nKAMASUTRA'
+                },
+                {
+                    id: 22,
+                    title: 'Sampai Jumpa, Selamat Tinggal',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/sampai jumpa.jpg',
+                    fallback: '👋\nSAMPAI JUMPA\nSELAMAT TINGGAL'
+                },
+                {
+                    id: 23,
+                    title: 'Tak Ingin Usai Di Sini',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/tak ingin.jpg',
+                    fallback: '💔\nTAK INGIN USAI\nDI SINI'
+                },
+                {
+                    id: 24,
+                    title: 'How to Train Your Dragon',
+                    rating: 0,
+                    ageRating: 'SU',
+                    type: ['2d', '3d', 'imax'],
+                    poster: '/assets/dragon.jpg',
+                    fallback: '🐉\nTRAIN YOUR\nDRAGON'
+                },
+                {
+                    id: 25,
+                    title: 'Bring Her Back',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/bring.jpg',
+                    fallback: '🔍\nBRING HER\nBACK'
+                },
+                {
+                    id: 26,
+                    title: 'Elio',
+                    rating: 0,
+                    ageRating: 'SU',
+                    type: ['2d', '3d'],
+                    poster: '/assets/elio.jpg',
+                    fallback: '🚀\nELIO'
+                },
+                {
+                    id: 27,
+                    title: 'Keluarga Super Irit',
+                    rating: 0,
+                    ageRating: 'SU',
+                    type: ['2d'],
+                    poster: '/assets/keluarga.jpg',
+                    fallback: '👨‍👩‍👧‍👦\nKELUARGA\nSUPER IRIT'
+                },
+                {
+                    id: 28,
+                    title: 'Senyum Manies Love Story',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/senyum.jpg',
+                    fallback: '😊\nSENYUM MANIES\nLOVE STORY'
+                },
+                {
+                    id: 29,
+                    title: 'Gaza',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/gaza.jpg',
+                    fallback: '🏛️\nGAZA'
+                },
+                {
+                    id: 30,
+                    title: 'The Dark House',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/drak.jpg',
+                    fallback: '🏚️\nTHE DARK\nHOUSE'
+                },
+                {
+                    id: 31,
+                    title: '28 Years Later',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d', 'imax'],
+                    poster: '/assets/28years.jpg',
+                    fallback: '🧟\n28 YEARS\nLATER'
+                },
+                {
+                    id: 32,
+                    title: 'Jalan Pulang',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/jalan pulang.jpg',
+                    fallback: '🏠\nJALAN\nPULANG'
+                },
+                {
+                    id: 33,
+                    title: 'Assalamualaikum Beijing 2: Lost In Ningxia',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/lost.jpg',
+                    fallback: '🏠\nASSALAMUALAIKUM BEIJING 2:\nLOST IN NINGXIA'
+                },
+                {
+                    id: 34,
+                    title: 'Shirk (Dayang Laut Selatan)',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/shirk.jpg',
+                    fallback: '🌊\nSHIRK\nDAYANG LAUT'
+                },
+                {
+                    id: 35,
+                    title: 'Malam Jahanam',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/malam jahanam.jpg',
+                    fallback: '😈\nMALAM\nJAHANAM'
+                },
+                {
+                    id: 36,
+                    title: 'F1',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d', 'imax'],
+                    poster: '/assets/f1.jpg',
+                    fallback: '🏎️\nF1'
+                },
+                {
+                    id: 37,
+                    title: 'Jodoh 3 Bujang',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/jodoh.jpg',
+                    fallback: '💕\nJODOH\n3 BUJANG'
+                },
+                {
+                    id: 38,
+                    title: 'Sore Istri Dari Masa Depan',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/sore.jpg',
+                    fallback: '🚀\nSORE ISTRI DARI\nMASA DEPAN'
+                },
+                {
+                    id: 39,
+                    title: 'Doti-Tumbal Black Magic',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/doti.jpg',
+                    fallback: '🔮\nDOTI\nTUMBAL'
+                },
+                {
+                    id: 40,
+                    title: 'La Tahzan: Cinta, Dosa, Luka...',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/dosa.jpg',
+                    fallback: '💔\nLA TAHZAN\nCINTA, DOSA, LUKA...'
+                },
+                {
+                    id: 41,
+                    title: 'The Ritual',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/ritual.jpg',
+                    fallback: '🕯️\nTHE RITUAL'
+                },
+                {
+                    id: 42,
+                    title: 'Virus',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/virus.jpg',
+                    fallback: '🦠\nVIRUS'
+                },
+                {
+                    id: 43,
+                    title: 'Bambi: A Tale of Life in the Woods',
+                    rating: 0,
+                    ageRating: 'SU',
+                    type: ['2d', '3d'],
+                    poster: '/assets/bambi.jpg',
+                    fallback: '🦌\nBAMBI\nWOODS'
+                },
+                {
+                    id: 44,
+                    title: 'Locked',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/locked.jpg',
+                    fallback: '🔒\nLOCKED'
+                },
+                {
+                    id: 45,
+                    title: 'Alarum',
+                    rating: 0,
+                    ageRating: '17+',
+                    type: ['2d'],
+                    poster: '/assets/alarum.jpg',
+                    fallback: '⚠️\nALARUM'
+                },
+                {
+                    id: 46,
+                    title: 'Maria',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/maria.jpg',
+                    fallback: '👩\nMARIA'
+                },
+                {
+                    id: 47,
+                    title: 'Bad Genius',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/badgenius.jpg',
+                    fallback: '🧠\nBAD\nGENIUS'
+                },
+                {
+                    id: 48,
+                    title: 'Runt',
+                    rating: 0,
+                    ageRating: '13+',
+                    type: ['2d'],
+                    poster: '/assets/runt.jpg',
+                    fallback: '🐕\nRUNT'
+                },
+                {
+                    id: 49,
+                    title: 'Angel Pol',
+                    rating: 0,
+                    ageRating: 'SU',
+                    type: ['2d'],
+                    poster: '/assets/angel.jpg',
+                    fallback: '👨‍👩‍👧‍👦\nANGEL\nPOL'
+                }
+            ]
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('TIX ID Complete System loaded');
+            if (currentPage === 'film-saya') {
+                loadUserMovies();
+            }
+        });
+
+        // Navigation functions
+        function goBack() {
+            console.log('Going back...');
+            if (currentPage === 'movie-browsing') {
+                navigateToFilmSaya();
+            } else {
+                if (confirm('Kembali ke halaman sebelumnya?')) {
+                    alert('Navigasi kembali ke homepage');
+                }
+            }
+        }
+
+        // Navigate to Film Saya page
+        function navigateToFilmSaya() {
+            currentPage = 'film-saya';
+            document.body.className = 'film-saya-page';
+            document.getElementById('headerTitle').textContent = 'Film Saya';
+            
+            // Reset Film Saya state
+            loadUserMovies();
+            
+            console.log('Navigated to Film Saya page');
+        }
+
+        // Navigate to Movie Browsing page
+        function navigateToMovieBrowsing() {
+            currentPage = 'movie-browsing';
+            document.body.className = 'movie-browsing-page';
+            document.getElementById('headerTitle').textContent = 'Film Bioskop';
+            
+            // Load movies for browsing
+            loadMovies();
+            
+            console.log('Navigated to Movie Browsing page');
+        }
+
+        // Browse movies - UPDATED TO NAVIGATE TO MOVIE BROWSING PAGE
+        function browseMovies() {
+            console.log('Browse movies clicked');
+            
+            // Add loading state
+            const button = event.target;
+            const originalText = button.textContent;
+            button.innerHTML = '<span class="loading"></span> Loading...';
+            button.disabled = true;
+            
+            // Show page transition
+            const transition = document.getElementById('pageTransition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                // Reset button state
+                button.textContent = originalText;
+                button.disabled = false;
+                
+                // Hide transition
+                transition.classList.remove('active');
+                
+                // Navigate to movie browsing page
+                navigateToMovieBrowsing();
+            }, 1500);
+        }
+
+        // Film Saya Tab switching
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetContent = document.getElementById(tabName + '-content');
+            if (targetContent) {
+                targetContent.classList.add('active');
+                targetContent.classList.add('fade-in');
+            }
+
+            currentTab = tabName;
+            console.log('Switched to tab:', tabName);
+
+            // Load content for the selected tab
+            loadTabContent(tabName);
+        }
+
+        // Movie Browsing Tab switching
+        function switchMainTab(tabName) {
+            document.querySelectorAll('.main-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            currentMainTab = tabName;
+            console.log('Switched to main tab:', tabName);
+            loadMovies();
+        }
+
+        // Filter movies
+        function filterMovies(filterType) {
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            currentFilter = filterType;
+            console.log('Applied filter:', filterType);
+            loadMovies();
+        }
+
+        // Load tab content for Film Saya
+        function loadTabContent(tabName) {
+            if (tabName === 'watched') {
+                if (watchedMovies.length === 0) {
+                    showEmptyState('watched');
+                } else {
+                    showMovieList(watchedMovies);
+                }
+            } else if (tabName === 'watchlist') {
+                if (watchlistMovies.length === 0) {
+                    showEmptyState('watchlist');
+                } else {
+                    showMovieList(watchlistMovies);
+                }
+            }
+        }
+
+        // Show empty state
+        function showEmptyState(type) {
+            const content = document.getElementById(type + '-content');
+            const emptyState = content.querySelector('.empty-state');
+            
+            if (emptyState) {
+                emptyState.style.display = 'block';
+            }
+        }
+
+        // Load user movies (simulate API call)
+        function loadUserMovies() {
+            setTimeout(() => {
+                loadTabContent(currentTab);
+            }, 500);
+        }
+
+        // Load movies for browsing page
+        function loadMovies() {
+            const grid = document.getElementById('moviesGrid');
+            const movieList = movies[currentMainTab] || [];
+            
+            let filteredMovies = movieList;
+            if (currentFilter !== 'all') {
+                filteredMovies = movieList.filter(movie => 
+                    movie.type.includes(currentFilter)
+                );
+            }
+
+            grid.innerHTML = '';
+            grid.classList.add('fade-in');
+
+            if (filteredMovies.length === 0) {
+                grid.innerHTML = `
+                    <div class="movies-empty-state">
+                        <div class="movies-empty-icon">🎬</div>
+                        <div class="movies-empty-title">Tidak Ada Film</div>
+                        <div class="movies-empty-description">Tidak ada film yang sesuai dengan filter yang dipilih</div>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredMovies.forEach(movie => {
+                const movieCard = createMovieCard(movie);
+                grid.appendChild(movieCard);
+            });
+        }
+
+        // Create movie card
+        function createMovieCard(movie) {
+            const card = document.createElement('div');
+            card.className = 'movie-card';
+            card.onclick = () => openMovieDetail(movie.id);
+
+            const stars = generateStars(movie.rating);
+            const ageRatingClass = getAgeRatingClass(movie.ageRating);
+            const isFavorite = favoriteMovies.has(movie.id);
+
+            card.innerHTML = `
+                <div class="movie-poster">
+                    <img src="${movie.poster}" 
+                         alt="${movie.title}" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         crossorigin="anonymous">
+                    <div class="movie-poster-placeholder" style="display: none;">
+                        ${movie.fallback}
+                    </div>
+                    <button class="favorite-button ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(event, ${movie.id})">
+                        ${isFavorite ? '❤️' : '🤍'}
+                    </button>
+                </div>
+                <div class="movie-info">
+                    <div class="movie-title">${movie.title}</div>
+                    <div class="movie-rating">
+                        <div class="stars">${stars}</div>
+                        <span class="age-rating ${ageRatingClass}">${movie.ageRating}</span>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Generate stars
+        function generateStars(rating) {
+            if (rating === 0) {
+                return '<span style="color: #888; font-size: 12px;">Coming Soon</span>';
+            }
+
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    stars += '<span class="star">★</span>';
+                } else if (i === fullStars && hasHalfStar) {
+                    stars += '<span class="star">☆</span>';
+                } else {
+                    stars += '<span class="star empty">☆</span>';
+                }
+            }
+
+            return stars;
+        }
+
+        // Get age rating class
+        function getAgeRatingClass(ageRating) {
+            switch (ageRating) {
+                case 'SU':
+                    return 'general';
+                case '13+':
+                    return 'pg13';
+                case '17+':
+                    return 'r';
+                default:
+                    return 'general';
+            }
+        }
+
+        // Toggle favorite
+        function toggleFavorite(event, movieId) {
+            event.stopPropagation();
+            
+            const button = event.target;
+            
+            if (favoriteMovies.has(movieId)) {
+                favoriteMovies.delete(movieId);
+                button.textContent = '🤍';
+                button.classList.remove('active');
+                showToast('Film dihapus dari favorit');
+            } else {
+                favoriteMovies.add(movieId);
+                button.textContent = '❤️';
+                button.classList.add('active');
+                showToast('Film ditambahkan ke favorit');
+            }
+
+            console.log('Favorite movies:', Array.from(favoriteMovies));
+        }
+
+        // Open movie detail
+        function openMovieDetail(movieId) {
+            console.log('Opening movie detail for ID:', movieId);
+            
+            const allMovies = [...movies['sedang-tayang'], ...movies['akan-datang']];
+            const movie = allMovies.find(m => m.id === movieId);
+            
+            if (movie) {
+                showMovieDetail(movie);
+            }
+        }
+
+        // Show movie detail modal
+        function showMovieDetail(movie) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 2000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            `;
+            
+            const stars = generateStars(movie.rating);
+            const ageRatingClass = getAgeRatingClass(movie.ageRating);
+            
+            modal.innerHTML = `
+                <div style="
+                    background: white;
+                    border-radius: 16px;
+                    padding: 24px;
+                    max-width: 400px;
+                    width: 100%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                ">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #2d3748;">${movie.title}</h3>
+                        <button onclick="this.closest('.modal').remove()" style="
+                            background: none;
+                            border: none;
+                            font-size: 24px;
+                            cursor: pointer;
+                            color: #718096;
+                        ">×</button>
+                    </div>
+                    
+                    <div style="
+                        width: 120px;
+                        height: 160px;
+                        border-radius: 8px;
+                        margin: 0 auto 20px;
+                        overflow: hidden;
+                        position: relative;
+                    ">
+                        <img src="${movie.poster}" 
+                             alt="${movie.title}" 
+                             style="width: 100%; height: 100%; object-fit: cover;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                             crossorigin="anonymous">
+                        <div style="
+                            display: none;
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-weight: bold;
+                            text-align: center;
+                            font-size: 10px;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                        ">${movie.fallback}</div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <div style="display: flex; gap: 2px;">${stars}</div>
+                            <span style="background: #${ageRatingClass === 'general' ? '38a169' : ageRatingClass === 'pg13' ? 'f56500' : 'e53e3e'}; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 500;">${movie.ageRating}</span>
+                        </div>
+                        <div style="color: #718096; font-size: 14px; margin-bottom: 20px;">
+                            Format: ${movie.type.join(', ').toUpperCase()}
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 12px;">
+                        <button onclick="buyTicket(${movie.id})" style="
+                            flex: 1;
+                            background: ${movie.rating === 0 ? '#718096' : '#1a365d'};
+                            color: white;
+                            border: none;
+                            padding: 12px 24px;
+                            border-radius: 8px;
+                            font-weight: 500;
+                            cursor: ${movie.rating === 0 ? 'not-allowed' : 'pointer'};
+                        " ${movie.rating === 0 ? 'disabled' : ''}>${movie.rating === 0 ? 'Coming Soon' : 'Beli Tiket'}</button>
+                        <button onclick="toggleFavoriteFromModal(${movie.id})" style="
+                            background: #f7fafc;
+                            border: 1px solid #e2e8f0;
+                            padding: 12px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-size: 16px;
+                        ">${favoriteMovies.has(movie.id) ? '❤️' : '🤍'}</button>
+                    </div>
+                </div>
+            `;
+            
+            modal.className = 'modal';
+            document.body.appendChild(modal);
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // Buy ticket
+        function buyTicket(movieId) {
+            console.log('Buying ticket for movie ID:', movieId);
+            
+            const modal = document.querySelector('.modal');
+            if (modal) modal.remove();
+            
+            const allMovies = [...movies['sedang-tayang'], ...movies['akan-datang']];
+            const movie = allMovies.find(m => m.id === movieId);
+            
+            if (movie && movie.rating === 0) {
+                showToast('Film belum tersedia untuk pembelian tiket');
+            } else {
+                showToast('Mengarahkan ke halaman pembelian tiket...');
+                
+                setTimeout(() => {
+                    alert('Navigasi ke halaman pembelian tiket');
+                }, 1000);
+            }
+        }
+
+        // Toggle favorite from modal
+        function toggleFavoriteFromModal(movieId) {
+            if (favoriteMovies.has(movieId)) {
+                favoriteMovies.delete(movieId);
+                showToast('Film dihapus dari favorit');
+            } else {
+                favoriteMovies.add(movieId);
+                showToast('Film ditambahkan ke favorit');
+            }
+            
+            const button = event.target;
+            button.textContent = favoriteMovies.has(movieId) ? '❤️' : '🤍';
+            
+            if (currentPage === 'movie-browsing') {
+                loadMovies();
+            }
+        }
+
+        // Create group
+        function createGroup() {
+            console.log('Creating group...');
+            showToast('Fitur grup menonton akan segera hadir!');
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #1a365d;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-size: 14px;
+                z-index: 1000;
+                animation: slideUp 0.3s ease;
+            `;
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideDown 0.3s ease';
+                setTimeout(() => {
+                    if (document.body.contains(toast)) {
+                        document.body.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.querySelector('.modal');
+                if (modal) {
+                    modal.remove();
+                } else {
+                    goBack();
+                }
+            }
+            
+            if (currentPage === 'film-saya') {
+                if (e.key === 'ArrowLeft' && currentTab === 'watchlist') {
+                    document.querySelector('.tab').click();
+                } else if (e.key === 'ArrowRight' && currentTab === 'watched') {
+                    document.querySelectorAll('.tab')[1].click();
+                }
+            } else if (currentPage === 'movie-browsing') {
+                if (e.key === '1') {
+                    document.querySelector('.main-tab').click();
+                } else if (e.key === '2') {
+                    document.querySelectorAll('.main-tab')[1].click();
+                }
+            }
+        });
+
+        console.log('TIX ID Complete System initialized successfully!');
+        console.log('COMBINED: 12 movies in SEDANG TAYANG + 37 movies in AKAN DATANG');
+        console.log('Navigate between Film Saya and Movie Browsing pages seamlessly!');
+        console.log('All movies from both original files combined into one system!');
+    </script>
+</body>
+</html>

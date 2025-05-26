@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akun Saya - TIX ID</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            margin-right: 16px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-button:hover {
+            background-color: #f1f3f4;
+            border-radius: 50%;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .settings-button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .settings-button:hover {
+            background-color: #f1f3f4;
+            border-radius: 50%;
+        }
+
+        /* Biometric Banner */
+        .biometric-banner {
+            background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 100%);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .banner-content {
+            flex: 1;
+            margin-right: 12px;
+        }
+
+        .banner-text {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .banner-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .activate-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .activate-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .close-banner {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-banner:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            padding: 24px 20px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .profile-info {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-bottom: 4px;
+        }
+
+        .profile-phone {
+            font-size: 14px;
+            color: #1976d2;
+            font-weight: 400;
+        }
+
+        /* Guest Profile State */
+        .profile-guest {
+            text-align: center;
+            width: 100%;
+        }
+
+        .guest-message {
+            font-size: 16px;
+            color: #1565c0;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .guest-subtitle {
+            font-size: 14px;
+            color: #1976d2;
+            margin-bottom: 16px;
+        }
+
+        .login-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1565c0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            background: white;
+            transform: translateY(-1px);
+        }
+
+        /* TIX VIP Section */
+        .tix-vip-section {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 50%, #ffcc02 100%);
+            margin: 0 20px;
+            margin-top: 20px;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tix-vip-section:hover {
+            transform: translateY(-2px);
+        }
+
+        .tix-vip-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 100px;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            transform: rotate(15deg);
+        }
+
+        .vip-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vip-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .vip-logo::before {
+            content: '🎬';
+            position: absolute;
+        }
+
+        .vip-text {
+            flex: 1;
+        }
+
+        .vip-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e65100;
+            margin-bottom: 2px;
+        }
+
+        .vip-subtitle {
+            font-size: 12px;
+            color: #f57c00;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .arrow-right {
+            color: #f57c00;
+            font-size: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* DANA Section */
+        .dana-section {
+            background: white;
+            margin: 20px;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dana-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dana-logo {
+            width: 40px;
+            height: 40px;
+            background: #118EEA;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .dana-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .dana-activate-button {
+            background: #118EEA;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .dana-activate-button:hover {
+            background: #0d7bc7;
+        }
+
+        /* Menu Items */
+        .menu-section {
+            margin: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .menu-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .menu-icon.voucher {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .menu-icon.film {
+            background: #e8f5e8;
+            color: #388e3c;
+        }
+
+        .menu-icon.like {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .menu-icon.share {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .menu-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .menu-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-badge {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .menu-arrow {
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        /* Login Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1565c0;
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+        }
+
+        .phone-input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .country-code-input {
+            width: 80px;
+            flex-shrink: 0;
+        }
+
+        .phone-number-input {
+            flex: 1;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #1565c0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 3000;
+            animation: slideUp 0.3s ease;
+        }
+
+        .toast.success {
+            background: #4caf50;
+        }
+
+        .toast.info {
+            background: #2196f3;
+        }
+
+        .toast.error {
+            background: #f44336;
+        }
+
+        /* Hidden state */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { 
+                transform: translateX(-50%) translateY(100%); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateX(-50%) translateY(0); 
+                opacity: 1; 
+            }
+        }
+
+        @keyframes slideDown {
+            from { 
+                transform: translateX(-50%) translateY(0); 
+                opacity: 1; 
+            }
+            to { 
+                transform: translateX(-50%) translateY(100%); 
+                opacity: 0; 
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 16px;
+            }
+
+            .biometric-banner {
+                padding: 12px 16px;
+            }
+
+            .profile-section {
+                padding: 20px 16px;
+            }
+
+            .tix-vip-section,
+            .dana-section,
+            .menu-section {
+                margin: 16px;
+            }
+
+            .menu-item {
+                padding: 14px;
+            }
+
+            .modal {
+                padding: 16px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <button class="back-button" onclick="goBack()">←</button>
+            <h1 class="header-title">Akun Saya</h1>
+        </div>
+        <button class="settings-button" onclick="openSettings()">⚙️</button>
+    </div>
+
+    <!-- Biometric Banner -->
+    <div class="biometric-banner" id="biometricBanner">
+        <div class="banner-content">
+            <div class="banner-text">Aktifkan biometrik untuk pengalaman lebih baik.</div>
+        </div>
+        <div class="banner-buttons">
+            <button class="activate-button" onclick="activateBiometric()">AKTIFKAN</button>
+            <button class="close-banner" onclick="closeBanner()">×</button>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-section">
+        <!-- Logged In User Profile -->
+        <div class="profile-info" id="userProfile" style="display: none;">
+            <div class="profile-name" id="profileName"></div>
+            <div class="profile-phone" id="profilePhone"></div>
+        </div>
+
+        <!-- Guest Profile (No User Logged In) -->
+        <div class="profile-guest" id="guestProfile">
+            <div class="guest-message">Selamat datang di TIX ID</div>
+            <div class="guest-subtitle">Masuk atau daftar untuk mengakses fitur lengkap</div>
+            <button class="login-button" onclick="showLoginModal()">Masuk / Daftar</button>
+        </div>
+    </div>
+
+    <!-- TIX VIP Section -->
+    <div class="tix-vip-section" onclick="openTixVip()">
+        <div class="vip-content">
+            <div class="vip-logo"></div>
+            <div class="vip-text">
+                <div class="vip-title">TIX VIP</div>
+                <div class="vip-subtitle">
+                    Jadilah TIX VIP
+                    <span style="margin-left: 4px;">Dapatkan untung lebih 😊</span>
+                </div>
+            </div>
+        </div>
+        <div class="arrow-right">→</div>
+    </div>
+
+    <!-- DANA Section -->
+    <div class="dana-section">
+        <div class="dana-content">
+            <div class="dana-logo">DANA</div>
+            <div class="dana-text">DANA</div>
+        </div>
+        <button class="dana-activate-button" onclick="activateDana()">AKTIFKAN</button>
+    </div>
+
+    <!-- Menu Items -->
+    <div class="menu-section">
+        <!-- Voucher Saya -->
+        <div class="menu-item" onclick="openVoucher()">
+            <div class="menu-item-content">
+                <div class="menu-icon voucher">🎫</div>
+                <div class="menu-text">Voucher Saya</div>
+            </div>
+            <div class="menu-right">
+                <div class="menu-arrow">→</div>
+            </div>
+        </div>
+
+        <!-- Film Saya -->
+        <div class="menu-item" onclick="openFilmSaya()">
+            <div class="menu-item-content">
+                <div class="menu-icon film">🎬</div>
+                <div class="menu-text">Film Saya</div>
+            </div>
+            <div class="menu-right">
+                <div class="menu-arrow">→</div>
+            </div>
+        </div>
+
+        <!-- Konten Yang Disukai -->
+        <div class="menu-item" onclick="openLikedContent()">
+            <div class="menu-item-content">
+                <div class="menu-icon like">👍</div>
+                <div class="menu-text">Konten Yang Disukai</div>
+            </div>
+            <div class="menu-right">
+                <div class="menu-arrow">→</div>
+            </div>
+        </div>
+
+        <!-- Bagikan TIX ID & Dapatkan Koin -->
+        <div class="menu-item" onclick="shareAndEarn()">
+            <div class="menu-item-content">
+                <div class="menu-icon share">📤</div>
+                <div class="menu-text">Bagikan TIX ID & Dapatkan Koin!</div>
+            </div>
+            <div class="menu-right">
+                <div class="menu-badge">3X LIPAT</div>
+                <div class="menu-arrow">→</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login/Register Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">TIX ID</h2>
+                <p class="modal-subtitle">Masuk atau daftar untuk melanjutkan</p>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-input" placeholder="Masukkan email Anda" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-input" placeholder="Masukkan password Anda" required>
+                </div>
+
+                <div class="modal-buttons">
+                    <button class="btn btn-secondary" onclick="closeLoginModal()">Batal</button>
+                    <button class="btn btn-primary" onclick="handleLogin()">Masuk</button>
+                </div>
+
+                <div style="text-align: center; margin-top: 16px; color: #666; font-size: 14px;">
+                    Belum punya akun? <a href="#" onclick="showRegisterForm()" style="color: #1565c0; text-decoration: none;">Daftar di sini</a>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label" for="registerName">Nama Lengkap</label>
+                    <input type="text" id="registerName" class="form-input" placeholder="Masukkan nama lengkap Anda" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="form-input" placeholder="Masukkan email Anda" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nomor Handphone (Opsional)</label>
+                    <div class="phone-input-group">
+                        <input type="text" id="registerCountryCode" class="form-input country-code-input" value="+62" placeholder="+62">
+                        <input type="tel" id="registerPhoneNumber" class="form-input phone-number-input" placeholder="xxxxxxxxxxx">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-input" placeholder="Masukkan password Anda" required>
+                </div>
+
+                <div class="modal-buttons">
+                    <button class="btn btn-secondary" onclick="closeLoginModal()">Batal</button>
+                    <button class="btn btn-primary" onclick="handleRegister()">Daftar</button>
+                </div>
+
+                <div style="text-align: center; margin-top: 16px; color: #666; font-size: 14px;">
+                    Sudah punya akun? <a href="#" onclick="showLoginForm()" style="color: #1565c0; text-decoration: none;">Masuk di sini</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User data and authentication state
+        let currentUser = null;
+        let registeredUsers = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Akun Saya page loaded');
+            loadSavedData();
+            updateProfileDisplay();
+        });
+
+        // Load saved data from localStorage
+        function loadSavedData() {
+            // Load registered users
+            const savedUsers = localStorage.getItem('tixid_users');
+            if (savedUsers) {
+                registeredUsers = JSON.parse(savedUsers);
+            }
+
+            // Load current user
+            const savedCurrentUser = localStorage.getItem('tixid_current_user');
+            if (savedCurrentUser) {
+                currentUser = JSON.parse(savedCurrentUser);
+            }
+        }
+
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('tixid_users', JSON.stringify(registeredUsers));
+            if (currentUser) {
+                localStorage.setItem('tixid_current_user', JSON.stringify(currentUser));
+            }
+        }
+
+        // Update profile display based on authentication state
+        function updateProfileDisplay() {
+            const userProfile = document.getElementById('userProfile');
+            const guestProfile = document.getElementById('guestProfile');
+            const profileName = document.getElementById('profileName');
+            const profilePhone = document.getElementById('profilePhone');
+
+            if (currentUser) {
+                // User is logged in - show their information
+                userProfile.style.display = 'block';
+                guestProfile.style.display = 'none';
+                
+                profileName.textContent = currentUser.name;
+                
+                // Format phone number
+                if (currentUser.phone) {
+                    profilePhone.textContent = currentUser.phone;
+                } else if (currentUser.countryCode && currentUser.phoneNumber) {
+                    profilePhone.textContent = `${currentUser.countryCode} ${currentUser.phoneNumber}`;
+                } else {
+                    profilePhone.textContent = '';
+                }
+            } else {
+                // No user logged in - show guest state
+                userProfile.style.display = 'none';
+                guestProfile.style.display = 'block';
+            }
+        }
+
+        // Show login modal
+        function showLoginModal() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.add('active');
+            showLoginForm();
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.remove('active');
+            
+            // Clear forms
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('registerName').value = '';
+            document.getElementById('registerEmail').value = '';
+            document.getElementById('registerCountryCode').value = '+62';
+            document.getElementById('registerPhoneNumber').value = '';
+            document.getElementById('registerPassword').value = '';
+        }
+
+        // Show login form
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+        }
+
+        // Show register form
+        function showRegisterForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        }
+
+        // Handle login
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showToast('Mohon isi semua field', 'error');
+                return;
+            }
+
+            // Find user in registered users
+            const user = registeredUsers.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                currentUser = user;
+                saveData();
+                updateProfileDisplay();
+                closeLoginModal();
+                showToast(`Selamat datang kembali, ${user.name}!`, 'success');
+            } else {
+                showToast('Email atau password salah', 'error');
+            }
+        }
+
+        // Handle registration
+        function handleRegister() {
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const countryCode = document.getElementById('registerCountryCode').value.trim();
+            const phoneNumber = document.getElementById('registerPhoneNumber').value.trim();
+            const password = document.getElementById('registerPassword').value;
+
+            if (!name || !email || !password) {
+                showToast('Nama, email, dan password harus diisi', 'error');
+                return;
+            }
+
+            // Check if email already exists
+            if (registeredUsers.find(u => u.email === email)) {
+                showToast('Email sudah terdaftar', 'error');
+                return;
+            }
+
+            // Validate phone if provided
+            if (phoneNumber && !/^\d+$/.test(phoneNumber)) {
+                showToast('Nomor handphone hanya boleh berisi angka', 'error');
+                return;
+            }
+
+            if (countryCode && !/^\+\d+$/.test(countryCode)) {
+                showToast('Kode negara harus dimulai dengan + dan diikuti angka', 'error');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                countryCode: countryCode || '',
+                phoneNumber: phoneNumber || '',
+                phone: phoneNumber ? `${countryCode} ${phoneNumber}` : '',
+                password: password,
+                registeredAt: new Date().toISOString()
+            };
+
+            registeredUsers.push(newUser);
+            currentUser = newUser;
+            saveData();
+            updateProfileDisplay();
+            closeLoginModal();
+
+            showToast(`Pendaftaran berhasil! Selamat datang, ${name}!`, 'success');
+        }
+
+        // Logout function (can be called from settings)
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                currentUser = null;
+                localStorage.removeItem('tixid_current_user');
+                updateProfileDisplay();
+                showToast('Anda telah keluar dari akun', 'info');
+            }
+        }
+
+        // Navigation functions
+        function goBack() {
+            showToast('Navigasi kembali', 'info');
+        }
+
+        function openSettings() {
+            if (currentUser) {
+                // Show settings options including logout
+                const options = ['Edit Profil', 'Pengaturan Notifikasi', 'Keluar'];
+                const choice = prompt(`Pilih opsi:\n1. ${options[0]}\n2. ${options[1]}\n3. ${options[2]}\n\nMasukkan nomor pilihan (1-3):`);
+                
+                switch(choice) {
+                    case '1':
+                        showToast('Membuka edit profil...', 'info');
+                        break;
+                    case '2':
+                        showToast('Membuka pengaturan notifikasi...', 'info');
+                        break;
+                    case '3':
+                        logout();
+                        break;
+                    default:
+                        if (choice !== null) {
+                            showToast('Pilihan tidak valid', 'error');
+                        }
+                }
+            } else {
+                showToast('Silakan masuk terlebih dahulu', 'info');
+                showLoginModal();
+            }
+        }
+
+        // Banner functions
+        function activateBiometric() {
+            if (!currentUser) {
+                showToast('Silakan masuk terlebih dahulu', 'info');
+                showLoginModal();
+                return;
+            }
+
+            showToast('Mengaktifkan biometrik...', 'success');
+            setTimeout(() => {
+                closeBanner();
+                showToast('Biometrik berhasil diaktifkan!', 'success');
+            }, 1500);
+        }
+
+        function closeBanner() {
+            const banner = document.getElementById('biometricBanner');
+            banner.style.animation = 'slideUp 0.3s ease reverse';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+
+        // Feature functions
+        function openTixVip() {
+            if (!currentUser) {
+                showToast('Silakan masuk terlebih dahulu untuk mengakses TIX VIP', 'info');
+                showLoginModal();
+                return;
+            }
+            showToast('Membuka halaman TIX VIP...', 'info');
+        }
+
+        function activateDana() {
+            if (!currentUser) {
+                showToast('Silakan masuk terlebih dahulu', 'info');
+                showLoginModal();
+                return;
+            }
+            showToast('Mengaktifkan integrasi DANA...', 'success');
+        }
+
+        function openVoucher() {
+            if (!currentUser) {
+                showToast('Silakan masuk terlebih dahulu', 'info');
+                showLoginModal();
+                return;
+            }
+            showToast('Membuka Voucher Saya...', 'info');
+        }
+
+        function openFilmSaya() {
+            if (!currentUser) {
+                showToast('Silakan masuk terlebih dahulu', 'info');
+                showLoginModal();
+                return;
+            }
+            showToast('Membuka Film Saya...', 'info');
+        }
+
+        function openLikedContent() {
+            if (!currentUser) {
+                showToast('Silakan masuk terlebih dahulu', 'info');
+                showLoginModal();
+                return;
+            }
+            showToast('Membuka Konten Yang Disukai...', 'info');
+        }
+
+        function shareAndEarn() {
+            showToast('Membuka program referral...', 'success');
+            
+            setTimeout(() => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'TIX ID - Nonton Film Jadi Mudah',
+                        text: 'Download TIX ID dan dapatkan pengalaman menonton film terbaik!',
+                        url: 'https://tix.id'
+                    });
+                } else {
+                    const shareText = 'Download TIX ID dan dapatkan pengalaman menonton film terbaik! https://tix.id';
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        showToast('Link berhasil disalin ke clipboard!', 'success');
+                    });
+                }
+            }, 500);
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideDown 0.3s ease';
+                setTimeout(() => {
+                    if (document.body.contains(toast)) {
+                        document.body.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Click outside modal to close
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('loginModal');
+                if (modal.classList.contains('active')) {
+                    closeLoginModal();
+                }
+            }
+        });
+
+        console.log('Dynamic Akun Saya page initialized successfully!');
+    </script>
+</body>
+</html>

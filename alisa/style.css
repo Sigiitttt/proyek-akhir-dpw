@@ -1,0 +1,196 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+}
+
+.header {
+  background-image:url(https://nos.wjv-1.neo.id/mediafnb.cinema21.co.id/item/22b23818-376d-4003-af9f-bd6b5f0bdfb5.jpg?AWSAccessKeyId=2904ad097cf39f773a0c&Signature=aTT7ZRx4dIoO%2FHK3tWt%2BOjZeKag%3D&Expires=1779404481);
+  padding: 100px;
+  color: black;
+  text-align: center;
+}
+
+.menu-section {
+  padding: 20px;
+}
+
+.combo {
+  display: flex;
+  margin-bottom: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.combo img {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+  background: #ccc;
+}
+
+.combo-details {
+  flex-grow: 1;
+}
+
+.combo-price {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.btn-pesan {
+  padding: 6px 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 98%;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.semua-menu-btn {
+  background: #222;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-lanjut {
+  padding: 10px 20px;
+  background: #ccc;
+  color: white;
+  border: none;
+  border-radius: 30px;
+}
+
+#toggleMenu {
+  display: none;
+}
+
+.menu-modal {
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 70%;
+  background: #fff;
+  transition: bottom 0.3s ease-in-out;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+#toggleMenu:checked ~ .menu-modal {
+  bottom: 0;
+}
+
+.menu-content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.handle {
+  width: 50px;
+  height: 5px;
+  background: #ccc;
+  border-radius: 5px;
+  margin: 0 auto 20px;
+}
+
+.menu-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.menu-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 18px;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+}
+
+.modal-buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
