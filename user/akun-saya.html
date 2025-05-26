@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -605,24 +606,26 @@
 
         /* Animations */
         @keyframes slideUp {
-            from { 
-                transform: translateX(-50%) translateY(100%); 
-                opacity: 0; 
+            from {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
             }
-            to { 
-                transform: translateX(-50%) translateY(0); 
-                opacity: 1; 
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
             }
         }
 
         @keyframes slideDown {
-            from { 
-                transform: translateX(-50%) translateY(0); 
-                opacity: 1; 
+            from {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
             }
-            to { 
-                transform: translateX(-50%) translateY(100%); 
-                opacity: 0; 
+
+            to {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
             }
         }
 
@@ -660,6 +663,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <div class="header">
@@ -786,7 +790,8 @@
 
                 <div class="form-group">
                     <label class="form-label" for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" class="form-input" placeholder="Masukkan password Anda" required>
+                    <input type="password" id="loginPassword" class="form-input" placeholder="Masukkan password Anda"
+                        required>
                 </div>
 
                 <div class="modal-buttons">
@@ -795,33 +800,38 @@
                 </div>
 
                 <div style="text-align: center; margin-top: 16px; color: #666; font-size: 14px;">
-                    Belum punya akun? <a href="#" onclick="showRegisterForm()" style="color: #1565c0; text-decoration: none;">Daftar di sini</a>
+                    Belum punya akun? <a href="#" onclick="showRegisterForm()"
+                        style="color: #1565c0; text-decoration: none;">Daftar di sini</a>
                 </div>
             </div>
-
             <!-- Register Form -->
             <div id="registerForm" style="display: none;">
                 <div class="form-group">
                     <label class="form-label" for="registerName">Nama Lengkap</label>
-                    <input type="text" id="registerName" class="form-input" placeholder="Masukkan nama lengkap Anda" required>
+                    <input type="text" id="registerName" class="form-input" placeholder="Masukkan nama lengkap Anda"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="registerEmail">Email</label>
-                    <input type="email" id="registerEmail" class="form-input" placeholder="Masukkan email Anda" required>
+                    <input type="email" id="registerEmail" class="form-input" placeholder="Masukkan email Anda"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Nomor Handphone (Opsional)</label>
                     <div class="phone-input-group">
-                        <input type="text" id="registerCountryCode" class="form-input country-code-input" value="+62" placeholder="+62">
-                        <input type="tel" id="registerPhoneNumber" class="form-input phone-number-input" placeholder="xxxxxxxxxxx">
+                        <input type="text" id="registerCountryCode" class="form-input country-code-input" value="+62"
+                            placeholder="+62">
+                        <input type="tel" id="registerPhoneNumber" class="form-input phone-number-input"
+                            placeholder="xxxxxxxxxxx">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="registerPassword">Password</label>
-                    <input type="password" id="registerPassword" class="form-input" placeholder="Masukkan password Anda" required>
+                    <input type="password" id="registerPassword" class="form-input" placeholder="Masukkan password Anda"
+                        required>
                 </div>
 
                 <div class="modal-buttons">
@@ -830,7 +840,8 @@
                 </div>
 
                 <div style="text-align: center; margin-top: 16px; color: #666; font-size: 14px;">
-                    Sudah punya akun? <a href="#" onclick="showLoginForm()" style="color: #1565c0; text-decoration: none;">Masuk di sini</a>
+                    Sudah punya akun? <a href="#" onclick="showLoginForm()"
+                        style="color: #1565c0; text-decoration: none;">Masuk di sini</a>
                 </div>
             </div>
         </div>
@@ -842,7 +853,7 @@
         let registeredUsers = [];
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('Akun Saya page loaded');
             loadSavedData();
             updateProfileDisplay();
@@ -882,9 +893,9 @@
                 // User is logged in - show their information
                 userProfile.style.display = 'block';
                 guestProfile.style.display = 'none';
-                
+
                 profileName.textContent = currentUser.name;
-                
+
                 // Format phone number
                 if (currentUser.phone) {
                     profilePhone.textContent = currentUser.phone;
@@ -911,7 +922,7 @@
         function closeLoginModal() {
             const modal = document.getElementById('loginModal');
             modal.classList.remove('active');
-            
+
             // Clear forms
             document.getElementById('loginEmail').value = '';
             document.getElementById('loginPassword').value = '';
@@ -1029,8 +1040,8 @@
                 // Show settings options including logout
                 const options = ['Edit Profil', 'Pengaturan Notifikasi', 'Keluar'];
                 const choice = prompt(`Pilih opsi:\n1. ${options[0]}\n2. ${options[1]}\n3. ${options[2]}\n\nMasukkan nomor pilihan (1-3):`);
-                
-                switch(choice) {
+
+                switch (choice) {
                     case '1':
                         showToast('Membuka edit profil...', 'info');
                         break;
@@ -1082,6 +1093,9 @@
                 return;
             }
             showToast('Membuka halaman TIX VIP...', 'info');
+            setTimeout(() => {
+                window.location.href = 'tix-vip.html';
+            }, 1000); // beri jeda biar toast sempat tampil
         }
 
         function activateDana() {
@@ -1091,6 +1105,7 @@
                 return;
             }
             showToast('Mengaktifkan integrasi DANA...', 'success');
+            // tidak diarahkan karena hanya aktivasi, bukan halaman
         }
 
         function openVoucher() {
@@ -1100,6 +1115,9 @@
                 return;
             }
             showToast('Membuka Voucher Saya...', 'info');
+            setTimeout(() => {
+                window.location.href = '../alisa/voucher.html';
+            }, 1000);
         }
 
         function openFilmSaya() {
@@ -1109,6 +1127,9 @@
                 return;
             }
             showToast('Membuka Film Saya...', 'info');
+            setTimeout(() => {
+                window.location.href = 'filmsayaa.html';
+            }, 1000);
         }
 
         function openLikedContent() {
@@ -1118,11 +1139,15 @@
                 return;
             }
             showToast('Membuka Konten Yang Disukai...', 'info');
+            setTimeout(() => {
+                window.location.href = 'konten-disukai.html';
+            }, 1000);
         }
+
 
         function shareAndEarn() {
             showToast('Membuka program referral...', 'success');
-            
+
             setTimeout(() => {
                 if (navigator.share) {
                     navigator.share({
@@ -1144,9 +1169,9 @@
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             toast.textContent = message;
-            
+
             document.body.appendChild(toast);
-            
+
             setTimeout(() => {
                 toast.style.animation = 'slideDown 0.3s ease';
                 setTimeout(() => {
@@ -1158,14 +1183,14 @@
         }
 
         // Click outside modal to close
-        document.getElementById('loginModal').addEventListener('click', function(e) {
+        document.getElementById('loginModal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeLoginModal();
             }
         });
 
         // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 const modal = document.getElementById('loginModal');
                 if (modal.classList.contains('active')) {
@@ -1177,4 +1202,5 @@
         console.log('Dynamic Akun Saya page initialized successfully!');
     </script>
 </body>
+
 </html>

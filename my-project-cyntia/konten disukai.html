@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Konten Yang Disukai</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fff;
+    }
+
+    .header {
+      padding: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .tab {
+      margin: 10px 20px;
+      padding-bottom: 5px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .tab.active {
+      border-bottom: 2px solid #000;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .content-empty {
+      text-align: center;
+      padding: 50px 20px;
+      color: #555;
+      display: none;
+    }
+
+    .content-empty img {
+      width: 100px;
+      opacity: 0.3;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #11284b;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Halaman artikel */
+    #article-list {
+      display: none;
+      padding-bottom: 40px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .card img {
+      width: 90px;
+      height: 70px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 5px;
+    }
+
+    .card-content {
+      flex: 1;
+    }
+
+    .card-content h4 {
+      margin: 0 0 5px;
+      font-size: 14px;
+    }
+
+    .card-content .info {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .back-button {
+      cursor: pointer;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <span class="back-button" onclick="showArticles()">←</span>
+    <span id="page-title">Konten Yang Disukai</span>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active" id="tab-article" onclick="showArticles()">ARTIKEL</div>
+    <div class="tab" id="tab-video" onclick="showVideo()">VIDEO</div>
+  </div>
+
+  <!-- Halaman kosong artikel -->
+  <div id="empty-article" class="content-empty">
+    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="icon kosong" />
+    <h3>Baca Cerita Yang Kamu Suka</h3>
+    <p>Selalu up to date dengan cerita terbaru dan menarik tentang dunia film dari TIX ID! Cerita yang kamu suka akan disimpan di sini.</p>
+    <button class="btn" onclick="showArticles()">Lihat Cerita</button>
+  </div>
+
+  <!-- Halaman kosong video -->
+  <div id="empty-video" class="content-empty">
+    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="icon kosong" />
+    <h3>Tonton Trailer Dan Berita Terbaru</h3>
+    <p>Trailer baru, interview aktor, dibalik layar, dan banyak video lain supaya kamu selalu update! Video yang kamu suka akan disimpan di sini.</p>
+    <button class="btn">Lihat Video</button>
+  </div>
+
+  <!-- Daftar artikel -->
+  <div id="article-list">
+    <div class="card">
+      <img src="image/tom cruise.png" alt="">
+      <div class="card-content">
+        <h4>Tom Cruise Kembali Lakukan Stunt 'Gila' di Film Terakhir Mission: Impossible</h4>
+        <div class="info">341 👁 · 6 ❤ · 13 jam lalu</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="image/jackie chan.png" alt="">
+      <div class="card-content">
+        <h4>Ketemu Lagi Sama Jackie Chan di Film Karate Kid: Legends!</h4>
+        <div class="info">615 👁 · 0 ❤ · 1 hari lalu</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="image/disney.png" alt="">
+      <div class="card-content">
+        <h4>Kembali Nostalgia di Live-Action Disney's Lilo & Stitch</h4>
+        <div class="info">572 👁 · 3 ❤ · 2 hari lalu</div>
+      </div>
+    </div>
+
+  <div class="card">
+    <img src="image/gundik.png" alt="">
+    <div class="card-content">
+      <h4>Bukan Gundik Biasa, Wanita ini Ternyata Siluman Ular Mematikan!/h4>
+      <div class="info">2K 👁 · 6 ❤ · 2 hari lalu</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="image/game horor.png" alt="">
+    <div class="card-content">
+      <h4>Diangkat Dari Game Horor, Home Sweet Home: Rebirth Segera Tayang!</h4>
+      <div class="info">503 👁 · 1 ❤ · 3 hari lalu</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="image/berkorban.png" alt="">
+    <div class="card-content">
+      <h4>Sejauh Mana Kamu Akan Berkorban Untuk Anak Yang Kamu Sayangi?</h4>
+      <div class="info">980 👁 · 5 ❤ · 3 hari lalu</div>
+    </div>
+  </div>
+
+  <div class="card">
+  <img src="image/warfare.png" alt="">
+  <div class="card-content">
+    <h4>'WARFARE' Film Perang Terbaru Studio A24!</h4>
+    <div class="info">1K 👁 · 9 ❤ · 2 minggu lalu</div>
+  </div>
+  </div>
+  
+  <div class="card">
+  <img src="image/shadow.png" alt="">
+  <div class="card-content">
+    <h4>Shadow Force, Ketika Dua Tentara Yang Jatuh Cinta Harus Jadi Target Pembunuhan!</h4>
+    <div class="info">1K 👁 · 3 ❤ · 2 minggu lalu</div>
+  </div>
+  </div>
+
+  <div class="card">
+  <img src="image/alur final.png" alt="">
+  <div class="card-content">
+    <h4>Segera Kembali, Intip Dulu Alur Final Destinations Bloodlines Berikut Ini!</h4>
+    <div class="info">19K 👁 · 111 ❤ · 2 minggu lalu</div>
+  </div>
+  </div>
+
+  <div class="card">
+  <img src="image/mumu.png" alt="">
+  <div class="card-content">
+    <h4>Mumu, Cocok Untuk Jadi Tontonan Seru Bersama Keluarga</h4>
+    <div class="info">2K 👁 · 24 ❤ · 2 minggu lalu</div>
+  </div>
+  </div>
+
+  <div class="card">
+  <img src="image/titi.png" alt="">
+  <div class="card-content">
+    <h4>Titi Kamal Kembali Lewat Film Tabayyun!</h4>
+    <div class="info">6K 👁 · 15 ❤ · 2 minggu lalu</div>
+  </div>
+  </div>
+
+  <div class="card">
+  <img src="image/pembantaian.png" alt="">
+  <div class="card-content">
+    <h4>Pembantaian Dukun Santet, Film Horor Terbaru Aurora Ribero</h4>
+    <div class="info">3K 👁 · 12 ❤ · 2 minggu lalu</div>
+  </div>
+  </div>
+
+  <div class="card">
+  <img src="image/mission.png" alt="">
+  <div class="card-content">
+    <h4>Mission: Impossible - The Final Reckoning. Akhir Apik Yang Sayang Dilewatkan!</h4>
+    <div class="info">1K 👁 · 12 ❤ · 4 hari lalu</div>
+  </div>
+  </div>
+
+  <div class="card">
+  <img src="image/luna maya.png" alt="">
+  <div class="card-content">
+    <h4>Luna Maya dan Maxime, Bergabung di Film Gundik!</h4>
+    <div class="info">3K 👁 · 35 ❤ · 5 hari lalu</div>
+  </div>
+  </div>
+
+  <div class="card">
+  <img src="image/tix id.png" alt="">
+  <div class="card-content">
+    <h4>TIX ID Box Office (12-18 Mei)</h4>
+    <div class="info">7K 👁 · 8 ❤ · 6 hari lalu</div>
+  </div>
+  </div>
+
+<div class="card">
+  <img src="image/ana.png" alt="">
+  <div class="card-content">
+    <h4>Ana de Armas Siap Jadi Penerus Keanu Reeves?</h4>
+    <div class="info">675 👁 · 7 ❤ · 6 hari lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/bad.png" alt="">
+  <div class="card-content">
+    <h4>Bad Genius, Remake Film Viral Asal Thailand!</h4>
+    <div class="info">1K 👁 · 4 ❤ · 1 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/the fainal.png" alt="">
+  <div class="card-content">
+    <h4>Mission: Impossible - The Final Reckoning Jadi Akhir Dari Ethan Hunt</h4>
+    <div class="info">11K 👁 · 53 ❤ · 1 minggu lalu</div>
+  </div>
+</div>
+
+  <div class="card">
+    <img src="image/penjagal.png" alt="Penjagal Iblis" />
+    <div class="card-content">
+      <h4>Penjagal Iblis: Dosa Turunan, Gabungkan Aksi Dengan Horor Menegangkan!</h4>
+      <div class="info">3K 👁 . 8 ❤ . 3 minggu lalu</div>
+    </div>
+  </div>
+
+   <div class="card">
+    <img src="image/tix id box.png" alt="TIX ID Box Office" />
+    <div class="card-content">
+      <h4>TIX ID Box Office (21-27 April)</h4>
+      <div class="info">12K 👁 . 19 ❤ . 3 minggu lalu</div>
+    </div>
+  </div>
+
+  <div class="card">
+  <img src="image/warfare imax.png" alt="Warfare" />
+  <div class="card-content">
+    <h4>Warfare, Film Yang Wajib Dinikmati di IMAX</h4>
+    <div class="info">2K 👁 . 22 ❤ . 3 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/predator.png" alt="Film Predator: Badlands" />
+  <div class="card-content">
+    <h4>Akan Tayang di Akhir Tahun, Film Predator: Badlands Rilis Teaser Trailer</h4>
+    <div class="info">1K 👁 . 7 ❤ . 3 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/untill dawn.png" alt="Until Dawn" />
+  <div class="card-content">
+    <h4>Until Dawn, Film Horor Yang Diangkat Dari Game Ternama!</h4>
+    <div class="info">2K 👁 . 13 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/perang.png" alt="Film Perang Kota" />
+  <div class="card-content">
+    <h4>Film Perang Kota Ambil Latar Indonesia di Tahun 1946</h4>
+    <div class="info">8K 👁 . 11 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/anak medan.png" alt="Anak Medan" />
+  <div class="card-content">
+    <h4>Anak Medan: Cocok Ko Rasa??? Sudah Tayang di Bioskop</h4>
+    <div class="info">4K 👁 . 20 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/sutradara.png" alt="Sinners" />
+  <div class="card-content">
+    <h4>Datang Dari Sutradara Black Panther, Jangan Lewatkan SINNERS di Bioskop!</h4>
+    <div class="info">3K 👁 . 8 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/dangdut.png" alt="Mendadak Dangdut 2025" />
+  <div class="card-content">
+    <h4>Mendadak Dangdut 2025, Diramaikan Anya Geraldine dan Keanu AGL</h4>
+    <div class="info">8K 👁 . 25 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/accountant.png" alt="The Accountant 2" />
+  <div class="card-content">
+    <h4>The Accountant 2, Berikan Teka Teki Berdarah</h4>
+    <div class="info">1K 👁 . 9 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/drop.png" alt="DROP" />
+  <div class="card-content">
+    <h4>DROP, Ketika Kencan Pertama Justru Membawa Maut!</h4>
+    <div class="info">1K 👁 . 5 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/alie.png" alt="Rumah Untuk Alie" />
+  <div class="card-content">
+    <h4>Rumah Untuk Alie, Film Drama Yang Diangkat Dari Novel</h4>
+    <div class="info">10K 👁 . 56 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/film.png" alt="TIX ID Box Office 14-20 April" />
+  <div class="card-content">
+    <h4>TIX ID Box Office (14-20 April)</h4>
+    <div class="info">14K 👁 . 24 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/komang.png" alt="Film Komang" />
+  <div class="card-content">
+    <h4>Masih Tayang, Film Komang Bisa Bikin Senyum-Senyum Sendiri</h4>
+    <div class="info">4K 👁 . 34 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/rumah alie.png" alt="Watchlist Rumah Untuk Alie" />
+  <div class="card-content">
+    <h4>'Watchlist' Rumah Untuk Alie Tembus 24,000!</h4>
+    <div class="info">10K 👁 . 116 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/joko.png" alt="Joko Anwar" />
+  <div class="card-content">
+    <h4>Joko Anwar Kolaborasi Dengan MGM Studios Lewat Film Pengepungan di Bukit Duri!</h4>
+    <div class="info">3K 👁 . 35 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/sinners.png" alt="Sinners Ryan Coogler" />
+  <div class="card-content">
+    <h4>'Sinners' Film Horor Aksi Terbaru Dari Ryan Coolger!</h4>
+    <div class="info">9K 👁 . 26 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/tom.png" alt="Tom Cruise Mission Impossible" />
+  <div class="card-content">
+    <h4>Tom Cruise Segera Kembali di Film Final Mission: Impossible!</h4>
+    <div class="info">1K 👁 . 20 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/tix office.png" alt="TIX ID Box Office 7-13 April" />
+  <div class="card-content">
+    <h4>TIX ID Box Office (7-13 April)</h4>
+    <div class="info">21K 👁 . 37 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/jumbo.png" alt="TIX ID Box Office 7-13 April" />
+  <div class="card-content">
+    <h4>JUMBO, Pecahkan Rekor Baru Dengan 2 Juta penonton!</h4>
+    <div class="info">28K 👁 . 371 ❤ . 6 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/minecraft.png" alt="Minecraft Movie" />
+  <div class="card-content">
+    <h4>Segera Tayang, Nantikan Film A Minecraft Movie di Bioskop!</h4>
+    <div class="info">13K 👁 . 153 ❤ . 7 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/selingkuh.png" alt="Ketika Selingkuhan Suamimu" />
+  <div class="card-content">
+    <h4>Ketika Selingkuhan Suamimu, Adalah Ibumu Sendiri</h4>
+    <div class="info">19K 👁 . 34 ❤ . 7 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/komang 2.png" alt="Komang Romansa" />
+  <div class="card-content">
+    <h4>KOMANG, Hadirkan Angin Segar Bergenre Romansa</h4>
+    <div class="info">19K 👁 . 144 ❤ . 7 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/pabrik gula.png" alt="Pabrik Gula" />
+  <div class="card-content">
+    <h4>Sudah Tayang, Film Pabrik Gula Jangan Sampai Dilewatkan!</h4>
+    <div class="info">16K 👁 . 46 ❤ . 7 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/pabrik gula 2.png" alt="Pabrik Gula Lebaran" />
+  <div class="card-content">
+    <h4>Pabrik Gula, Siap Ramaikan Libur Lebaran!</h4>
+    <div class="info">15K 👁 . 35 ❤ . 8 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/sikandar.png" alt="Sikandar Salman Khan" />
+  <div class="card-content">
+    <h4>'SIKANDAR' Tandai Kembalinya Salman Khan</h4>
+    <div class="info">4K 👁 . 25 ❤ . 8 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/film seru.png" alt="Film Seru Lebaran" />
+  <div class="card-content">
+    <h4>Film Seru di Lebaran Yang Sayang Kamu Lewatkan!</h4>
+    <div class="info">5K 👁 . 7 ❤ . 8 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/film gelap.png" alt="Film Gelap Mengerikan" />
+  <div class="card-content">
+    <h4>Lebih Gelap Lebih Mengerikan, Film Satu ini Sayang Dilewatkan!</h4>
+    <div class="info">4K 👁 . 24 ❤ . 8 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/jumbo 2.png" alt="Film Jumbo Keluarga" />
+  <div class="card-content">
+    <h4>Memakan Waktu 5 Tahun, Jumbo Film Keluarga Yang Sayang Dilewatkan!</h4>
+    <div class="info">8K 👁 . 137 ❤ . 8 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/komang 3.png" alt="Komang Cinta Perjuangan" />
+  <div class="card-content">
+    <h4><em>Komang</em>, Kisah Cinta Penuh Perjuangan!</h4>
+    <div class="info">9K 👁 . 68 ❤ . 8 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/box office.png" alt="Box Office Maret" />
+  <div class="card-content">
+    <h4>TIX ID Box Office (17-23 Maret)</h4>
+    <div class="info">9K 👁 . 10 ❤ . 8 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/surga.png" alt="Surga di Telapak Kaki Ibu" />
+  <div class="card-content">
+    <h4>'Surga di Telapak Kaki Ibu' Film Yang Cocok Disaksikan di Bulan Ramadan</h4>
+    <div class="info">2K 👁 . 17 ❤ . 8 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/box office 2.png" alt="TIX ID Box Office 14-20 April" />
+  <div class="card-content">
+    <h4>TIX ID Box Office (14-20 April)</h4>
+    <div class="info">14K 👁 . 24 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/morgan.png" alt="Morgan Oey Bukit Duri" />
+  <div class="card-content">
+    <h4>Morgan Oey Tampil Beda di Film Pengepungan di Bukit Duri</h4>
+    <div class="info">14K 👁 . 48 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/sinners 2.png" alt="Sinners Thriller Ryan Coogler" />
+  <div class="card-content">
+    <h4>SINNERS, Thriller Terbaru Ryan Coogler!</h4>
+    <div class="info">586 👁 . 4 ❤ . 4 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/anaconda.png" alt="Anaconda dan Jack Black" />
+  <div class="card-content">
+    <h4>Film Anaconda Akan Kembali dan Dibintangi Jack Black!</h4>
+    <div class="info">1K 👁 . 12 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/paskah.png" alt="The King of Kings" />
+  <div class="card-content">
+    <h4>Rayakan Paskah Dengan Film 'The King of Kings'</h4>
+    <div class="info">2K 👁 . 33 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/fantastic.png" alt="Fantastic Four Trailer" />
+  <div class="card-content">
+    <h4>Fantastic Four Bagikan Trailer Terbaru!</h4>
+    <div class="info">1K 👁 . 26 ❤ . 5 minggu lalu</div>
+  </div>
+</div>
+
+  </div>
+  <script>
+    function showArticles() {
+      document.getElementById('page-title').innerText = 'TIX Now';
+      document.getElementById('article-list').style.display = 'block';
+      document.getElementById('empty-article').style.display = 'none';
+      document.getElementById('empty-video').style.display = 'none';
+
+      document.getElementById('tab-article').classList.add('active');
+      document.getElementById('tab-video').classList.remove('active');
+    }
+
+    function showVideo() {
+      document.getElementById('page-title').innerText = 'Konten Yang Disukai';
+      document.getElementById('article-list').style.display = 'none';
+      document.getElementById('empty-article').style.display = 'none';
+      document.getElementById('empty-video').style.display = 'block';
+
+      document.getElementById('tab-article').classList.remove('active');
+      document.getElementById('tab-video').classList.add('active');
+    }
+
+    // Tampilkan konten default saat halaman pertama kali dimuat
+    window.onload = function() {
+      document.getElementById('empty-article').style.display = 'block';
+      document.getElementById('article-list').style.display = 'none';
+    };
+  </script>
+
+</body>
+</html>

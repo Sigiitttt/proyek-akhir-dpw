@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hubungi Kami</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #222;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #4a4a4a;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    input[type="file"] {
+      border: 1px dashed #ccc;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 14px;
+      background: #fafafa;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      display: none;
+    }
+
+    button {
+      width: 100%;
+      background-color: #001e4f;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .contact-info {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Apa yang Bisa Kami Bantu?</h2>
+    <p class="subtitle">Hubungi layanan konsumen kami untuk mendapat bantuan transaksi atau penggunaan aplikasi.</p>
+
+    <label for="subject">SUBYEK<span class="error">*</span></label>
+    <select id="subject" required>
+      <option value="" disabled selected>Apa yang dapat kami bantu?</option>
+      <option value="refund">Refund tidak diterima</option>
+      <option value="kode_booking">Kode booking tidak diterima</option>
+      <option value="promosi">Terkait promosi</option>
+      <option value="food">TIX Food</option>
+      <option value="events">TIX Events</option>
+      <option value="vip">TIX VIP</option>
+      <option value="dana">Terkait DANA</option>
+      <option value="umum">Umum</option>
+    </select>
+
+    <label for="order">NOMOR ORDER</label>
+    <input type="text" id="order" placeholder="Masukkan nomor order anda..." />
+
+    <label for="message">PESAN<span class="error">*</span></label>
+    <textarea id="message" placeholder="Masukkan pesan anda..." required></textarea>
+
+    <label for="screenshots">TANGKAPAN LAYAR</label>
+    <p class="note">Untuk respon yang lebih baik, anda dapat menyelipkan screenshot yang menampilkan masalah di aplikasi</p>
+    <input type="file" id="screenshots" name="screenshots[]" multiple accept="image/*" />
+
+    <p class="error" id="form-error">*Mohon untuk mengisi seluruh formulir</p>
+    <button type="submit" id="submitBtn">Kirim Email</button>
+
+    <div class="footer">
+      <p>Kami akan membalas email anda sesegera mungkin pada jam operasional yaitu 07:00 sampai dengan 22:00 WIB</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const subject = document.getElementById('subject');
+      const message = document.getElementById('message');
+      const screenshots = document.getElementById('screenshots');
+      const submitBtn = document.getElementById('submitBtn');
+      const errorText = document.getElementById('form-error');
+
+      submitBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        let isValid = true;
+
+        // Validasi subyek
+        if (!subject.value) {
+          isValid = false;
+          subject.style.borderColor = 'red';
+        } else {
+          subject.style.borderColor = '#ccc';
+        }
+
+        // Validasi pesan
+        if (!message.value.trim()) {
+          isValid = false;
+          message.style.borderColor = 'red';
+        } else {
+          message.style.borderColor = '#ccc';
+        }
+
+        // Validasi jumlah file (maks 3)
+        if (screenshots.files.length > 3) {
+          isValid = false;
+          alert('Maksimal unggah 3 gambar tangkapan layar.');
+        }
+
+        // Tampilkan pesan error jika tidak valid
+        if (!isValid) {
+          errorText.style.display = 'block';
+        } else {
+          errorText.style.display = 'none';
+          alert('Formulir berhasil dikirim!');
+          // Di sini kamu bisa tambahkan pengiriman data ke server/email
+          // Contoh: document.querySelector('form').submit();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

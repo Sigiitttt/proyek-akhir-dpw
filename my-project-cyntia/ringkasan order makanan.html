@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ringkasan Order</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+
+    .order-summary {
+      max-width: 420px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin: auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .pickup-warning {
+      background: #eef5ff;
+      border-left: 4px solid #3b82f6;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .combo-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .combo-detail img {
+      width: 70px;
+      height: auto;
+      border-radius: 6px;
+      margin-right: 16px;
+    }
+
+    .combo-detail .info h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .combo-detail .info p {
+      margin: 4px 0;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .voucher {
+      background: #f8f8f8;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .payment-method button,
+    .pickup-options button.select-btn {
+      background: #3b82f6;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .notes ul {
+      padding-left: 18px;
+      color: #d33;
+      font-size: 13px;
+    }
+
+    .reward {
+      background: #fff7e6;
+      padding: 10px;
+      border-left: 4px solid #fbbf24;
+      border-radius: 6px;
+    }
+
+    .total h3 {
+      font-size: 18px;
+      margin: 0;
+      color: #111;
+    }
+
+    .pay-btn {
+      background: #10b981;
+      color: white;
+      padding: 14px;
+      width: 100%;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .pickup-options {
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+
+    .pickup-options label {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .pickup-options input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .pickup-options .desc {
+      font-size: 13px;
+      color: #555;
+    }
+
+    .select-btn[disabled] {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: white;
+      z-index: 1000;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 24px;
+    }
+
+    .modal-bar {
+      width: 40px;
+      height: 5px;
+      background: #ccc;
+      border-radius: 3px;
+      margin-bottom: 16px;
+    }
+
+    .modal h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .modal .date {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .time-picker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .time-picker select {
+      font-size: 28px;
+      padding: 5px;
+      border: none;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+
+    .info {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #777;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .btn {
+      margin-top: 24px;
+      background: #001f4d;
+      color: #ffd700;
+      padding: 14px 24px;
+      border: none;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 80%;
+      max-width: 320px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .pembayaran-collapse {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .pembayaran-collapse.show {
+      max-height: 500px;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="order-summary">
+  <h2>Ringkasan Order</h2>
+
+  <div class="pickup-warning">
+    <strong>Pilih waktu pengambilan*</strong>
+    <p>Kamu perlu memilih waktu pengambilan</p>
+  </div>
+
+  <div class="section pickup-options">
+    <label>
+      <input type="radio" name="pickup" onclick="tutupModal()" />
+      <div>
+        <strong>Ambil sekarang</strong><br>
+        <span class="desc">Perkiraan makanan siap dalam 15 menit</span>
+      </div>
+    </label>
+
+    <label>
+      <input type="radio" name="pickup" onclick="bukaModal()" />
+      <div>
+        <strong>Ambil nanti</strong><br>
+        <span class="desc">Atur waktu pengambilan</span>
+      </div>
+    </label>
+
+    <button class="select-btn" disabled>PILIH</button>
+  </div>
+
+  <div class="combo-detail section">
+    <img src="image/combo a.png" alt="Combo A">
+    <div class="info">
+      <h3>Combo A</h3>
+      <p>Lemon Tea (S)</p>
+      <p class="price">Rp45.000</p>
+    </div>
+  </div>
+
+  <div class="transaction section">
+    <p>COMBO A (LEMON TEA (S)) ×1</p>
+    <p class="price">Rp45.000</p>
+  </div>
+
+  <div class="voucher section">
+    <p>Tidak ada promo/voucher saat ini.</p>
+  </div>
+
+  <div class="payment-method section">
+    <h3 style="margin-bottom: 10px;">Metode Pembayaran</h3>
+    <button onclick="togglePembayaran()">Pilih Pembayaran</button>
+
+    <div id="opsiPembayaran" class="pembayaran-collapse">
+      <div style="margin-bottom: 12px;">
+        <strong style="font-size: 14px;">REKOMENDASI</strong>
+        <label style="display: flex; align-items: center; padding: 10px 0; cursor: pointer;">
+          <input type="radio" name="payment" value="DANA" checked style="margin-right: 10px;">
+          <img src="image/dana.png" alt="DANA" style="width: 60px; margin-right: 10px;">
+          <span>DANA</span>
+        </label>
+      </div>
+
+      <div style="margin-bottom: 12px;">
+        <strong style="font-size: 14px;">E-WALLET</strong>
+        <p style="font-size: 12px; color: #555;">Pastikan metode pembayaran tersedia di ponselmu ya!</p>
+
+        <label style="display: flex; align-items: center; padding: 6px 0; cursor: pointer;">
+          <input type="radio" name="payment" value="GoPay" style="margin-right: 10px;">
+          <img src="image/gopay.png" alt="GoPay" style="width: 60px; margin-right: 10px;">
+          <span>GoPay</span>
+        </label>
+
+        <label style="display: flex; align-items: center; padding: 6px 0; cursor: pointer;">
+          <input type="radio" name="payment" value="ShopeePay" style="margin-right: 10px;">
+          <img src="image/shoppepay.png" alt="ShopeePay" style="width: 60px; margin-right: 10px;">
+          <span>ShopeePay</span>
+        </label>
+
+        <label style="display: flex; align-items: center; padding: 6px 0; cursor: pointer;">
+          <input type="radio" name="payment" value="OVO" style="margin-right: 10px;">
+          <img src="image/ovo.png" alt="OVO" style="width: 60px; margin-right: 10px;">
+          <span>OVO</span>
+        </label>
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <strong style="font-size: 14px;">QRIS</strong>
+        <label style="display: flex; align-items: center; padding: 6px 0; cursor: pointer;">
+          <input type="radio" name="payment" value="QRIS" style="margin-right: 10px;">
+          <img src="image/qris.png" alt="QRIS" style="width: 60px; margin-right: 10px;">
+          <span>QRIS</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes section">
+    <ul>
+      <li>Item yang sudah dibeli tidak dapat ditukar kembali</li>
+      <li>Hanya dapat diambil pada hari pembelian</li>
+      <li>Jika menu habis, bioskop akan tawarkan pengganti setara</li>
+    </ul>
+  </div>
+
+  <div class="reward section">
+    <p><strong> Sip, kamu akan mendapatkan 112 TIX VIP coins dari transaksi ini!</strong></p>
+  </div>
+
+  <div class="total section">
+    <h3>Total Bayar: Rp45.000</h3>
+  </div>
+
+  <button class="pay-btn" id="btnBayar">SELESAIKAN PEMBAYARAN ANDA</button>
+
+  <!-- Spinner Loading -->
+  <div id="loading" style="display: none; text-align: center; margin-top: 20px;">
+    <img src="https://i.gifer.com/YCZH.gif" alt="Loading..." style="width: 40px;">
+    <p style="margin-top: 10px; color: #333;">Memproses pesanan Anda...</p>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modalWaktu">
+  <div class="modal-bar"></div>
+  <div class="close-btn" onclick="tutupModal()">✕</div>
+  <h2>Atur waktu pengambilan</h2>
+  <div class="date">Senin, 26 Mei 2025</div>
+
+  <div class="time-picker">
+    <select id="jam">
+      <option>13</option>
+      <option selected>14</option>
+      <option>15</option>
+      <option>16</option>
+    </select>
+    :
+    <select id="menit">
+      <option>00</option>
+      <option>15</option>
+      <option selected>30</option>
+      <option>45</option>
+    </select>
+    WIB
+  </div>
+
+  <div class="info">
+    Jika kamu membeli makanan dan minuman untuk menonton bioskop, disarankan untuk mengambil 15 menit sebelum film dimulai.
+  </div>
+
+  <button class="btn" onclick="pilihWaktu()">PILIH WAKTU</button>
+</div>
+
+<script>
+  function togglePembayaran() {
+    const panel = document.getElementById("opsiPembayaran");
+    panel.classList.toggle("show");
+  }
+
+  const radios = document.querySelectorAll('input[name="pickup"]');
+  const selectBtn = document.querySelector('.select-btn');
+
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      selectBtn.disabled = false;
+    });
+  });
+
+  function bukaModal() {
+    document.getElementById("modalWaktu").style.display = "flex";
+  }
+
+  function tutupModal() {
+    document.getElementById("modalWaktu").style.display = "none";
+  }
+
+  function pilihWaktu() {
+    const jam = document.getElementById("jam").value;
+    const menit = document.getElementById("menit").value;
+    alert("Waktu pengambilan diset ke: " + jam + ":" + menit + " WIB");
+    tutupModal();
+  }
+
+  document.getElementById("btnBayar").addEventListener("click", function () {
+    const selectedPickup = document.querySelector('input[name="pickup"]:checked');
+    const selectedPayment = document.querySelector('input[name="payment"]:checked');
+
+    if (!selectedPickup) {
+      alert("Silakan pilih waktu pengambilan terlebih dahulu.");
+      return;
+    }
+
+    if (!selectedPayment) {
+      alert("Silakan pilih metode pembayaran.");
+      return;
+    }
+
+    document.getElementById("loading").style.display = "block";
+
+    const btn = document.getElementById("btnBayar");
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.innerText = "Memproses...";
+
+    setTimeout(function () {
+      document.getElementById("loading").style.display = "none";
+      alert("Pembayaran berhasil menggunakan " + selectedPayment.value + "!\nTerima kasih atas pesanan Anda.");
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      btn.innerText = "SELESAIKAN PEMBAYARAN ANDA";
+    }, 3000);
+  });
+</script>
+
+</body>
+</html>

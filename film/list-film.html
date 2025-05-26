@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Film - TIX.ID</title>
+    <title>Film Bioskop</title>
     <style>
-        /* Reset dan Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -14,560 +12,350 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
             color: #333;
-            background-color: #f8f9fa;
+            line-height: 1.4;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Film Header Section */
-        .film-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0 40px;
-            margin-top: 60px;
-            /* Space for fixed navbar */
-        }
-
-        .film-header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Filter Tabs */
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .tab-btn.active {
+        /* Header */
+        .header {
             background: white;
-            color: #667eea;
-            border-color: white;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Film Controls */
-        .film-controls {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
-        .search-section {
-            display: flex;
-            gap: 10px;
-            flex: 1;
-            max-width: 400px;
-        }
-
-        .film-search {
-            flex: 1;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            outline: none;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-        }
-
-        .film-search::placeholder {
-            color: #999;
-        }
-
-        .btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        .header a {
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: #ff6b6b;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: #ff5252;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-        }
-
-        .sort-section {
-            min-width: 200px;
-        }
-
-        .sort-select {
-            width: 100%;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
+            color: inherit;
             outline: none;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
             cursor: pointer;
+            padding: 5px;
         }
 
-        /* Films Section */
-        .films-section {
-            padding: 60px 0;
-            min-height: 60vh;
-        }
-
-        /* Loading State */
-        .loading-state {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loading-state p {
+        .header h1 {
             font-size: 18px;
-            color: #666;
+            font-weight: 600;
+            color: #333;
         }
 
-        /* Films Grid */
-        .films-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 20px 0;
-        }
-
-        /* Film Card */
-        .film-card {
+        /* Status Tabs */
+        .status-tabs {
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            padding: 15px 20px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .status-tab {
+            background: none;
+            border: none;
+            padding: 10px 0;
+            color: #999;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             position: relative;
+            transition: color 0.3s ease;
         }
 
-        .film-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        .status-tab.active {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .status-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #007AFF;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-buttons::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #666;
+            font-size: 14px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #007AFF;
+            color: white;
+        }
+
+        /* Films Grid - Update styling untuk match dengan gambar */
+        .films-container {
+            padding: 50px;
+        }
+
+        .films-grid {
+            display: grid;
+            grid-template-columns: 3, 1fr;
+            gap: 15px;
+        }
+
+        /* Film Card - Sesuaikan dengan desain yang ada */
+        .film-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .film-card:active {
+            transform: scale(0.98);
         }
 
         .film-poster {
             position: relative;
+            aspect-ratio: 2/3;
             overflow: hidden;
         }
 
         .film-poster img {
             width: 100%;
-            height: 400px;
+            height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
         }
 
-        .film-card:hover .film-poster img {
-            transform: scale(1.05);
+        /* Favorite button - sesuai dengan desain */
+        .favorite-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 16px;
         }
 
+        /* Age Rating - sesuai dengan gambar */
         .film-status {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            top: 10px;
+            left: 10px;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
         }
 
         .status-showing {
             background: #4caf50;
-            color: white;
         }
 
         .status-coming {
             background: #ff9800;
-            color: white;
         }
 
+        /* Film Rating di pojok kiri bawah poster */
         .film-rating {
             position: absolute;
-            bottom: 15px;
-            left: 15px;
+            bottom: 10px;
+            left: 10px;
             background: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 6px 10px;
-            border-radius: 15px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
             font-weight: 600;
             backdrop-filter: blur(10px);
         }
 
+        /* Film Info */
         .film-info {
-            padding: 20px;
+            padding: 12px;
         }
 
         .film-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
             line-height: 1.3;
-        }
-
-        .film-genre {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .film-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #888;
-        }
-
-        .film-year,
-        .film-duration {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .film-description {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.4;
-            margin-bottom: 15px;
             display: -webkit-box;
-            /* -webkit-line-clamp: 3; */
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .film-actions {
+        .film-genre {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .film-rating-info {
             display: flex;
-            gap: 10px;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 600;
         }
 
-        .btn-small {
-            padding: 8px 16px;
+        .stars {
+            color: #ffc107;
+            display: flex;
+            gap: 1px;
+        }
+
+        .rating-score {
+            color: #333;
+        }
+
+        /* Loading State */
+        .loading-state {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
             font-size: 14px;
-            flex: 1;
-            text-align: center;
+            color: #666;
+            grid-column: 1 / -1;
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #667eea;
-            color: #667eea;
+        .loading-spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007AFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
         }
 
-        .btn-outline:hover {
-            background: #667eea;
-            color: white;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* No Results State */
+        /* No Results */
         .no-results {
+            grid-column: 1 / -1;
             text-align: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
             color: #666;
         }
 
         .no-results-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             opacity: 0.5;
         }
 
-        .no-results h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .no-results p {
-            font-size: 16px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .film-header {
-                padding: 60px 0 30px;
-                margin-top: 50px;
-            }
-
-            .film-header h1 {
-                font-size: 2rem;
-                margin-bottom: 20px;
-            }
-
-            .filter-tabs {
-                gap: 5px;
-                margin-bottom: 20px;
-            }
-
-            .tab-btn {
-                padding: 10px 16px;
-                font-size: 14px;
-            }
-
-            .film-controls {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .search-section {
-                max-width: 100%;
-            }
-
+        /* Responsive */
+        @media (min-width: 768px) {
             .films-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 20px;
             }
-
-            .film-card {
-                margin: 0 10px;
-            }
-
-            .film-actions {
-                flex-direction: column;
-            }
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .film-header h1 {
-                font-size: 1.8rem;
-            }
-
+        @media (min-width: 1024px) {
             .films-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .filter-tabs {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 10px;
-            }
-
-            .tab-btn {
-                white-space: nowrap;
-                min-width: auto;
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        /* Utility Classes */
-        .text-center {
-            text-align: center;
+        /* Hide original film header */
+        .film-header {
+            display: none;
         }
 
-        .mb-0 {
-            margin-bottom: 0;
-        }
-
-        .mb-1 {
-            margin-bottom: 10px;
-        }
-
-        .mb-2 {
-            margin-bottom: 20px;
-        }
-
-        .mb-3 {
-            margin-bottom: 30px;
-        }
-
-        .mt-0 {
-            margin-top: 0;
-        }
-
-        .mt-1 {
-            margin-top: 10px;
-        }
-
-        .mt-2 {
-            margin-top: 20px;
-        }
-
-        .mt-3 {
-            margin-top: 30px;
-        }
-
-        /* Animation untuk smooth transitions */
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hover effects untuk interaktifitas yang lebih baik */
-        .film-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .film-card:hover::before {
-            opacity: 1;
+        /* Override films section styling */
+        .films-section {
+            padding: 0;
+            min-height: auto;
         }
     </style>
-
-
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Film - TIX.ID</title>
-    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Navbar akan dimuat di sini -->
-    <div id="navbar-container"></div>
+   <header class="header">
+        <a href="../index.html" class="back-btn">←</a>
+        <h1>Film Bioskop</h1>
+    </header>
 
-    <!-- Film List Header -->
-    <section class="film-header">
-        <div class="container">
-            <h1>Daftar Film</h1>
+    <!-- Status Tabs -->
+    <div class="status-tabs">
+        <button class="status-tab active tab-btn" data-status="now_showing">SEDANG TAYANG</button>
+        <button class="status-tab tab-btn" data-status="coming_soon">AKAN DATANG</button>
+    </div>
 
-            <!-- Filter Tabs -->
-            <div class="filter-tabs">
-                <button class="tab-btn active" data-status="all">Semua Film</button>
-                <button class="tab-btn" data-status="now_showing">Sedang Tayang</button>
-                <button class="tab-btn" data-status="coming_soon">Akan Tayang</button>
-            </div>
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+        <button class="filter-btn active tab-btn" data-status="all">Semua Film</button>
+        <button class="filter-btn tab-btn" data-status="now_showing">XXI</button>
+        <button class="filter-btn tab-btn" data-status="coming_soon">CGV</button>
+        <button class="filter-btn tab-btn">Cinépolis</button>
+    </div>
 
-            <!-- Search and Sort -->
-            <div class="film-controls">
-                <div class="search-section">
-                    <input type="text" id="filmSearch" placeholder="Cari film..." class="film-search">
-                    <button id="searchBtn" class="btn btn-primary">🔍</button>
-                </div>
-
-                <div class="sort-section">
-                    <select id="sortSelect" class="sort-select">
-                        <option value="judul">Urutkan: A-Z</option>
-                        <option value="rating">Rating Tertinggi</option>
-                        <option value="tahun">Tahun Terbaru</option>
-                        <option value="durasi">Durasi</option>
-                    </select>
-                </div>
-            </div>
+    <!-- Films Container -->
+    <div class="films-container">
+        <!-- Loading State -->
+        <div id="loadingState" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p>Memuat film...</p>
         </div>
-    </section>
 
-    <!-- Films Grid -->
-    <section class="films-section">
-        <div class="container">
-            <!-- Loading State -->
-            <div id="loadingState" class="loading-state">
-                <div class="loading-spinner"></div>
-                <p>Memuat film...</p>
-            </div>
-
-            <!-- Films Grid -->
-            <div id="filmsGrid" class="films-grid">
-                <!-- Film cards akan dimuat di sini oleh JavaScript -->
-            </div>
-
-            <!-- No Results State -->
-            <div id="noResults" class="no-results" style="display: none;">
-                <div class="no-results-icon">🎬</div>
-                <h3>Tidak ada film ditemukan</h3>
-                <p>Coba ubah filter atau kata kunci pencarian Anda</p>
-            </div>
+        <!-- Films Grid -->
+        <div id="filmsGrid" class="films-grid">
+            <!-- Film cards akan dimuat di sini oleh JavaScript dari film.js -->
         </div>
-    </section>
+        <!-- No Results State -->
+        <div id="noResults" class="no-results" style="display: none;">
+            <div class="no-results-icon">🎬</div>
+            <h3>Tidak ada film ditemukan</h3>
+            <p>Coba ubah filter atau kata kunci pencarian Anda</p>
+        </div>
+    </div>
 
-    <!-- Footer akan dimuat di sini -->
-    <div id="footer-container"></div>
-
+    <!-- Load your existing JS files -->
     <script src="../js/data.js"></script>
     <script src="../js/film.js"></script>
-    <script src="../js/main.js"></script>
+    <!-- <script src="../js/main.js"></script> -->
 </body>
 </html>
