@@ -54,9 +54,11 @@ class CinemaBooking {
 
     // SEAT PAGE FUNCTIONS
     initSeatPage() {
+        // Reset booking data when starting fresh seat selection
+        this.clearBookingData();
         this.createSeatMap();
         this.setupSeatListeners();
-        this.loadBookingFromStorage();
+        this.updateSeatInfo(); // Initialize seat info display
     }
 
     createSeatMap() {

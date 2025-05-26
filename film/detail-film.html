@@ -153,24 +153,111 @@ body {
     color: white;
 }
 
-/* Synopsis */
-.film-synopsis {
-    padding: 40px 0;
+/* Tab Navigation */
+.tab-navigation {
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #e0e0e0;
 }
 
+.tab-nav {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tab-nav button {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-nav button.active {
+    color: #333;
+    border-bottom-color: #4caf50;
+    background-color: #f8f8f8;
+}
+
+.tab-nav button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Tab Content */
+.tab-content {
+    padding: 40px 0;
+    min-height: 300px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Synopsis */
 .film-synopsis h2 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.film-synopsis p {
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #555;
 }
 
 /* Showtimes */
-.showtimes {
-    padding: 40px 0;
+.showtimes h2 {
+    margin-bottom: 20px;
+    color: #333;
 }
 
 .showtimes-grid {
     display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.showtime-item {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #333;
+}
+
+.showtime-item:hover {
+    border-color: #4caf50;
+    background-color: #f0f8f0;
+    transform: translateY(-2px);
+}
+
+.showtime-time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 5px;
+}
+
+.showtime-theater {
+    font-size: 0.9rem;
+    color: #666;
 }
 
 /* Related Films */
@@ -251,6 +338,7 @@ body {
     height: 100%;
     border: 0;
 }
+
 /* Ukuran gambar poster utama */
 .film-poster img {
     width: 200px;
@@ -275,6 +363,17 @@ body {
     border-radius: 8px;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    .tab-nav button {
+        font-size: 1rem;
+        padding: 15px;
+    }
+    
+    .showtimes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
     </style>
 </head>
 <body>
@@ -332,20 +431,53 @@ body {
             </div>
         </section>
         
-        <!-- Film Synopsis -->
-        <section class="film-synopsis">
-            <div class="container">
-                <h2>Sinopsis</h2>
-                <p id="filmSynopsis">Loading synopsis...</p>
+        <!-- Tab Navigation -->
+        <section class="tab-navigation">
+            <div class="tab-nav">
+                <button class="tab-button active" data-tab="synopsis">Sinopsis</button>
+                <button class="tab-button" data-tab="jadwal">Jadwal</button>
             </div>
         </section>
         
-        <!-- Showtimes -->
-        <section class="showtimes">
+        <!-- Tab Content -->
+        <section class="tab-content">
             <div class="container">
-                <h2>Jadwal Tayang</h2>
-                <div id="showtimesContainer" class="showtimes-grid">
-                    <!-- Jadwal akan dimuat di sini -->
+                <!-- Synopsis Tab -->
+                <div id="synopsis" class="tab-pane active">
+                    <div class="film-synopsis">
+                        <h2>Sinopsis</h2>
+                        <p id="filmSynopsis">Loading synopsis...</p>
+                    </div>
+                </div>
+                
+                <!-- Showtimes Tab -->
+                <div id="jadwal" class="tab-pane">
+                    <div class="showtimes">
+                        <h2>Jadwal Tayang</h2>
+                        <div id="showtimesContainer" class="showtimes-grid">
+                            <!-- Sample showtimes -->
+                            <div class="showtime-item" data-showtime="10:00">
+                                <div class="showtime-time">10:00</div>
+                                <div class="showtime-theater">Cinema 1</div>
+                            </div>
+                            <div class="showtime-item" data-showtime="13:00">
+                                <div class="showtime-time">13:00</div>
+                                <div class="showtime-theater">Cinema 2</div>
+                            </div>
+                            <div class="showtime-item" data-showtime="16:00">
+                                <div class="showtime-time">16:00</div>
+                                <div class="showtime-theater">Cinema 1</div>
+                            </div>
+                            <div class="showtime-item" data-showtime="19:00">
+                                <div class="showtime-time">19:00</div>
+                                <div class="showtime-theater">Cinema 3</div>
+                            </div>
+                            <div class="showtime-item" data-showtime="21:30">
+                                <div class="showtime-time">21:30</div>
+                                <div class="showtime-theater">Cinema 2</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -395,8 +527,27 @@ body {
     <script src="../js/film.js"></script>
     <script src="../js/main.js"></script>
     <script>
-        // Fungsi untuk menangani tombol booking
+        // Tab functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and panes
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding pane
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+            
+            // Booking button functionality
             const bookNowBtn = document.getElementById('bookNowBtn');
             
             if (bookNowBtn) {
@@ -416,12 +567,13 @@ body {
             
             // Event listener untuk jadwal tayang (jika ada)
             document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('showtime-item')) {
+                if (e.target.closest('.showtime-item')) {
                     e.preventDefault();
                     
+                    const showtimeItem = e.target.closest('.showtime-item');
                     const urlParams = new URLSearchParams(window.location.search);
                     const filmId = urlParams.get('id');
-                    const showtime = e.target.dataset.showtime || 'default';
+                    const showtime = showtimeItem.getAttribute('data-showtime') || 'default';
                     
                     if (filmId) {
                         window.location.href = `../booking/seat.html?filmId=${filmId}&showtime=${showtime}`;
