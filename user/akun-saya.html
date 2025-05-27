@@ -439,7 +439,10 @@
             color: #ccc;
             font-size: 16px;
         }
-
+        .header a{
+            text-decoration: none;
+            color: inherit;
+        }
         /* Login Modal */
         .modal {
             position: fixed;
@@ -671,7 +674,10 @@
             <button class="back-button" onclick="goBack()">←</button>
             <h1 class="header-title">Akun Saya</h1>
         </div>
-        <button class="settings-button" onclick="openSettings()">⚙️</button>
+        <a href="/system/setting.html">
+            <button class="settings-button">⚙️</button>
+        </a>
+
     </div>
 
     <!-- Biometric Banner -->
@@ -1035,33 +1041,6 @@
             showToast('Navigasi kembali', 'info');
         }
 
-        function openSettings() {
-            if (currentUser) {
-                // Show settings options including logout
-                const options = ['Edit Profil', 'Pengaturan Notifikasi', 'Keluar'];
-                const choice = prompt(`Pilih opsi:\n1. ${options[0]}\n2. ${options[1]}\n3. ${options[2]}\n\nMasukkan nomor pilihan (1-3):`);
-
-                switch (choice) {
-                    case '1':
-                        showToast('Membuka edit profil...', 'info');
-                        break;
-                    case '2':
-                        showToast('Membuka pengaturan notifikasi...', 'info');
-                        break;
-                    case '3':
-                        logout();
-                        break;
-                    default:
-                        if (choice !== null) {
-                            showToast('Pilihan tidak valid', 'error');
-                        }
-                }
-            } else {
-                showToast('Silakan masuk terlebih dahulu', 'info');
-                showLoginModal();
-            }
-        }
-
         // Banner functions
         function activateBiometric() {
             if (!currentUser) {
@@ -1094,7 +1073,7 @@
             }
             showToast('Membuka halaman TIX VIP...', 'info');
             setTimeout(() => {
-                window.location.href = 'tix-vip.html';
+                window.location.href = '../system/bagikan-tixid.html';
             }, 1000); // beri jeda biar toast sempat tampil
         }
 
@@ -1201,6 +1180,6 @@
 
         console.log('Dynamic Akun Saya page initialized successfully!');
     </script>
-</body>
+    <a href="../system/bagikan-tixid.html" </body>
 
 </html>

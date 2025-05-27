@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ringkasan Order Tiket</title>
+  <link rel="stylesheet" type="text/css" href="tiket.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Ringkasan Order</h2>
+    <div class="main-content">
+      <!-- KIRI -->
+      <div class="left-column">
+        <img src="final.jpeg" alt="Final Destination" class="movie-poster" />
+        <p class="movie-title">FINAL DESTINATION: BLOODLINES</p>
+        <p class="sub-info">BG JUNCTION CGV, REGULAR 2D, AUDI #7</p>
+        <p class="sub-info">Senin, 26 Mei 2025, 13:40</p>
+        <div class="rating-msg">
+          🔥 Wow, film ini dapat rating 🌟 8.9 dari para penonton, ok sip! 🌟
+        </div>
+      </div>
+
+      <!-- KANAN -->
+      <div class="right-column">
+        <div class="section">
+          <div class="section-title">Detail Transaksi</div>
+          <p>1 TIKET - G19</p>
+          <p>KURSI REGULAR - Rp35.000</p>
+          <p>BIAYA LAYANAN - Rp4.000</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Metode Pembayaran</div>
+          <div class="payment-option"><input type="radio" name="payment"> <img src="dana.png" alt="DANA"> DANA</div>
+          <div class="payment-option"><input type="radio" name="payment"> <img src="gopay.png" alt="GoPay"> GoPay</div>
+          <div class="payment-option"><input type="radio" name="payment"> <img src="sopi.png" alt="ShopeePay"> ShopeePay</div>
+          <div class="payment-option"><input type="radio" name="payment"> <img src="ovo.jpeg" alt="OVO"> OVO</div>
+          <div class="payment-option"><input type="radio" name="payment"> <img src="bri.jpeg" alt="BRI"> Transfer Bank BRI</div>
+          <div class="payment-option"><input type="radio" name="payment"> <img src="bni.png" alt="BNI"> Transfer Bank BNI</div>
+          <div class="payment-option"><input type="radio" name="payment"> <img src="mandiri.png" alt="Mandiri"> Transfer Bank Mandiri</div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Promo & Voucher</div>
+          <input type="text" placeholder="Tidak ada promo/voucher saat ini." style="width: 100%; padding: 8px;">
+        </div>
+
+        <div class="promo-info">
+          <div class="rules">
+            <ul>
+              <li>Pembelian tiket tidak bisa dibatalkan / ditukarkan.</li>
+              <li>Voucher & Seatlocker berlaku maksimal untuk 2 orang.</li>
+              <li>3D/4DX: Tidak disarankan untuk anak-anak dengan tinggi &lt; 100cm, ibu hamil, lansia, pengguna alat bantu jantung & kursi roda.</li>
+              <li>Untuk Anak usia &lt; 2 tahun, kursi wajib membeli tiket.</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="total">TOTAL BAYAR: Rp39.000</p>
+        <button class="button" onclick="lanjutPembayaran()">LANJUTKAN KE PEMBAYARAN</button>
+      </div>
+        <div class="section history" id="history">
+          <h3>Pesanan Anda</h3>
+          <p>✅ Tiket FINAL DESTINATION berhasil dipesan!</p>
+          <p>📍 Studio 7, Kursi G09</p>
+          <p>🕒 Senin, 28 Mei 2025, 13:30</p>
+          <button class="button" style="background: #3498db; margin-top: 10px;">Cek Pesanan</button>
+        </div>
+  </div>
+<script>
+function lanjutPembayaran() {
+  const metode = document.querySelector('input[name="payment"]:checked');
+  if (!metode) {
+    alert("Silakan pilih metode pembayaran terlebih dahulu.");
+    return;
+  }
+
+  const dataTiket = {
+    film: "FINAL DESTINATION: BLOODLINES",
+    studio: "AUDI #7",
+    kursi: "G19",
+    jam: "13:40",
+    tanggal: "Senin, 26 Mei 2025",
+    lokasi: "BG JUNCTION CGV, REGULAR 2D",
+    total: "Rp39.000"
+  };
+
+  // Simpan data tiket ke localStorage
+  localStorage.setItem("statusPembayaran", "pending");
+  localStorage.setItem("tiket", JSON.stringify(dataTiket));
+
+  // Redirect sesuai metode pembayaran
+  let target = "";
+  const alt = metode.nextElementSibling.alt.toLowerCase();
+
+  if (alt.includes("dana")) target = "dana.html";
+  else if (alt.includes("gopay")) target = "gopay.html";
+  else if (alt.includes("shopee")) target = "shopeepay.html";
+  else if (alt.includes("ovo")) target = "ovo.html";
+  else if (alt.includes("bri")) target = "bri.html";
+  else if (alt.includes("bni")) target = "bni.html";
+  else if (alt.includes("mandiri")) target = "mandiri.html";
+  else target = "halaman_tidak_dikenali.html";
+
+  window.location.href = target;
+}
+</script>
+
+
+</body>
+</html>

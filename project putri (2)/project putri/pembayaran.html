@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pembayaran Multi Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="pembayaran.css" />
+  <style>
+    /* Contoh styling sederhana untuk tab */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+    .tab {
+      padding: 10px 15px;
+      background-color: #eee;
+      border-radius: 5px;
+    }
+    .tab.active {
+      background-color: #4285f4;
+      color: white;
+    }
+    .payment-method {
+      display: none;
+    }
+    .payment-method.active {
+      display: block;
+    }
+    .history {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="tabs">
+      <div class="tab active" data-target="dana">DANA</div>
+      <div class="tab" data-target="bri">BRI</div>
+      <div class="tab" data-target="bni">BNI</div>
+      <div class="tab" data-target="mandiri">Mandiri</div>
+    </div>
+
+    <!-- DANA -->
+    <div id="dana" class="payment-method active">
+      <h2>DANA</h2>
+      <img src="dana.png" alt="Logo DANA" style="width:120px;" />
+      <p>Masukkan nomor HP sebagai ID DANA</p>
+      <div>
+        <span>+62</span>
+        <input type="text" id="nohp-dana" placeholder="12312345678" maxlength="13" />
+      </div>
+      <button onclick="lanjut('dana')">LANJUTKAN</button>
+      <div id="history-dana" class="history" style="display:none;">
+        <h3>✅ Pembayaran DANA Berhasil!</h3>
+        <p>🎫 Tiket Final Destination berhasil dipesan.</p>
+        <p>📍 Studio 7, Kursi G19</p>
+        <p>🕒 Senin, 26 Mei 2025, 13:40</p>
+        <button onclick="kembali()">Kembali ke Halaman Utama</button>
+      </div>
+    </div>
+
+    <!-- BRI -->
+    <div id="bri" class="payment-method">
+      <h2>BRI</h2>
+      <img src="bri.png" alt="Logo BRI" style="width:120px;" />
+      <p>Masukkan nomor rekening BRI</p>
+      <input type="text" id="noRek-bri" placeholder="1234567890123456" maxlength="16" />
+      <button onclick="lanjut('bri')">LANJUTKAN</button>
+      <div id="history-bri" class="history" style="display:none;">
+        <h3>✅ Pembayaran BRI Berhasil!</h3>
+        <p>🎫 Tiket Final Destination berhasil dipesan.</p>
+        <p>📍 Studio 7, Kursi G19</p>
+        <p>🕒 Senin, 26 Mei 2025, 13:40</p>
+        <button onclick="kembali()">Kembali ke Halaman Utama</button>
+      </div>
+    </div>
+
+    <!-- BNI -->
+    <div id="bni" class="payment-method">
+      <h2>BNI</h2>
+      <img src="bni.png" alt="Logo BNI" style="width:120px;" />
+      <p>Masukkan nomor rekening BNI</p>
+      <input type="text" id="noRek-bni" placeholder="1234567890123456" maxlength="16" />
+      <button onclick="lanjut('bni')">LANJUTKAN</button>
+      <div id="history-bni" class="history" style="display:none;">
+        <h3>✅ Pembayaran BNI Berhasil!</h3>
+        <p>🎫 Tiket Final Destination berhasil dipesan.</p>
+        <p>📍 Studio 7, Kursi G19</p>
+        <p>🕒 Senin, 26 Mei 2025, 13:40</p>
+        <button onclick="kembali()">Kembali ke Halaman Utama</button>
+      </div>
+    </div>
+
+    <!-- Mandiri -->
+    <div id="mandiri" class="payment-method">
+      <h2>Mandiri</h2>
+      <img src="mandiri.png" alt="Logo Mandiri" style="width:120px;" />
+      <p>Masukkan nomor rekening Mandiri</p>
+      <input type="text" id="noRek-mandiri" placeholder="1234567890123456" maxlength="16" />
+      <button onclick="lanjut('mandiri')">LANJUTKAN</button>
+      <div id="history-mandiri" class="history" style="display:none;">
+        <h3>✅ Pembayaran Mandiri Berhasil!</h3>
+        <p>🎫 Tiket Final Destination berhasil dipesan.</p>
+        <p>📍 Studio 7, Kursi G19</p>
+        <p>🕒 Senin, 26 Mei 2025, 13:40</p>
+        <button onclick="kembali()">Kembali ke Halaman Utama</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Fungsi tab untuk pilih metode pembayaran
+    const tabs = document.querySelectorAll('.tab');
+    const methods = document.querySelectorAll('.payment-method');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active tab dan metode sebelumnya
+        tabs.forEach(t => t.classList.remove('active'));
+        methods.forEach(m => {
+          m.classList.remove('active');
+          m.querySelector('.history').style.display = 'none'; // sembunyikan history juga saat ganti tab
+        });
+
+        // Aktifkan tab dan metode sesuai target data
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.target).classList.add('active');
+      });
+    });
+
+    function lanjut(method) {
+      let inputId = '';
+      if (method === 'dana') inputId = 'nohp-dana';
+      else if (method === 'bri') inputId = 'noRek-bri';
+      else if (method === 'bni') inputId = 'noRek-bni';
+      else if (method === 'mandiri') inputId = 'noRek-mandiri';
+
+      const input = document.getElementById(inputId);
+      const value = input.value.trim();
+
+      if (value === '') {
+        alert('Masukkan nomor terlebih dahulu.');
+        return;
+      }
+
+      alert(`Pembayaran ${method.toUpperCase()} berhasil!`);
+
+      // tampilkan riwayat pembayaran di payment-method terkait
+      document.querySelector(`#${method} .history`).style.display = 'block';
+    }
+
+    function kembali() {
+      window.location.href = 'index.html'; // ke halaman utama
+    }
+  </script>
+
+</body>
+</html>

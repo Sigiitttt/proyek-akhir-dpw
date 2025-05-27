@@ -1,0 +1,56 @@
+<!-- pembayaran-ovo.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pembayaran OVO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="pembayaran.css">
+</head>
+<body>
+  <div class="header">OVO</div>
+  <div class="container">
+    <img src="ovo.jpeg" alt="Logo OVO" class="logo">
+
+    <div class="phone-box">
+      <p>Masukkan nomor OVO Anda</p>
+      <div class="input-group">
+        <span>+62</span>
+        <input type="text" id="nohp" placeholder="812xxxxxxx" maxlength="13">
+      </div>
+    </div>
+
+    <div class="features">
+      <p>🔐 Pembayaran aman dengan verifikasi PIN.</p>
+      <p>💡 Bisa digunakan untuk merchant, top-up & lainnya.</p>
+    </div>
+    <div>
+        <button class="lanjut-btn" onclick="lanjut()">LANJUTKAN</button>
+      <button class="button-secondary">Cek Pesanan</button>
+      <button class="button-home" onclick="kembali()">Kembali ke Halaman Utama</button>
+    </div>
+  </div>
+
+  <script>
+    function lanjut() {
+      const nohp = document.getElementById("nohp").value.trim();
+      if (nohp === "") {
+        alert("Masukkan nomor ShopeePay terlebih dahulu.");
+        return;
+      }
+      localStorage.setItem("statusPembayaran", "berhasil");
+      alert("Pembayaran ShopeePay berhasil!");
+      window.location.href = "cetak_final.html";
+       window.location.href = "cetak_gundik.html";
+      window.location.href = "cetak_stitch.html";
+      window.location.href = "cetak_mission.html";
+    }
+    function kembali() {
+      window.location.href = "index.html";
+    }
+    function cekPesanan() {
+      window.location.href = "riwayat.html";
+    }
+  </script>
+</body>
+</html>

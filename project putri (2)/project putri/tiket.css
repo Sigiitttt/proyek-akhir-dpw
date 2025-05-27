@@ -1,0 +1,113 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.left-column {
+    width: 40%;
+}
+
+.right-column {
+    width: 60%;
+}
+
+.movie-poster {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.movie-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.sub-info {
+    font-size: 14px;
+    color: #555;
+    margin: 2px 0;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.payment-option {
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+}
+
+.payment-option img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e67e22;
+    margin-top: 10px;
+}
+
+.button {
+    background: #e67e22;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.history {
+    display: none;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.promo-info {
+    background: #f6f6f6;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.rules {
+    font-size: 12px;
+    color: #900;
+    margin-top: 10px;
+}
+
+.rating-msg {
+    font-size: 14px;
+    background: #fff5cc;
+    padding: 6px;
+    border-radius: 4px;
+    margin-top: 10px;
+}

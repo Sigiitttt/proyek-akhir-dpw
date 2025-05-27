@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pembayaran BNI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="pembayaran.css" />
+</head>
+<body>
+
+  <div class="header">BNI</div>
+
+  <div class="container">
+    <img src="bni.png" alt="Logo BNI" class="logo" />
+
+    <div class="phone-box">
+      <p>Masukkan nomor rekening BNI</p>
+      <div class="input-group">
+        <input type="text" id="noRek" placeholder="1234567890123456" maxlength="16" />
+      </div>
+    </div>
+
+    <div class="features">
+      <p>🏦 Bank Negara Indonesia - Bank favorit masyarakat.</p>
+      <p>💳 Transaksi mudah dan cepat via BNI.</p>
+      <p>🔐 Keamanan terbaik untuk dana Anda.</p>
+    </div>
+
+    <button class="lanjut-btn" onclick="lanjut()">LANJUTKAN</button>
+
+    <div class="history" id="history" style="display:none;">
+      <h3>✅ Pembayaran Berhasil!</h3>
+      <p>🎫 Tiket Final Destination berhasil dipesan.</p>
+      <p>📍 Studio 7, Kursi G19</p>
+      <p>🕒 Senin, 26 Mei 2025, 13:40</p>
+    
+      <button class="button-home" onclick="kembali()">Kembali ke Halaman Utama</button>
+    </div>
+
+    <div class="footer">
+      Keamanan datamu dijamin oleh BNI.<br />
+      Dengan lanjut, kamu setuju dengan <a href="#">Syarat & Ketentuan</a>.
+    </div>
+  </div>
+
+  <script>
+    function lanjut() {
+      const nohp = document.getElementById("nohp").value.trim();
+      if (nohp === "") {
+        alert("Masukkan nomor ShopeePay terlebih dahulu.");
+        return;
+      }
+      localStorage.setItem("statusPembayaran", "berhasil");
+      alert("Pembayaran ShopeePay berhasil!");
+      window.location.href = "cetak_final.html";
+      window.location.href = "cetak_gundik.html";
+      window.location.href = "cetak_stitch.html";
+      window.location.href = "cetak_mission.html";
+    }
+    function kembali() {
+      window.location.href = "index.html";
+    }
+    function cekPesanan() {
+      window.location.href = "riwayat.html";
+
+    }
+  </script>
+</body>
+</html>
