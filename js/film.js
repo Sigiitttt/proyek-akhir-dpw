@@ -505,3 +505,223 @@ const notificationCSS = `
 const style = document.createElement('style');
 style.textContent = notificationCSS;
 document.head.appendChild(style);
+
+
+
+// Fungsi untuk menampilkan daftar berita
+function renderNewsList() {
+    const newsContainer = document.getElementById('news-container');
+    if (!newsContainer) return;
+
+    let newsHtml = '';
+    
+    newsData.forEach(news => {
+        newsHtml += `
+            <article class="news-item" onclick="goToNewsDetail(${news.id})">
+                <div class="news-image">
+                    <img src="${news.image}" alt="${news.title}" loading="lazy">
+                    <span class="category-tag">${news.category}</span>
+                </div>
+                <div class="news-content">
+                    <h3 class="news-title">${news.title}</h3>
+                    <p class="news-summary">${news.summary}</p>
+                    <div class="news-meta">
+                        <div class="news-stats">
+                            <span class="views">👁️ ${news.views}</span>
+                            <span class="likes">❤️ ${news.likes}</span>
+                        </div>
+                        <span class="time-ago">${news.timeAgo}</span>
+                    </div>
+                </div>
+            </article>
+        `;
+    });
+    
+    newsContainer.innerHTML = newsHtml;
+}
+
+// Fungsi untuk menampilkan detail berita
+function renderNewsDetail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const newsId = parseInt(urlParams.get('id'));
+    
+    const news = newsData.find(item => item.id === newsId);
+    
+    if (!news) {
+        document.body.innerHTML = '<h1>Berita tidak ditemukan</h1>';
+        return;
+    }
+    
+    document.title = `${news.title} - TIX Now`;
+    
+    const detailContainer = document.getElementById('news-detail-container');
+    if (!detailContainer) return;
+    
+    detailContainer.innerHTML = `
+        <article class="news-detail">
+            <div class="news-header">
+                <div class="breadcrumb">
+                    <a href="news.html">← Kembali ke Berita</a>
+                </div>
+                <span class="category-tag">${news.category}</span>
+                <h1 class="news-title">${news.title}</h1>
+                <div class="news-info">
+                    <span class="author">Oleh ${news.author}</span>
+                    <span class="date">${news.publishDate}</span>
+                    <div class="news-stats">
+                        <span class="views">👁️ ${news.views}</span>
+                        <span class="likes">❤️ ${news.likes}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="news-image-detail">
+                <img src="${news.image}" alt="${news.title}">
+            </div>
+            
+            <div class="news-content-detail">
+                ${news.content.split('\n\n').map(paragraph => 
+                    `<p>${paragraph.trim()}</p>`
+                ).join('')}
+            </div>
+            
+            <div class="news-footer">
+                <div class="share-buttons">
+                    <button onclick="shareNews('${news.title}')">📤 Bagikan</button>
+                    <button onclick="likeNews(${news.id})">❤️ Suka</button>
+                </div>
+            </div>
+        </article>
+        
+        <section class="related-news">
+            <h3>Berita Terkait</h3>
+            <div id="related-news-container"></div>
+        </section>
+    `;
+    
+    renderRelatedNews(news.id, news.category);
+}
+
+// Fungsi untuk menampilkan berita terkait
+function renderRelatedNews(currentId, category) {
+    const relatedContainer = document.getElementById('related-news-container');
+    if (!relatedContainer) return;
+    
+    const relatedNews = newsData
+        .filter(news => news.id !== currentId && news.category === category)
+        .slice(0, 3);
+    
+    let relatedHtml = '';
+    
+    relatedNews.forEach(news => {
+        relatedHtml += `
+            <div class="related-item" onclick="goToNewsDetail(${news.id})">
+                <img src="${news.image}" alt="${news.title}">
+                <div class="related-content">
+                    <h4>${news.title}</h4>
+                    <span class="time-ago">${news.timeAgo}</span>
+                </div>
+            </div>
+        `;
+    });
+    
+    if (relatedHtml === '') {
+        relatedHtml = '<p>Tidak ada berita terkait.</p>';
+    }
+    
+    relatedContainer.innerHTML = relatedHtml;
+}
+
+// Fungsi untuk navigasi ke detail berita
+function goToNewsDetail(newsId) {
+    window.location.href = `news-detail.html?id=${newsId}`;
+}
+
+// Fungsi untuk berbagi berita
+function shareNews(title) {
+    if (navigator.share) {
+        navigator.share({
+            title: title,
+            url: window.location.href
+        });
+    } else {
+        // Fallback untuk browser yang tidak support Web Share API
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Link berhasil disalin!');
+        }).catch(() => {
+            alert('Gagal menyalin link');
+        });
+    }
+}
+
+// Fungsi untuk like berita (simulasi)
+function likeNews(newsId) {
+    alert('Terima kasih sudah menyukai berita ini!');
+}
+
+// Fungsi untuk render berita
+        function renderNews() {
+            const newsGrid = document.getElementById('news-grid');
+            if (!newsGrid) return;
+
+            let newsHTML = '';
+            newsData.forEach(news => {
+                newsHTML += `
+                    <div class="news-item" onclick="goToNewsDetail(${news.id})">
+                        <div class="news-image">
+                            <img src="${news.image}" alt="${news.title}" loading="lazy">
+                            <span class="category-tag">${news.category}</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">${news.title}</h3>
+                            <p class="news-summary">${news.summary}</p>
+                            <div class="news-meta">
+                                <div class="news-stats">
+                                    <span class="views">👁️ ${news.views}</span>
+                                    <span class="likes">❤️ ${news.likes}</span>
+                                </div>
+                                <span class="time-ago">${news.timeAgo}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            newsGrid.innerHTML = newsHTML;
+        }
+
+
+// Fungsi filter berdasarkan kategori
+function filterByCategory(category) {
+    const filteredNews = category === 'all' ? 
+        newsData : newsData.filter(news => news.category === category);
+    
+    const newsContainer = document.getElementById('news-container');
+    if (!newsContainer) return;
+    
+    let newsHtml = '';
+    filteredNews.forEach(news => {
+        newsHtml += `
+            <article class="news-item" onclick="goToNewsDetail(${news.id})">
+                <div class="news-image">
+                    <img src="${news.image}" alt="${news.title}" loading="lazy">
+                    <span class="category-tag">${news.category}</span>
+                </div>
+                <div class="news-content">
+                    <h3 class="news-title">${news.title}</h3>
+                    <p class="news-summary">${news.summary}</p>
+                    <div class="news-meta">
+                        <div class="news-stats">
+                            <span class="views">👁️ ${news.views}</span>
+                            <span class="likes">❤️ ${news.likes}</span>
+                        </div>
+                        <span class="time-ago">${news.timeAgo}</span>
+                    </div>
+                </div>
+            </article>
+        `;
+    });
+    
+    newsContainer.innerHTML = newsHtml;
+}

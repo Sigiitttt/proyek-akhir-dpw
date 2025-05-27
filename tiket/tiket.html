@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TIX ID - Tiket Aktif</title>
+    <link rel="stylesheet" type="text/css" href="tiket.css">
+</head>
+<body>
+
+   <div class="header">
+    <img src="https://img.icons8.com/ios-filled/24/search--v1.png"/>
+    <div class="search-bar">
+      <input type="text" placeholder="Cari di TIX ID" />
+    </div>
+    <button class="icon-btn"><img src="https://img.icons8.com/ios/24/user-male-circle.png"/></button>
+    <button class="icon-btn"><img src="https://img.icons8.com/ios/24/bell.png"/></button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('film')">Film</div>
+    <div class="tab" onclick="showTab('makanan')">Makanan</div>
+    <div class="tab" onclick="showTab('event')">Event</div>
+  </div>
+
+  <div class="tab-content active" id="film">
+    <img src="https://img.icons8.com/ios/100/ticket.png" alt="Ticket Icon"/>
+    <h3>Belum Ada Tiket Film Nih</h3>
+    <p>Yuk beli tiket film favoritmu dan nikmati pengalaman nonton yang seru!</p>
+    <button>Beli Tiket</button>
+  </div>
+
+  <div class="tab-content" id="makanan">
+    <img src="https://img.icons8.com/ios/100/cake.png" alt="Cake Icon"/>
+    <h3>Belum Ada Makanan Atau Minuman Nih</h3>
+    <p>Dapatkan makanan dan minuman lezat dari bioskop<br>untuk pengalaman nonton terbaikmu!</p>
+    <button>Pesan Sekarang</button>
+  </div>
+
+  <div class="tab-content" id="event">
+    <img src="https://img.icons8.com/ios/100/ticket.png" alt="Event Ticket"/>
+    <h3>Tiket Event Tidak Ditemukan</h3>
+    <p>Anda tidak memiliki tiket untuk event yang akan datang.</p>
+    <button>Lihat Event</button>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios/24/home--v1.png"/>
+      <span>Beranda</span>
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios/24/movie-theater.png"/>
+      <span>Bioskop</span>
+    </div>
+    <div class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/24/ticket.png"/>
+      <span>Tiket</span>
+    </div>
+  </div>
+  
+
+ 
+
+  <script>
+    function showTab(tabName) {
+      // Ubah tab aktif
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Tampilkan konten sesuai tab
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

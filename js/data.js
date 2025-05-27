@@ -1032,7 +1032,109 @@ const kotaList = {
     "cilegon": "Cilegon"
 };
 
-// Fungsi helper untuk mengambil data
+
+
+// Data dummy berita film
+const newsData = [
+    {
+        id: 1,
+        title: "HALABALA, Horor Asal Thailand Yang Ngeri Abis!",
+        summary: "Film horor Thailand terbaru yang memberikan pengalaman menakutkan bagi penonton dengan cerita yang menegangkan dan efek visual yang memukau.",
+        content: `Film horor Thailand "HALABALA" telah menjadi perbincangan hangat di kalangan pecinta film horor. Dengan cerita yang mengangkat legenda lokal Thailand, film ini berhasil menghadirkan ketakutan yang autentik.
+
+        Disutradarai oleh Prachya Pinkaew, film ini mengisahkan tentang sekelompok mahasiswa yang terjebak dalam ritual kuno yang mengerikan. Dengan sinematografi yang apik dan akting yang meyakinkan, HALABALA memberikan pengalaman horor yang tak terlupakan.
+
+        Film ini telah mendapat rating tinggi dari berbagai platform review film internasional dan menjadi trending topic di media sosial. Para kritikus memuji kemampuan film ini dalam memadukan horor tradisional dengan teknologi modern.
+
+        Bagi pecinta film horor, HALABALA wajib masuk dalam daftar tontonan. Film ini tidak hanya mengandalkan jump scare, tetapi juga membangun atmosfer mencekam yang bertahan hingga akhir film.`,
+        image: "https://via.placeholder.com/400x300/1a1a1a/ffffff?text=HALABALA",
+        views: "5K",
+        likes: "8",
+        timeAgo: "1 hari lalu",
+        category: "Horror",
+        author: "Admin TIX",
+        publishDate: "26 Mei 2025"
+    },
+    {
+        id: 2,
+        title: "Ketemu Lagi Sama Jackie Chan di Film Karate Kid: Legends!",
+        summary: "Jackie Chan kembali berperan sebagai Mr. Han dalam sekuel terbaru Karate Kid yang penuh dengan aksi martial arts spektakuler.",
+        content: `Jackie Chan kembali memikat penggemar dengan perannya sebagai Mr. Han dalam "Karate Kid: Legends". Film ini merupakan kelanjutan dari trilogi Karate Kid yang telah meraih kesuksesan besar di box office worldwide.
+
+        Dalam film terbaru ini, Jackie Chan tidak hanya berperan sebagai mentor, tetapi juga menampilkan aksi martial arts yang spektakuler meski di usianya yang tidak lagi muda. Dedikasi dan profesionalisme aktor legendaris ini patut diacungi jempol.
+
+        Sutradara Jonathan Entwistle berhasil menghadirkan cerita yang segar namun tetap mempertahankan esensi dari franchise Karate Kid. Film ini juga memperkenalkan generasi baru penerus tradisi karate dengan latar belakang yang lebih modern.
+
+        Produksi film ini melibatkan koreografer aksi terbaik Hollywood dan menggunakan lokasi syuting di berbagai negara Asia, memberikan visual yang memukau dan autentik bagi penonton.`,
+        image: "https://via.placeholder.com/400x300/8B4513/ffffff?text=Karate+Kid",
+        views: "6K",
+        likes: "24",
+        timeAgo: "3 hari lalu",
+        category: "Action",
+        author: "Sarah Johnson",
+        publishDate: "24 Mei 2025"
+    },
+    {
+        id: 3,
+        title: "Kembali Nostalgia di Live-Action Disney's Lilo & Stitch",
+        summary: "Disney menghadirkan versi live-action dari film animasi populer Lilo & Stitch dengan teknologi CGI terdepan dan cerita yang mengharukan.",
+        content: `Disney kembali menghadirkan nostalgia childhood dengan adaptasi live-action dari "Lilo & Stitch". Film yang disutradarai oleh Dean Fleischer Camp ini berhasil menangkap esensi dari film animasi aslinya yang dirilis pada tahun 2002.
+
+        Karakter Stitch dibuat menggunakan teknologi CGI terdepan yang memberikan hasil visual yang sangat realistis namun tetap mempertahankan keunikan karakter alien biru yang menggemaskan. Interaksi antara Stitch dan Lilo terasa sangat natural dan menyentuh hati.
+
+        Film ini tidak hanya mengandalkan efek visual, tetapi juga menghadirkan pesan moral yang kuat tentang keluarga, persahabatan, dan penerimaan. Setting Hawaii yang indah menjadi latar belakang yang sempurna untuk cerita yang hangat ini.
+
+        Para penggemar original film pasti akan tersentuh dengan berbagai easter egg dan referensi yang disertakan dalam film live-action ini. Disney sekali lagi membuktikan kemampuannya dalam mengadaptasi karya animasi ke format live-action.`,
+        image: "https://via.placeholder.com/400x300/4169E1/ffffff?text=Lilo+Stitch",
+        views: "805",
+        likes: "6",
+        timeAgo: "4 hari lalu",
+        category: "Family",
+        author: "Disney Team",
+        publishDate: "23 Mei 2025"
+    },
+    {
+        id: 4,
+        title: "Diangkat Dari Game Horor, Home Sweet Home: Rebirth Segera Tayang!",
+        summary: "Adaptasi film dari game horor populer Thailand yang akan menghadirkan pengalaman menakutkan di layar lebar dengan cerita yang lebih mendalam.",
+        content: `Game horor populer "Home Sweet Home" akhirnya diadaptasi ke layar lebar dengan judul "Home Sweet Home: Rebirth". Film ini diharapkan dapat memberikan pengalaman horor yang tidak kalah menakutkan dari game aslinya.
+
+        Sutradara Poj Arnon yang terkenal dengan film-film horor Thailand berhasil menerjemahkan atmosfer mencekam dari game ke dalam format film. Cerita diperdalam dengan backstory yang lebih detail tentang asal-usul hantu dan kutukan yang menghantui rumah tersebut.
+
+        Film ini menggunakan practical effect dan makeup prostetik yang mengerikan untuk menciptakan sosok hantu yang realistis. Kombinasi dengan sound design yang mencekam membuat penonton akan merasakan ketegangan dari awal hingga akhir.
+
+        Para gamer yang familiar dengan game aslinya akan menemukan berbagai referensi dan scene iconic yang diadaptasi dengan sempurna. Film ini menjadi bukti bahwa adaptasi game ke film bisa berhasil jika dilakukan dengan serius dan respect terhadap source material.`,
+        image: "https://via.placeholder.com/400x300/8B0000/ffffff?text=Home+Sweet+Home",
+        views: "680",
+        likes: "1",
+        timeAgo: "4 hari lalu",
+        category: "Horror",
+        author: "Game News",
+        publishDate: "23 Mei 2025"
+    },
+    {
+        id: 5,
+        title: "Sejak Kapan Emu Akan Berkolaborasi Untuk Anak Yang Hilang",
+        summary: "Film drama terbaru yang mengangkat isu sosial tentang anak hilang dengan pendekatan yang sensitif dan penuh empati.",
+        content: `Film "Sejak Kapan" mengangkat isu sensitif tentang anak hilang dengan pendekatan yang sangat humanis dan penuh empati. Sutradara muda berbakat berhasil menghadirkan cerita yang menyentuh hati namun tidak eksploitatif.
+
+        Film ini bercerita tentang perjuangan seorang ibu dalam mencari anaknya yang hilang, serta dampak psikologis yang dialami oleh keluarga dan masyarakat sekitar. Akting yang natural dari seluruh cast membuat emosi penonton ikut terbawa.
+
+        Cinematography yang indah kontras dengan tema berat yang diangkat, menciptakan visual yang memukau namun tetap menghormati keseriusan topik. Film ini juga menghadirkan pesan tentang pentingnya kepedulian sosial dan kekuatan komunitas.
+
+        Diharapkan film ini dapat meningkatkan awareness masyarakat tentang isu anak hilang dan mendorong partisipasi aktif dalam menjaga keamanan anak-anak di lingkungan sekitar.`,
+        image: "https://via.placeholder.com/400x300/708090/ffffff?text=Sejak+Kapan",
+        views: "450",
+        likes: "12",
+        timeAgo: "5 hari lalu",
+        category: "Drama",
+        author: "Social Issues",
+        publishDate: "22 Mei 2025"
+    }
+];
+
+
+// Fungsi  untuk mengambil data
 const DataHelper = {
     // Film functions
     getAllFilms: () => filmsData,
@@ -1050,18 +1152,6 @@ const DataHelper = {
             film.pemeran.some(p => p.toLowerCase().includes(searchTerm))
         );
     },
-
-    // Food functions
-    getAllFood: () => foodData,
-
-    getFoodById: (id) => foodData.find(food => food.id === parseInt(id)),
-
-    getFoodByCategory: (category) => foodData.filter(food => food.kategori === category),
-
-    // Cinema functions
-    getAllCinemas: () => cinemaData,
-
-    getCinemaById: (id) => cinemaData.find(cinema => cinema.id === parseInt(id)),
 
     // Utility functions
     formatDuration: (minutes) => {
@@ -1091,6 +1181,6 @@ const DataHelper = {
 
 // Export untuk digunakan di file lain
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { filmsData, foodData, cinemaData, DataHelper };
+    module.exports = { filmsData, foodData, cinemaData, newsData, DataHelper };
 }
 

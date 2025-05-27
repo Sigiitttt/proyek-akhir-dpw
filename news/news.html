@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita Film - TIX Now</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .news-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #ffd700;
+            border-color: #ffd700;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            user-select: none;
+        }
+
+        .news-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .news-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+
+        .news-summary {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .news-stats {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .news-stats span {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .time-ago {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            padding: 2rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .news-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                min-width: auto;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-filters {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">📰 TIX Now</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="news.html">Berita</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">Berita Film Terbaru</h1>
+            <p class="page-subtitle">Update berita terbaru seputar dunia film</p>
+        </div>
+
+        <div class="news-controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Cari berita..." 
+                       onkeyup="handleSearch(event)">
+            </div>
+            <div class="category-filters">
+                <button class="filter-btn active" onclick="filterNews('all', this)">Semua</button>
+                <button class="filter-btn" onclick="filterNews('Horror', this)">Horror</button>
+                <button class="filter-btn" onclick="filterNews('Action', this)">Action</button>
+                <button class="filter-btn" onclick="filterNews('Family', this)">Family</button>
+                <button class="filter-btn" onclick="filterNews('Drama', this)">Drama</button>
+            </div>
+        </div>
+
+        <div class="news-grid" id="news-container">
+            <!-- Berita akan dimuat di sini oleh JavaScript -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TIX Now. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/data.js"></script>
+    <script src="/js/film.js"></script>
+    
+    <script>
+        // Inisialisasi halaman
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing news page');
+            
+            // Cek apakah data sudah tersedia
+            if (typeof newsData === 'undefined') {
+                console.error('newsData is not defined');
+                return;
+            }
+            
+            console.log('News data available:', newsData.length, 'items');
+            renderNewsList();
+        });
+
+        // Handler untuk pencarian
+        function handleSearch(event) {
+            const query = event.target.value;
+            if (event.key === 'Enter' || query.length === 0) {
+                if (query.length === 0) {
+                    renderNewsList();
+                } else {
+                    searchNews(query);
+                }
+            }
+        }
+
+        // Handler untuk filter kategori
+        function filterNews(category, button) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+
+            // Filter berita
+            filterByCategory(category);
+        }
+
+        // Test function untuk debugging
+        function testNavigation() {
+            console.log('Testing navigation...');
+            goToNewsDetail(1);
+        }
+    </script>
+</body>
+</html>

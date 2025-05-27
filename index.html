@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2222222222222222</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .tix-food {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .tix-food .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .tix-food h2 {
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .tix-food-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .img-food {
+            text-align: center;
+        }
+
+        .banner-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
+
 <body>
     <!-- Navbar akan dimuat di sini -->
     <div id="navbar-container"></div>
@@ -31,7 +70,8 @@
             <div class="movies-grid">
                 <div class="movie-card">
                     <div class="movie-poster">
-                        <img src="img/assets/spider.jpg" alt="Film 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
+                        <img src="img/assets/spider.jpg" alt="Film 1"
+                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
                     </div>
                     <div class="movie-info">
                         <h3>Spider-Man: No Way Home</h3>
@@ -42,7 +82,8 @@
                 </div>
                 <div class="movie-card">
                     <div class="movie-poster">
-                        <img src="img/assets/avatar.jpg" alt="Film 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
+                        <img src="img/assets/avatar.jpg" alt="Film 2"
+                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
                     </div>
                     <div class="movie-info">
                         <h3>Avatar: Fire and Ash</h3>
@@ -53,7 +94,8 @@
                 </div>
                 <div class="movie-card">
                     <div class="movie-poster">
-                        <img src="img/assets/batman.jpg" alt="Film 3" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
+                        <img src="img/assets/batman.jpg" alt="Film 3"
+                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ci8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
                     </div>
                     <div class="movie-info">
                         <h3>The Batman</h3>
@@ -64,7 +106,8 @@
                 </div>
                 <div class="movie-card">
                     <div class="movie-poster">
-                        <img src="img/assets/dr.jpg" alt="Film 4" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
+                        <img src="img/assets/dr.jpg" alt="Film 4"
+                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
                     </div>
                     <div class="movie-info">
                         <h3>Doctor Strange in the Multiverse of Madness</h3>
@@ -80,38 +123,48 @@
         </div>
     </section>
 
-        <!-- Features Section -->
-    <section class="features">
+
+    <!-- TIX Food Section -->
+    <section class="tix-food">
         <div class="container">
-            <h2>Mengapa Memilih TIX.ID?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎬</div>
-                    <h3>Film Terbaru</h3>
-                    <p>Nikmati film-film terbaru dan terpopuler langsung dari bioskop kesayangan Anda</p>
+            <div class="tix-food-header">
+                <div class="tix-food-brand">
+                    <h2>TIX Food</h2>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💺</div>
-                    <h3>Pilih Kursi</h3>
-                    <p>Pilih kursi favorit Anda dengan mudah melalui seat map interaktif</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🍿</div>
-                    <h3>Pesan Makanan</h3>
-                    <p>Pesan popcorn dan minuman favorit tanpa perlu antri di bioskop</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Tiket Digital</h3>
-                    <p>Dapatkan tiket digital yang praktis dan ramah lingkungan</p>
-                </div>
+                <p class="tix-food-subtitle">Nonton lebih asik bareng camilan favoritmu. Pesannya lebih mudah pake TIX
+                    Food!</p>
+            </div>
+            <div class="img-food">
+                <a href="/alisa/makanan.html">
+                    <img src="img/assets/food.png" alt="TIX Food Banner" class="banner-image">
+                </a>
             </div>
         </div>
     </section>
 
+     <!-- TIX News Section -->
+    <section class="tix-news">
+        <div class="container">
+            <div class="tix-news-header">
+                <div class="tix-news-brand">
+                    <div class="news-icon">📰</div>
+                    <h2>TIX Now</h2>
+                </div>
+                <button class="view-all-news" onclick="goToAllNews()">Semua ></button>
+            </div>
+            <p class="tix-news-subtitle">Update berita terbaru seputar dunia film</p>
+            <div class="news-grid" id="news-grid">
+                <!-- Berita akan dimuat di sini oleh JavaScript -->
+            </div>
+        </div>
+    </section>
     <!-- Footer akan dimuat di sini -->
     <div id="footer-container"></div>
-
-    <script src="js/main.js"></script>
+<!-- Sebelum tag </body> -->
+<script src="js/data.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/main.js"></script>
 </body>
+</body>
+
 </html>
