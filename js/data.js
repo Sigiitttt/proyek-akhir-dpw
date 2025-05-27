@@ -40,7 +40,7 @@ const filmsData = [
         sutradara: "Jon Watts",
         pemeran: ["Tom Holland", "Zendaya", "Benedict Cumberbatch", "Willem Dafoe", "Alfred Molina"],
         sinopsis: "Peter Parker menghadapi konsekuensi ketika identitasnya sebagai Spider-Man terungkap. Tidak bisa lagi memisahkan kehidupan normalnya dengan taruhan tinggi menjadi superhero, Peter meminta bantuan Doctor Strange. Namun, ketika mantra salah, musuh berbahaya dari dunia lain mulai muncul, memaksa Peter untuk menemukan apa artinya menjadi Spider-Man yang sesungguhnya.",
-        poster: "../img/assets/spider.jpeg",
+        poster: "../img/assets/spider.jpg",
         trailer: "https://www.youtube.com/watch?v=JfVOs4VSpmA",
         status: "now_showing",
         jadwal: [
@@ -63,27 +63,27 @@ const filmsData = [
     },
     {
         id: 6,
-        judul: "Oppenheimer",
-        genre: ["Biography", "Drama", "History"],
-        durasi: 180,
-        rating: 8.6,
-        tahun: 2023,
-        sutradara: "Christopher Nolan",
-        pemeran: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr.", "Matt Damon", "Florence Pugh"],
-        sinopsis: "Kisah ilmuwan jenius J. Robert Oppenheimer dan perannya dalam pengembangan bom atom selama Proyek Manhattan. Film ini mengeksplorasi dilema moral, tekanan politik, dan dampak psikologis yang dialami Oppenheimer sebagai 'bapak bom atom'.",
-        poster: "../img/assets/2.jpeg",
-        trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg",
+        judul: "The Hunger Games: Sunrise on the Reaping",
+        genre: ["Action", "Drama", "Sci-Fi"],
+        durasi: 137,
+        rating: 8.1,
+        tahun: 2025,
+        sutradara: "Francis Lawrence",
+        pemeran: ["Tom Blyth", "Rachel Zegler", "Hunter Schafer", "Josh Andrés Rivera", "Peter Dinklage"],
+        sinopsis: "Prequel yang mengisahkan Hunger Games ke-50 (Second Quarter Quell) di mana Haymitch Abernathy menjadi pemenang. Film ini mengeksplorasi bagaimana permainan yang brutal ini membentuk masa depan Panem.",
+        poster: "../img/assets/hunger.jpg",
+        trailer: "https://www.youtube.com/watch?v=example15",
         status: "coming_soon",
         jadwal: [
             {
-                bioskop: "XXI Kota Kasablanka",
-                tanggal: "2024-06-07",
-                jam: ["13:00", "16:30", "20:00"]
+                bioskop: "XXI Grand Indonesia",
+                tanggal: "2025-06-15",
+                jam: ["12:30", "15:45", "19:00"]
             },
             {
-                bioskop: "CGV Grand Indonesia",
-                tanggal: "2024-06-07",
-                jam: ["11:00", "14:30", "18:00", "21:30"]
+                bioskop: "CGV Pacific Place",
+                tanggal: "2025-06-15",
+                jam: ["13:00", "16:15", "19:30"]
             }
         ]
     },
@@ -159,7 +159,7 @@ const filmsData = [
         sutradara: "Joseph Kosinski",
         pemeran: ["Tom Cruise", "Miles Teller", "Jennifer Connelly", "Jon Hamm", "Glen Powell"],
         sinopsis: "Setelah lebih dari tiga puluh tahun bertugas sebagai salah satu penerbang angkatan laut terbaik, Pete 'Maverick' Mitchell berada di tempat yang tepat, mendorong amplop sebagai pilot uji coba yang berani dan menghindari kemajuan pangkat yang akan membuatnya darat. Ketika dia menemukan dirinya melatih detasemen lulusan TOP GUN untuk misi khusus tidak seperti yang pernah dilihat pilot hidup, Maverick menghadapi masa lalu yang tidak pasti dan ketakutan terdalamnya.",
-        poster: "../img/assets/1.jpg",
+        poster: "../img/assets/top.jpg",
         trailer: "https://www.youtube.com/watch?v=qSqVVswa420",
         status: "coming_soon",
         jadwal: [
@@ -190,8 +190,7 @@ const filmsData = [
         sutradara: "Christopher Nolan",
         pemeran: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr.", "Matt Damon", "Florence Pugh"],
         sinopsis: "Kisah ilmuwan jenius J. Robert Oppenheimer dan perannya dalam pengembangan bom atom selama Proyek Manhattan. Film ini mengeksplorasi dilema moral, tekanan politik, dan dampak psikologis yang dialami Oppenheimer sebagai 'bapak bom atom'.",
-        // poster: "https://via.placeholder.com/300x450/000000/fff?text=Oppenheimer",
-        poster: "../img/assets/2.jpeg",
+        poster: "../img/assets/oppen.jpg",
         trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg",
         status: "coming_soon",
         jadwal: [
@@ -217,8 +216,7 @@ const filmsData = [
         sutradara: "Denis Villeneuve",
         pemeran: ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson", "Austin Butler", "Florence Pugh"],
         sinopsis: "Paul Atreides bersatu dengan kaum Fremen untuk membalas dendam atas kehancuran keluarganya. Ia harus memilih antara cinta dan takdir sebagai penyelamat umat manusia sembari menghadapi peperangan antargalaksi.",
-        // poster: "https://via.placeholder.com/300x450/2e7d32/fff?text=Dune+Part+Two",
-        poster: "../img/assets/1.jpg",
+        poster: "../img/assets/dune.jpg",
         trailer: "https://www.youtube.com/watch?v=Way9Dexny3w",
         status: "coming_soon",
         jadwal: [
@@ -234,21 +232,62 @@ const filmsData = [
             }
         ]
     },
-    {
+     {
         id: 8,
-        judul: "Spider-Man: No Way Home",
-        genre: ["Action", "Adventure", "Fantasy"],
-        durasi: 148,
+        judul: "Avatar: Fire and Ash",
+        genre: ["Sci-Fi", "Adventure", "Drama"],
+        durasi: 195,
+        rating: 8.8,
+        tahun: 2025,
+        sutradara: "James Cameron",
+        pemeran: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver", "Stephen Lang", "Kate Winslet"],
+        sinopsis: "Jake Sully dan keluarganya menjelajahi wilayah baru Pandora, menemukan suku Na'vi yang hidup di daerah vulkanik. Mereka harus menghadapi ancaman baru dari RDA yang kembali dengan teknologi yang lebih canggih.",
+        poster: "../img/assets/avatar.jpg",
+        trailer: "https://www.youtube.com/watch?v=example2",
+        status: "now_showing",
+        jadwal: [
+            {
+                bioskop: "XXI Grand Indonesia",
+                tanggal: "2025-05-27",
+                jam: ["12:00", "16:00", "20:00"]
+            },
+            {
+                bioskop: "CGV Pacific Place",
+                tanggal: "2025-05-27",
+                jam: ["13:00", "17:00", "21:00"]
+            },
+            {
+                bioskop: "IMAX Jakarta",
+                tanggal: "2025-05-27",
+                jam: ["14:00", "18:30"]
+            }
+        ]
+    },
+     {
+        id: 9,
+        judul: "Moana 2",
+        genre: ["Animation", "Adventure", "Family"],
+        durasi: 107,
         rating: 8.2,
-        tahun: 2021,
-        sutradara: "Jon Watts",
-        pemeran: ["Tom Holland", "Zendaya", "Benedict Cumberbatch", "Willem Dafoe", "Alfred Molina"],
-        sinopsis: "Setelah identitasnya terbongkar, Peter Parker meminta bantuan Doctor Strange. Namun sihir yang digunakan malah membuka multiverse, menghadirkan musuh-musuh dari dunia lain.",
-        // poster: "https://via.placeholder.com/300x450/1565c0/fff?text=Spider-Man+No+Way+Home",
-        poster: "../img/assets/2.jpeg",
-        trailer: "https://www.youtube.com/watch?v=JfVOs4VSpmA",
-        status: "coming_soon",
-        cinemaIds : [1,2,3]
+        tahun: 2025,
+        sutradara: "Dave Derrick Jr.",
+        pemeran: ["Auli'i Cravalho", "Dwayne Johnson", "Rachel House", "Temuera Morrison", "Nicole Scherzinger"],
+        sinopsis: "Moana melakukan perjalanan baru melintasi lautan untuk mencari pulau-pulau yang hilang. Bersama Maui dan teman-teman baru, dia menghadapi tantangan yang akan menguji keberanian dan kepemimpinannya.",
+        poster: "../img/assets/moana.jpg",
+        trailer: "https://www.youtube.com/watch?v=example12",
+        status: "now_showing",
+        jadwal: [
+            {
+                bioskop: "XXI Kelapa Gading",
+                tanggal: "2025-05-27",
+                jam: ["09:30", "12:00", "14:30", "17:00"]
+            },
+            {
+                bioskop: "CGV Mall of Indonesia",
+                tanggal: "2025-05-27",
+                jam: ["10:00", "12:30", "15:00", "17:30"]
+            }
+        ]
     }
 ];
 
