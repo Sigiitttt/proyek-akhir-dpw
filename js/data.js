@@ -1,4 +1,7 @@
-const filmsData = [
+// data.js - Berisi data mentah aplikasi seperti daftar film, bioskop, dan berita.
+
+// Data Film
+const dataSemuaFilm = [ // filmsData -> dataSemuaFilm
     {
         id: 1,
         judul: "Avengers: Endgame",
@@ -42,7 +45,7 @@ const filmsData = [
         sinopsis: "Peter Parker menghadapi konsekuensi ketika identitasnya sebagai Spider-Man terungkap. Tidak bisa lagi memisahkan kehidupan normalnya dengan taruhan tinggi menjadi superhero, Peter meminta bantuan Doctor Strange. Namun, ketika mantra salah, musuh berbahaya dari dunia lain mulai muncul, memaksa Peter untuk menemukan apa artinya menjadi Spider-Man yang sesungguhnya.",
         poster: "../img/assets/spider.jpg",
         trailer: "https://www.youtube.com/watch?v=JfVOs4VSpmA",
-        status: "now_showing",
+        status: "now_snowing",
         jadwal: [
             {
                 bioskop: "XXI Grand Indonesia",
@@ -99,7 +102,7 @@ const filmsData = [
         sinopsis: "Dalam tahun kedua melawan kejahatan, Batman mengungkap korupsi di Gotham City yang menghubungkannya dengan keluarganya sendiri sementara menghadapi pembunuh berantai yang dikenal sebagai Riddler. Batman harus menjalin aliansi baru, menangkap Riddler, dan membawa keadilan pada penyalahgunaan kekuasaan dan korupsi yang telah lama mengganggu Gotham.",
         poster: "../img/assets/batman.jpg",
         trailer: "https://www.youtube.com/watch?v=mqqft2x_Aa4",
-        status: "now_showing",
+        status: "now_snowing",
         jadwal: [
             {
                 bioskop: "Cinépolis Plaza Senayan",
@@ -130,7 +133,7 @@ const filmsData = [
         sinopsis: "Dr. Stephen Strange melanjutkan penelitiannya tentang Time Stone. Namun, seorang teman lama yang berubah menjadi musuh menempatkan rencana untuk menghancurkan setiap penyihir di Bumi. Strange harus menjelajahi Multiverse untuk menghadapi versi alternatif dirinya sendiri dan menghadapi ancaman misterius yang baru muncul.",
         poster: "../img/assets/dr.jpg",
         trailer: "https://www.youtube.com/watch?v=aWzlQ2N6qqg",
-        status: "now_showing",
+        status: "now_snowing",
         jadwal: [
             {
                 bioskop: "XXI Grand Indonesia",
@@ -244,7 +247,7 @@ const filmsData = [
         sinopsis: "Jake Sully dan keluarganya menjelajahi wilayah baru Pandora, menemukan suku Na'vi yang hidup di daerah vulkanik. Mereka harus menghadapi ancaman baru dari RDA yang kembali dengan teknologi yang lebih canggih.",
         poster: "../img/assets/avatar.jpg",
         trailer: "https://www.youtube.com/watch?v=example2",
-        status: "now_showing",
+        status: "now_snowing",
         jadwal: [
             {
                 bioskop: "XXI Grand Indonesia",
@@ -275,7 +278,7 @@ const filmsData = [
         sinopsis: "Moana melakukan perjalanan baru melintasi lautan untuk mencari pulau-pulau yang hilang. Bersama Maui dan teman-teman baru, dia menghadapi tantangan yang akan menguji keberanian dan kepemimpinannya.",
         poster: "../img/assets/moana.jpg",
         trailer: "https://www.youtube.com/watch?v=example12",
-        status: "now_showing",
+         status: "now_snowing",
         jadwal: [
             {
                 bioskop: "XXI Kelapa Gading",
@@ -291,10 +294,8 @@ const filmsData = [
     }
 ];
 
-
-
-// Data bioskop
-const cinemaData = {
+// Data Detail Bioskop (sebelumnya cinemaData)
+const detailSemuaBioskop = { // cinemaData -> detailSemuaBioskop
     1: {
         id: 1,
         name: "GRAND GALAXY PARK XXI",
@@ -891,9 +892,8 @@ const cinemaData = {
 
 
 
-// Data bioskop berdasarkan kota
-const bioskopData = {
-    "surabaya": [
+const dataBioskopPerKota = { // bioskopData -> dataBioskopPerKota
+     "surabaya": [
         { id: 1, nama: "GRAND GALAXY PARK XXI", kota: "surabaya" },
         { id: 2, nama: "TUNJUNGAN PLAZA XXI", kota: "surabaya" },
         { id: 3, nama: "PAKUWON MALL XXI", kota: "surabaya" },
@@ -1001,8 +1001,9 @@ const bioskopData = {
 };
 
 
-// Daftar kota yang tersedia
-const kotaList = {
+
+// Daftar Kota yang Tersedia (sebelumnya kotaList)
+const daftarKotaTersedia = { // kotaList -> daftarKotaTersedia
     "jakarta": "Jakarta",
     "bogor": "Bogor",
     "depok": "Depok",
@@ -1032,155 +1033,142 @@ const kotaList = {
     "cilegon": "Cilegon"
 };
 
-
-
-// Data dummy berita film
-const newsData = [
+// Data Berita Film (sebelumnya newsData)
+const dataSemuaBerita = [ // newsData -> dataSemuaBerita
     {
         id: 1,
-        title: "HALABALA, Horor Asal Thailand Yang Ngeri Abis!",
-        summary: "Film horor Thailand terbaru yang memberikan pengalaman menakutkan bagi penonton dengan cerita yang menegangkan dan efek visual yang memukau.",
-        content: `Film horor Thailand "HALABALA" telah menjadi perbincangan hangat di kalangan pecinta film horor. Dengan cerita yang mengangkat legenda lokal Thailand, film ini berhasil menghadirkan ketakutan yang autentik.
-
-        Disutradarai oleh Prachya Pinkaew, film ini mengisahkan tentang sekelompok mahasiswa yang terjebak dalam ritual kuno yang mengerikan. Dengan sinematografi yang apik dan akting yang meyakinkan, HALABALA memberikan pengalaman horor yang tak terlupakan.
-
-        Film ini telah mendapat rating tinggi dari berbagai platform review film internasional dan menjadi trending topic di media sosial. Para kritikus memuji kemampuan film ini dalam memadukan horor tradisional dengan teknologi modern.
-
-        Bagi pecinta film horor, HALABALA wajib masuk dalam daftar tontonan. Film ini tidak hanya mengandalkan jump scare, tetapi juga membangun atmosfer mencekam yang bertahan hingga akhir film.`,
-        image: "https://via.placeholder.com/400x300/1a1a1a/ffffff?text=HALABALA",
-        views: "5K",
-        likes: "8",
-        timeAgo: "1 hari lalu",
-        category: "Horror",
-        author: "Admin TIX",
-        publishDate: "26 Mei 2025"
+        judul: "HALABALA, Horor Asal Thailand Yang Ngeri Abis!", // title -> judul
+        ringkasan: "Film horor Thailand terbaru yang memberikan pengalaman menakutkan bagi penonton dengan cerita yang menegangkan dan efek visual yang memukau.", // summary -> ringkasan
+        konten: `Film horor Thailand "HALABALA" telah menjadi perbincangan hangat di kalangan pecinta film horor. Dengan cerita yang mengangkat legenda lokal Thailand, film ini berhasil menghadirkan ketakutan yang autentik.\n\nDisutradarai oleh Prachya Pinkaew, film ini mengisahkan tentang sekelompok mahasiswa yang terjebak dalam ritual kuno yang mengerikan. Dengan sinematografi yang apik dan akting yang meyakinkan, HALABALA memberikan pengalaman horor yang tak terlupakan.\n\nFilm ini telah mendapat rating tinggi dari berbagai platform review film internasional dan menjadi trending topic di media sosial. Para kritikus memuji kemampuan film ini dalam memadukan horor tradisional dengan teknologi modern.\n\nBagi pecinta film horor, HALABALA wajib masuk dalam daftar tontonan. Film ini tidak hanya mengandalkan jump scare, tetapi juga membangun atmosfer mencekam yang bertahan hingga akhir film.`, // content -> konten (paragraf dipisahkan \n\n)
+        gambar: "https://via.placeholder.com/400x300/1a1a1a/ffffff?text=HALABALA", // image -> gambar
+        jumlahDilihat: "5K", // views -> jumlahDilihat
+        jumlahSuka: "8", // likes -> jumlahSuka
+        waktuUnggah: "1 hari lalu", // timeAgo -> waktuUnggah
+        kategori: "Horor", // category -> kategori, "Horror" -> "Horor"
+        penulis: "Admin TIX", // author -> penulis
+        tanggalPublikasi: "26 Mei 2025" // publishDate -> tanggalPublikasi
     },
     {
         id: 2,
-        title: "Ketemu Lagi Sama Jackie Chan di Film Karate Kid: Legends!",
-        summary: "Jackie Chan kembali berperan sebagai Mr. Han dalam sekuel terbaru Karate Kid yang penuh dengan aksi martial arts spektakuler.",
-        content: `Jackie Chan kembali memikat penggemar dengan perannya sebagai Mr. Han dalam "Karate Kid: Legends". Film ini merupakan kelanjutan dari trilogi Karate Kid yang telah meraih kesuksesan besar di box office worldwide.
-
-        Dalam film terbaru ini, Jackie Chan tidak hanya berperan sebagai mentor, tetapi juga menampilkan aksi martial arts yang spektakuler meski di usianya yang tidak lagi muda. Dedikasi dan profesionalisme aktor legendaris ini patut diacungi jempol.
-
-        Sutradara Jonathan Entwistle berhasil menghadirkan cerita yang segar namun tetap mempertahankan esensi dari franchise Karate Kid. Film ini juga memperkenalkan generasi baru penerus tradisi karate dengan latar belakang yang lebih modern.
-
-        Produksi film ini melibatkan koreografer aksi terbaik Hollywood dan menggunakan lokasi syuting di berbagai negara Asia, memberikan visual yang memukau dan autentik bagi penonton.`,
-        image: "https://via.placeholder.com/400x300/8B4513/ffffff?text=Karate+Kid",
-        views: "6K",
-        likes: "24",
-        timeAgo: "3 hari lalu",
-        category: "Action",
-        author: "Sarah Johnson",
-        publishDate: "24 Mei 2025"
+        judul: "Ketemu Lagi Sama Jackie Chan di Film Karate Kid: Legends!",
+        ringkasan: "Jackie Chan kembali berperan sebagai Mr. Han dalam sekuel terbaru Karate Kid yang penuh dengan aksi martial arts spektakuler.",
+        konten: `Jackie Chan kembali memikat penggemar dengan perannya sebagai Mr. Han dalam "Karate Kid: Legends". Film ini merupakan kelanjutan dari trilogi Karate Kid yang telah meraih kesuksesan besar di box office worldwide.\n\nDalam film terbaru ini, Jackie Chan tidak hanya berperan sebagai mentor, tetapi juga menampilkan aksi martial arts yang spektakuler meski di usianya yang tidak lagi muda. Dedikasi dan profesionalisme aktor legendaris ini patut diacungi jempol.\n\nSutradara Jonathan Entwistle berhasil menghadirkan cerita yang segar namun tetap mempertahankan esensi dari franchise Karate Kid. Film ini juga memperkenalkan generasi baru penerus tradisi karate dengan latar belakang yang lebih modern.\n\nProduksi film ini melibatkan koreografer aksi terbaik Hollywood dan menggunakan lokasi syuting di berbagai negara Asia, memberikan visual yang memukau dan autentik bagi penonton.`,
+        gambar: "https://via.placeholder.com/400x300/8B4513/ffffff?text=Karate+Kid",
+        jumlahDilihat: "6K",
+        jumlahSuka: "24",
+        waktuUnggah: "3 hari lalu",
+        kategori: "Aksi", // "Action" -> "Aksi"
+        penulis: "Sarah Johnson",
+        tanggalPublikasi: "24 Mei 2025"
     },
     {
         id: 3,
-        title: "Kembali Nostalgia di Live-Action Disney's Lilo & Stitch",
-        summary: "Disney menghadirkan versi live-action dari film animasi populer Lilo & Stitch dengan teknologi CGI terdepan dan cerita yang mengharukan.",
-        content: `Disney kembali menghadirkan nostalgia childhood dengan adaptasi live-action dari "Lilo & Stitch". Film yang disutradarai oleh Dean Fleischer Camp ini berhasil menangkap esensi dari film animasi aslinya yang dirilis pada tahun 2002.
-
-        Karakter Stitch dibuat menggunakan teknologi CGI terdepan yang memberikan hasil visual yang sangat realistis namun tetap mempertahankan keunikan karakter alien biru yang menggemaskan. Interaksi antara Stitch dan Lilo terasa sangat natural dan menyentuh hati.
-
-        Film ini tidak hanya mengandalkan efek visual, tetapi juga menghadirkan pesan moral yang kuat tentang keluarga, persahabatan, dan penerimaan. Setting Hawaii yang indah menjadi latar belakang yang sempurna untuk cerita yang hangat ini.
-
-        Para penggemar original film pasti akan tersentuh dengan berbagai easter egg dan referensi yang disertakan dalam film live-action ini. Disney sekali lagi membuktikan kemampuannya dalam mengadaptasi karya animasi ke format live-action.`,
-        image: "https://via.placeholder.com/400x300/4169E1/ffffff?text=Lilo+Stitch",
-        views: "805",
-        likes: "6",
-        timeAgo: "4 hari lalu",
-        category: "Family",
-        author: "Disney Team",
-        publishDate: "23 Mei 2025"
+        judul: "Kembali Nostalgia di Live-Action Disney's Lilo & Stitch",
+        ringkasan: "Disney menghadirkan versi live-action dari film animasi populer Lilo & Stitch dengan teknologi CGI terdepan dan cerita yang mengharukan.",
+        konten: `Disney kembali menghadirkan nostalgia childhood dengan adaptasi live-action dari "Lilo & Stitch". Film yang disutradarai oleh Dean Fleischer Camp ini berhasil menangkap esensi dari film animasi aslinya yang dirilis pada tahun 2002.\n\nKarakter Stitch dibuat menggunakan teknologi CGI terdepan yang memberikan hasil visual yang sangat realistis namun tetap mempertahankan keunikan karakter alien biru yang menggemaskan. Interaksi antara Stitch dan Lilo terasa sangat natural dan menyentuh hati.\n\nFilm ini tidak hanya mengandalkan efek visual, tetapi juga menghadirkan pesan moral yang kuat tentang keluarga, persahabatan, dan penerimaan. Setting Hawaii yang indah menjadi latar belakang yang sempurna untuk cerita yang hangat ini.\n\nPara penggemar original film pasti akan tersentuh dengan berbagai easter egg dan referensi yang disertakan dalam film live-action ini. Disney sekali lagi membuktikan kemampuannya dalam mengadaptasi karya animasi ke format live-action.`,
+        gambar: "https://via.placeholder.com/400x300/4169E1/ffffff?text=Lilo+Stitch",
+        jumlahDilihat: "805",
+        jumlahSuka: "6",
+        waktuUnggah: "4 hari lalu",
+        kategori: "Keluarga", // "Family" -> "Keluarga"
+        penulis: "Tim Disney", // "Disney Team" -> "Tim Disney"
+        tanggalPublikasi: "23 Mei 2025"
     },
     {
         id: 4,
-        title: "Diangkat Dari Game Horor, Home Sweet Home: Rebirth Segera Tayang!",
-        summary: "Adaptasi film dari game horor populer Thailand yang akan menghadirkan pengalaman menakutkan di layar lebar dengan cerita yang lebih mendalam.",
-        content: `Game horor populer "Home Sweet Home" akhirnya diadaptasi ke layar lebar dengan judul "Home Sweet Home: Rebirth". Film ini diharapkan dapat memberikan pengalaman horor yang tidak kalah menakutkan dari game aslinya.
-
-        Sutradara Poj Arnon yang terkenal dengan film-film horor Thailand berhasil menerjemahkan atmosfer mencekam dari game ke dalam format film. Cerita diperdalam dengan backstory yang lebih detail tentang asal-usul hantu dan kutukan yang menghantui rumah tersebut.
-
-        Film ini menggunakan practical effect dan makeup prostetik yang mengerikan untuk menciptakan sosok hantu yang realistis. Kombinasi dengan sound design yang mencekam membuat penonton akan merasakan ketegangan dari awal hingga akhir.
-
-        Para gamer yang familiar dengan game aslinya akan menemukan berbagai referensi dan scene iconic yang diadaptasi dengan sempurna. Film ini menjadi bukti bahwa adaptasi game ke film bisa berhasil jika dilakukan dengan serius dan respect terhadap source material.`,
-        image: "https://via.placeholder.com/400x300/8B0000/ffffff?text=Home+Sweet+Home",
-        views: "680",
-        likes: "1",
-        timeAgo: "4 hari lalu",
-        category: "Horror",
-        author: "Game News",
-        publishDate: "23 Mei 2025"
+        judul: "Diangkat Dari Game Horor, Home Sweet Home: Rebirth Segera Tayang!",
+        ringkasan: "Adaptasi film dari game horor populer Thailand yang akan menghadirkan pengalaman menakutkan di layar lebar dengan cerita yang lebih mendalam.",
+        konten: `Game horor populer "Home Sweet Home" akhirnya diadaptasi ke layar lebar dengan judul "Home Sweet Home: Rebirth". Film ini diharapkan dapat memberikan pengalaman horor yang tidak kalah menakutkan dari game aslinya.\n\nSutradara Poj Arnon yang terkenal dengan film-film horor Thailand berhasil menerjemahkan atmosfer mencekam dari game ke dalam format film. Cerita diperdalam dengan backstory yang lebih detail tentang asal-usul hantu dan kutukan yang menghantui rumah tersebut.\n\nFilm ini menggunakan practical effect dan makeup prostetik yang mengerikan untuk menciptakan sosok hantu yang realistis. Kombinasi dengan sound design yang mencekam membuat penonton akan merasakan ketegangan dari awal hingga akhir.\n\nPara gamer yang familiar dengan game aslinya akan menemukan berbagai referensi dan scene iconic yang diadaptasi dengan sempurna. Film ini menjadi bukti bahwa adaptasi game ke film bisa berhasil jika dilakukan dengan serius dan respect terhadap source material.`,
+        gambar: "https://via.placeholder.com/400x300/8B0000/ffffff?text=Home+Sweet+Home",
+        jumlahDilihat: "680",
+        jumlahSuka: "1",
+        waktuUnggah: "4 hari lalu",
+        kategori: "Horor",
+        penulis: "Berita Game", // "Game News" -> "Berita Game"
+        tanggalPublikasi: "23 Mei 2025"
     },
     {
         id: 5,
-        title: "Sejak Kapan Emu Akan Berkolaborasi Untuk Anak Yang Hilang",
-        summary: "Film drama terbaru yang mengangkat isu sosial tentang anak hilang dengan pendekatan yang sensitif dan penuh empati.",
-        content: `Film "Sejak Kapan" mengangkat isu sensitif tentang anak hilang dengan pendekatan yang sangat humanis dan penuh empati. Sutradara muda berbakat berhasil menghadirkan cerita yang menyentuh hati namun tidak eksploitatif.
-
-        Film ini bercerita tentang perjuangan seorang ibu dalam mencari anaknya yang hilang, serta dampak psikologis yang dialami oleh keluarga dan masyarakat sekitar. Akting yang natural dari seluruh cast membuat emosi penonton ikut terbawa.
-
-        Cinematography yang indah kontras dengan tema berat yang diangkat, menciptakan visual yang memukau namun tetap menghormati keseriusan topik. Film ini juga menghadirkan pesan tentang pentingnya kepedulian sosial dan kekuatan komunitas.
-
-        Diharapkan film ini dapat meningkatkan awareness masyarakat tentang isu anak hilang dan mendorong partisipasi aktif dalam menjaga keamanan anak-anak di lingkungan sekitar.`,
-        image: "https://via.placeholder.com/400x300/708090/ffffff?text=Sejak+Kapan",
-        views: "450",
-        likes: "12",
-        timeAgo: "5 hari lalu",
-        category: "Drama",
-        author: "Social Issues",
-        publishDate: "22 Mei 2025"
+        judul: "Sejak Kapan Emu Akan Berkolaborasi Untuk Anak Yang Hilang", // Judul agak aneh, mungkin "Sejak Kapan: Kolaborasi Emu untuk Anak yang Hilang"
+        ringkasan: "Film drama terbaru yang mengangkat isu sosial tentang anak hilang dengan pendekatan yang sensitif dan penuh empati.",
+        konten: `Film "Sejak Kapan" mengangkat isu sensitif tentang anak hilang dengan pendekatan yang sangat humanis dan penuh empati. Sutradara muda berbakat berhasil menghadirkan cerita yang menyentuh hati namun tidak eksploitatif.\n\nFilm ini bercerita tentang perjuangan seorang ibu dalam mencari anaknya yang hilang, serta dampak psikologis yang dialami oleh keluarga dan masyarakat sekitar. Akting yang natural dari seluruh cast membuat emosi penonton ikut terbawa.\n\nCinematography yang indah kontras dengan tema berat yang diangkat, menciptakan visual yang memukau namun tetap menghormati keseriusan topik. Film ini juga menghadirkan pesan tentang pentingnya kepedulian sosial dan kekuatan komunitas.\n\nDiharapkan film ini dapat meningkatkan awareness masyarakat tentang isu anak hilang dan mendorong partisipasi aktif dalam menjaga keamanan anak-anak di lingkungan sekitar.`,
+        gambar: "https://via.placeholder.com/400x300/708090/ffffff?text=Sejak+Kapan",
+        jumlahDilihat: "450",
+        jumlahSuka: "12",
+        waktuUnggah: "5 hari lalu",
+        kategori: "Drama",
+        penulis: "Pengamat Isu Sosial", // "Social Issues" -> "Pengamat Isu Sosial"
+        tanggalPublikasi: "22 Mei 2025"
     }
 ];
 
-
-// Fungsi  untuk mengambil data
-const DataHelper = {
-    // Film functions
-    getAllFilms: () => filmsData,
-
-    getFilmById: (id) => filmsData.find(film => film.id === parseInt(id)),
-
-    getFilmsByStatus: (status) => filmsData.filter(film => film.status === status),
-
-    searchFilms: (query) => {
-        const searchTerm = query.toLowerCase();
-        return filmsData.filter(film =>
-            film.judul.toLowerCase().includes(searchTerm) ||
-            film.genre.some(g => g.toLowerCase().includes(searchTerm)) ||
-            film.sutradara.toLowerCase().includes(searchTerm) ||
-            film.pemeran.some(p => p.toLowerCase().includes(searchTerm))
+// Objek Helper untuk Fungsi-fungsi terkait Data (sebelumnya DataHelper)
+const BantuanData = { // DataHelper -> BantuanData
+    dapatkanSemuaFilm: () => dataSemuaFilm, // getAllFilms -> dapatkanSemuaFilm
+    dapatkanFilmBerdasarkanId: (id) => dataSemuaFilm.find(film => film.id === parseInt(id)), // getFilmById -> dapatkanFilmBerdasarkanId
+    dapatkanFilmBerdasarkanStatus: (status) => dataSemuaFilm.filter(film => film.status === status), // getFilmsByStatus -> dapatkanFilmBerdasarkanStatus
+    cariFilm: (keywordPencarian) => { // searchFilms -> cariFilm, query -> keywordPencarian
+        const kataKunci = keywordPencarian.toLowerCase(); // searchTerm -> kataKunci
+        return dataSemuaFilm.filter(film =>
+            film.judul.toLowerCase().includes(kataKunci) ||
+            film.genre.some(g => g.toLowerCase().includes(kataKunci)) || // Perhatikan: genre sudah diterjemahkan, jadi pencarian harus sesuai
+            film.sutradara.toLowerCase().includes(kataKunci) ||
+            film.pemeran.some(p => p.toLowerCase().includes(kataKunci))
         );
     },
 
-    // Utility functions
-    formatDuration: (minutes) => {
-        const hours = Math.floor(minutes / 60);
-        const mins = minutes % 60;
-        return `${hours}j ${mins}m`;
+    formatDurasi: (menit) => { // formatDuration -> formatDurasi, minutes -> menit
+        const jam = Math.floor(menit / 60); // hours -> jam
+        const sisaMenit = menit % 60; // mins -> sisaMenit
+        return `${jam}j ${sisaMenit}m`;
     },
 
-    formatPrice: (price) => {
+    formatHarga: (harga) => { // formatPrice -> formatHarga, price -> harga
         return new Intl.NumberFormat('id-ID', {
             style: 'currency',
             currency: 'IDR',
             minimumFractionDigits: 0
-        }).format(price);
+        }).format(harga);
     },
 
-    formatDate: (dateString) => {
-        const options = {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+    formatTanggal: (stringTanggal) => { // formatDate -> formatTanggal, dateString -> stringTanggal
+        const opsi = { // options -> opsi
+            weekday: 'long', // nama hari panjang
+            year: 'numeric', // tahun numerik
+            month: 'long', // nama bulan panjang
+            day: 'numeric' // tanggal numerik
         };
-        return new Date(dateString).toLocaleDateString('id-ID', options);
+        return new Date(stringTanggal).toLocaleDateString('id-ID', opsi);
+    },
+
+    // Fungsi baru untuk mendapatkan detail bioskop berdasarkan ID
+    dapatkanDetailBioskopBerdasarkanId: (idBioskop) => {
+        return detailSemuaBioskop[idBioskop] || null;
+    },
+
+    // Fungsi baru untuk mendapatkan daftar bioskop di suatu kota
+    dapatkanBioskopBerdasarkanKota: (kodeKota) => {
+        return dataBioskopPerKota[kodeKota.toLowerCase()] || [];
+    },
+
+    // Fungsi baru untuk mendapatkan semua berita
+    dapatkanSemuaBerita: () => dataSemuaBerita,
+
+    // Fungsi baru untuk mendapatkan berita berdasarkan ID
+    dapatkanBeritaBerdasarkanId: (idBerita) => {
+        return dataSemuaBerita.find(berita => berita.id === parseInt(idBerita));
     }
 };
 
-// Export untuk digunakan di file lain
+// Ekspor modul jika lingkungan mendukung (misalnya, Node.js untuk testing atau SSR)
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { filmsData, foodData, cinemaData, newsData, DataHelper };
+    module.exports = {
+        dataSemuaFilm,
+        // foodData, // foodData tidak ada di file ini, hapus jika tidak digunakan
+        detailSemuaBioskop,
+        dataBioskopPerKota,
+        dataSemuaBerita,
+        BantuanData,
+        daftarKotaTersedia
+    };
 }
-

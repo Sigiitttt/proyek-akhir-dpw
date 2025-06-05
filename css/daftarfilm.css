@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f0f2f5; /* Warna latar sedikit diubah */
+    color: #1c1e21; /* Warna teks utama Facebook-like */
+    line-height: 1.4;
+}
+
+/* Header Halaman */
+.tajuk-halaman { /* .header -> .tajuk-halaman */
+    background: white;
+    padding: 12px 16px; /* Padding disesuaikan */
+    border-bottom: 1px solid #dddfe2; /* Warna border Facebook-like */
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Gap disesuaikan */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Z-index lebih tinggi */
+}
+.tajuk-halaman a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+.tombol-kembali { /* .back-btn -> .tombol-kembali */
+    background: none;
+    border: none;
+    font-size: 28px; /* Ukuran ikon kembali disesuaikan */
+    font-weight: bold;
+    color: #1877f2; /* Warna biru Facebook */
+    cursor: pointer;
+    padding: 0; /* Padding dihilangkan, alignment via flex gap */
+}
+.tombol-kembali:hover {
+    opacity: 0.8;
+}
+
+
+.tajuk-halaman h1 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    color: #050505; /* Warna teks judul Facebook-like */
+}
+
+/* Grup Tab Status */
+.grup-tab-status { /* .status-tabs -> .grup-tab-status */
+    background: white;
+    padding: 0 16px; /* Padding horizontal, vertikal diatur oleh tombol */
+    border-bottom: 1px solid #dddfe2;
+    display: flex;
+    gap: 24px; /* Gap antar tab disesuaikan */
+    justify-content: center; /* Tab di tengah */
+}
+
+.tab-status { /* .status-tab -> .tab-status */
+    background: none;
+    border: none;
+    padding: 14px 4px; /* Padding vertikal lebih besar, horizontal kecil */
+    color: #606770; /* Warna tab tidak aktif Facebook-like */
+    font-size: 0.9375rem; /* 15px */
+    font-weight: 600; /* Font weight lebih tebal */
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+    border-bottom: 3px solid transparent; /* Indikator aktif di bawah */
+}
+
+.tab-status.aktif { /* .status-tab.active -> .tab-status.aktif */
+    color: #1877f2; /* Warna biru Facebook untuk tab aktif */
+    border-bottom-color: #1877f2;
+}
+.tab-status:hover {
+    background-color: #f0f2f5; /* Latar hover ringan */
+    border-radius: 6px 6px 0 0; /* Radius atas saat hover */
+}
+
+
+/* Grup Tombol Filter Tambahan */
+.grup-tombol-filter-tambahan { /* .filter-buttons -> .grup-tombol-filter-tambahan */
+    background: white; /* Atau #f0f2f5 jika ingin menyatu dengan body */
+    padding: 12px 16px;
+    display: flex;
+    gap: 8px; /* Gap antar tombol filter */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-bottom: 1px solid #dddfe2; /* Tambahkan border jika perlu */
+}
+
+.grup-tombol-filter-tambahan::-webkit-scrollbar {
+    display: none; /* Sembunyikan scrollbar */
+}
+
+.tombol-filter { /* .filter-btn -> .tombol-filter */
+    background: #e4e6eb; /* Warna tombol filter Facebook-like */
+    border: none;
+    padding: 8px 12px; /* Padding disesuaikan */
+    border-radius: 18px; /* Radius lebih bulat */
+    color: #050505; /* Warna teks */
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500; /* Font weight disesuaikan */
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.tombol-filter:hover {
+    background-color: #dcdde1; /* Warna hover */
+}
+
+.tombol-filter.aktif { /* .filter-btn.active -> .tombol-filter.aktif */
+    background: #e7f3ff; /* Latar biru muda untuk tombol aktif */
+    color: #1877f2; /* Teks biru */
+    font-weight: 600;
+}
+
+/* Wadah Konten Film */
+.wadah-konten-film { /* .films-container -> .wadah-konten-film */
+    padding: 16px; /* Padding keliling */
+    max-width: 1200px; /* Batas lebar maksimum */
+    margin: 0 auto; /* Tengah */
+}
+
+/* Kisi Daftar Film */
+.kisi-daftar-film { /* .films-grid -> .kisi-daftar-film */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Ukuran kartu lebih kecil, responsif */
+    gap: 12px; /* Gap lebih kecil */
+}
+
+/* Kartu Film */
+.kartu-film { /* .film-card -> .kartu-film */
+    background: white;
+    border-radius: 8px; /* Radius lebih kecil */
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Shadow lebih halus */
+    position: relative;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+.kartu-film:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+.kartu-film:active {
+    transform: translateY(0px) scale(0.99); /* Efek tekan lebih subtle */
+}
+
+.poster-film { /* .film-poster -> .poster-film */
+    position: relative;
+    aspect-ratio: 2 / 3; /* Jaga rasio aspek poster */
+    background-color: #e9ecef; /* Warna placeholder */
+    overflow: hidden; /* Pastikan overlay tidak keluar */
+}
+
+.poster-film img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Gambar mengisi tanpa distorsi */
+    display: block; /* Menghilangkan spasi bawah img */
+}
+
+.overlay-film { /* Kelas baru untuk overlay pada poster, jika ada elemen di atas poster */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Rating di bawah, status di atas */
+    padding: 8px; /* Padding untuk elemen di overlay */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%); /* Gradient halus */
+}
+
+
+.tombol-favorit-kartu { /* .favorite-btn -> .tombol-favorit-kartu */
+    position: absolute; /* Relatif terhadap .kartu-film atau .poster-film */
+    top: 8px;
+    right: 8px;
+    background: rgba(255,255,255,0.8);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ff453a; /* Warna hati (merah) */
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    transition: transform 0.1s ease;
+}
+.tombol-favorit-kartu:active {
+    transform: scale(0.9);
+}
+.tombol-favorit-kartu .simbol-favorit.difavoritkan { /* Kelas tambahan jika difavoritkan */
+    /* Anda bisa mengubah simbol atau warna di sini via JS */
+}
+
+
+.status-film-kartu { /* .film-status (di kartu) -> .status-film-kartu */
+    /* Di dalam .overlay-film */
+    color: white;
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 0.625rem; /* 10px */
+    font-weight: 600;
+    text-transform: uppercase;
+    align-self: flex-start; /* Agar di kiri atas overlay */
+}
+
+.status-sedang-tayang-badge { /* .status-showing -> .status-sedang-tayang-badge */
+    background: #28a745; /* Warna hijau */
+}
+
+.status-akan-datang-badge { /* .status-coming -> .status-akan-datang-badge */
+    background: #fd7e14; /* Warna oranye */
+}
+.status-tersedia-badge { /* Untuk status lain jika ada */
+    background: #6c757d; /* Warna abu-abu */
+}
+
+.rating-film-kartu { /* .film-rating (di kartu) -> .rating-film-kartu */
+    /* Di dalam .overlay-film */
+    color: white;
+    padding: 3px 7px;
+    border-radius: 10px;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 600;
+    align-self: flex-start; /* Akan terdorong ke bawah oleh justify-content: space-between di .overlay-film */
+    background: rgba(0,0,0,0.6); /* Latar agar teks lebih terbaca */
+}
+.rating-film-kartu .bintang-rating {
+    margin-right: 2px;
+    color: #ffc107; /* Warna bintang kuning */
+}
+
+/* Info Film di Bawah Poster */
+.info-film-kartu { /* .film-info -> .info-film-kartu */
+    padding: 10px; /* Padding lebih kecil */
+}
+
+.judul-film-kartu { /* .film-title (di kartu) -> .judul-film-kartu */
+    font-size: 0.9375rem; /* 15px */
+    font-weight: 600;
+    color: #050505;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    /* Untuk ellipsis jika judul terlalu panjang (opsional) */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Batasi 2 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: calc(1.3em * 2); /* Pastikan ruang untuk 2 baris */
+}
+
+.genre-film-kartu { /* .film-genre (di kartu) -> .genre-film-kartu */
+    font-size: 0.75rem; /* 12px */
+    color: #606770;
+    margin-bottom: 6px; /* Margin disesuaikan */
+    /* Ellipsis jika genre terlalu panjang */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.meta-film-kartu { /* Kelas baru untuk tahun dan durasi di kartu */
+    font-size: 0.75rem; /* 12px */
+    color: #606770;
+    margin-bottom: 8px;
+}
+
+.aksi-film-kartu { /* Kelas baru untuk tombol di kartu */
+    display: flex;
+    gap: 8px; /* Jarak antar tombol */
+    margin-top: 8px; /* Jarak dari meta */
+}
+.aksi-film-kartu .tombol { /* Gaya umum untuk tombol di kartu */
+    flex-grow: 1; /* Agar tombol mengisi ruang jika ada 2 */
+    font-size: 0.8125rem; /* 13px */
+    padding: 6px 10px; /* Padding lebih kecil */
+}
+.aksi-film-kartu .tombol-kerangka { /* Khusus untuk tombol favorit */
+    flex-grow: 0; /* Tidak perlu full width */
+    padding: 6px 8px;
+}
+.aksi-film-kartu .tombol-kerangka .simbol-favorit {
+    font-size: 1rem; /* Ukuran ikon hati */
+}
+
+
+/* Tidak digunakan: .film-rating-info, .stars, .rating-score karena rating sudah di overlay poster */
+
+/* Status Memuat */
+/* ID #statusMemuatDaftar untuk JS, kelas .status-memuat-visual untuk styling */
+.status-memuat-visual { /* .loading-state -> .status-memuat-visual */
+    display: flex;
+    flex-direction: column; /* Spinner di atas teks */
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px; /* Padding lebih besar */
+    font-size: 0.9375rem; /* 15px */
+    color: #606770;
+    grid-column: 1 / -1; /* Agar span penuh jika grid film aktif tapi kosong */
+    min-height: 200px; /* Tinggi minimum agar terlihat */
+}
+
+.pemutar-memuat { /* .loading-spinner -> .pemutar-memuat */
+    width: 32px; /* Ukuran disesuaikan */
+    height: 32px;
+    border: 4px solid #f0f2f5; /* Warna latar spinner */
+    border-top: 4px solid #1877f2; /* Warna aksen spinner */
+    border-radius: 50%;
+    animation: putarAnimasi 0.8s linear infinite; /* Durasi animasi disesuaikan */
+    margin-bottom: 12px; /* Jarak dari teks */
+}
+
+@keyframes putarAnimasi { /* spin -> putarAnimasi */
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Pesan Tidak Ada Hasil */
+/* ID #tidakAdaHasil untuk JS, kelas .pesan-tidak-ada-hasil-visual untuk styling */
+.pesan-tidak-ada-hasil-visual { /* .no-results -> .pesan-tidak-ada-hasil-visual */
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #606770;
+}
+
+.ikon-tidak-ada-hasil { /* .no-results-icon -> .ikon-tidak-ada-hasil */
+    font-size: 48px; /* Ukuran ikon lebih besar */
+    margin-bottom: 16px;
+    color: #bec3c9; /* Warna ikon lebih soft */
+}
+.pesan-tidak-ada-hasil-visual h3 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    color: #050505;
+    margin-bottom: 8px;
+}
+.pesan-tidak-ada-hasil-visual p {
+    font-size: 0.9375rem; /* 15px */
+}
+
+
+/* Responsif */
+@media (min-width: 500px) { /* Breakpoint baru untuk kartu lebih banyak */
+    .kisi-daftar-film {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .kisi-daftar-film {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Sedikit lebih besar di tablet */
+        gap: 16px;
+    }
+    .wadah-konten-film {
+        padding: 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .kisi-daftar-film {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Ukuran optimal untuk desktop */
+    }
+}
+
+/* Override style lama jika ada (sesuai file asli Anda) */
+.film-header {
+    display: none;
+}
+.films-section { /* Jika ada kelas ini di HTML, mungkin dari template lama */
+    padding: 0;
+    min-height: auto;
+}

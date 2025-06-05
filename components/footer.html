@@ -1,43 +1,34 @@
-<footer class="footer">
+<footer class="footer-utama"> 
     <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>TIX.ID</h3>
-                <p>Platform nonton bioskop online terdepan di Indonesia. Pesan tiket dan makanan dengan mudah!</p>
-                <div class="social-media">
-                    <a href="#" class="social-link">📘</a>
-                    <a href="#" class="social-link">📷</a>
-                    <a href="#" class="social-link">🐦</a>
-                    <a href="#" class="social-link">📺</a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Film</h4>
-                <ul class="footer-links">
-                    <li><a href="/film/list-film.html">Sedang Tayang</a></li>
-                    <li><a href="/film/list-film.html">Akan Tayang</a></li>
-                    <li><a href="/news/news.html">Berita Film</a></li>
+        <div class="konten-footer"> <div class="kolom-footer merek-footer"> <h4>TIX.ID</h4> <p>Platform nonton bioskop online terdepan di Indonesia. Pesan tiket dan makanan dengan mudah!</p>
+                <ul class="tautan-sosial"> <li><a href="#" class="tautan-item-sosial" aria-label="Facebook">📘</a></li> <li><a href="#" class="tautan-item-sosial" aria-label="Instagram">📷</a></li>
+                    <li><a href="#" class="tautan-item-sosial" aria-label="Twitter">🐦</a></li>
+                    <li><a href="#" class="tautan-item-sosial" aria-label="YouTube">📺</a></li>
                 </ul>
             </div>
-            
-            <!-- <div class="footer-section">
-                <h4>Layanan</h4>
-                <ul class="footer-links">
-                    <li><a href="/tix-id-web/food/list-menu.html">Pesan Makanan</a></li>
-                    <li><a href="/tix-id-web/user/history.html">Riwayat Pemesanan</a></li>
-                    <li><a href="/tix-id-web/user/favorite.html">Film Favorit</a></li>
-                </ul>
+
+            <div class="kolom-footer"> <h4>Film</h4>
+                <ul class="tautan-footer"> <li><a href="../film/list-film.html">Sedang Tayang</a></li> <li><a href="../film/list-film.html">Akan Tayang</a></li> <li><a href="../news/news.html">Berita Film</a></li> </ul>
             </div>
-             -->
-            <div class="footer-section">
-                <h4>Bantuan</h4>
-                <ul class="footer-links">
-                    <li><a href="/system/FAQ.html">FAQ</a></li>
-                    <li><a href="/system/hubungi kami.html">Hubungi Kami</a></li>
-                    <li><a href="/system/tentangkami.html">Tentang TIX.ID</a></li>
-                </ul>
+
+            <div class="kolom-footer"> <h4>Bantuan</h4>
+                <ul class="tautan-footer"> 
+                    <li><a href="../system/FAQ.html">FAQ</a></li> 
+                    <li><a href="../system/hubungi_kami.html">Hubungi Kami</a></li> 
+                    <li><a href="../system/tentangkami.html">Tentang TIX.ID</a></li> </ul>
             </div>
+
+            </div>
+        <div class="teks-footer-bawah"> <p>&copy; <span id="tahunHakCiptaFooter">2024</span> TIX.ID. Semua Hak Cipta Dilindungi.</p>
         </div>
     </div>
 </footer>
+
+<script>
+    // Skrip kecil untuk mengupdate tahun hak cipta secara dinamis di footer
+    // Pastikan ID ini unik jika Anda memiliki beberapa skrip serupa di halaman yang sama
+    const elemenTahunFooter = document.getElementById('tahunHakCiptaFooter');
+    if (elemenTahunFooter) {
+        elemenTahunFooter.textContent = new Date().getFullYear();
+    }
+</script>

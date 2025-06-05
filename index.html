@@ -4,167 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bismilah 100</title>
+    <title>TIX.ID - Pesan Tiket Bioskop Online</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        .tix-food {
-            padding: 60px 0;
-            background: #f8f9fa;
-        }
-
-        .tix-food .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .tix-food h2 {
-            color: #333;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .tix-food-subtitle {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .img-food {
-            text-align: center;
-        }
-
-        .banner-image {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Navbar akan dimuat di sini -->
-    <div id="navbar-container"></div>
-
-    <!-- Hero Section -->
+    <div id="wadah-navbar"></div>
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
+            <div class="konten-hero">
                 <h1>Selamat Datang di TIX.ID</h1>
                 <p>Platform terpercaya untuk pemesanan tiket bioskop online di Indonesia</p>
-                <div class="hero-buttons">
-                    <a href="/film/list-film.html" class="btn btn-primary">Lihat Film</a>
-                    <a href="bioskop/list-bioskop.html" class="btn btn-secondary">Pilih Bioskop</a>
-                </div>
+                <div class="tombol-hero"> <a href="film/list-film.html" class="tombol tombol-utama">Lihat Film</a> <a
+                        href="bioskop/list-bioskop.html" class="tombol tombol-sekunder">Pilih Bioskop</a> </div>
             </div>
         </div>
     </section>
 
-    <!-- Now Showing Section -->
-    <section class="now-showing">
+    <section class="sedang-tayang">
         <div class="container">
             <h2>Sedang Tayang</h2>
-            <div class="movies-grid">
-                <div class="movie-card">
-                    <div class="movie-poster">
-                        <img src="img/assets/spider.jpg" alt="Film 1"
-                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
-                    </div>
-                    <div class="movie-info">
-                        <h3>Spider-Man: No Way Home</h3>
-                        <p class="genre">Action, Adventure</p>
-                        <p class="rating">⭐ 8.5/10</p>
-                        <a href="film/detail-film.html" class="btn btn-small">Detail</a>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <div class="movie-poster">
-                        <img src="img/assets/avatar.jpg" alt="Film 2"
-                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
-                    </div>
-                    <div class="movie-info">
-                        <h3>Avatar: Fire and Ash</h3>
-                        <p class="genre">Sci-Fi, Adventure</p>
-                        <p class="rating">⭐ 8.8/10</p>
-                        <a href="film/detail-film.html" class="btn btn-small">Detail</a>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <div class="movie-poster">
-                        <img src="img/assets/batman.jpg" alt="Film 3"
-                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ci8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
-                    </div>
-                    <div class="movie-info">
-                        <h3>The Batman</h3>
-                        <p class="genre">Action, Crime</p>
-                        <p class="rating">⭐ 7.8/10</p>
-                        <a href="film/detail-film.html" class="btn btn-small">Detail</a>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <div class="movie-poster">
-                        <img src="img/assets/dr.jpg" alt="Film 4"
-                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDIwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjU3Mzg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1vdmllIFBvc3RlcjwvdGV4dD4KPC9zdmc+'">
-                    </div>
-                    <div class="movie-info">
-                        <h3>Doctor Strange in the Multiverse of Madness</h3>
-                        <p class="genre">Action, Adventure</p>
-                        <p class="rating">⭐ 8.9/10</p>
-                        <a href="film/detail-film.html" class="btn btn-small">Detail</a>
-                    </div>
-                </div>
+            <div class="dashboard">
+                <div class="kisi-film"> </div>
             </div>
-            <div class="text-center">
-                <a href="/film/list-film.html" class="btn btn-outline">Lihat Semua Film</a>
+            <div class="rata-tengah"> <a href="film/list-film.html" class="tombol tombol-kerangka">Lihat Semua Film</a>
             </div>
         </div>
     </section>
 
-
-    <!-- TIX Food Section -->
-    <section class="tix-food">
+    <section class="makanan-tix">
         <div class="container">
-            <div class="tix-food-header">
-                <div class="tix-food-brand">
+            <div class="tajuk-makanan-tix">
+                <div class="merek-makanan-tix">
                     <h2>TIX Food</h2>
                 </div>
-                <p class="tix-food-subtitle">Nonton lebih asik bareng camilan favoritmu. Pesannya lebih mudah pake TIX
-                    Food!</p>
+                <p class="subjudul-makanan-tix">Nonton lebih asik bareng camilan favoritmu. Pesannya lebih mudah pake
+                    TIX Food!</p>
             </div>
-            <div class="img-food">
-                <a href="/alisa/makanan.html">
-                    <img src="img/assets/food.png" alt="TIX Food Banner" class="banner-image">
-                </a>
+            <div class="gambar-makanan"> <a href="alisa/makanan.html"> <img src="img/assets/food.png"
+                        alt="Banner TIX Food" class="gambar-banner"> </a>
             </div>
         </div>
     </section>
 
-     <!-- TIX News Section -->
-    <section class="tix-news">
+    <section class="berita-tix">
         <div class="container">
-            <div class="tix-news-header">
-                <div class="tix-news-brand">
-                    <div class="news-icon">📰</div>
+            <div class="tajuk-berita-tix">
+                <div class="merek-berita-tix">
+                    <div class="ikon-berita">📰</div>
                     <h2>TIX Now</h2>
+                    <button class="lihat-semua-berita" onclick="AplikasiTix.navigasiKeSemuaBerita()">Semua ></button>
+                    <p class="subjudul-berita-tix">Update berita terbaru seputar dunia film</p>
+                    <div class="kisi-berita" id="kisi-berita"> </div>
                 </div>
-                <button class="view-all-news" onclick="goToAllNews()">Semua ></button>
-            </div>
-            <p class="tix-news-subtitle">Update berita terbaru seputar dunia film</p>
-            <div class="news-grid" id="news-grid">
-                <!-- Berita akan dimuat di sini oleh JavaScript -->
             </div>
         </div>
     </section>
-    <!-- Footer akan dimuat di sini -->
-    <div id="footer-container"></div>
-<!-- Sebelum tag </body> -->
-<script src="js/data.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/main.js"></script>
-</body>
+
+    <div id="wadah-footer"></div>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 
 </html>

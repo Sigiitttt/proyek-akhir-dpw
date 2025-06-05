@@ -8,10 +8,15 @@ class BioskopList {
         this.citySelect = document.getElementById('citySelect');
         this.cinemaList = document.getElementById('cinemaList');
         this.cinemaItems = document.getElementById('cinemaItems');
-        this.selectedCity = document.getElementById('selectedCity');
-        this.cinemaListTitle = document.getElementById('cinemaListTitle');
-        
+        this.selectedCity = document.getElementById('selectedCity'); // Untuk menampilkan nama kota terpilih
+        this.cinemaListTitle = document.getElementById('cinemaListTitle'); // Judul kontainer daftar bioskop
+
         // Initialize
+        // Pastikan elemen-elemen penting ada sebelum init
+        if (!this.citySelect || !this.cinemaList || !this.cinemaItems || !this.selectedCity) {
+            console.error("Satu atau lebih elemen DOM penting untuk BioskopList tidak ditemukan.");
+            return;
+        }
         this.init();
     }
 
@@ -28,14 +33,19 @@ class BioskopList {
      * Mengisi dropdown dengan daftar kota
      */
     populateCityDropdown() {
-        // Kosongkan dropdown terlebih dahulu
+        // Pastikan data daftarKotaTersedia ada dari data.js
+        if (typeof daftarKotaTersedia === 'undefined') {
+            console.error("Variabel 'daftarKotaTersedia' tidak ditemukan. Pastikan data.js sudah dimuat.");
+            this.citySelect.innerHTML = '<option value="">Gagal memuat kota</option>';
+            return;
+        }
+
         this.citySelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
         
-        // Tambahkan option untuk setiap kota
-        Object.keys(kotaList).forEach(cityKey => {
+        Object.keys(daftarKotaTersedia).forEach(cityKey => { // Menggunakan daftarKotaTersedia
             const option = document.createElement('option');
             option.value = cityKey;
-            option.textContent = kotaList[cityKey];
+            option.textContent = daftarKotaTersedia[cityKey]; // Menggunakan daftarKotaTersedia
             this.citySelect.appendChild(option);
         });
     }
@@ -60,10 +70,13 @@ class BioskopList {
      * Cek parameter URL untuk auto-select kota
      */
     checkUrlParams() {
+        // Pastikan data daftarKotaTersedia ada
+        if (typeof daftarKotaTersedia === 'undefined') return;
+
         const urlParams = new URLSearchParams(window.location.search);
         const cityParam = urlParams.get('kota');
         
-        if (cityParam && kotaList[cityParam]) {
+        if (cityParam && daftarKotaTersedia[cityParam]) { // Menggunakan daftarKotaTersedia
             this.citySelect.value = cityParam;
             this.displayCinemas(cityParam);
         }
@@ -88,23 +101,29 @@ class BioskopList {
      * Menampilkan daftar bioskop berdasarkan kota
      */
     displayCinemas(cityKey) {
-        const cityName = kotaList[cityKey];
-        const cinemas = bioskopData[cityKey] || [];
+        // Pastikan data daftarKotaTersedia dan dataBioskopPerKota ada
+        if (typeof daftarKotaTersedia === 'undefined' || typeof dataBioskopPerKota === 'undefined') {
+            console.error("Data kota atau bioskop tidak ditemukan.");
+            this.showNoCinemas("Kota Pilihan");
+            return;
+        }
 
-        // Update judul
-        this.selectedCity.textContent = cityName;
+        const cityName = daftarKotaTersedia[cityKey] || cityKey; // Menggunakan daftarKotaTersedia
+        const cinemas = dataBioskopPerKota[cityKey] || []; // Menggunakan dataBioskopPerKota
+
+        this.selectedCity.textContent = cityName; // Perbarui nama kota di judul
         
-        // Tampilkan loading terlebih dahulu
         this.showLoading();
         
-        // Simulasi loading delay untuk UX yang lebih baik
-        setTimeout(() => {
+        setTimeout(() => { // Simulasi delay
             if (cinemas.length > 0) {
                 this.renderCinemas(cinemas);
             } else {
                 this.showNoCinemas(cityName);
             }
-        }, 300);
+            // Pastikan cinemaList ditampilkan setelah loading atau pesan
+            this.cinemaList.style.display = 'block';
+        }, 300); // Delay bisa disesuaikan atau dihapus jika data langsung tersedia
     }
 
     /**
@@ -112,12 +131,10 @@ class BioskopList {
      */
     showLoading() {
         this.cinemaItems.innerHTML = `
-            <div class="loading">
-                <i class="fas fa-spinner"></i>
-                <p>Memuat daftar bioskop...</p>
+            <div class="loading-bioskop"> <i class="fas fa-spinner fa-spin"></i> <p>Memuat daftar bioskop...</p>
             </div>
         `;
-        this.cinemaList.style.display = 'block';
+        this.cinemaList.style.display = 'block'; // Tampilkan kontainer list saat loading
     }
 
     /**
@@ -125,14 +142,11 @@ class BioskopList {
      */
     renderCinemas(cinemas) {
         let html = '';
-        
         cinemas.forEach(cinema => {
+            // cinema.nama sudah sesuai dengan properti di dataBioskopPerKota versi Indonesia
             html += this.createCinemaItem(cinema);
         });
-        
         this.cinemaItems.innerHTML = html;
-        
-        // Bind click events untuk tracking
         this.bindCinemaClickEvents();
     }
 
@@ -140,37 +154,42 @@ class BioskopList {
      * Membuat HTML untuk item bioskop
      */
     createCinemaItem(cinema) {
+        // Properti 'nama' dan 'id' dari objek cinema diasumsikan sudah sesuai
+        // dengan struktur di dataBioskopPerKota (versi Indonesia)
         return `
-            <a href="detail-bioskop.html?id=${cinema.id}" 
-               class="cinema-item" 
+            <a href="detailbioskop.html?id=${cinema.id}" 
+               class="item-bioskop" 
                data-cinema-id="${cinema.id}"
-               data-cinema-name="${cinema.nama}">
-                <div class="cinema-icon">
-                    <i class="fas fa-film"></i>
+               data-cinema-name="${cinema.nama || 'Nama Tidak Diketahui'}">
+                <div class="info-bioskop">
+                    <h3 class="nama-bioskop">${cinema.nama || 'Nama Tidak Diketahui'}</h3>
+                    ${cinema.alamat ? `<p class="alamat-bioskop">${cinema.alamat}</p>` : ''}
                 </div>
-                <div class="cinema-name">${cinema.nama}</div>
-                <div class="cinema-arrow">
+                <div class="panah-bioskop">
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </a>
         `;
+        // Saya sedikit mengubah struktur HTML kartu bioskop agar lebih umum untuk styling
+        // seperti .info-bioskop, .nama-bioskop, .alamat-bioskop, .panah-bioskop
     }
 
     /**
      * Bind event untuk click tracking pada item bioskop
      */
     bindCinemaClickEvents() {
-        const cinemaItems = document.querySelectorAll('.cinema-item');
+        const cinemaItems = document.querySelectorAll('.item-bioskop'); // Kelas dari createCinemaItem
         cinemaItems.forEach(item => {
             item.addEventListener('click', (e) => {
+                // e.preventDefault(); // Hapus jika Anda ingin link default bekerja
                 const cinemaId = item.dataset.cinemaId;
                 const cinemaName = item.dataset.cinemaName;
                 
-                // Log untuk analytics (opsional)
-                console.log(`Cinema clicked: ${cinemaName} (ID: ${cinemaId})`);
-                
-                // Bisa ditambahkan tracking analytics di sini
+                console.log(`Bioskop diklik: ${cinemaName} (ID: ${cinemaId})`);
                 this.trackCinemaClick(cinemaId, cinemaName);
+
+                // Jika tidak ingin link default bekerja dan ingin navigasi via JS:
+                // window.location.href = `./bioskop/detailbioskop.html?id=${cinemaId}`;
             });
         });
     }
@@ -179,13 +198,10 @@ class BioskopList {
      * Track klik bioskop untuk analytics
      */
     trackCinemaClick(cinemaId, cinemaName) {
-        // Placeholder untuk analytics tracking
-        // Misalnya Google Analytics, Facebook Pixel, dll
-        
         if (typeof gtag !== 'undefined') {
-            gtag('event', 'cinema_click', {
-                'cinema_id': cinemaId,
-                'cinema_name': cinemaName
+            gtag('event', 'bioskop_diklik', { // Ubah nama event jika perlu
+                'id_bioskop': cinemaId,
+                'nama_bioskop': cinemaName
             });
         }
     }
@@ -195,10 +211,8 @@ class BioskopList {
      */
     showNoCinemas(cityName) {
         this.cinemaItems.innerHTML = `
-            <div class="no-cinemas">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p>Tidak ada bioskop ditemukan di ${cityName}</p>
-                <p>Silakan pilih kota lain atau coba lagi nanti</p>
+            <div class="pesan-tidak-ada-bioskop"> <i class="fas fa-store-slash"></i> <p>Tidak ada bioskop yang terdaftar di ${cityName}</p>
+                <p>Silakan pilih kota lain.</p>
             </div>
         `;
     }
@@ -208,15 +222,22 @@ class BioskopList {
      */
     hideCinemaList() {
         this.cinemaList.style.display = 'none';
+        this.selectedCity.textContent = ''; // Kosongkan juga nama kota terpilih
     }
 
     /**
-     * Mendapatkan bioskop berdasarkan ID
+     * Mendapatkan bioskop berdasarkan ID dari dataBioskopPerKota
+     * (Fungsi ini akan mencari di semua kota dalam dataBioskopPerKota)
      */
     getCinemaById(cinemaId) {
-        for (let city in bioskopData) {
-            const cinema = bioskopData[city].find(c => c.id == cinemaId);
-            if (cinema) return cinema;
+        // Pastikan dataBioskopPerKota ada
+        if (typeof dataBioskopPerKota === 'undefined') return null;
+
+        for (let cityKey in dataBioskopPerKota) { // Menggunakan dataBioskopPerKota
+            if (dataBioskopPerKota.hasOwnProperty(cityKey)) {
+                const cinema = dataBioskopPerKota[cityKey].find(c => String(c.id) === String(cinemaId)); // Bandingkan sebagai string untuk konsistensi
+                if (cinema) return cinema;
+            }
         }
         return null;
     }
@@ -225,65 +246,77 @@ class BioskopList {
      * Mendapatkan daftar bioskop berdasarkan kota
      */
     getCinemasByCity(cityKey) {
-        return bioskopData[cityKey] || [];
+        // Pastikan dataBioskopPerKota ada
+        if (typeof dataBioskopPerKota === 'undefined') return [];
+        return dataBioskopPerKota[cityKey] || []; // Menggunakan dataBioskopPerKota
     }
 
     /**
      * Search bioskop berdasarkan nama
      */
     searchCinemas(query, cityKey = null) {
+        // Pastikan dataBioskopPerKota ada
+        if (typeof dataBioskopPerKota === 'undefined') return [];
+
         let results = [];
         const searchTerm = query.toLowerCase();
         
         if (cityKey) {
-            // Search dalam kota tertentu
-            const cinemas = bioskopData[cityKey] || [];
+            const cinemas = dataBioskopPerKota[cityKey] || []; // Menggunakan dataBioskopPerKota
             results = cinemas.filter(cinema => 
-                cinema.nama.toLowerCase().includes(searchTerm)
+                cinema.nama && cinema.nama.toLowerCase().includes(searchTerm)
             );
         } else {
-            // Search di semua kota
-            Object.keys(bioskopData).forEach(city => {
-                const matches = bioskopData[city].filter(cinema =>
-                    cinema.nama.toLowerCase().includes(searchTerm)
+            Object.keys(dataBioskopPerKota).forEach(city => { // Menggunakan dataBioskopPerKota
+                const matches = (dataBioskopPerKota[city] || []).filter(cinema =>
+                    cinema.nama && cinema.nama.toLowerCase().includes(searchTerm)
                 );
                 results = results.concat(matches);
             });
         }
-        
         return results;
     }
 }
 
 /**
- * Utility Functions
+ * Utility Functions (BioskopUtils)
  */
 const BioskopUtils = {
-    /**
-     * Format nama bioskop untuk URL
-     */
     formatCinemaSlug(cinemaName) {
+        if (!cinemaName) return '';
         return cinemaName.toLowerCase()
             .replace(/\s+/g, '-')
             .replace(/[^a-z0-9-]/g, '');
     },
 
-    /**
-     * Validasi ID bioskop
-     */
     isValidCinemaId(cinemaId) {
-        return BioskopList.prototype.getCinemaById(cinemaId) !== null;
+        // Akses metode dari instance yang sudah ada jika tersedia, atau buat instance sementara
+        // Namun, ini tidak ideal. Lebih baik jika getCinemaById adalah static atau di luar kelas.
+        // Untuk sementara, kita asumsikan window.bioskopList ada, atau kita tidak bisa memvalidasi dengan cara ini.
+        if (window.bioskopList && typeof window.bioskopList.getCinemaById === 'function') {
+            return window.bioskopList.getCinemaById(cinemaId) !== null;
+        }
+        // Fallback: Coba cari manual jika instance tidak ada (kurang efisien)
+        if (typeof dataBioskopPerKota !== 'undefined') {
+             for (let cityKey in dataBioskopPerKota) {
+                if (dataBioskopPerKota.hasOwnProperty(cityKey)) {
+                    if (dataBioskopPerKota[cityKey].find(c => String(c.id) === String(cinemaId))) return true;
+                }
+            }
+        }
+        return false;
     },
 
-    /**
-     * Get random bioskop untuk recommendation
-     */
     getRandomCinemas(count = 3) {
+        // Pastikan dataBioskopPerKota ada
+        if (typeof dataBioskopPerKota === 'undefined') return [];
+
         const allCinemas = [];
-        Object.keys(bioskopData).forEach(city => {
-            allCinemas.push(...bioskopData[city]);
+        Object.keys(dataBioskopPerKota).forEach(city => { // Menggunakan dataBioskopPerKota
+            allCinemas.push(...(dataBioskopPerKota[city] || []));
         });
         
+        if (allCinemas.length === 0) return [];
         const shuffled = allCinemas.sort(() => 0.5 - Math.random());
         return shuffled.slice(0, count);
     }
@@ -293,9 +326,10 @@ const BioskopUtils = {
  * Initialize aplikasi ketika DOM sudah ready
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // Cek apakah element yang dibutuhkan ada
-    if (document.getElementById('citySelect')) {
+    if (document.getElementById('citySelect')) { // Cek elemen utama
         window.bioskopList = new BioskopList();
+    } else {
+        console.warn("Elemen #citySelect tidak ditemukan, BioskopList tidak diinisialisasi.");
     }
 });
 
@@ -304,9 +338,16 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 window.addEventListener('popstate', (event) => {
     if (window.bioskopList && event.state) {
-        if (event.state.city) {
+        if (event.state.city && typeof daftarKotaTersedia !== 'undefined' && daftarKotaTersedia[event.state.city]) {
             window.bioskopList.citySelect.value = event.state.city;
             window.bioskopList.displayCinemas(event.state.city);
+        } else if (!event.state.city) { // Jika state kota kosong (misalnya, halaman awal)
+            window.bioskopList.citySelect.value = "";
+            window.bioskopList.hideCinemaList();
         }
+    } else if (window.bioskopList && !event.state) { // Jika kembali ke state awal (tanpa state object)
+         window.bioskopList.citySelect.value = "";
+         window.bioskopList.hideCinemaList();
+         window.bioskopList.clearUrl(); // Bersihkan URL juga
     }
 });

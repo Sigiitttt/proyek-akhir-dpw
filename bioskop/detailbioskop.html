@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Bioskop</title>
+    <link rel="stylesheet" href="/css/detailbioskop.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div id="cinema-header">
+                <div class="loading">Memuat informasi bioskop...</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Maps Section -->
+            <div class="section">
+                <h2 class="section-title">📍 Lokasi</h2>
+                <div id="maps-section">
+                    <div class="loading">Memuat peta...</div>
+                </div>
+            </div>
+
+            <!-- Schedule Section -->
+            <div class="section">
+                <h2 class="section-title">🕐 Jadwal Tayang</h2>
+                <div id="schedule-section">
+                    <div class="loading">Memuat jadwal...</div>
+                </div>
+            </div>
+
+            <!-- Films Section -->
+            <div class="section">
+                <h2 class="section-title">🎬 Film yang Tayang</h2>
+                <div id="films-section">
+                    <div class="loading">Memuat daftar film...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/data.js"> </script>
+    <script src="/js/data.js"></script>
+<script>
+    // Function to get URL parameter
+    function dapatkanParameterUrl(nama) {
+        const parameterUrl = new URLSearchParams(window.location.search);
+        return parameterUrl.get(nama);
+    }
+
+    // Function to render cinema header
+    function renderHeaderBioskop(bioskop) {
+        const elemenHeader = document.getElementById('cinema-header');
+        if (elemenHeader && bioskop) {
+            elemenHeader.innerHTML = `
+                <h1 class="nama-bioskop">${bioskop.name || 'Nama Bioskop Tidak Tersedia'}</h1> 
+                <div class="alamat-bioskop">
+                    <span class="ikon-lokasi">📍</span>
+                    <span>${bioskop.address || 'Alamat Tidak Tersedia'}</span>
+                </div>
+            `;
+        } else if (elemenHeader) {
+            elemenHeader.innerHTML = '<div class="error">Informasi header bioskop tidak ditemukan.</div>';
+        }
+    }
+
+    // Function to render maps
+    function renderPeta(bioskop) {
+        const elemenPeta = document.getElementById('maps-section');
+        if (elemenPeta && bioskop && bioskop.mapEmbed) { // Menggunakan bioskop.mapEmbed
+            elemenPeta.innerHTML = `
+                <div class="wadah-peta">
+                    <iframe src="${bioskop.mapEmbed}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            `;
+        } else if (elemenPeta) {
+            elemenPeta.innerHTML = '<div class="info">Peta lokasi tidak tersedia.</div>';
+        }
+    }
+
+    // Function to render schedule
+    function renderJadwalOperasional(jadwal) { // Parameter 'jadwal' merujuk ke bioskop.schedule
+        const elemenJadwal = document.getElementById('schedule-section');
+        if (!elemenJadwal) return;
+
+        if (!jadwal || Object.keys(jadwal).length === 0) {
+            elemenJadwal.innerHTML = '<div class="info">Jadwal operasional tidak tersedia.</div>';
+            return;
+        }
+
+        let tabelHTML = `
+            <table class="tabel-jadwal-operasional">
+                <thead>
+                    <tr>
+                        <th>Hari</th>
+                        <th>Jam Operasional</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        const urutanHari = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+        urutanHari.forEach(hari => {
+            if (jadwal[hari]) {
+                const slotWaktu = Array.isArray(jadwal[hari]) 
+                                ? jadwal[hari].map(waktu => `<span class="slot-waktu-operasional">${waktu}</span>`).join('')
+                                : `<span class="slot-waktu-operasional">${jadwal[hari]}</span>`;
+                tabelHTML += `
+                    <tr>
+                        <td class="nama-hari">${hari}</td>
+                        <td>
+                            <div class="grup-slot-waktu-operasional">
+                                ${slotWaktu}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }
+        });
+        Object.keys(jadwal).forEach(hari => {
+            if (!urutanHari.includes(hari)) {
+                 const slotWaktu = Array.isArray(jadwal[hari]) 
+                                ? jadwal[hari].map(waktu => `<span class="slot-waktu-operasional">${waktu}</span>`).join('')
+                                : `<span class="slot-waktu-operasional">${jadwal[hari]}</span>`;
+                tabelHTML += `
+                    <tr>
+                        <td class="nama-hari">${hari}</td>
+                        <td>
+                            <div class="grup-slot-waktu-operasional">
+                                ${slotWaktu}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }
+        });
+        tabelHTML += `
+                </tbody>
+            </table>
+        `;
+        elemenJadwal.innerHTML = tabelHTML;
+    }
+
+    // Function to render films
+    function renderDaftarFilmDiBioskop(daftarIdFilm) {
+        const elemenFilm = document.getElementById('films-section');
+        if (!elemenFilm) return;
+        
+        // dataSemuaFilm diasumsikan menggunakan properti Bahasa Indonesia (judul, genre, durasi, rating, poster)
+        // Jika dataSemuaFilm juga propertinya Bahasa Inggris, perlu disesuaikan juga di sini.
+        // Untuk sekarang, saya asumsikan dataSemuaFilm sudah diselaraskan ke Bahasa Indonesia.
+        if (typeof dataSemuaFilm === 'undefined') {
+            console.error('dataSemuaFilm tidak ditemukan. Pastikan data.js sudah dimuat dengan benar.');
+            elemenFilm.innerHTML = '<div class="error">Data koleksi film tidak tersedia.</div>';
+            return;
+        }
+
+        if (!daftarIdFilm || daftarIdFilm.length === 0) {
+            elemenFilm.innerHTML = '<div class="info">Tidak ada film yang terdaftar tayang di bioskop ini saat ini.</div>';
+            return;
+        }
+
+        const filmHTML = daftarIdFilm.map(idFilm => {
+            const film = dataSemuaFilm.find(f => f.id === idFilm);
+            if (!film) return '';
+
+            const durasiTampil = (typeof BantuanData !== 'undefined' && BantuanData.formatDurasi) 
+                                 ? BantuanData.formatDurasi(film.durasi) 
+                                 : `${film.durasi} menit`;
+            const genreTampil = Array.isArray(film.genre) ? film.genre.join(', ') : 'Genre tidak diketahui';
+            // Asumsi genre di dataSemuaFilm sudah diterjemahkan jika perlu ditampilkan dalam Bahasa Indonesia di sini
+
+            const pathDetailFilm = `../film/detail-film.html?id=${film.id}`; 
+
+            return `
+                <div class="kartu-film-bioskop">
+                    <a href="${pathDetailFilm}" class="tautan-kartu-film">
+                        <img src="${film.poster || '../img/assets/poster-fallback.svg'}" alt="${film.judul || 'Tanpa Judul'}" class="poster-film-bioskop">
+                        <div class="info-film-bioskop">
+                            <h3 class="judul-film-bioskop">${film.judul || 'Judul Tidak Tersedia'}</h3>
+                            <div class="detail-film-bioskop">
+                                <p class="genre-film-bioskop">${genreTampil}</p>
+                                <p class="durasi-film-bioskop">${durasiTampil}</p>
+                                <p class="rating-film-bioskop">⭐ ${film.rating || 'N/A'}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+        }).filter(html => html !== '').join('');
+
+        if (filmHTML) {
+            elemenFilm.innerHTML = `
+                <div class="kisi-film-bioskop">
+                    ${filmHTML}
+                </div>
+            `;
+        } else {
+            elemenFilm.innerHTML = '<div class="info">Film yang terdaftar tidak ditemukan dalam data.</div>';
+        }
+    }
+
+    function renderHalamanError(pesan) {
+        const kontainer = document.querySelector('.container');
+        if (kontainer) {
+            kontainer.innerHTML = `
+                <div class="header">
+                    <h1 class="nama-bioskop">Terjadi Kesalahan</h1>
+                </div>
+                <div class="content">
+                    <div class="error" style="padding: 20px; text-align: center;">${pesan}</div>
+                </div>
+            `;
+        }
+    }
+
+    function muatDetailBioskop() {
+        const idBioskop = dapatkanParameterUrl('id');
+        console.log("ID Bioskop dari URL:", idBioskop);
+
+        if (!idBioskop) {
+            renderHalamanError('ID bioskop tidak ditemukan dalam URL.');
+            return;
+        }
+
+        // Menggunakan variabel detailSemuaBioskop (diasumsikan global dari data.js)
+        if (typeof detailSemuaBioskop === 'undefined') {
+            console.error('Variabel global detailSemuaBioskop TIDAK DITEMUKAN!');
+            renderHalamanError('Data detail bioskop (detailSemuaBioskop) tidak tersedia.');
+            return;
+        }
+        // console.log("Isi detailSemuaBioskop (awal):", JSON.parse(JSON.stringify(Object.values(detailSemuaBioskop).slice(0, 2))));
+        
+        const bioskop = detailSemuaBioskop[idBioskop]; 
+        console.log(`Mencari bioskop dengan ID '${idBioskop}' di detailSemuaBioskop.`);
+        console.log("Objek bioskop yang ditemukan:", bioskop ? JSON.parse(JSON.stringify(bioskop)) : bioskop);
+
+        if (!bioskop) {
+            renderHalamanError(`Bioskop dengan ID '${idBioskop}' tidak ditemukan dalam data detailSemuaBioskop.`);
+            return;
+        }
+
+        // Menggunakan properti Bahasa Inggris dari objek bioskop
+        document.title = `${bioskop.name || 'Detail'} - Detail Bioskop`; 
+
+        renderHeaderBioskop(bioskop);    // Akan menggunakan bioskop.name, bioskop.address
+        renderPeta(bioskop);           // Akan menggunakan bioskop.mapEmbed
+        renderJadwalOperasional(bioskop.schedule); // Akan menggunakan bioskop.schedule
+        renderDaftarFilmDiBioskop(bioskop.filmIds);   // Akan menggunakan bioskop.filmIds
+        
+        console.log("Semua fungsi render seharusnya sudah dipanggil.");
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM Content Loaded, memulai muatDetailBioskop...");
+        if (typeof detailSemuaBioskop === 'undefined' || typeof dataSemuaFilm === 'undefined') {
+            console.error('Data penting (detailSemuaBioskop atau dataSemuaFilm) tidak ditemukan saat DOMContentLoaded.');
+            renderHalamanError('Gagal memuat data dasar yang diperlukan untuk halaman ini.');
+            const loadingElements = document.querySelectorAll('.loading');
+            loadingElements.forEach(el => el.style.display = 'none');
+            const sectionTitles = document.querySelectorAll('.section-title');
+            sectionTitles.forEach(el => el.style.display = 'none');
+            return;
+        }
+        muatDetailBioskop();
+    });
+</script>
+</body>
+</html>

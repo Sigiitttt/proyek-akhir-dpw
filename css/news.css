@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5; /* Warna latar sedikit diubah agar tidak sama dengan body di main style */
+}
+
+/* Komentar header dan nav tetap */
+/* header { ... } */
+/* .header-content { ... } */
+/* .logo { ... } */
+/* nav ul { ... } */
+/* nav a { ... } */
+/* nav a:hover { ... } */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 20px;
+}
+
+.tajuk-halaman-berita { /* .page-header -> .tajuk-halaman-berita */
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.judul-halaman { /* .page-title -> .judul-halaman */
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.subjudul-halaman { /* .page-subtitle -> .subjudul-halaman */
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.kontrol-berita { /* .news-controls -> .kontrol-berita */
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.kotak-pencarian { /* .search-box -> .kotak-pencarian */
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Input di dalam kotak pencarian, menargetkan ID input-pencarian-berita jika diperlukan spesifisitas */
+#input-pencarian-berita, /* Menargetkan ID dari HTML yang sudah disesuaikan */
+.kotak-pencarian input { /* Gaya umum untuk input di dalam .kotak-pencarian */
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+#input-pencarian-berita:focus,
+.kotak-pencarian input:focus {
+    outline: none;
+    border-color: #ffd700; /* Warna aksen bisa disesuaikan */
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3); /* Efek focus tambahan */
+}
+
+.filter-kategori { /* .category-filters -> .filter-kategori */
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tombol-filter { /* .filter-btn -> .tombol-filter */
+    padding: 0.5rem 1rem;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    color: #333; /* Warna teks tombol */
+}
+
+.tombol-filter:hover,
+.tombol-filter.aktif { /* .filter-btn.active -> .tombol-filter.aktif */
+    background: #ffd700; /* Warna aksen */
+    border-color: #ffd700;
+    color: #1a1a1a; /* Warna teks saat aktif/hover */
+}
+
+/* ID #wadah-berita-daftar digunakan untuk JavaScript, kelas .kisi-berita untuk styling grid */
+.kisi-berita { /* .news-grid -> .kisi-berita */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.item-berita { /* .news-item -> .item-berita */
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Shadow lebih halus */
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    user-select: none; /* Mencegah teks terseleksi saat diklik */
+}
+
+.item-berita:hover {
+    transform: translateY(-5px); /* Efek hover lebih jelas */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.gambar-berita { /* .news-image -> .gambar-berita */
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    background-color: #eee; /* Warna placeholder jika gambar lambat dimuat */
+}
+
+.gambar-berita img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease; /* Efek zoom pada hover gambar */
+}
+
+.item-berita:hover .gambar-berita img {
+    transform: scale(1.05); /* Efek zoom pada hover */
+}
+
+.tag-kategori { /* .category-tag -> .tag-kategori */
+    position: absolute;
+    top: 12px; /* Penyesuaian posisi */
+    left: 12px; /* Dipindah ke kiri agar tidak tertutup jika ada elemen lain di kanan */
+    background: rgba(26, 26, 26, 0.85); /* Warna latar sedikit lebih gelap */
+    color: #ffd700; /* Warna teks tag disamakan dengan aksen */
+    padding: 0.4rem 0.9rem; /* Padding disesuaikan */
+    border-radius: 6px; /* Radius border disesuaikan */
+    font-size: 0.75rem; /* Ukuran font sedikit dikecilkan */
+    font-weight: bold;
+    text-transform: uppercase; /* Kategori menjadi huruf besar */
+}
+
+.konten-berita { /* .news-content -> .konten-berita */
+    padding: 1.5rem;
+}
+
+.judul-item-berita { /* .news-title (untuk item) -> .judul-item-berita */
+    font-size: 1.25rem; /* Sedikit lebih besar */
+    margin-bottom: 0.75rem; /* Margin disesuaikan */
+    color: #1a1a1a;
+    line-height: 1.3; /* Line height disesuaikan */
+    font-weight: 600; /* Font weight disesuaikan */
+}
+
+.ringkasan-berita { /* .news-summary -> .ringkasan-berita */
+    color: #555; /* Warna teks sedikit lebih gelap */
+    margin-bottom: 1.2rem; /* Margin disesuaikan */
+    line-height: 1.6; /* Line height disesuaikan */
+    font-size: 0.95rem; /* Ukuran font disesuaikan */
+}
+
+.meta-berita { /* .news-meta -> .meta-berita */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0; /* Warna border lebih halus */
+    margin-top: auto; /* Mendorong meta ke bawah jika konten ringkasan pendek */
+}
+
+.statistik-berita { /* .news-stats -> .statistik-berita */
+    display: flex;
+    gap: 1rem;
+}
+
+/* Menargetkan span di dalam .statistik-berita secara umum */
+.statistik-berita span,
+.statistik-berita .jumlah-dilihat, /* .views -> .jumlah-dilihat (jika ingin spesifik) */
+.statistik-berita .jumlah-disukai { /* .likes -> .jumlah-disukai (jika ingin spesifik) */
+    font-size: 0.85rem; /* Ukuran font sedikit dikecilkan */
+    color: #777; /* Warna teks disesuaikan */
+    display: inline-flex; /* Untuk alignment ikon */
+    align-items: center;
+    gap: 0.3rem; /* Jarak antara ikon dan teks */
+}
+
+.waktu-unggah { /* .time-ago -> .waktu-unggah */
+    font-size: 0.85rem;
+    color: #888; /* Warna teks disesuaikan */
+}
+
+/* Gaya untuk pesan jika tidak ada hasil, digunakan oleh ID #tidakAdaHasilBerita jika ada */
+/* Ini mungkin lebih cocok diatur oleh ID elemennya jika sudah ada di HTML */
+.pesan-tidak-ada-hasil { /* .no-results -> .pesan-tidak-ada-hasil */
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    padding: 3rem 1rem; /* Padding lebih besar */
+    grid-column: 1 / -1; /* Agar span penuh jika di dalam grid */
+}
+.pesan-tidak-ada-hasil .ikon-sedih { /* Contoh ikon jika ingin ditambahkan */
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+
+/* Komentar footer tetap */
+/* footer { ... } */
+
+@media (max-width: 768px) {
+    /* .header-content { ... } */
+    /* nav ul { ... } */
+
+    .judul-halaman { /* .page-title -> .judul-halaman */
+        font-size: 2rem;
+    }
+
+    .kontrol-berita { /* .news-controls -> .kontrol-berita */
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .kotak-pencarian { /* .search-box -> .kotak-pencarian */
+        min-width: auto; /* Sudah ada */
+    }
+
+    .kisi-berita { /* .news-grid -> .kisi-berita */
+        grid-template-columns: 1fr;
+    }
+
+    .filter-kategori { /* .category-filters -> .filter-kategori */
+        justify-content: center;
+    }
+
+    .item-berita { /* Penyesuaian untuk mobile */
+        flex-direction: column;
+    }
+    .gambar-berita {
+        height: 180px; /* Tinggi gambar di mobile */
+    }
+    .judul-item-berita {
+        font-size: 1.1rem;
+    }
+    .ringkasan-berita {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem 15px; /* Padding disesuaikan untuk mobile kecil */
+    }
+    .judul-halaman {
+        font-size: 1.8rem;
+    }
+    .tombol-filter {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+     .konten-berita {
+        padding: 1rem;
+    }
+}

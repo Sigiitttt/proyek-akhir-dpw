@@ -1,55 +1,34 @@
-<nav class="navbar">
+<nav class="navbar-utama">
     <div class="container">
-        <div class="nav-brand">
-            <a href="/index.html" class="brand-logo">
-                <span class="logo-text">TIX</span><span class="logo-accent">.ID</span>
-            </a>
+        <div class="merek-nav"> <a href="../index.html" class="logo-merek"> <span class="teks-logo">TIX</span><span
+                    class="aksen-logo">.ID</span> </a>
         </div>
 
-        <div class="nav-menu" id="navMenu">
-            <ul class="nav-links">
-                <li><a href="/index.html" class="nav-link">Beranda</a></li>
-                <li><a href="/bioskop/list-bioskop.html" class="nav-link">Bioskop</a></li>
-                <li><a href="/tiket/tiket.html" class="nav-link">Ticket</a></li>
-                <!-- <li class="nav-dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">Film</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/film/list-film.html">Sedang Tayang</a></li>
-                        <li><a href="/film/list-film.html?tab=coming-soon">Akan Datang</a></li>
-                    </ul>
-                </li>
-                <li><a href="/alisa/makanan.html" class="nav-link">F&B</a></li>
-                <li><a href="/alisa/voucher.html" class="nav-link">Voucher</a></li>
-                <li><a href="/news/news.html" class="nav-link">Berita</a></li> -->
+        <div class="menu-navigasi" id="menuNavigasiUtama">
+            <ul class="daftar-tautan-nav">
+                <li><a href="../index.html" class="tautan-nav-item">Beranda</a></li>
+                <li><a href="../bioskop/list-bioskop.html" class="tautan-nav-item">Bioskop</a></li>
+                <li><a href="../tiket/tiket.html" class="tautan-nav-item">Tiket Saya</a></li>
             </ul>
         </div>
 
-        <div class="nav-actions">
-            <div class="nav-user" id="navUser" style="display: none;">
-                <div class="user-dropdown">
-                    <button class="user-btn" id="userBtn">
-                        <span class="user-avatar">👤</span>
-                        <span class="user-name" id="userName">User</span>
-                    </button>
-                    <ul class="user-menu" id="userMenu">
-                        <li><a href="/user/profile.html">Profile</a></li>
-                        <li><a href="/user/history.html">Riwayat</a></li>
-                        <li><a href="/user/favorite.html">Favorit</a></li>
-                        <li><a href="/user/settings.html">Pengaturan</a></li>
-                        <li>
-                            <hr>
-                        </li>
-                        <li><a href="#" id="logoutBtn">Logout</a></li>
+        <div class="aksi-navigasi">
+            <div class="info-pengguna-nav" id="wadahInfoPengguna" style="display: none;">
+                <div class="dropdown-pengguna"> <button class="tombol-pengguna" id="tombolMenuPengguna"> <span
+                            class="avatar-pengguna" id="avatarPenggunaTampil">👤</span> <span class="nama-pengguna-nav"
+                            id="namaPenggunaTampil">Pengguna</span> </button>
+                    <ul class="menu-dropdown-pengguna" id="menuPenggunaDropdown">
+                        <li><a href="../user/akun-saya.html">Profil</a></li>
+                        <li><a href="../user/favorite.html">Favorit</a></li>
+                        <li><a href="../user/settingprofile.html">Pengaturan</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="nav-auth" id="navAuth">
-                <div class="notif">
-                    <a href="/user/notifikasi.html" class="notif">🔔</a>
-                </div>
-                <a href="../user/akun-saya.html" class="profile-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="autentikasi-nav" id="wadahAutentikasiNav">
+                <div class="notifikasi-nav-item"> <a href="../user/notifikasi.html" class="ikon-notifikasi">🔔</a> </div>
+                <a href="user/akun-saya.html" class="ikon-profil-nav" id="ikonProfilTautan"> <svg width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -60,8 +39,7 @@
             </div>
         </div>
 
-        <button class="nav-toggle" id="navToggle">
-            <span></span>
+        <button class="tombol-toggle-nav" id="tombolNavToggle"> <span></span>
             <span></span>
             <span></span>
         </button>
@@ -69,7 +47,8 @@
 </nav>
 
 <style>
-    .profile-icon {
+    /* Nama kelas disesuaikan */
+    .ikon-profil-nav {
         background: none;
         border: none;
         cursor: pointer;
@@ -80,83 +59,34 @@
         align-items: center;
         justify-content: center;
         color: #666;
+        /* Warna ikon default */
     }
 
-    .profile-icon:hover {
-        background: #f8f9fa;
-        color: #e74c3c;
+    .ikon-profil-nav:hover {
+        background: #f0f2f5;
+        /* Warna latar hover */
+        color: #1976d2;
+        /* Warna ikon hover */
+    }
+
+    .ikon-notifikasi {
+        /* Style untuk ikon notifikasi agar konsisten */
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #5f6368;
+        font-size: 1.5rem;
+        text-decoration: none;
+    }
+
+    .ikon-notifikasi:hover {
+        background: #f0f2f5;
+        color: #1976d2;
     }
 </style>
-
-<script>
-    // Navbar functionality
-    document.addEventListener('DOMContentLoaded', function () {
-        // Mobile menu toggle
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        if (navToggle && navMenu) {
-            navToggle.addEventListener('click', function () {
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
-            });
-        }
-
-        // User dropdown toggle
-        const userBtn = document.getElementById('userBtn');
-        const userMenu = document.getElementById('userMenu');
-
-        if (userBtn && userMenu) {
-            userBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                userMenu.classList.toggle('active');
-            });
-
-            document.addEventListener('click', function (e) {
-                if (!userBtn.contains(e.target) && !userMenu.contains(e.target)) {
-                    userMenu.classList.remove('active');
-                }
-            });
-        }
-
-        // Film dropdown 
-        const dropdownToggle = document.querySelector('.dropdown-toggle');
-        if (dropdownToggle) {
-            dropdownToggle.addEventListener('click', function (e) {
-                e.preventDefault();
-                const dropdown = this.parentElement;
-                dropdown.classList.toggle('active');
-            });
-        }
-
-        // Check login 
-        checkLoginStatus();
-    });
-
-    function checkLoginStatus() {
-        const user = localStorage.getItem('tix_user');
-        const navUser = document.getElementById('navUser');
-        const navAuth = document.getElementById('navAuth');
-        const userName = document.getElementById('userName');
-
-        if (user) {
-            const userData = JSON.parse(user);
-            if (navUser) navUser.style.display = 'block';
-            if (navAuth) navAuth.style.display = 'none';
-            if (userName) userName.textContent = userData.name || userData.email;
-        } else {
-            if (navUser) navUser.style.display = 'none';
-            if (navAuth) navAuth.style.display = 'flex';
-        }
-    }
-
-    // Logout functionality
-    document.addEventListener('click', function (e) {
-        if (e.target && e.target.id === 'logoutBtn') {
-            e.preventDefault();
-            localStorage.removeItem('tix_user');
-            localStorage.removeItem('tix_token');
-            window.location.href = '/index.html';
-        }
-    });
-</script>

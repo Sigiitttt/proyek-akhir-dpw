@@ -1,361 +1,70 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film Bioskop</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.4;
-        }
-
-        /* Header */
-        .header {
-            background: white;
-            padding: 15px 20px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .header a {
-            text-decoration: none;
-            color: inherit;
-            outline: none;
-        }
-
-        .back-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .header h1 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        /* Status Tabs */
-        .status-tabs {
-            background: white;
-            padding: 15px 20px 10px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            gap: 30px;
-        }
-
-        .status-tab {
-            background: none;
-            border: none;
-            padding: 10px 0;
-            color: #999;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .status-tab.active {
-            color: #333;
-            font-weight: 600;
-        }
-
-        .status-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #007AFF;
-        }
-
-        /* Filter Buttons */
-        .filter-buttons {
-            background: white;
-            padding: 15px 20px;
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .filter-buttons::-webkit-scrollbar {
-            display: none;
-        }
-
-        .filter-btn {
-            background: #f0f0f0;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            color: #666;
-            font-size: 14px;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn.active {
-            background: #007AFF;
-            color: white;
-        }
-
-        /* Films Grid - Update styling untuk match dengan gambar */
-        .films-container {
-            padding: 50px;
-        }
-
-        .films-grid {
-            display: grid;
-            grid-template-columns: 3, 1fr;
-            gap: 15px;
-        }
-
-        /* Film Card - Sesuaikan dengan desain yang ada */
-        .film-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            position: relative;
-            transition: transform 0.2s ease;
-            cursor: pointer;
-        }
-
-        .film-card:active {
-            transform: scale(0.98);
-        }
-
-        .film-poster {
-            position: relative;
-            aspect-ratio: 2/3;
-            overflow: hidden;
-        }
-
-        .film-poster img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Favorite button - sesuai dengan desain */
-        .favorite-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.5);
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            color: white;
-            font-size: 16px;
-        }
-
-        /* Age Rating - sesuai dengan gambar */
-        .film-status {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: bold;
-        }
-
-        .status-showing {
-            background: #4caf50;
-        }
-
-        .status-coming {
-            background: #ff9800;
-        }
-
-        /* Film Rating di pojok kiri bawah poster */
-        .film-rating {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Film Info */
-        .film-info {
-            padding: 12px;
-        }
-
-        .film-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .film-genre {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .film-rating-info {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .stars {
-            color: #ffc107;
-            display: flex;
-            gap: 1px;
-        }
-
-        .rating-score {
-            color: #333;
-        }
-
-        /* Loading State */
-        .loading-state {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-            font-size: 14px;
-            color: #666;
-            grid-column: 1 / -1;
-        }
-
-        .loading-spinner {
-            width: 30px;
-            height: 30px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #007AFF;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 10px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* No Results */
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-
-        .no-results-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
-        }
-
-        /* Responsive */
-        @media (min-width: 768px) {
-            .films-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .films-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* Hide original film header */
-        .film-header {
-            display: none;
-        }
-
-        /* Override films section styling */
-        .films-section {
-            padding: 0;
-            min-height: auto;
-        }
-    </style>
+    <title>Daftar Film - TIX.ID</title>
+    <link rel="stylesheet" href="../css/daftarfilm.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
-   <header class="header">
-        <a href="../index.html" class="back-btn">←</a>
+    <div id="wadah-navbar"></div>
+   
+    <header class="tajuk-halaman">
+        <a href="../index.html" class="tombol-kembali">←</a>
         <h1>Film Bioskop</h1>
     </header>
 
-    <!-- Status Tabs -->
-    <div class="status-tabs">
-        <button class="status-tab active tab-btn" data-status="now_showing">SEDANG TAYANG</button>
-        <button class="status-tab tab-btn" data-status="coming_soon">AKAN DATANG</button>
-    </div>
-
-    <!-- Filter Buttons -->
-    <div class="filter-buttons">
-        <button class="filter-btn active tab-btn" data-status="all">Semua Film</button>
-        <button class="filter-btn tab-btn" data-status="now_showing">XXI</button>
-        <button class="filter-btn tab-btn" data-status="coming_soon">CGV</button>
-        <button class="filter-btn tab-btn">Cinépolis</button>
-    </div>
-
-    <!-- Films Container -->
-    <div class="films-container">
-        <!-- Loading State -->
-        <div id="loadingState" style="display: none;">
-            <div class="loading-spinner"></div>
-            <p>Memuat film...</p>
+    <div class="container-kontrol-filter">
+        <div class="grup-tab-status">
+            <button class="tab-status tombol-tab aktif" data-status="now_snowing">SEDANG TAYANG</button>
+            <button class="tab-status tombol-tab" data-status="coming_soon">AKAN DATANG</button>
         </div>
 
-        <!-- Films Grid -->
-        <div id="filmsGrid" class="films-grid">
-            <!-- Film cards akan dimuat di sini oleh JavaScript dari film.js -->
+        <div class="grup-tombol-filter-tambahan">
+            <button class="tombol-filter tombol-tab" data-status="semua">Semua Film</button>
+            <button class="tombol-filter tombol-tab" data-status="now_snowing">XXI</button>
+            <button class="tombol-filter tombol-tab" data-status="coming_soon">CGV</button>
+            <button class="tombol-filter tombol-tab" data-bioskop="cinepolis">Cinépolis</button>
         </div>
-        <!-- No Results State -->
-        <div id="noResults" class="no-results" style="display: none;">
-            <div class="no-results-icon">🎬</div>
-            <h3>Tidak ada film ditemukan</h3>
-            <p>Coba ubah filter atau kata kunci pencarian Anda</p>
-        </div>
+
+        <!-- <div class="grup-pencarian-urutan">
+            <div class="kotak-pencarian">
+                <input type="text" id="inputPencarianFilm" placeholder="Cari judul film atau genre...">
+                </div>
+            <div class="pilihan-urutan-film">
+                <label for="pilihanUrutan">Urutkan:</label>
+                <select id="pilihanUrutan" class="select-urutan">
+                    <option value="judul">Judul (A-Z)</option>
+                    <option value="rating">Rating Tertinggi</option>
+                    <option value="tahun">Tahun Terbaru</option>
+                    <option value="durasi">Durasi Terlama</option>
+                </select>
+            </div>
+        </div> -->
     </div>
 
-    <!-- Load your existing JS files -->
+    <div class="wadah-konten-film">
+        <div id="statusMemuatDaftar" style="display: none;">
+            <div class="pemutar-memuat"></div>
+            <p>Sedang memuat daftar film...</p>
+        </div>
+
+        <div id="kisiFilm" class="kisi-daftar-film" style="display: none;">
+            </div>
+
+        <div id="tidakAdaHasil" class="pesan-tidak-ada-hasil" style="display: none;">
+            <div class="ikon-tidak-ada-hasil">🎬</div>
+            <h3>Tidak ada film yang ditemukan</h3>
+            <p>Silakan coba ubah filter atau kata kunci pencarian Anda.</p>
+        </div>
+    </div>
+ <div id="wadah-footer"></div>
     <script src="../js/data.js"></script>
     <script src="../js/film.js"></script>
-    <!-- <script src="../js/main.js"></script> -->
+    <script src="../js/main.js"></script>
 </body>
+
 </html>

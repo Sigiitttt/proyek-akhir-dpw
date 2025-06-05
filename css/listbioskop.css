@@ -1,0 +1,285 @@
+/* /css/listbioskop.css */
+
+/* Variabel CSS Global untuk Tema Halaman Daftar Bioskop */
+:root {
+    --listbioskop-font-family: 'Arial', sans-serif; /* Font utama dari CSS Anda */
+    --listbioskop-gradient-bg-start: #667eea;
+    --listbioskop-gradient-bg-end: #764ba2;
+    --listbioskop-text-on-gradient: #ffffff;
+    --listbioskop-surface-bg: #ffffff; /* Latar untuk filter dan list item */
+    --listbioskop-text-on-surface: #333333;
+    --listbioskop-text-secondary-on-surface: #555555;
+    --listbioskop-border-color: #dddddd;
+    --listbioskop-accent-color: var(--listbioskop-gradient-bg-start); /* Bisa sama dengan gradient start */
+    --listbioskop-shadow-color: rgba(0, 0, 0, 0.15); /* Shadow lebih soft */
+    --listbioskop-radius-main: 12px; /* Radius dari CSS Anda (15px, saya buat konsisten) */
+    --listbioskop-radius-button: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--listbioskop-font-family);
+    background: linear-gradient(135deg, var(--listbioskop-gradient-bg-start) 0%, var(--listbioskop-gradient-bg-end) 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--listbioskop-text-on-surface); /* Default text color for content on white surfaces */
+}
+
+.container { /* Wrapper utama di HTML Anda */
+    max-width: 800px;
+    margin: 0 auto;
+    /* Container tidak perlu background sendiri jika body sudah di-style, 
+       kecuali jika Anda ingin efek lapisan berbeda. */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--listbioskop-text-on-gradient);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Shadow lebih halus */
+    display: flex; /* Untuk ikon dan teks sejajar */
+    align-items: center;
+    justify-content: center;
+}
+.header h1 i { /* Styling untuk ikon Font Awesome di header */
+    margin-right: 12px;
+    font-size: 2.2rem; /* Sesuaikan ukuran ikon */
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.filter-section {
+    background: var(--listbioskop-surface-bg);
+    padding: 25px;
+    border-radius: var(--listbioskop-radius-main);
+    box-shadow: 0 8px 25px var(--listbioskop-shadow-color); /* Shadow disesuaikan */
+    margin-bottom: 30px;
+}
+
+.filter-section h2 {
+    color: var(--listbioskop-text-on-surface);
+    margin-bottom: 20px; /* Tambah jarak ke selector */
+    font-size: 1.3rem;
+    display: flex; /* Untuk ikon dan teks sejajar */
+    align-items: center;
+}
+.filter-section h2 i { /* Styling untuk ikon Font Awesome di judul filter */
+    margin-right: 10px;
+    color: var(--listbioskop-accent-color);
+}
+
+.city-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.city-selector label {
+    font-weight: 600;
+    color: var(--listbioskop-text-secondary-on-surface);
+    font-size: 1rem;
+}
+
+#citySelect { /* ID dari HTML Anda */
+    padding: 10px 15px; /* Sesuaikan padding */
+    border: 1px solid var(--listbioskop-border-color); /* Border lebih halus */
+    border-radius: var(--listbioskop-radius-button);
+    font-size: 1rem;
+    background: var(--listbioskop-surface-bg);
+    color: var(--listbioskop-text-on-surface);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 220px; /* Sedikit lebih lebar */
+    flex-grow: 1; /* Agar bisa memanjang jika ada ruang */
+}
+
+#citySelect:focus {
+    outline: none;
+    border-color: var(--listbioskop-accent-color);
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2); /* Shadow fokus lebih soft */
+}
+
+#citySelect:hover {
+    border-color: var(--listbioskop-accent-color);
+}
+
+.cinema-list { /* ID dari HTML Anda: #cinemaList */
+    background: var(--listbioskop-surface-bg);
+    border-radius: var(--listbioskop-radius-main);
+    box-shadow: 0 8px 25px var(--listbioskop-shadow-color);
+    overflow: hidden; /* Penting untuk border-radius pada anak elemen */
+}
+
+/* Judul pada cinema list (Bioskop di <Nama Kota>) */
+#cinemaListTitle { /* ID dari HTML Anda */
+    padding: 20px 25px; /* Kurangi padding sedikit */
+    background: linear-gradient(135deg, var(--listbioskop-gradient-bg-start), var(--listbioskop-gradient-bg-end));
+    color: var(--listbioskop-text-on-gradient);
+    margin: 0;
+    font-size: 1.3rem; /* Sedikit sesuaikan */
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Styling untuk setiap item bioskop yang di-generate oleh bioskop.js */
+/* bioskop.js yang diselaraskan menghasilkan kelas .item-bioskop */
+.item-bioskop { 
+    display: flex;
+    align-items: center;
+    padding: 18px 25px; /* Sedikit sesuaikan padding */
+    border-bottom: 1px solid #f0f0f0; /* Border lebih halus */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+    color: var(--listbioskop-text-on-surface);
+}
+
+.item-bioskop:hover {
+    background-color: #f8f9fa; /* Warna hover lebih soft */
+    transform: translateX(3px); /* Efek geser kecil */
+}
+
+.item-bioskop:last-child {
+    border-bottom: none;
+}
+
+/* Wrapper untuk nama dan alamat bioskop di dalam item */
+.info-bioskop {
+    flex: 1;
+}
+
+.nama-bioskop { /* Kelas dari bioskop.js */
+    font-size: 1.05rem; /* Sedikit sesuaikan */
+    font-weight: 600;
+    color: var(--listbioskop-text-on-surface);
+    margin-bottom: 4px; /* Jarak ke alamat */
+    /* Hapus text-transform dan letter-spacing jika tidak diinginkan, atau sesuaikan */
+}
+
+.alamat-bioskop { /* Kelas dari bioskop.js */
+    font-size: 0.85rem;
+    color: var(--listbioskop-text-secondary-on-surface);
+}
+
+.panah-bioskop { /* Kelas dari bioskop.js untuk ikon panah */
+    font-size: 1rem; /* Sesuaikan ukuran ikon panah */
+    color: var(--listbioskop-border-color); /* Warna panah lebih soft */
+    margin-left: 15px;
+}
+
+/* Styling untuk pesan "Tidak Ada Bioskop" atau "Loading" */
+/* bioskop.js menghasilkan .pesan-tidak-ada-bioskop dan .loading-bioskop */
+.pesan-tidak-ada-bioskop, .loading-bioskop {
+    text-align: center;
+    padding: 40px 25px; /* Kurangi padding sedikit */
+    color: var(--listbioskop-text-secondary-on-surface);
+    font-size: 1rem; /* Sesuaikan font size */
+}
+
+.pesan-tidak-ada-bioskop i, .loading-bioskop i { /* Styling untuk ikon Font Awesome */
+    font-size: 2.5rem; /* Ukuran ikon */
+    color: var(--listbioskop-border-color); /* Warna ikon lebih soft */
+    margin-bottom: 15px;
+    display: block;
+}
+.loading-bioskop i { /* Khusus untuk ikon loading */
+    color: var(--listbioskop-accent-color);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Design (Mengambil dari CSS Anda, dengan sedikit penyesuaian) */
+@media (max-width: 768px) {
+    .container {
+        /* Padding sudah di body, container tidak perlu padding horizontal lagi jika full width */
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+    .header h1 i {
+        font-size: 1.8rem;
+    }
+
+    .filter-section,
+    .cinema-list {
+        /* Jika ingin full-width di mobile, hapus margin default .container */
+        /* Atau bisa juga dengan width: 100vw; margin-left: - (padding body); jika body punya padding */
+        border-radius: var(--listbioskop-radius-main); /* Tetap beri radius jika tidak full bleed */
+        margin-bottom: 20px;
+    }
+
+    .city-selector {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px; /* Kurangi gap */
+    }
+
+    #citySelect {
+        min-width: 100%; /* Select full width */
+    }
+
+    .item-bioskop {
+        padding: 15px 20px; /* Padding lebih kecil */
+    }
+
+    .nama-bioskop {
+        font-size: 0.95rem;
+    }
+    .alamat-bioskop {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px; /* Sesuaikan padding body */
+    }
+
+    .header {
+        margin-bottom: 20px;
+    }
+    .header h1 {
+        font-size: 1.8rem;
+    }
+     .header h1 i {
+        font-size: 1.6rem;
+    }
+    .header p {
+        font-size: 1rem;
+    }
+
+    .filter-section,
+    .cinema-list {
+        padding: 20px; /* Padding internal section */
+    }
+    #cinemaListTitle {
+        padding: 15px 20px;
+        font-size: 1.2rem;
+    }
+
+    .item-bioskop {
+        padding: 12px 15px;
+    }
+    /* Ikon di dalam item bioskop tidak ada di HTML yang di-generate bioskop.js saya,
+       tapi jika Anda menambahkannya: */
+    /* .cinema-icon { font-size: 1.5rem; margin-right: 15px; } */
+}

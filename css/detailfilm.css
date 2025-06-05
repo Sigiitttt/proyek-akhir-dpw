@@ -1,0 +1,604 @@
+/* GLOBAL STYLES & VARIABLES */
+:root {
+    --primary-color: #0d6efd; /* Biru primer untuk tombol dan aksen */
+    --secondary-color: #6c757d; /* Abu-abu untuk elemen sekunder */
+    --background-color: #121212; /* Latar belakang gelap utama */
+    --surface-color: #1e1e1e; /* Warna permukaan untuk kartu, modal, dll. */
+    --text-color: #ffffff; /* Warna teks utama */
+    --text-secondary-color: #c5c5c5; /* Warna teks sekunder */
+    --accent-color: #fca311; /* Warna aksen (misal: rating, highlight) */
+    --border-radius: 8px;
+    --font-family: 'Roboto', sans-serif; /* Ganti dengan font pilihan Anda */
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+h1, h2, h3 {
+    color: #ffffff;
+    margin-bottom: 0.8em;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* LOADING & NOT FOUND STATES */
+.loading-state, .not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    text-align: center;
+}
+
+.loading-spinner {
+    border: 6px solid var(--surface-color);
+    border-top: 6px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.not-found-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* HERO SECTION */
+.film-hero {
+    position: relative;
+    padding: 60px 0;
+    min-height: 70vh; /* Sesuaikan tinggi sesuai kebutuhan */
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.film-hero-bg { /* Ini adalah elemen yang background image-nya di-set oleh JS */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.film-hero::before { /* Overlay gelap */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Overlay lebih gelap */
+    z-index: 2;
+}
+
+.film-hero .container {
+    position: relative;
+    z-index: 3;
+}
+
+.film-hero-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; /* Poster dan info tidak harus sama tinggi */
+}
+
+.film-poster {
+    flex-shrink: 0;
+    position: relative;
+}
+
+.film-poster img {
+    width: 280px; /* Lebar poster */
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+.film-rating {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+.film-rating .rating-star {
+    margin-right: 5px;
+    font-size: 1rem; /* Ukuran bintang sedikit lebih besar */
+    color: #fff; /* Bintang putih jika background aksen */
+}
+
+.film-info {
+    flex-grow: 1;
+}
+
+.film-info h1 {
+    font-size: 2.8rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.film-meta {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px; /* Jarak antar item meta */
+    flex-wrap: wrap; /* Agar wrap jika terlalu banyak item */
+}
+
+.film-meta .meta-item {
+    font-size: 0.95rem;
+    color: var(--text-secondary-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.film-crew p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+.film-crew strong {
+    color: var(--text-color);
+}
+.film-crew span {
+    color: var(--text-secondary-color);
+}
+
+.film-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* BUTTON STYLES */
+.btn, .booking-btn, .tab-button, .slot-waktu {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-primary, .booking-btn { /* Tombol utama */
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.btn-primary:hover, .booking-btn:hover {
+    background-color: #0b5ed7; /* Warna hover lebih gelap */
+    transform: translateY(-1px);
+}
+
+.btn-secondary { /* Tombol Trailer */
+    background-color: var(--accent-color);
+    color: var(--background-color); /* Teks gelap agar kontras */
+}
+.btn-secondary:hover {
+    background-color: #e08e0b;
+    transform: translateY(-1px);
+}
+
+.btn-outline { /* Tombol Favorit */
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-1px);
+}
+.btn-outline.aktif { /* Jika film sudah jadi favorit */
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+/* TAB NAVIGATION */
+.tab-navigation {
+    background-color: var(--surface-color);
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+    margin-bottom: 30px;
+}
+
+.tab-nav {
+    display: flex;
+    justify-content: center; /* Pusatkan tombol tab */
+    gap: 10px; /* Jarak antar tombol tab */
+    width: 90%;
+    max-width: 600px; /* Batasi lebar kontainer tab */
+    margin: 0 auto;
+}
+
+.tab-button {
+    background-color: transparent;
+    color: var(--text-secondary-color);
+    padding: 12px 25px;
+    border: none;
+    border-bottom: 3px solid transparent; /* Indikator tidak aktif */
+    font-size: 1rem;
+    text-transform: none;
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color); /* Indikator aktif */
+    font-weight: bold;
+}
+
+.tab-button:hover:not(.active) {
+    color: var(--text-color);
+}
+
+/* TAB CONTENT */
+.tab-pane {
+    display: none; /* Sembunyikan semua pane secara default */
+    padding: 20px;
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+}
+
+.tab-pane.active {
+    display: block; /* Tampilkan pane yang aktif */
+}
+
+.film-synopsis h2, .showtimes h2, .related-films h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.film-synopsis p {
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+    text-align: justify;
+}
+
+/* SHOWTIMES SECTION */
+.showtimes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Jarak antar bioskop */
+}
+
+.item-jadwal {
+    background-color: #2a2a2a; /* Warna sedikit berbeda untuk item jadwal */
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.header-jadwal {
+    margin-bottom: 15px;
+}
+.header-jadwal h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+.tanggal-jadwal {
+    font-size: 0.9rem;
+    color: var(--text-secondary-color);
+}
+
+.slot-waktu-jadwal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.slot-waktu {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    border: 1px solid transparent;
+    text-transform: none;
+}
+.slot-waktu:hover {
+    background-color: #5a6268;
+}
+.slot-waktu.terpilih {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* RELATED FILMS (Styling untuk gridnya, kartu film akan mengikuti style dari film.js/main.js) */
+.films-grid {
+    display: grid;
+    /* Opsi 1: Kartu sedikit lebih kecil */
+    /* grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); */
+
+    /* Opsi 2: Kartu lebih kecil lagi */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px; /* Jarak antar kartu */
+}
+//* ... CSS Anda yang lain ... */
+
+/* RELATED FILMS */
+.related-films { /* Ini sudah ada di CSS Anda, mungkin perlu sedikit penyesuaian margin/padding */
+    padding: 30px 0; /* Tambah padding atas bawah */
+    border-top: 1px solid var(--surface-color); /* Garis pemisah */
+    margin-top: 40px; /* Jarak dari konten di atasnya */
+}
+
+.related-films h2 { /* Style untuk judul "Film Lainnya" */
+    font-size: 1.75rem; /* Sesuaikan ukuran judul */
+    margin-bottom: 25px; /* Jarak ke grid film */
+    color: var(--text-color);
+}
+
+/* Style untuk Kartu Film di bagian Film Lainnya */
+.kartu-film {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Penting agar poster tidak keluar dari border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer; /* Tambahkan cursor pointer */
+    display: flex; /* Untuk mengatur tata letak vertikal konten */
+    flex-direction: column;
+}
+
+.kartu-film:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.kartu-film .poster-film { /* Wrapper untuk gambar poster */
+    width: 100%;
+    padding-top: 150%; /* Aspect ratio 2:3 (tinggi 1.5x lebar). Sesuaikan jika poster Anda beda. */
+    position: relative;
+    background-color: #333; /* Fallback jika gambar tidak ada */
+}
+
+.kartu-film .poster-film img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pastikan gambar mengisi area tanpa distorsi */
+    display: block;
+}
+
+.kartu-film .info-film-kartu {
+    padding: 12px; /* Padding lebih kecil untuk kartu yang lebih kecil */
+    flex-grow: 1; /* Agar info mengisi sisa ruang jika kartu memiliki tinggi tetap */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Sebarkan konten di dalam info */
+}
+
+.kartu-film .info-film-kartu .judul-film-kartu { /* Target judul di kartu */
+    font-size: 0.95rem; /* Ukuran font judul lebih kecil */
+    color: var(--text-color);
+    margin-bottom: 5px;
+    font-weight: 600; /* Bold untuk judul */
+    /* Batasi teks jika terlalu panjang */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kartu-film .info-film-kartu .genre-film-kartu,
+.kartu-film .info-film-kartu .rating-film-kartu, /* Asumsi ada kelas ini jika menampilkan rating di kartu */
+.kartu-film .info-film-kartu .meta-film-kartu { /* Asumsi ada kelas ini untuk tahun/durasi */
+    font-size: 0.8rem; /* Font lebih kecil untuk detail */
+    color: var(--text-secondary-color);
+    margin-bottom: 4px;
+}
+/* Jika ada tombol detail di kartu, style juga: */
+.kartu-film .tombol-detail-kartu { /* Buat kelas ini jika ada tombol di kartu */
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    margin-top: auto; /* Dorong tombol ke bawah jika info-film-kartu adalah flex column */
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+}
+.kartu-film .tombol-detail-kartu:hover {
+    background-color: #0b5ed7;
+}
+
+
+/* ... CSS Anda yang lain untuk .films-grid ... */
+/* TRAILER MODAL */
+.modal {
+    /* display: none; (sudah diatur oleh JS) */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.85); /* Latar belakang lebih gelap */
+    display: flex; /* Untuk memusatkan modal-content (JS juga mengatur ini) */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    margin: auto;
+    padding: 0; /* Hapus padding agar video bisa full */
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 800px; /* Lebar maksimum modal */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.modal-close {
+    color: var(--text-secondary-color);
+    font-size: 2rem;
+    font-weight: bold;
+    background: none;
+    border: none;
+    padding: 0 10px;
+}
+.modal-close:hover,
+.modal-close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 0; /* Hapus padding agar video container bisa full */
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Hilangkan border iframe */
+}
+
+/* RESPONSIVE SUGGESTIONS (Dasar) */
+@media (max-width: 768px) {
+    .film-hero-content {
+        flex-direction: column;
+        align-items: center; /* Pusatkan poster dan info di layar kecil */
+        text-align: center;
+    }
+    .film-poster img {
+        width: 220px; /* Poster lebih kecil */
+        margin-bottom: 20px;
+    }
+    .film-info h1 {
+        font-size: 2rem;
+    }
+    .film-actions {
+        justify-content: center;
+    }
+    .tab-nav {
+        max-width: 100%;
+        justify-content: space-around; /* Tombol tab agar memenuhi lebar */
+    }
+    .tab-button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    .films-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .film-info h1 {
+        font-size: 1.6rem;
+    }
+    .film-meta .meta-item, .slot-waktu, .btn, .booking-btn {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+    .modal-content {
+        width: 95%;
+    }
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Tambahkan ini agar z-index pada anak elemen bekerja baik */
+}
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.modal-close {
+    color: var(--text-secondary-color);
+    font-size: 2.2rem; /* Sedikit perbesar agar mudah di-tap/klik */
+    font-weight: bold; /* bold agar lebih terlihat */
+    background: none;
+    border: none;
+    padding: 0 10px; /* Beri sedikit padding area klik */
+    line-height: 1; /* Sesuaikan line-height */
+    cursor: pointer;
+    position: absolute; /* Posisikan absolut relatif ke modal-header */
+    top: 10px; /* Sesuaikan posisi dari atas */
+    right: 15px; /* Sesuaikan posisi dari kanan */
+    z-index: 10; /* Pastikan di atas judul header jika ada tumpang tindih */
+    transition: color 0.2s ease; /* Transisi halus */
+}
+.modal-close:hover,
+.modal-close:focus {
+    color: #fff;
+    text-decoration: none;
+}
