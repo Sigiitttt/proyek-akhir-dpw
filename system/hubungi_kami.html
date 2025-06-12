@@ -158,7 +158,6 @@
           subject.style.borderColor = '#ccc';
         }
 
-        // Validasi pesan
         if (!message.value.trim()) {
           isValid = false;
           message.style.borderColor = 'red';
@@ -166,20 +165,16 @@
           message.style.borderColor = '#ccc';
         }
 
-        // Validasi jumlah file (maks 3)
         if (screenshots.files.length > 3) {
           isValid = false;
           alert('Maksimal unggah 3 gambar tangkapan layar.');
         }
 
-        // Tampilkan pesan error jika tidak valid
         if (!isValid) {
           errorText.style.display = 'block';
         } else {
           errorText.style.display = 'none';
           alert('Formulir berhasil dikirim!');
-          // Di sini kamu bisa tambahkan pengiriman data ke server/email
-          // Contoh: document.querySelector('form').submit();
         }
       });
     });

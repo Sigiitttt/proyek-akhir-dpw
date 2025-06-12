@@ -63,12 +63,10 @@
 
   <script>
     function showTab(tabName) {
-      // Ubah tab aktif
       const tabs = document.querySelectorAll('.tab');
       tabs.forEach(tab => tab.classList.remove('active'));
       event.target.classList.add('active');
 
-      // Tampilkan konten sesuai tab
       const contents = document.querySelectorAll('.tab-content');
       contents.forEach(content => content.classList.remove('active'));
       document.getElementById(tabName).classList.add('active');

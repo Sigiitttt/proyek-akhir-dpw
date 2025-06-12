@@ -8,200 +8,183 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f8f9fa; /* Warna latar sedikit berbeda dari #f5f5f5 halaman daftar */
+    background-color: #f8f9fa;
 }
-
-/* Komentar header dan nav tetap */
-/* header { ... } */
-/* .header-content { ... } */
-/* .logo { ... } */
-/* nav ul { ... } */
-/* nav a { ... } */
-/* nav a:hover { ... } */
 
 .container {
-    max-width: 900px; /* Lebar kontainer sedikit lebih besar untuk detail */
-    margin: 2rem auto; /* Margin atas dan bawah */
-    padding: 0 20px; /* Padding horizontal */
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 20px;
 }
 
-.detail-berita { /* Sebelumnya: .news-detail */
+.detail-berita {
     background: white;
-    border-radius: 8px; /* Radius border lebih kecil */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07); /* Shadow lebih subtle */
-    margin-bottom: 2.5rem; /* Margin bawah lebih besar */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin-bottom: 2.5rem;
 }
 
-.header-detail-berita { /* Sebelumnya: .news-header */
-    padding: 2rem 2.5rem; /* Padding disesuaikan */
-    border-bottom: 1px solid #e9ecef; /* Warna border lebih soft */
+.header-detail-berita {
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid #e9ecef;
 }
 
-.breadcrumb-berita { /* Sebelumnya: .breadcrumb */
-    margin-bottom: 1.25rem; /* Margin disesuaikan */
+.breadcrumb-berita {
+    margin-bottom: 1.25rem;
 }
 
 .breadcrumb-berita a {
-    color: #007bff; /* Warna link breadcrumb standar */
+    color: #007bff;
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.2s;
 }
 
 .breadcrumb-berita a:hover {
-    color: #0056b3; /* Warna hover link */
+    color: #0056b3;
     text-decoration: underline;
 }
 
-/* .tag-kategori sudah ada di berita.css, bisa di-import atau didefinisikan ulang jika perlu sedikit beda */
-.tag-kategori { /* Gaya konsisten dengan halaman daftar, atau bisa dikustomisasi di sini */
+.tag-kategori {
     display: inline-block;
-    background: #007bff; /* Contoh warna lain untuk tag di detail */
+    background: #007bff;
     color: white;
     padding: 0.4rem 1rem;
-    border-radius: 4px; /* Bentuk tag lebih kotak */
+    border-radius: 4px;
     font-size: 0.75rem;
-    font-weight: 600; /* Lebih tebal */
+    font-weight: 600;
     margin-bottom: 1rem;
     text-transform: uppercase;
 }
 
-.judul-detail-berita { /* Sebelumnya: .news-title (untuk detail) */
-    font-size: 2.2rem; /* Ukuran font disesuaikan */
+.judul-detail-berita {
+    font-size: 2.2rem;
     margin-bottom: 1rem;
-    color: #212529; /* Warna judul lebih gelap */
+    color: #212529;
     line-height: 1.3;
-    font-weight: 700; /* Lebih tebal */
+    font-weight: 700;
 }
 
-.info-detail-berita { /* Sebelumnya: .news-info */
+.info-detail-berita {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem 1.5rem; /* Jarak antar item info */
+    gap: 0.75rem 1.5rem;
     align-items: center;
-    color: #6c757d; /* Warna teks info */
+    color: #6c757d;
     font-size: 0.9rem;
-    margin-top: 0.5rem; /* Margin dari judul */
+    margin-top: 0.5rem;
 }
 .info-detail-berita span {
     display: inline-flex;
     align-items: center;
 }
-.info-detail-berita .penulis::before, /* Contoh ikon untuk penulis, tanggal */
-.info-detail-berita .tanggal-publikasi::before {
-    /* content: '👤 '; atau ikon SVG/FontAwesome */
-    margin-right: 0.3em;
-}
 
-
-.statistik-berita { /* Sebelumnya: .news-stats (konsisten dengan halaman daftar) */
+.statistik-berita {
     display: flex;
     gap: 1rem;
-    margin-left: auto; /* Mendorong statistik ke kanan jika ada ruang */
+    margin-left: auto;
 }
 .statistik-berita span {
     font-size: 0.9rem;
     color: #6c757d;
 }
 
-
-.gambar-detail-berita { /* Sebelumnya: .news-image-detail */
+.gambar-detail-berita {
     width: 100%;
-    max-height: 500px; /* Batas tinggi maksimum gambar */
+    max-height: 500px;
     overflow: hidden;
     background-color: #e9ecef;
-    margin-bottom: 0; /* Hilangkan margin bawah jika konten langsung menyambung */
+    margin-bottom: 0;
 }
 
 .gambar-detail-berita img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Atau 'contain' jika ingin gambar utuh */
-    display: block; /* Menghilangkan spasi bawah img */
+    object-fit: cover;
+    display: block;
 }
 
-.konten-lengkap-berita { /* Sebelumnya: .news-content-detail */
-    padding: 2rem 2.5rem; /* Padding disesuaikan */
-    font-size: 1.05rem; /* Ukuran font konten sedikit disesuaikan */
-    color: #343a40; /* Warna teks konten */
+.konten-lengkap-berita {
+    padding: 2rem 2.5rem;
+    font-size: 1.05rem;
+    color: #343a40;
 }
 
 .konten-lengkap-berita p {
     margin-bottom: 1.5rem;
     text-align: justify;
-    line-height: 1.75; /* Line height lebih besar untuk readability */
+    line-height: 1.75;
 }
 .konten-lengkap-berita p:last-child {
     margin-bottom: 0;
 }
 
-.footer-detail-berita { /* Sebelumnya: .news-footer */
-    padding: 1.5rem 2.5rem; /* Padding disesuaikan */
+.footer-detail-berita {
+    padding: 1.5rem 2.5rem;
     border-top: 1px solid #e9ecef;
-    background: #f8f9fa; /* Latar footer */
+    background: #f8f9fa;
 }
 
-.tombol-aksi-berita { /* Sebelumnya: .share-buttons */
+.tombol-aksi-berita {
     display: flex;
     gap: 1rem;
-    flex-wrap: wrap; /* Agar tombol tidak overflow di mobile */
+    flex-wrap: wrap;
 }
 
 .tombol-aksi-berita button {
-    background: #007bff; /* Warna primer Bootstrap sebagai contoh */
+    background: #007bff;
     color: white;
     border: none;
-    padding: 0.75rem 1.25rem; /* Padding disesuaikan */
-    border-radius: 6px; /* Radius border disesuaikan */
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
     cursor: pointer;
-    font-weight: 500; /* Font weight disesuaikan */
-    font-size: 0.9rem; /* Ukuran font disesuaikan */
+    font-weight: 500;
+    font-size: 0.9rem;
     transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
 }
 .tombol-aksi-berita button:hover {
-    background: #0056b3; /* Warna hover lebih gelap */
+    background: #0056b3;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .tombol-aksi-berita button:active {
     background: #004085;
 }
 
-.berita-terkait { /* Sebelumnya: .related-news */
-    background: #ffffff; /* Latar berbeda dari body */
+.berita-terkait {
+    background: #ffffff;
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    margin-top: 2.5rem; /* Jarak dari detail berita utama */
+    margin-top: 2.5rem;
 }
 
 .berita-terkait h3 {
     margin-bottom: 1.5rem;
-    color: #343a40; /* Warna judul lebih gelap */
-    font-size: 1.6rem; /* Ukuran judul disesuaikan */
-    border-bottom: 2px solid #007bff; /* Aksen garis bawah */
+    color: #343a40;
+    font-size: 1.6rem;
+    border-bottom: 2px solid #007bff;
     padding-bottom: 0.5rem;
-    display: inline-block; /* Agar border-bottom sesuai lebar teks */
+    display: inline-block;
 }
 
-/* ID #wadah-berita-terkait digunakan oleh JS, styling jika perlu */
 #wadah-berita-terkait {
-    display: grid; /* Menggunakan grid untuk layout berita terkait */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsif */
-    gap: 1.5rem; /* Jarak antar item */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
 
-.item-terkait { /* Sebelumnya: .related-item */
+.item-terkait {
     display: flex;
-    flex-direction: column; /* Susun gambar di atas, konten di bawah */
-    background: #f8f9fa; /* Latar item terkait */
+    flex-direction: column;
+    background: #f8f9fa;
     border: 1px solid #e9ecef;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.25s ease-out;
-    overflow: hidden; /* Agar border-radius berlaku pada gambar */
+    overflow: hidden;
 }
 
 .item-terkait:hover {
@@ -210,15 +193,15 @@ body {
     transform: translateY(-3px);
 }
 
-.item-terkait .gambar-terkait { /* Kelas baru untuk gambar di item terkait */
+.item-terkait .gambar-terkait {
     width: 100%;
-    height: 150px; /* Tinggi gambar tetap */
+    height: 150px;
     object-fit: cover;
 }
 
-.konten-terkait { /* Sebelumnya: .related-content */
+.konten-terkait {
     padding: 1rem;
-    flex: 1; /* Agar konten mengisi sisa ruang */
+    flex: 1;
 }
 
 .konten-terkait h4 {
@@ -229,20 +212,14 @@ body {
     font-weight: 600;
 }
 
-.konten-terkait .waktu-unggah { /* Sebelumnya: .time-ago */
-    font-size: 0.75rem; /* Lebih kecil */
+.konten-terkait .waktu-unggah {
+    font-size: 0.75rem;
     color: #6c757d;
 }
 
-/* Komentar footer tetap */
-/* footer { ... } */
-
 @media (max-width: 768px) {
-    /* .header-content { ... } */
-    /* nav ul { ... } */
-
     .container {
-        padding: 1.5rem 15px; /* Padding disesuaikan */
+        padding: 1.5rem 15px;
     }
 
     .header-detail-berita,
@@ -261,16 +238,16 @@ body {
         gap: 0.5rem;
     }
     .info-detail-berita .statistik-berita {
-        margin-left: 0; /* Statistik tidak lagi float kanan di mobile */
+        margin-left: 0;
         margin-top: 0.5rem;
     }
 
     .gambar-detail-berita {
-        max-height: 300px; /* Tinggi gambar di mobile */
+        max-height: 300px;
     }
 
     .tombol-aksi-berita {
-        flex-direction: column; /* Tombol aksi menjadi full width */
+        flex-direction: column;
         align-items: stretch;
     }
     .tombol-aksi-berita button {
@@ -278,6 +255,6 @@ body {
     }
 
     #wadah-berita-terkait {
-        grid-template-columns: 1fr; /* Satu kolom di mobile */
+        grid-template-columns: 1fr;
     }
 }

@@ -6,7 +6,7 @@
     <title>Film Bioskop</title>
     <link rel="stylesheet" href="bioskop.css">
     <style>
-        /* Tambahkan style aktif untuk tombol filter */
+
         .filter-buttons button.active-button {
             background-color: #444;
             color: white;
@@ -94,15 +94,15 @@
         }
 
         function filterBioskop(button) {
-            // Hapus tombol aktif sebelumnya
+
             document.querySelectorAll('.filter-buttons button').forEach(btn => {
                 btn.classList.remove('active-button');
             });
 
-            // Tambahkan ke tombol yang diklik
+
             button.classList.add('active-button');
 
-            // Saat ini belum ada filter. Nanti bisa ditambahkan filter berdasarkan bioskop di sini
+
         }
     </script>
 </body>

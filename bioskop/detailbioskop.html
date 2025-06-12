@@ -17,7 +17,6 @@
         </div>
 
         <div class="content">
-            <!-- Maps Section -->
             <div class="section">
                 <h2 class="section-title">📍 Lokasi</h2>
                 <div id="maps-section">
@@ -25,7 +24,6 @@
                 </div>
             </div>
 
-            <!-- Schedule Section -->
             <div class="section">
                 <h2 class="section-title">🕐 Jadwal Tayang</h2>
                 <div id="schedule-section">
@@ -33,7 +31,6 @@
                 </div>
             </div>
 
-            <!-- Films Section -->
             <div class="section">
                 <h2 class="section-title">🎬 Film yang Tayang</h2>
                 <div id="films-section">
@@ -45,13 +42,11 @@
     <script src="/js/data.js"> </script>
     <script src="/js/data.js"></script>
 <script>
-    // Function to get URL parameter
     function dapatkanParameterUrl(nama) {
         const parameterUrl = new URLSearchParams(window.location.search);
         return parameterUrl.get(nama);
     }
 
-    // Function to render cinema header
     function renderHeaderBioskop(bioskop) {
         const elemenHeader = document.getElementById('cinema-header');
         if (elemenHeader && bioskop) {
@@ -67,10 +62,9 @@
         }
     }
 
-    // Function to render maps
     function renderPeta(bioskop) {
         const elemenPeta = document.getElementById('maps-section');
-        if (elemenPeta && bioskop && bioskop.mapEmbed) { // Menggunakan bioskop.mapEmbed
+        if (elemenPeta && bioskop && bioskop.mapEmbed) {
             elemenPeta.innerHTML = `
                 <div class="wadah-peta">
                     <iframe src="${bioskop.mapEmbed}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -81,8 +75,7 @@
         }
     }
 
-    // Function to render schedule
-    function renderJadwalOperasional(jadwal) { // Parameter 'jadwal' merujuk ke bioskop.schedule
+    function renderJadwalOperasional(jadwal) { 
         const elemenJadwal = document.getElementById('schedule-section');
         if (!elemenJadwal) return;
 
@@ -143,14 +136,10 @@
         elemenJadwal.innerHTML = tabelHTML;
     }
 
-    // Function to render films
     function renderDaftarFilmDiBioskop(daftarIdFilm) {
         const elemenFilm = document.getElementById('films-section');
         if (!elemenFilm) return;
         
-        // dataSemuaFilm diasumsikan menggunakan properti Bahasa Indonesia (judul, genre, durasi, rating, poster)
-        // Jika dataSemuaFilm juga propertinya Bahasa Inggris, perlu disesuaikan juga di sini.
-        // Untuk sekarang, saya asumsikan dataSemuaFilm sudah diselaraskan ke Bahasa Indonesia.
         if (typeof dataSemuaFilm === 'undefined') {
             console.error('dataSemuaFilm tidak ditemukan. Pastikan data.js sudah dimuat dengan benar.');
             elemenFilm.innerHTML = '<div class="error">Data koleksi film tidak tersedia.</div>';
@@ -170,7 +159,6 @@
                                  ? BantuanData.formatDurasi(film.durasi) 
                                  : `${film.durasi} menit`;
             const genreTampil = Array.isArray(film.genre) ? film.genre.join(', ') : 'Genre tidak diketahui';
-            // Asumsi genre di dataSemuaFilm sudah diterjemahkan jika perlu ditampilkan dalam Bahasa Indonesia di sini
 
             const pathDetailFilm = `../film/detail-film.html?id=${film.id}`; 
 
@@ -225,13 +213,11 @@
             return;
         }
 
-        // Menggunakan variabel detailSemuaBioskop (diasumsikan global dari data.js)
         if (typeof detailSemuaBioskop === 'undefined') {
             console.error('Variabel global detailSemuaBioskop TIDAK DITEMUKAN!');
             renderHalamanError('Data detail bioskop (detailSemuaBioskop) tidak tersedia.');
             return;
         }
-        // console.log("Isi detailSemuaBioskop (awal):", JSON.parse(JSON.stringify(Object.values(detailSemuaBioskop).slice(0, 2))));
         
         const bioskop = detailSemuaBioskop[idBioskop]; 
         console.log(`Mencari bioskop dengan ID '${idBioskop}' di detailSemuaBioskop.`);
@@ -242,13 +228,12 @@
             return;
         }
 
-        // Menggunakan properti Bahasa Inggris dari objek bioskop
         document.title = `${bioskop.name || 'Detail'} - Detail Bioskop`; 
 
-        renderHeaderBioskop(bioskop);    // Akan menggunakan bioskop.name, bioskop.address
-        renderPeta(bioskop);           // Akan menggunakan bioskop.mapEmbed
-        renderJadwalOperasional(bioskop.schedule); // Akan menggunakan bioskop.schedule
-        renderDaftarFilmDiBioskop(bioskop.filmIds);   // Akan menggunakan bioskop.filmIds
+        renderHeaderBioskop(bioskop);    
+        renderPeta(bioskop);           
+        renderJadwalOperasional(bioskop.schedule); 
+        renderDaftarFilmDiBioskop(bioskop.filmIds);  
         
         console.log("Semua fungsi render seharusnya sudah dipanggil.");
     }

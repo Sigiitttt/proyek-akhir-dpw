@@ -1,6 +1,3 @@
-/* TIX.ID Stylesheet Utama */
-
-/* Reset & Gaya Dasar */
 * {
     margin: 0;
     padding: 0;
@@ -14,13 +11,12 @@ body {
     background-color: #f8f9fa;
 }
 
-.container { /* 'container' tetap karena istilah umum */
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Tipografi */
 h1,
 h2,
 h3,
@@ -51,15 +47,13 @@ p {
     margin-bottom: 1rem;
 }
 
-/* Tautan */
 a {
     text-decoration: none;
     color: inherit;
     transition: all 0.3s ease;
 }
 
-/* Tombol */
-.tombol { /* .btn diubah menjadi .tombol */
+.tombol {
     display: inline-block;
     padding: 12px 24px;
     border: none;
@@ -72,110 +66,101 @@ a {
     text-decoration: none;
 }
 
-.tombol-utama { /* .btn-primary diubah menjadi .tombol-utama */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.tombol-utama {
+    background: #325498;
     color: white;
 }
 
-.tombol-utama:hover { /* .btn-primary:hover diubah menjadi .tombol-utama:hover */
+.tombol-utama:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
 }
 
-.tombol-sekunder { /* .btn-secondary diubah menjadi .tombol-sekunder */
-    background: #6c757d;
+.tombol-sekunder {
+    background: #2c4a88;
     color: white;
 }
 
-.tombol-sekunder:hover { /* .btn-secondary:hover diubah menjadi .tombol-sekunder:hover */
+.tombol-sekunder:hover {
     background: #5a6268;
     transform: translateY(-2px);
 }
 
-.tombol-kerangka { /* .btn-outline diubah menjadi .tombol-kerangka */
+.tombol-kerangka {
     background: transparent;
-    border: 2px solid #667eea;
-    color: #667eea;
+    border: 2px solid #1a2c50;
+    color: #1a2c50;
 }
 
-.tombol-kerangka:hover { /* .btn-outline:hover diubah menjadi .tombol-kerangka:hover */
+.tombol-kerangka:hover {
     background: #667eea;
     color: white;
 }
 
-.tombol-kecil { /* .btn-small diubah menjadi .tombol-kecil */
+.tombol-kecil {
     padding: 8px 16px;
     font-size: 14px;
 }
 
-.tombol.memuat { /* .btn.loading diubah menjadi .tombol.memuat (jika 'loading' juga ingin diterjemahkan) */
+.tombol.memuat {
     opacity: 0.7;
     pointer-events: none;
 }
 
-/* Kelas Utilitas */
-.rata-tengah { /* .text-center diubah menjadi .rata-tengah */
+.rata-tengah {
     text-align: center;
 }
 
-
-/* Tambahkan atau sesuaikan ini di file css/style.css Anda */
-
-/* Navbar Utama */
 .navbar-utama {
-    background-color: #ffffff; /* Warna latar navbar */
-    border-bottom: 1px solid #e0e0e0; /* Garis bawah tipis */
-    padding: 0 20px; /* Padding horizontal untuk keseluruhan navbar */
-    position: sticky; /* Membuat navbar tetap di atas saat scroll */
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 20px;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Pastikan navbar di atas konten lain */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Shadow halus */
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .navbar-utama .container {
-    display: flex; /* KUNCI: Membuat anak-anaknya (logo, menu, aksi) sebaris */
-    justify-content: space-between; /* Logo di kiri, sisanya di kanan (atau menu di tengah) */
-    align-items: center; /* Menyelaraskan item secara vertikal di tengah */
-    height: 60px; /* Tinggi navbar, sesuaikan jika perlu */
-    /* max-width sudah diatur oleh .container global Anda jika ada */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
 }
 
-/* Merek/Logo Navigasi */
 .merek-nav .logo-merek {
     text-decoration: none;
-    font-size: 1.75rem; /* Ukuran logo */
-    font-weight: 700; /* Lebih tebal */
+    font-size: 1.75rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
 }
 .merek-nav .teks-logo {
-    color: #1976d2; /* Warna TIX */
+    color: #1976d2;
 }
 .merek-nav .aksen-logo {
-    color: #FF5722; /* Warna .ID */
+    color: #FF5722;
 }
 
-/* Menu Navigasi Utama (daftar link) */
 .menu-navigasi {
-    /* flex-grow: 1; */ /* Hapus atau sesuaikan jika ingin menu tidak memenuhi semua ruang */
     display: flex;
-    justify-content: center; /* Atau 'flex-start' jika ingin menu rata kiri setelah logo */
-    margin: 0 auto; /* Ini akan membantu memusatkan jika tidak ada flex-grow */
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .daftar-tautan-nav {
     list-style: none;
-    display: flex; /* KUNCI: Membuat <li> menjadi sebaris */
+    display: flex;
     margin: 0;
     padding: 0;
-    gap: 15px; /* Jarak antar item menu */
+    gap: 15px;
 }
 
 .tautan-nav-item {
     text-decoration: none;
-    color: #333740; /* Warna link menu */
+    color: #333740;
     font-weight: 500;
     padding: 8px 12px;
     border-radius: 6px;
@@ -189,26 +174,25 @@ a {
     color: #1976d2;
 }
 
-/* Aksi Navigasi (Pengguna/Tombol Autentikasi) */
 .aksi-navigasi {
-    display: flex; /* KUNCI: Mengatur anak-anaknya sebaris */
+    display: flex;
     align-items: center;
-    gap: 12px; /* Jarak antar ikon notif, profil/tombol login */
+    gap: 12px;
 }
 
-.info-pengguna-nav { /* Wrapper untuk dropdown pengguna setelah login */
-    display: flex; /* Defaultnya flex, JS akan mengubah display: none jika tidak login */
+.info-pengguna-nav {
+    display: flex;
     align-items: center;
 }
 
-.autentikasi-nav { /* Wrapper untuk notif & ikon profil/tombol login sebelum login */
-    display: flex; /* Defaultnya flex, JS akan mengubah display: none jika sudah login */
+.autentikasi-nav {
+    display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .notifikasi-nav-item .ikon-notifikasi {
-    font-size: 1.4rem; /* Ukuran ikon lonceng */
+    font-size: 1.4rem;
     color: #5f6368;
     text-decoration: none;
     padding: 8px;
@@ -220,17 +204,16 @@ a {
     background-color: #f0f2f5;
 }
 
-/* Tombol login dan daftar di navbar (ini sudah ada di navbar.html inline style, tapi lebih baik di sini) */
 .tombol-login-nav, .tombol-daftar-nav {
-    padding: 7px 14px; /* Sedikit disesuaikan */
+    padding: 7px 14px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: 500;
-    font-size: 0.875rem; /* Sedikit lebih kecil */
+    font-size: 0.875rem;
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .tombol-login-nav {
-    border: 1px solid #d1d5db; /* Warna border lebih soft */
+    border: 1px solid #d1d5db;
     color: #1976d2;
     background-color: white;
 }
@@ -241,20 +224,16 @@ a {
 .tombol-daftar-nav.tombol-utama {
     background-color: #1976d2;
     color: white;
-    border: 1px solid transparent; /* Hilangkan border jika sudah solid */
+    border: 1px solid transparent;
 }
 .tombol-daftar-nav.tombol-utama:hover {
     background-color: #1565c0;
 }
 
-
-/* Tombol Toggle Menu Mobile (Hamburger) */
 .tombol-toggle-nav {
-    display: none; /* Sembunyikan di layar besar secara default */
-    /* ... (styling lain untuk tombol toggle seperti yang sudah Anda miliki) ... */
+    display: none;
 }
 
-/* Dropdown Pengguna */
 .dropdown-pengguna {
     position: relative;
 }
@@ -275,7 +254,7 @@ a {
 .menu-dropdown-pengguna {
     display: none;
     position: absolute;
-    top: calc(100% + 8px); /* Jarak dari tombol pengguna */
+    top: calc(100% + 8px);
     right: 0;
     background-color: white;
     border-radius: 8px;
@@ -283,7 +262,7 @@ a {
     list-style: none;
     padding: 8px 0;
     margin: 0;
-    min-width: 180px; /* Lebar dropdown */
+    min-width: 180px;
     z-index: 1010;
 }
 .menu-dropdown-pengguna.aktif { display: block; }
@@ -291,8 +270,6 @@ a {
 .menu-dropdown-pengguna li a:hover { background-color: #f0f2f5; color: #1976d2; }
 .menu-dropdown-pengguna hr { border: none; border-top: 1px solid #e0e0e0; margin: 6px 0; }
 
-
-/* Styling untuk ikon profil jika digunakan sebagai tombol login */
 .ikon-profil-nav {
     background: none; border: none; cursor: pointer; padding: 8px;
     border-radius: 50%; transition: all 0.3s; display: flex;
@@ -300,18 +277,15 @@ a {
 }
 .ikon-profil-nav:hover { background: #f0f2f5; color: #1976d2; }
 
-
-/* Media Query untuk Menampilkan Tombol Toggle dan Mengatur Menu Mobile */
-@media (max-width: 768px) { /* Sesuaikan breakpoint ini jika perlu */
+@media (max-width: 768px) {
     .menu-navigasi {
-        display: none; /* Sembunyikan menu utama di mobile */
-        /* ... (CSS lain untuk menu mobile seperti posisi absolut, dll, jika belum ada di navbar.html) ... */
+        display: none;
     }
     .menu-navigasi.aktif {
-        display: flex; /* Tampilkan menu saat aktif */
-        flex-direction: column; /* Susun item vertikal */
+        display: flex;
+        flex-direction: column;
         position: absolute;
-        top: 60px; /* Di bawah navbar */
+        top: 60px;
         left: 0;
         right: 0;
         background-color: white;
@@ -320,14 +294,14 @@ a {
         z-index: 999;
     }
     .daftar-tautan-nav {
-        flex-direction: column; /* Item <li> jadi vertikal */
+        flex-direction: column;
         width: 100%;
         gap: 0;
     }
     .tautan-nav-item {
         display: block;
         padding: 12px 20px;
-        text-align: left; /* Atau center jika preferensi */
+        text-align: left;
         border-bottom: 1px solid #f0f0f0;
     }
     .daftar-tautan-nav li:last-child .tautan-nav-item {
@@ -335,25 +309,22 @@ a {
     }
 
     .tombol-toggle-nav {
-        display: flex; /* Tampilkan tombol hamburger di mobile */
+        display: flex;
     }
 
     .aksi-navigasi .autentikasi-nav .tombol-login-nav,
     .aksi-navigasi .autentikasi-nav .tombol-daftar-nav {
-        display: none; /* Sembunyikan tombol Masuk/Daftar teks di mobile, sisakan ikon */
+        display: none;
     }
-    /* Jika Anda ingin ikon profil juga berfungsi sebagai tombol login di mobile, pastikan linknya benar */
 }
 
-
-
-.subjudul-berita-tix { /* .tix-news-subtitle diubah menjadi .subjudul-berita-tix */
+.subjudul-berita-tix {
     font-size: 1rem;
     color: #666;
     margin-bottom: 30px;
 }
 
-.lihat-semua-berita { /* .view-all-news diubah menjadi .lihat-semua-berita */
+.lihat-semua-berita {
     background: #f39c12;
     color: white;
     padding: 10px 20px;
@@ -365,24 +336,21 @@ a {
     cursor: pointer;
 }
 
-.lihat-semua-berita:hover { /* .view-all-news:hover */
+.lihat-semua-berita:hover {
     background: #e67e22;
     transform: translateY(-2px);
 }
 
-.kisi-berita { /* .news-grid diubah menjadi .kisi-berita */
+.kisi-berita {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+/* 
+#kisi-berita {
+} */
 
-/* ID kisi-berita juga perlu diperhatikan jika ada styling khusus untuk ID */
-#kisi-berita { /* #news-grid diubah menjadi #kisi-berita */
-    /* Gaya spesifik untuk ID jika ada, biasanya sama dengan kelas .kisi-berita */
-}
-
-
-.item-berita { /* .news-item diubah menjadi .item-berita (Asumsi ini adalah item dalam .kisi-berita) */
+.item-berita {
     display: flex;
     gap: 20px;
     padding: 20px;
@@ -394,24 +362,24 @@ a {
     border: 1px solid #f0f0f0;
 }
 
-.item-berita:hover { /* .news-item:hover */
+.item-berita:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-.gambar-berita { /* .news-image diubah menjadi .gambar-berita */
+.gambar-berita {
     position: relative;
     flex-shrink: 0;
 }
 
-.gambar-berita img { /* .news-image img */
+.gambar-berita img {
     width: 120px;
     height: 90px;
     object-fit: cover;
     border-radius: 8px;
 }
 
-.tag-kategori { /* .category-tag diubah menjadi .tag-kategori */
+.tag-kategori {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -423,14 +391,14 @@ a {
     font-weight: 500;
 }
 
-.konten-berita { /* .news-content diubah menjadi .konten-berita */
+.konten-berita {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.judul-berita { /* .news-title diubah menjadi .judul-berita */
+.judul-berita {
     font-size: 1.1rem;
     font-weight: 600;
     color: #333;
@@ -438,7 +406,7 @@ a {
     line-height: 1.3;
 }
 
-.ringkasan-berita { /* .news-summary diubah menjadi .ringkasan-berita */
+.ringkasan-berita {
     font-size: 0.9rem;
     color: #666;
     margin: 0;
@@ -448,62 +416,60 @@ a {
     overflow: hidden;
 }
 
-.meta-berita { /* .news-meta diubah menjadi .meta-berita */
+.meta-berita {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
 }
 
-.statistik-berita { /* .news-stats diubah menjadi .statistik-berita */
+.statistik-berita {
     display: flex;
     gap: 15px;
     font-size: 0.85rem;
     color: #888;
 }
 
-.statistik-berita span { /* .news-stats span */
+.statistik-berita span {
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
-.waktu-lalu { /* .time-ago diubah menjadi .waktu-lalu */
+.waktu-lalu {
     font-size: 0.85rem;
     color: #999;
 }
 
-
-.makanan-tix { /* .tix-food diubah menjadi .makanan-tix */
+.makanan-tix {
     padding: 60px 0;
     background: #f8f9fa;
 }
 
-.makanan-tix .container { /* .tix-food .container */
+.makanan-tix .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-/* .tajuk-makanan-tix telah ada di HTML, jika ada style khusus untuk .tix-food h2, bisa disesuaikan */
-.makanan-tix .tajuk-makanan-tix h2 { /* Merujuk ke H2 di dalam .tajuk-makanan-tix */
+.makanan-tix .tajuk-makanan-tix h2 {
     color: #333;
     font-size: 2.5rem;
     font-weight: bold;
-    margin: 0; /* Hapus jika sudah diatur di .merek-makanan-tix h2 */
+    margin: 0;
 }
 
-.subjudul-makanan-tix { /* .tix-food-subtitle diubah menjadi .subjudul-makanan-tix */
+.subjudul-makanan-tix {
     font-size: 1rem;
     color: #666;
     margin-bottom: 20px;
 }
 
-.gambar-makanan { /* .img-food diubah menjadi .gambar-makanan */
+.gambar-makanan {
     text-align: center;
 }
 
-.gambar-banner { /* .banner-image diubah menjadi .gambar-banner */
+.gambar-banner {
     max-width: 100%;
     height: auto;
     display: block;
@@ -511,8 +477,7 @@ a {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-
-.menu-dropdown { /* .dropdown-menu (Asumsi ini bagian dari navbar) */
+.menu-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
@@ -528,42 +493,41 @@ a {
     list-style: none;
 }
 
-.dropdown-nav:hover .menu-dropdown, /* .nav-dropdown:hover .dropdown-menu */
-.dropdown-nav.aktif .menu-dropdown { /* .nav-dropdown.active .dropdown-menu (Ganti .active dengan .aktif jika konsisten) */
+.dropdown-nav:hover .menu-dropdown,
+.dropdown-nav.aktif .menu-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.menu-dropdown li a { /* .dropdown-menu li a */
+.menu-dropdown li a {
     display: block;
     padding: 0.75rem 1.5rem;
     color: #333;
     transition: background 0.3s ease;
 }
 
-.menu-dropdown li a:hover { /* .dropdown-menu li a:hover */
+.menu-dropdown li a:hover {
     background: #f8f9fa;
     color: #667eea;
 }
 
-/* Menu Pengguna */
-.aksi-nav { /* .nav-actions (Asumsi ini bagian dari navbar) */
+.aksi-nav {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.autentikasi-nav { /* .nav-auth (Asumsi ini bagian dari navbar) */
+.autentikasi-nav {
     display: flex;
     gap: 0.5rem;
 }
 
-.dropdown-pengguna { /* .user-dropdown (Asumsi ini bagian dari navbar) */
+.dropdown-pengguna {
     position: relative;
 }
 
-.tombol-pengguna { /* .user-btn (Asumsi ini bagian dari navbar) */
+.tombol-pengguna {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -575,11 +539,11 @@ a {
     transition: background 0.3s ease;
 }
 
-.tombol-pengguna:hover { /* .user-btn:hover */
+.tombol-pengguna:hover {
     background: #f8f9fa;
 }
 
-.avatar-pengguna { /* .user-avatar (Asumsi ini bagian dari navbar) */
+.avatar-pengguna {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -591,7 +555,7 @@ a {
     font-size: 16px;
 }
 
-.menu-pengguna { /* .user-menu (Asumsi ini bagian dari navbar) */
+.menu-pengguna {
     position: absolute;
     top: 100%;
     right: 0;
@@ -607,32 +571,31 @@ a {
     list-style: none;
 }
 
-.menu-pengguna.aktif { /* .user-menu.active (Ganti .active dengan .aktif) */
+.menu-pengguna.aktif {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.menu-pengguna li a { /* .user-menu li a */
+.menu-pengguna li a {
     display: block;
     padding: 0.75rem 1.5rem;
     color: #333;
     transition: background 0.3s ease;
 }
 
-.menu-pengguna li a:hover { /* .user-menu li a:hover */
+.menu-pengguna li a:hover {
     background: #f8f9fa;
     color: #667eea;
 }
 
-.menu-pengguna hr { /* .user-menu hr */
+.menu-pengguna hr {
     margin: 0.5rem 0;
     border: none;
     border-top: 1px solid #eee;
 }
 
-/* Navigasi Mobile */
-.toggle-nav { /* .nav-toggle (Asumsi ini bagian dari navbar) */
+.toggle-nav {
     display: none;
     flex-direction: column;
     background: none;
@@ -641,7 +604,7 @@ a {
     padding: 0.5rem;
 }
 
-.toggle-nav span { /* .nav-toggle span */
+.toggle-nav span {
     width: 25px;
     height: 3px;
     background: #333;
@@ -649,28 +612,27 @@ a {
     transition: 0.3s;
 }
 
-/* Bagian Hero */
-.hero { /* .hero tetap */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.hero {
+    background: #1a2c50;
     color: white;
     padding: 4rem 0;
     text-align: center;
 }
 
-.konten-hero h1 { /* .hero-content h1 */
+.konten-hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease;
 }
 
-.konten-hero p { /* .hero-content p */
+.konten-hero p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
     animation: fadeInUp 1s ease 0.2s both;
 }
 
-.tombol-hero { /* .hero-buttons diubah menjadi .tombol-hero */
+.tombol-hero {
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -678,25 +640,24 @@ a {
     animation: fadeInUp 1s ease 0.4s both;
 }
 
-/* Bagian Fitur (Jika ada, 'features' tidak ada di HTML Anda, namun ada di CSS) */
-.fitur { /* .features diubah menjadi .fitur */
+.fitur {
     padding: 4rem 0;
     background: white;
 }
 
-.fitur h2 { /* .features h2 */
+.fitur h2 {
     text-align: center;
     margin-bottom: 3rem;
     color: #333;
 }
 
-.kisi-fitur { /* .features-grid diubah menjadi .kisi-fitur */
+.kisi-fitur {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
 }
 
-.kartu-fitur { /* .feature-card diubah menjadi .kartu-fitur */
+.kartu-fitur {
     text-align: center;
     padding: 2rem;
     border-radius: 12px;
@@ -705,47 +666,46 @@ a {
     border: 2px solid transparent;
 }
 
-.kartu-fitur:hover { /* .feature-card:hover */
+.kartu-fitur:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     border-color: #667eea;
     background: white;
 }
 
-.ikon-fitur { /* .feature-icon diubah menjadi .ikon-fitur */
+.ikon-fitur {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
 
-.kartu-fitur h3 { /* .feature-card h3 */
+.kartu-fitur h3 {
     color: #333;
     margin-bottom: 1rem;
 }
 
-.kartu-fitur p { /* .feature-card p */
+.kartu-fitur p {
     color: #666;
 }
 
-/* Bagian Sedang Tayang */
-.sedang-tayang { /* .now-showing diubah menjadi .sedang-tayang */
+.sedang-tayang {
     padding: 4rem 0;
     background: #f8f9fa;
 }
 
-.sedang-tayang h2 { /* .now-showing h2 */
+.sedang-tayang h2 {
     text-align: center;
     margin-bottom: 3rem;
     color: #333;
 }
 
-.kisi-film { /* .movies-grid diubah menjadi .kisi-film */
+.kisi-film {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
 
-.kartu-film { /* .movie-card diubah menjadi .kartu-film */
+.kartu-film {
     background: white;
     border-radius: 12px;
     overflow: hidden;
@@ -753,66 +713,61 @@ a {
     transition: all 0.3s ease;
 }
 
-.kartu-film:hover { /* .movie-card:hover */
+.kartu-film:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
-.poster-film { /* .movie-poster diubah menjadi .poster-film */
+.poster-film {
     position: relative;
     width: 100%;
     height: 300px;
     overflow: hidden;
 }
 
-.poster-film img { /* .movie-poster img */
+.poster-film img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.kartu-film:hover .poster-film img { /* .movie-card:hover .movie-poster img */
+.kartu-film:hover .poster-film img {
     transform: scale(1.05);
 }
 
-.info-film { /* .movie-info diubah menjadi .info-film */
+.info-film {
     padding: 1.5rem;
 }
 
-.info-film h3 { /* .movie-info h3 */
+.info-film h3 {
     margin-bottom: 0.5rem;
     color: #333;
 }
 
-
-.genre { /* .genre tetap */
+.genre {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
 
-.rating { /* .rating tetap */
+.rating {
     color: #f39c12;
     font-weight: 500;
     margin-bottom: 1rem;
 }
 
-/* Footer */
-.footer { /* .footer tetap karena istilah umum */
+.footer {
     background: #2c3e50;
     color: white;
     padding: 3rem 0;
 }
 
-/* ID wadah-footer jika ada style khusus, atau jika .footer adalah bagian dari #wadah-footer */
-.footer-utama{ /* Jika .footer adalah anak dari #wadah-footer */
-   /* Gaya spesifik */
+.footer-utama{
    background: #2c3e50;
 }
 
-
-.konten-footer { /* .footer-content diubah menjadi .konten-footer */
+.konten-footer {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -821,44 +776,43 @@ a {
     margin: 0 auto 2rem;
 }
 
-.tautan-footer { /* .footer-links diubah menjadi .tautan-footer */
+.tautan-footer {
     list-style: none;
 }
 
-.tautan-footer li { /* .footer-links li */
+.tautan-footer li {
     margin-bottom: 0.5rem;
 }
 
-.tautan-footer a { /* .footer-links a */
+.tautan-footer a {
     color: #bdc3c7;
     transition: color 0.3s ease;
 }
 
-.tautan-footer a:hover { /* .footer-links a:hover */
+.tautan-footer a:hover {
     color: #667eea;
 }
 
-.merek-footer p { /* .footer-brand p (Asumsi .footer-brand ada di HTML footer) */
+.merek-footer p {
     color: #bdc3c7;
     margin-bottom: 1rem;
 }
 
-.tautan-sosial { /* .social-links diubah menjadi .tautan-sosial */
+.tautan-sosial {
     display: flex;
     gap: 1rem;
 }
 
-.tautan-item-sosial { /* .social-link diubah menjadi .tautan-item-sosial */
+.tautan-item-sosial {
     display: inline-block;
     font-size: 1.5rem;
     transition: transform 0.3s ease;
 }
 
-.tautan-item-sosial:hover { /* .social-link:hover */
+.tautan-item-sosial:hover {
     transform: translateY(-3px);
 }
 
-/* Animasi */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -871,14 +825,13 @@ a {
     }
 }
 
-/* Desain Responsif */
 @media (max-width: 768px) {
-    .menu-nav { /* .nav-menu */
+    .menu-nav {
         position: fixed;
-        top: 70px; /* Sesuaikan jika tinggi navbar berubah */
+        top: 70px;
         left: -100%;
         width: 100%;
-        height: calc(100vh - 70px); /* Sesuaikan jika tinggi navbar berubah */
+        height: calc(100vh - 70px);
         background: white;
         flex-direction: column;
         justify-content: flex-start;
@@ -887,72 +840,72 @@ a {
         padding-top: 2rem;
     }
 
-    .menu-nav.aktif { /* .nav-menu.active (Ganti .active dengan .aktif) */
+    .menu-nav.aktif {
         left: 0;
     }
 
-    .tautan-nav { /* .nav-links */
+    .tautan-nav {
         flex-direction: column;
         width: 100%;
         text-align: center;
         gap: 0;
     }
 
-    .tautan-nav li { /* .nav-links li */
+    .tautan-nav li {
         width: 100%;
         border-bottom: 1px solid #eee;
     }
 
-    .tautan-item-nav { /* .nav-link */
+    .tautan-item-nav {
         display: block;
         padding: 1rem 2rem;
         width: 100%;
     }
 
-    .toggle-nav { /* .nav-toggle */
+    .toggle-nav {
         display: flex;
     }
 
-    .toggle-nav.aktif span:nth-child(1) { /* .nav-toggle.active span:nth-child(1) */
+    .toggle-nav.aktif span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
 
-    .toggle-nav.aktif span:nth-child(2) { /* .nav-toggle.active span:nth-child(2) */
+    .toggle-nav.aktif span:nth-child(2) {
         opacity: 0;
     }
 
-    .toggle-nav.aktif span:nth-child(3) { /* .nav-toggle.active span:nth-child(3) */
+    .toggle-nav.aktif span:nth-child(3) {
         transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    .konten-hero h1 { /* .hero-content h1 */
+    .konten-hero h1 {
         font-size: 2rem;
     }
 
-    .tombol-hero { /* .hero-buttons */
+    .tombol-hero {
         flex-direction: column;
         align-items: center;
     }
 
-    .tombol-hero .tombol { /* .hero-buttons .btn */
+    .tombol-hero .tombol {
         width: 200px;
     }
 
-    .kisi-fitur { /* .features-grid */
+    .kisi-fitur {
         grid-template-columns: 1fr;
     }
 
-    .kisi-film { /* .movies-grid */
+    .kisi-film {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
-    .konten-footer-bawah { /* .footer-bottom-content (Tidak ada di HTML, mungkin bagian dari .konten-footer atau elemen lain) */
+    .konten-footer-bawah {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
 
-    .tautan-footer-bawah { /* .footer-bottom-links (Tidak ada di HTML, mungkin bagian dari .tautan-footer atau elemen lain) */
+    .tautan-footer-bawah {
         justify-content: center;
     }
 }
@@ -966,19 +919,19 @@ a {
         padding: 2rem 0;
     }
 
-    .konten-hero h1 { /* .hero-content h1 */
+    .konten-hero h1 {
         font-size: 1.8rem;
     }
 
-    .fitur { /* .features */
+    .fitur {
         padding: 2rem 0;
     }
 
-    .sedang-tayang { /* .now-showing */
+    .sedang-tayang {
         padding: 2rem 0;
     }
 
-    .kisi-film { /* .movies-grid */
+    .kisi-film {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
@@ -987,10 +940,8 @@ a {
         padding: 2rem 0 1rem;
     }
 
-    .footer-container { /* .footer-content */
-        /* Awalnya: grid-template-columns: 1fr; (Ini mungkin keliru karena .footer-content menggunakan flex) */
-        /* Disesuaikan agar lebih masuk akal dengan flex: */
-        flex-direction: column; /* Jika ingin menumpuk elemen di layar kecil */
+    .footer-container {
+        flex-direction: column;
         gap: 1.5rem;
     }
 }

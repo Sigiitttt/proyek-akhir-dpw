@@ -1,25 +1,16 @@
-// main.js (Script Utama Aplikasi TIX.ID)
 
-// Fungsi untuk mendapatkan path dasar (base path) relatif terhadap lokasi file HTML saat ini.
-// Ini berguna untuk memuat aset seperti komponen HTML, CSS, atau gambar secara dinamis
-// dari lokasi yang benar, terlepas dari seberapa dalam file HTML berada dalam struktur folder.
-// Di main.js
 function dapatkanPathDasar() {
-    const pathHalaman = window.location.pathname; // Contoh: "/film/list-film.html" atau "/index.html"
-    const segmenPath = pathHalaman.substring(1).split('/'); // Contoh: ["film", "list-film.html"] atau ["index.html"]
+    const pathHalaman = window.location.pathname;
+    const segmenPath = pathHalaman.substring(1).split('/'); 
 
-    // Jika path hanya berisi nama file (misal "index.html") atau kosong (untuk root "/"), kita ada di root.
     if (segmenPath.length === 1 || (segmenPath.length === 0 && pathHalaman === "/")) {
         return './';
     }
 
-    // Hitung berapa banyak '../' yang dibutuhkan jika kita di subfolder.
-    // segmenPath.length - 1 adalah jumlah folder jika path diakhiri nama file.
     let kedalaman = 0;
-    // Cek apakah segmen terakhir adalah nama file (mengandung titik)
     if (segmenPath[segmenPath.length - 1].includes('.')) {
         kedalaman = segmenPath.length - 1;
-    } else { // Jika path diakhiri dengan / (folder, jarang terjadi untuk halaman HTML langsung)
+    } else {
         kedalaman = segmenPath.length;
     }
 
@@ -27,37 +18,31 @@ function dapatkanPathDasar() {
 }
 
 // Fungsi asinkron untuk memuat konten HTML dari file eksternal ke dalam elemen kontainer tertentu.
-// Parameter:
-// - urlFileHTML: String, path menuju file HTML yang akan dimuat.
-// - idKontainer: String, ID dari elemen HTML tempat konten akan disisipkan.
 async function muatKontenHTML(urlFileHTML, idKontainer) {
     try {
-        const respons = await fetch(urlFileHTML); // Mengambil file HTML
-        if (!respons.ok) { // Jika respons tidak berhasil (misal, file tidak ditemukan)
+        const respons = await fetch(urlFileHTML); 
+        if (!respons.ok) { 
             throw new Error(`Kesalahan HTTP! status: ${respons.status} saat mencoba memuat ${urlFileHTML}`);
         }
-        const kontenHtml = await respons.text(); // Mengambil konten sebagai teks
+        const kontenHtml = await respons.text(); 
         const kontainerTarget = document.getElementById(idKontainer);
         if (kontainerTarget) {
-            kontainerTarget.innerHTML = kontenHtml; // Memasukkan konten HTML ke dalam kontainer
-            // Kirim event kustom setelah konten berhasil dimuat (opsional, untuk penanganan lanjutan)
+            kontainerTarget.innerHTML = kontenHtml; 
             kontainerTarget.dispatchEvent(new CustomEvent('kontenTelahDimuat', { bubbles: true }));
         } else {
             console.error(`Error: Kontainer dengan ID '${idKontainer}' tidak ditemukan di DOM.`);
         }
     } catch (kesalahan) {
         console.error(`Gagal memuat ${urlFileHTML}:`, kesalahan);
-        // Penanganan fallback jika komponen utama gagal dimuat
         if (idKontainer === 'wadah-navbar') {
-            muatNavbarFallback(); // Memuat navbar alternatif jika navbar utama gagal
+            muatNavbarFallback(); 
         } else if (idKontainer === 'wadah-footer') {
-            muatFooterFallback(); // Memuat footer alternatif jika footer utama gagal
+            muatFooterFallback(); 
         }
     }
 }
 
-// Fungsi untuk memuat HTML navbar alternatif jika navbar utama gagal dimuat.
-// Ini memastikan pengguna tetap memiliki navigasi dasar.
+// Fungsi untuk memuat HTML navbar jika navbar utama gagal dimuat.
 function muatNavbarFallback() {
     const htmlNavbarFallback = `
         <nav class="navbar">
@@ -101,7 +86,7 @@ function muatNavbarFallback() {
     }
 }
 
-// Fungsi untuk memuat HTML footer alternatif jika footer utama gagal dimuat.
+// Fungsi untuk memuat HTML footer jika footer utama gagal dimuat.
 function muatFooterFallback() {
     const htmlFooterFallback = `
         <footer class="footer">
@@ -121,7 +106,7 @@ function muatFooterFallback() {
     }
 }
 
-// Fungsi utama untuk menginisialisasi halaman: memuat komponen dasar.
+// Fungsi utama untuk menginisialisasi halaman memuat komponen 
 function inisialisasiHalaman() {
     const pathDasar = dapatkanPathDasar();
 
@@ -129,75 +114,58 @@ function inisialisasiHalaman() {
     muatKontenHTML(`${pathDasar}components/footer.html`, 'wadah-footer');
 }
 
-// Fungsi untuk menginisialisasi event listener pada navbar utama (setelah dimuat).
-// Ini menangani interaksi pengguna seperti klik pada tombol menu mobile.
+// Fungsi untuk event listener pada navbar utama (setelah dimuat).
 function inisialisasiEventNavbar() {
-    // Pastikan ID 'toggleMenuMobile' dan 'menuNavigasiUtama' ada di file 'components/navbar.html' Anda.
-    const tombolToggleMenuMobile = document.getElementById('toggleMenuMobile'); // ID untuk tombol burger
-    const menuNavigasi = document.getElementById('menuNavigasiUtama'); // ID untuk elemen ul atau div menu
+    const tombolToggleMenuMobile = document.getElementById('toggleMenuMobile'); 
+    const menuNavigasi = document.getElementById('menuNavigasiUtama'); 
 
     if (tombolToggleMenuMobile && menuNavigasi) {
         tombolToggleMenuMobile.addEventListener('click', () => {
-            menuNavigasi.classList.toggle('aktif'); // 'aktif' adalah kelas CSS untuk menampilkan menu
-            tombolToggleMenuMobile.classList.toggle('aktif'); // Untuk mengubah tampilan tombol burger (misal, menjadi X)
+            menuNavigasi.classList.toggle('aktif'); 
+            tombolToggleMenuMobile.classList.toggle('aktif'); 
         });
     } else {
-        // console.warn("Peringatan: Tombol toggle menu mobile atau menu navigasi utama tidak ditemukan. Pastikan ID sudah benar di navbar.html.");
-    }
+
+       }
 }
 
-// Fungsi untuk menginisialisasi fungsionalitas smooth scrolling untuk tautan anchor (link internal halaman).
+// Fungsi untuk menginisialisasi fungsionalitas smooth scrolling 
 function inisialisasiScrollHalus() {
-    // Memilih semua tautan <a> yang atribut href-nya dimulai dengan '#'
     const semuaTautanAnchor = document.querySelectorAll('a[href^="#"]');
 
     semuaTautanAnchor.forEach(tautan => {
         tautan.addEventListener('click', (event) => {
-            const idTarget = tautan.getAttribute('href').substring(1); // Dapatkan ID target tanpa '#'
+            const idTarget = tautan.getAttribute('href').substring(1); 
             const elemenTarget = document.getElementById(idTarget);
 
             if (elemenTarget) {
-                event.preventDefault(); // Mencegah perilaku default tautan anchor
+                event.preventDefault(); 
                 elemenTarget.scrollIntoView({
-                    behavior: 'smooth', // Efek scroll halus
-                    block: 'start' // Posisikan elemen target di bagian atas viewport
+                    behavior: 'smooth', 
+                    block: 'start' 
                 });
             }
         });
     });
 }
 
-// Fungsi untuk menampilkan indikator loading di dalam kontainer tertentu.
-// Parameter:
-// - idKontainer: String, ID dari elemen HTML tempat indikator loading akan ditampilkan.
+// Fungsi untuk menampilkan indikator loading 
 function tampilkanIndikatorLoading(idKontainer) {
     const kontainer = document.getElementById(idKontainer);
     if (kontainer) {
-        // Menggunakan kelas '.memuat' yang telah didefinisikan di CSS,
-        // atau gaya inline sederhana jika tidak ada kelas khusus.
         kontainer.innerHTML = '<div class="memuat" style="text-align:center; padding: 20px; font-style: italic;">Sedang memuat data...</div>';
     }
 }
 
 // Event listener yang dijalankan setelah seluruh struktur DOM halaman selesai dimuat.
 document.addEventListener('DOMContentLoaded', () => {
-    inisialisasiHalaman(); // Memuat komponen navbar dan footer
+    inisialisasiHalaman(); 
 
-    // Memberi sedikit waktu tunda agar komponen HTML (navbar, footer) selesai dimuat
-    // sebelum mencoba menginisialisasi event atau merender konten dinamis.
-    // Pendekatan yang lebih baik: gunakan event 'kontenTelahDimuat' dari `muatKontenHTML`.
     setTimeout(() => {
-        // Coba inisialisasi event navbar utama.
-        // Event ini sebaiknya dipicu setelah navbar.html benar-benar dimuat dan dimasukkan ke DOM.
-        // Contoh: document.getElementById('wadah-navbar').addEventListener('kontenTelahDimuat', inisialisasiEventNavbar);
         inisialisasiEventNavbar();
-
-        // inisialisasiNavigasiAktif(); // Fungsi ini belum ada definisinya, perlu dibuat jika dibutuhkan.
         inisialisasiScrollHalus();
 
-        // Merender daftar film yang sedang tayang jika elemen kontainernya ada di halaman ini.
         if (document.querySelector('.sedang-tayang .kisi-film')) {
-            // Pastikan variabel 'dataSemuaFilm' tersedia secara global atau di-import.
             if (typeof dataSemuaFilm !== 'undefined') {
                 renderFilmSedangTayang(dataSemuaFilm);
             } else {
@@ -207,8 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Contoh untuk merender berita (jika ada dan diperlukan di halaman ini)
-        // ...
         const wadahBerita = document.getElementById('kisi-berita');
         if (wadahBerita && typeof dataSemuaBerita !== 'undefined') {
             // Pastikan fungsi renderBeritaDashboard sudah didefinisikan di main.js atau diimpor dengan benar
@@ -218,42 +184,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn("Fungsi 'renderBeritaDashboard' tidak ditemukan. Pastikan sudah didefinisikan atau diimpor ke main.js.");
             }
         }
-        // ...
 
-    }, 700); // Waktu tunda bisa disesuaikan, tergantung kecepatan load komponen.
+
+    }, 700); 
 });
 
-// Objek global AplikasiTix untuk mengelompokkan fungsi-fungsi yang mungkin perlu diakses
-// dari script lain atau dari inline event handler di HTML (meskipun praktik terakhir kurang disarankan).
 window.AplikasiTix = {
     dapatkanPathDasar,
     muatKontenHTML,
-    // periksaStatusAutentikasi, // Fungsi ini belum ada, perlu dibuat jika ada sistem login
-    // keluarSistem, // Fungsi ini belum ada, perlu dibuat
-    // tanganiPencarian, // Fungsi ini belum ada, perlu dibuat
     inisialisasiHalaman,
     inisialisasiEventNavbar,
-    renderFilmSedangTayang, // Ekspos jika ingin dipanggil dari tempat lain dengan data berbeda
+    renderFilmSedangTayang, 
     navigasiKeDetailBerita,
     navigasiKeSemuaBerita
 };
 
-// Fungsi untuk merender daftar film yang sedang tayang ke dalam DOM.
-// Parameter:
-// - dataFilm: Array of Objects, berisi data semua film yang tersedia.
 function renderFilmSedangTayang(dataFilm) {
     const wadahGridFilm = document.querySelector('.sedang-tayang .kisi-film');
     if (!wadahGridFilm) {
-        // console.warn("Peringatan: Elemen '.sedang-tayang .kisi-film' tidak ditemukan untuk merender film.");
         return;
     }
 
-    // Filter film yang statusnya "now_showing" (sedang tayang) dan ambil 4 pertama.
-    const filmSedangTayang = dataFilm // <--- DIUBAH DI SINI
+    const filmSedangTayang = dataFilm 
         .filter(film => film.status === "sedang_tayang")
         .slice(0, 4);
 
-    // Jika tidak ada film "now_showing", tampilkan 4 film pertama dari semua data sebagai fallback.
     const filmUntukDitampilkan = filmSedangTayang.length > 0 ? filmSedangTayang : dataFilm.slice(0, 4);
 
     if (filmUntukDitampilkan.length === 0) {
@@ -263,13 +218,9 @@ function renderFilmSedangTayang(dataFilm) {
 
     let htmlUntukGridFilm = '';
     filmUntukDitampilkan.forEach(film => {
-        // Pastikan genre adalah array dan gabungkan, beri nilai default jika tidak ada.
         const stringGenre = Array.isArray(film.genre) ? film.genre.join(', ') : 'Genre tidak tersedia';
-        // Tampilkan rating, beri nilai default jika tidak ada.
         const tampilanRating = `⭐ ${film.rating || 'N/A'}/10`;
-        // Path gambar poster default jika poster film tidak tersedia.
-        const pathPosterFallback = `${dapatkanPathDasar()}img/assets/poster-fallback.svg`; // Sediakan gambar fallback
-
+        const pathPosterFallback = `${dapatkanPathDasar()}img/assets/poster-fallback.svg`;
         htmlUntukGridFilm += `
             <div class="kartu-film">
                 <div class="poster-film">
@@ -289,9 +240,7 @@ function renderFilmSedangTayang(dataFilm) {
     wadahGridFilm.innerHTML = htmlUntukGridFilm;
 }
 
-// Fungsi untuk mengarahkan pengguna ke halaman detail berita tertentu.
-// Parameter:
-// - idBerita: String atau Number, ID unik dari berita yang akan ditampilkan.
+// Fungsi untuk mengarahkan pengguna ke halaman detail berita 
 function navigasiKeDetailBerita(idBerita) {
     window.location.href = `${dapatkanPathDasar()}news/news-detail.html?id=${idBerita}`;
 }
@@ -300,4 +249,3 @@ function navigasiKeDetailBerita(idBerita) {
 function navigasiKeSemuaBerita() {
     window.location.href = `${dapatkanPathDasar()}news/news.html`;
 }
-

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,6 @@
             min-height: 100vh;
         }
 
-        /* Header */
         .header {
             background-color: #fff;
             padding: 16px 20px;
@@ -55,7 +55,6 @@
             color: #333;
         }
 
-        /* Tabs */
         .tabs-container {
             background-color: #fff;
             padding: 0 20px;
@@ -97,7 +96,6 @@
             color: #1a365d;
         }
 
-        /* Main Tabs (for movie browsing page) */
         .main-tabs-container {
             background-color: #fff;
             padding: 0 20px;
@@ -139,7 +137,6 @@
             color: #1a365d;
         }
 
-        /* Filter Tabs */
         .filter-tabs-container {
             background-color: #fff;
             padding: 16px 20px;
@@ -179,7 +176,6 @@
             background: #2d4a6b;
         }
 
-        /* Content */
         .content {
             flex: 1;
             display: flex;
@@ -191,7 +187,6 @@
             min-height: calc(100vh - 140px);
         }
 
-        /* Empty State */
         .empty-state {
             max-width: 400px;
             width: 100%;
@@ -295,7 +290,6 @@
             transform: translateY(0);
         }
 
-        /* Tab Content */
         .tab-content {
             display: none;
         }
@@ -304,7 +298,6 @@
             display: block;
         }
 
-        /* Promotional Banner */
         .promo-banner {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 20px;
@@ -367,7 +360,6 @@
             opacity: 0.8;
         }
 
-        /* Movies Grid */
         .movies-container {
             padding: 20px;
         }
@@ -515,7 +507,6 @@
             background: #38a169;
         }
 
-        /* Page transition */
         .page-transition {
             position: fixed;
             top: 0;
@@ -540,7 +531,6 @@
             pointer-events: all;
         }
 
-        /* Loading Animation */
         .loading {
             display: inline-block;
             width: 20px;
@@ -552,11 +542,15 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
-        /* Empty state for movies grid */
         .movies-empty-state {
             grid-column: 1 / -1;
             text-align: center;
@@ -582,7 +576,6 @@
             line-height: 1.5;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .movies-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -656,39 +649,57 @@
             }
         }
 
-        /* Fade animations */
         .fade-in {
             animation: fadeIn 0.5s ease-in;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Toast animations */
         @keyframes slideUp {
-            from { transform: translateX(-50%) translateY(100%); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            from {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
         }
 
         @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(0); opacity: 1; }
-            to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+            from {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
+            }
         }
 
-        /* Hide elements for different pages */
-        .film-saya-page .movie-browsing-elements {
+        .film-saya-page .movie-Browse-elements {
             display: none !important;
         }
 
-        .movie-browsing-page .film-saya-elements {
+        .movie-Browse-page .film-saya-elements {
             display: none !important;
         }
     </style>
 </head>
+
 <body class="film-saya-page">
-    <!-- Page Transition Overlay -->
     <div class="page-transition" id="pageTransition">
         <div>
             <div class="loading" style="margin-bottom: 16px;"></div>
@@ -696,13 +707,11 @@
         </div>
     </div>
 
-    <!-- Header -->
     <div class="header">
         <button class="back-button" onclick="goBack()">←</button>
         <h1 class="header-title" id="headerTitle">Film Saya</h1>
     </div>
 
-    <!-- Film Saya Tabs -->
     <div class="tabs-container film-saya-elements">
         <div class="tabs">
             <button class="tab active" onclick="switchTab('watched')">SUDAH DITONTON</button>
@@ -710,16 +719,14 @@
         </div>
     </div>
 
-    <!-- Movie Browsing Main Tabs -->
-    <div class="main-tabs-container movie-browsing-elements">
+    <div class="main-tabs-container movie-Browse-elements">
         <div class="main-tabs">
             <button class="main-tab active" onclick="switchMainTab('sedang-tayang')">SEDANG TAYANG</button>
             <button class="main-tab" onclick="switchMainTab('akan-datang')">AKAN DATANG</button>
         </div>
     </div>
 
-    <!-- Filter Tabs -->
-    <div class="filter-tabs-container movie-browsing-elements">
+    <div class="filter-tabs-container movie-Browse-elements">
         <div class="filter-tabs">
             <button class="filter-tab active" onclick="filterMovies('all')">Semua Film</button>
             <button class="filter-tab" onclick="filterMovies('2d')">2D</button>
@@ -728,8 +735,7 @@
         </div>
     </div>
 
-    <!-- Promotional Banner -->
-    <div class="promo-banner movie-browsing-elements">
+    <div class="promo-banner movie-Browse-elements">
         <div class="promo-content">
             <div class="promo-title">Tonton bersama teman-temanmu!</div>
             <div class="promo-description">
@@ -740,9 +746,7 @@
         <div class="promo-icon">👥</div>
     </div>
 
-    <!-- Film Saya Content -->
     <div class="content film-saya-elements">
-        <!-- Watched Movies Tab -->
         <div id="watched-content" class="tab-content active">
             <div class="empty-state fade-in">
                 <div class="empty-icon">
@@ -757,7 +761,6 @@
             </div>
         </div>
 
-        <!-- Watchlist Tab -->
         <div id="watchlist-content" class="tab-content">
             <div class="empty-state fade-in">
                 <div class="empty-icon">
@@ -773,15 +776,12 @@
         </div>
     </div>
 
-    <!-- Movies Container -->
-    <div class="movies-container movie-browsing-elements">
+    <div class="movies-container movie-Browse-elements">
         <div class="movies-grid" id="moviesGrid">
-            <!-- Movies will be populated by JavaScript -->
         </div>
     </div>
 
     <script>
-        // Global variables
         let currentPage = 'film-saya';
         let currentTab = 'watched';
         let currentMainTab = 'sedang-tayang';
@@ -790,10 +790,8 @@
         let watchedMovies = [];
         let watchlistMovies = [];
 
-        // COMBINED MOVIE DATA - Movies from both original files
         const movies = {
             'sedang-tayang': [
-                // Movies from first file (currently playing)
                 {
                     id: 1,
                     title: 'Mission: Impossible - The Final Reckoning',
@@ -904,7 +902,6 @@
                 }
             ],
             'akan-datang': [
-                // Movies from second file (coming soon) - expanded catalog
                 {
                     id: 13,
                     title: 'GJLS: Ibuku Ibu Ibu',
@@ -1241,18 +1238,16 @@
             ]
         };
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('TIX ID Complete System loaded');
             if (currentPage === 'film-saya') {
                 loadUserMovies();
             }
         });
 
-        // Navigation functions
         function goBack() {
             console.log('Going back...');
-            if (currentPage === 'movie-browsing') {
+            if (currentPage === 'movie-Browse') {
                 navigateToFilmSaya();
             } else {
                 if (confirm('Kembali ke halaman sebelumnya?')) {
@@ -1261,66 +1256,53 @@
             }
         }
 
-        // Navigate to Film Saya page
         function navigateToFilmSaya() {
             currentPage = 'film-saya';
             document.body.className = 'film-saya-page';
             document.getElementById('headerTitle').textContent = 'Film Saya';
-            
-            // Reset Film Saya state
+
             loadUserMovies();
-            
+
             console.log('Navigated to Film Saya page');
         }
 
-        // Navigate to Movie Browsing page
-        function navigateToMovieBrowsing() {
-            currentPage = 'movie-browsing';
-            document.body.className = 'movie-browsing-page';
+        function navigateToMovieBrowse() {
+            currentPage = 'movie-Browse';
+            document.body.className = 'movie-Browse-page';
             document.getElementById('headerTitle').textContent = 'Film Bioskop';
-            
-            // Load movies for browsing
+
             loadMovies();
-            
-            console.log('Navigated to Movie Browsing page');
+
+            console.log('Navigated to Movie Browse page');
         }
 
-        // Browse movies - UPDATED TO NAVIGATE TO MOVIE BROWSING PAGE
         function browseMovies() {
             console.log('Browse movies clicked');
-            
-            // Add loading state
+
             const button = event.target;
             const originalText = button.textContent;
             button.innerHTML = '<span class="loading"></span> Loading...';
             button.disabled = true;
-            
-            // Show page transition
+
             const transition = document.getElementById('pageTransition');
             transition.classList.add('active');
-            
+
             setTimeout(() => {
-                // Reset button state
                 button.textContent = originalText;
                 button.disabled = false;
-                
-                // Hide transition
+
                 transition.classList.remove('active');
-                
-                // Navigate to movie browsing page
-                navigateToMovieBrowsing();
+
+                navigateToMovieBrowse();
             }, 1500);
         }
 
-        // Film Saya Tab switching
         function switchTab(tabName) {
-            // Update tab buttons
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             event.target.classList.add('active');
 
-            // Update tab content
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
@@ -1334,11 +1316,9 @@
             currentTab = tabName;
             console.log('Switched to tab:', tabName);
 
-            // Load content for the selected tab
             loadTabContent(tabName);
         }
 
-        // Movie Browsing Tab switching
         function switchMainTab(tabName) {
             document.querySelectorAll('.main-tab').forEach(tab => {
                 tab.classList.remove('active');
@@ -1350,7 +1330,6 @@
             loadMovies();
         }
 
-        // Filter movies
         function filterMovies(filterType) {
             document.querySelectorAll('.filter-tab').forEach(tab => {
                 tab.classList.remove('active');
@@ -1362,7 +1341,6 @@
             loadMovies();
         }
 
-        // Load tab content for Film Saya
         function loadTabContent(tabName) {
             if (tabName === 'watched') {
                 if (watchedMovies.length === 0) {
@@ -1379,31 +1357,28 @@
             }
         }
 
-        // Show empty state
         function showEmptyState(type) {
             const content = document.getElementById(type + '-content');
             const emptyState = content.querySelector('.empty-state');
-            
+
             if (emptyState) {
                 emptyState.style.display = 'block';
             }
         }
 
-        // Load user movies (simulate API call)
         function loadUserMovies() {
             setTimeout(() => {
                 loadTabContent(currentTab);
             }, 500);
         }
 
-        // Load movies for browsing page
         function loadMovies() {
             const grid = document.getElementById('moviesGrid');
             const movieList = movies[currentMainTab] || [];
-            
+
             let filteredMovies = movieList;
             if (currentFilter !== 'all') {
-                filteredMovies = movieList.filter(movie => 
+                filteredMovies = movieList.filter(movie =>
                     movie.type.includes(currentFilter)
                 );
             }
@@ -1428,7 +1403,6 @@
             });
         }
 
-        // Create movie card
         function createMovieCard(movie) {
             const card = document.createElement('div');
             card.className = 'movie-card';
@@ -1441,9 +1415,9 @@
             card.innerHTML = `
                 <div class="movie-poster">
                     <img src="${movie.poster}" 
-                         alt="${movie.title}" 
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                         crossorigin="anonymous">
+                            alt="${movie.title}" 
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            crossorigin="anonymous">
                     <div class="movie-poster-placeholder" style="display: none;">
                         ${movie.fallback}
                     </div>
@@ -1463,7 +1437,6 @@
             return card;
         }
 
-        // Generate stars
         function generateStars(rating) {
             if (rating === 0) {
                 return '<span style="color: #888; font-size: 12px;">Coming Soon</span>';
@@ -1486,7 +1459,6 @@
             return stars;
         }
 
-        // Get age rating class
         function getAgeRatingClass(ageRating) {
             switch (ageRating) {
                 case 'SU':
@@ -1500,12 +1472,11 @@
             }
         }
 
-        // Toggle favorite
         function toggleFavorite(event, movieId) {
             event.stopPropagation();
-            
+
             const button = event.target;
-            
+
             if (favoriteMovies.has(movieId)) {
                 favoriteMovies.delete(movieId);
                 button.textContent = '🤍';
@@ -1521,19 +1492,17 @@
             console.log('Favorite movies:', Array.from(favoriteMovies));
         }
 
-        // Open movie detail
         function openMovieDetail(movieId) {
             console.log('Opening movie detail for ID:', movieId);
-            
+
             const allMovies = [...movies['sedang-tayang'], ...movies['akan-datang']];
             const movie = allMovies.find(m => m.id === movieId);
-            
+
             if (movie) {
                 showMovieDetail(movie);
             }
         }
 
-        // Show movie detail modal
         function showMovieDetail(movie) {
             const modal = document.createElement('div');
             modal.style.cssText = `
@@ -1549,10 +1518,10 @@
                 justify-content: center;
                 padding: 20px;
             `;
-            
+
             const stars = generateStars(movie.rating);
             const ageRatingClass = getAgeRatingClass(movie.ageRating);
-            
+
             modal.innerHTML = `
                 <div style="
                     background: white;
@@ -1583,10 +1552,10 @@
                         position: relative;
                     ">
                         <img src="${movie.poster}" 
-                             alt="${movie.title}" 
-                             style="width: 100%; height: 100%; object-fit: cover;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                             crossorigin="anonymous">
+                                alt="${movie.title}" 
+                                style="width: 100%; height: 100%; object-fit: cover;"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                crossorigin="anonymous">
                         <div style="
                             display: none;
                             width: 100%;
@@ -1636,39 +1605,37 @@
                     </div>
                 </div>
             `;
-            
+
             modal.className = 'modal';
             document.body.appendChild(modal);
-            
-            modal.addEventListener('click', function(e) {
+
+            modal.addEventListener('click', function (e) {
                 if (e.target === modal) {
                     modal.remove();
                 }
             });
         }
 
-        // Buy ticket
         function buyTicket(movieId) {
             console.log('Buying ticket for movie ID:', movieId);
-            
+
             const modal = document.querySelector('.modal');
             if (modal) modal.remove();
-            
+
             const allMovies = [...movies['sedang-tayang'], ...movies['akan-datang']];
             const movie = allMovies.find(m => m.id === movieId);
-            
+
             if (movie && movie.rating === 0) {
                 showToast('Film belum tersedia untuk pembelian tiket');
             } else {
                 showToast('Mengarahkan ke halaman pembelian tiket...');
-                
+
                 setTimeout(() => {
                     alert('Navigasi ke halaman pembelian tiket');
                 }, 1000);
             }
         }
 
-        // Toggle favorite from modal
         function toggleFavoriteFromModal(movieId) {
             if (favoriteMovies.has(movieId)) {
                 favoriteMovies.delete(movieId);
@@ -1677,22 +1644,20 @@
                 favoriteMovies.add(movieId);
                 showToast('Film ditambahkan ke favorit');
             }
-            
+
             const button = event.target;
             button.textContent = favoriteMovies.has(movieId) ? '❤️' : '🤍';
-            
-            if (currentPage === 'movie-browsing') {
+
+            if (currentPage === 'movie-Browse') {
                 loadMovies();
             }
         }
 
-        // Create group
         function createGroup() {
             console.log('Creating group...');
             showToast('Fitur grup menonton akan segera hadir!');
         }
 
-        // Show toast notification
         function showToast(message) {
             const toast = document.createElement('div');
             toast.style.cssText = `
@@ -1709,9 +1674,9 @@
                 animation: slideUp 0.3s ease;
             `;
             toast.textContent = message;
-            
+
             document.body.appendChild(toast);
-            
+
             setTimeout(() => {
                 toast.style.animation = 'slideDown 0.3s ease';
                 setTimeout(() => {
@@ -1722,8 +1687,7 @@
             }, 3000);
         }
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 const modal = document.querySelector('.modal');
                 if (modal) {
@@ -1732,14 +1696,14 @@
                     goBack();
                 }
             }
-            
+
             if (currentPage === 'film-saya') {
                 if (e.key === 'ArrowLeft' && currentTab === 'watchlist') {
                     document.querySelector('.tab').click();
                 } else if (e.key === 'ArrowRight' && currentTab === 'watched') {
                     document.querySelectorAll('.tab')[1].click();
                 }
-            } else if (currentPage === 'movie-browsing') {
+            } else if (currentPage === 'movie-Browse') {
                 if (e.key === '1') {
                     document.querySelector('.main-tab').click();
                 } else if (e.key === '2') {
@@ -1750,8 +1714,9 @@
 
         console.log('TIX ID Complete System initialized successfully!');
         console.log('COMBINED: 12 movies in SEDANG TAYANG + 37 movies in AKAN DATANG');
-        console.log('Navigate between Film Saya and Movie Browsing pages seamlessly!');
+        console.log('Navigate between Film Saya and Movie Browse pages seamlessly!');
         console.log('All movies from both original files combined into one system!');
     </script>
 </body>
+
 </html>

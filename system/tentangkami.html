@@ -18,7 +18,6 @@
             line-height: 1.5;
         }
 
-        /* Header */
         .header {
             background-color: #fff;
             padding: 16px;
@@ -43,7 +42,6 @@
             color: #333;
         }
 
-        /* Logo Section */
         .logo-section {
             background-color: #fff;
             padding: 20px 16px;
@@ -81,7 +79,6 @@
             background-color: #f8f9fa;
         }
 
-        /* Dropdown Menu */
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -129,7 +126,6 @@
             border-bottom: none;
         }
 
-        /* Overlay for closing dropdown */
         .dropdown-overlay {
             position: fixed;
             top: 0;
@@ -144,7 +140,6 @@
             display: block;
         }
 
-        /* Breadcrumb */
         .breadcrumb {
             background-color: #fff;
             padding: 12px 16px;
@@ -162,7 +157,6 @@
             text-decoration: underline;
         }
 
-        /* Search Section */
         .search-section {
             background-color: #fff;
             padding: 16px;
@@ -196,7 +190,6 @@
             font-size: 18px;
         }
 
-        /* Content */
         .content {
             background-color: #fff;
             margin: 16px 0;
@@ -225,7 +218,6 @@
             transform: rotate(180deg);
         }
 
-        /* Expanded Articles List */
         .articles-list {
             background-color: #f8f9fa;
             border-bottom: 1px solid #e9ecef;
@@ -285,7 +277,6 @@
             border-bottom: none;
         }
 
-        /* Main Article */
         .article-section {
             padding: 24px 16px;
         }
@@ -362,7 +353,6 @@
             margin-bottom: 16px;
         }
 
-        /* Social Share */
         .social-share {
             display: flex;
             gap: 12px;
@@ -399,7 +389,6 @@
             color: white;
         }
 
-        /* Feedback Section */
         .feedback-section {
             text-align: center;
             padding: 24px 16px;
@@ -458,7 +447,6 @@
             text-decoration: underline;
         }
 
-        /* Back to Top */
         .back-to-top {
             padding: 16px;
             border-top: 1px solid #e9ecef;
@@ -474,7 +462,6 @@
             background-color: #f7fafc;
         }
 
-        /* Related Articles */
         .related-section {
             background-color: #fff;
             margin-top: 16px;
@@ -504,7 +491,6 @@
             border-bottom: none;
         }
 
-        /* Additional Related Questions */
         .related-link.sub-article {
             padding-left: 24px;
             color: #4299e1;
@@ -516,7 +502,6 @@
             text-decoration: underline;
         }
 
-        /* Comments Section */
         .comments-section {
             background-color: #fff;
             margin: 16px 0;
@@ -542,7 +527,6 @@
             font-style: italic;
         }
 
-        /* Help Center Footer */
         .help-center-footer {
             background-color: #fff;
             padding: 24px 16px;
@@ -556,7 +540,6 @@
             color: #4a5568;
         }
 
-        /* Responsive */
         @media (max-width: 480px) {
             .feedback-buttons {
                 flex-direction: column;
@@ -580,37 +563,31 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <div class="header">
         <div class="back-button" onclick="goBack()">←</div>
         <div class="header-title">Tentang Kami</div>
     </div>
 
-    <!-- Logo Section -->
     <div class="logo-section">
         <div class="logo">
             <span class="tix">TIX</span> <span class="id">ID</span>
         </div>
         <div class="menu-button" onclick="toggleDropdownMenu()">☰</div>
         
-        <!-- Dropdown Menu -->
         <div class="dropdown-menu" id="dropdownMenu">
             <div class="dropdown-item" onclick="navigateToLogin()">Masuk</div>
             <div class="dropdown-item" onclick="navigateToRequest()">Kirim permintaan</div>
         </div>
     </div>
 
-    <!-- Dropdown Overlay -->
     <div class="dropdown-overlay" id="dropdownOverlay" onclick="closeDropdownMenu()"></div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
         <a href="#" onclick="navigateTo('bantuan')">Pusat Bantuan TIX ID</a> > 
         <a href="#" onclick="navigateTo('tentang')">Tentang Kami</a> > 
         <span>Tentang TIXid</span>
     </div>
 
-    <!-- Search Section -->
     <div class="search-section">
         <div class="search-box">
             <div class="search-icon">🔍</div>
@@ -618,15 +595,12 @@
         </div>
     </div>
 
-    <!-- Content -->
     <div class="content">
-        <!-- Expandable Section -->
         <div class="expandable-section" onclick="toggleSection()">
             <span>Artikel dalam bagian ini</span>
             <span class="expand-icon" id="expandIcon">⌄</span>
         </div>
 
-        <!-- Articles List (Expandable) -->
         <div class="articles-list" id="articlesList">
             <div class="articles-header">
                 <span class="articles-title">Artikel dalam bagian ini</span>
@@ -636,7 +610,6 @@
             <a href="#" class="article-link current" onclick="selectArticle('apa-itu')">Apa itu TIX ID?</a>
         </div>
 
-        <!-- Main Article -->
         <div class="article-section">
             <h1 class="article-title">Apa itu TIX ID?</h1>
             
@@ -657,7 +630,6 @@
                 <p>Aplikasi TIX ID dapat diunduh di Play Store dan App Store.</p>
             </div>
 
-            <!-- Social Share -->
             <div class="social-share">
                 <div class="social-button facebook" onclick="shareOn('facebook')" title="Share on Facebook">f</div>
                 <div class="social-button twitter" onclick="shareOn('twitter')" title="Share on Twitter">𝕏</div>
@@ -665,7 +637,6 @@
             </div>
         </div>
 
-        <!-- Feedback Section -->
         <div class="feedback-section">
             <div class="feedback-question">Apakah artikel ini membantu?</div>
             <div class="feedback-buttons">
@@ -676,14 +647,12 @@
             <a href="#" class="help-link" onclick="requestHelp()">Ada pertanyaan lagi? Kirim permintaan</a>
         </div>
 
-        <!-- Back to Top -->
         <div class="back-to-top" onclick="scrollToTop()">
             <span>Kembali ke atas</span>
             <span>↑</span>
         </div>
     </div>
 
-    <!-- Related Articles -->
     <div class="related-section">
         <h3 class="related-title">Artikel terkait</h3>
         <a href="#" class="related-link" onclick="openArticle('hubungi')">Hubungi Kami</a>
@@ -693,14 +662,12 @@
         <a href="#" class="related-link sub-article" onclick="openArticle('phone')">Bagaimana cara mengubah nomer telepon saya?</a>
     </div>
 
-    <!-- Comments Section -->
     <div class="comments-section">
         <h3 class="comments-title">Komentar</h3>
         <div class="comments-count">0 komentar</div>
         <div class="comments-disabled">Artikel ditutup - tidak bisa memberikan komentar.</div>
     </div>
 
-    <!-- Help Center Footer -->
     <div class="help-center-footer">
         <div class="help-center-title">Pusat Bantuan TIX ID</div>
     </div>
@@ -713,13 +680,11 @@
         let isArticlesExpanded = false;
         let isDropdownOpen = false;
 
-        // Navigation functions
         function goBack() {
             console.log('Going back...');
             alert('Kembali ke halaman sebelumnya');
         }
 
-        // Dropdown menu functions
         function toggleDropdownMenu() {
             const dropdown = document.getElementById('dropdownMenu');
             const overlay = document.getElementById('dropdownOverlay');
@@ -764,16 +729,13 @@
             alert(`Navigasi ke ${section}`);
         }
 
-        // Search functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const query = e.target.value;
             if (query.length > 2) {
                 console.log('Searching for:', query);
-                // Simulate search
             }
         });
 
-        // Expandable section
         function toggleSection() {
             const icon = document.getElementById('expandIcon');
             const articlesList = document.getElementById('articlesList');
@@ -804,21 +766,17 @@
         function selectArticle(articleId) {
             console.log('Selected article:', articleId);
             
-            // Remove current class from all links
             document.querySelectorAll('.article-link').forEach(link => {
                 link.classList.remove('current');
             });
             
-            // Add current class to selected link
             event.target.classList.add('current');
             
-            // Close the articles list
             closeArticlesList();
             
             alert(`Artikel "${articleId}" dipilih`);
         }
 
-        // Follow functionality
         function toggleFollow() {
             isFollowing = !isFollowing;
             const button = document.querySelector('.follow-button');
@@ -836,11 +794,9 @@
             }
         }
 
-        // Social sharing
         function shareOn(platform) {
             console.log('Sharing on:', platform);
             
-            // Add click animation
             event.target.style.transform = 'scale(0.9)';
             setTimeout(() => {
                 event.target.style.transform = '';
@@ -849,12 +805,10 @@
             alert(`Berbagi artikel di ${platform}`);
         }
 
-        // Feedback functionality
         function giveFeedback(type) {
             const yesButton = document.getElementById('yesButton');
             const noButton = document.getElementById('noButton');
             
-            // Reset buttons
             yesButton.classList.remove('selected');
             noButton.classList.remove('selected');
             
@@ -863,7 +817,7 @@
                 if (userFeedback !== 'yes') {
                     helpfulCount++;
                     if (userFeedback === 'no') {
-                        totalCount--; // Remove previous negative feedback
+                        totalCount--;
                     }
                 }
                 userFeedback = 'yes';
@@ -878,17 +832,14 @@
                 userFeedback = 'no';
             }
             
-            // Update stats
             document.getElementById('feedbackStats').textContent = 
                 `${helpfulCount} dari ${totalCount} menganggap ini berguna`;
         }
 
-        // Help request
         function requestHelp() {
             alert('Formulir permintaan bantuan akan dibuka');
         }
 
-        // Scroll to top
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -896,13 +847,11 @@
             });
         }
 
-        // Related articles
         function openArticle(articleId) {
             console.log('Opening article:', articleId);
             alert(`Membuka artikel: ${articleId}`);
         }
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             const dropdown = document.getElementById('dropdownMenu');
             const menuButton = document.querySelector('.menu-button');
@@ -912,11 +861,9 @@
             }
         });
 
-        // Initialize page
         window.addEventListener('load', function() {
             console.log('TIX ID Help page loaded');
             
-            // Add some entrance animations
             const elements = document.querySelectorAll('.article-section, .feedback-section');
             elements.forEach((el, index) => {
                 el.style.opacity = '0';
@@ -930,7 +877,6 @@
             });
         });
 
-        // Add smooth scrolling for better UX
         document.documentElement.style.scrollBehavior = 'smooth';
     </script>
 </body>

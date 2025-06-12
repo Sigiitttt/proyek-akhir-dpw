@@ -1,17 +1,16 @@
-/* Menggunakan variabel dari tema global (jika ada, sesuaikan jika :root Anda berbeda) */
 :root {
-    --primary-color: #0d6efd; /* Default jika tidak ada dari tema global */
+    --primary-color: #0d6efd;
     --secondary-color: #6c757d;
-    --background-color-page: #121212; /* Latar belakang halaman utama (gelap) */
-    --surface-color: #ffffff; /* Latar belakang kontainer utama (putih) */
+    --background-color-page: #121212;
+    --surface-color: #ffffff;
     --text-color-on-dark: #e0e0e0;
     --text-color-on-light: #333333;
     --text-secondary-on-light: #555555;
     --accent-color: #fca311;
     --gradient-header-start: #667eea;
     --gradient-header-end: #764ba2;
-    --border-radius-main: 15px; /* Untuk container utama */
-    --border-radius-card: 10px; /* Untuk kartu dan elemen lebih kecil */
+    --border-radius-main: 15px;
+    --border-radius-card: 10px;
     --box-shadow-light: 0 5px 15px rgba(0,0,0,0.05);
     --box-shadow-strong: 0 10px 25px rgba(0,0,0,0.1);
     --font-family-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,16 +24,15 @@
 
 body {
     font-family: var(--font-family-main);
-    /* Menggunakan gradient yang sudah ada, atau bisa juga var(--background-color-page) */
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); 
-    color: var(--text-color-on-light); /* Default teks untuk konten di latar putih */
+    background: #253f71;
+    color: var(--text-color-on-light);
     min-height: 100vh;
-    padding: 20px; /* Padding agar container tidak menempel di tepi viewport */
+    padding: 20px;
 }
 
 .container {
-    max-width: 900px; /* Sedikit persempit agar lebih fokus pada konten detail */
-    margin: 20px auto; /* Tambahkan margin atas bawah */
+    max-width: 900px;
+    margin: 20px auto;
     background: var(--surface-color);
     border-radius: var(--border-radius-main);
     box-shadow: var(--box-shadow-strong);
@@ -42,55 +40,55 @@ body {
 }
 
 .header {
-    background: linear-gradient(45deg, var(--gradient-header-start) 0%, var(--gradient-header-end) 100%);
-    color: white; /* Teks di header pasti putih */
+    background: #1a2c50;
+    color: white;
     padding: 30px;
     text-align: center;
 }
 
-.nama-bioskop { /* Mengganti .cinema-name agar konsisten dengan JS */
-    font-size: 2.2rem; /* Sedikit sesuaikan */
-    font-weight: 700; /* Lebih tebal */
-    margin-bottom: 8px; /* Kurangi margin bawah */
+.nama-bioskop {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-.alamat-bioskop { /* Mengganti .cinema-address */
+.alamat-bioskop {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem; /* Sedikit sesuaikan */
+    font-size: 1rem;
     opacity: 0.95;
 }
 
-.ikon-lokasi { /* Mengganti .location-icon */
+.ikon-lokasi {
     margin-right: 8px;
-    font-size: 1.1rem; /* Sedikit sesuaikan */
+    font-size: 1.1rem;
 }
 
 .content {
-    padding: 25px; /* Sedikit kurangi padding */
+    padding: 25px;
 }
 
 .section {
-    margin-bottom: 35px; /* Sedikit kurangi margin bawah */
+    margin-bottom: 35px;
 }
 .section:last-child {
-    margin-bottom: 0; /* Hapus margin bawah untuk section terakhir */
+    margin-bottom: 0;
 }
 
 .section-title {
-    font-size: 1.6rem; /* Sedikit sesuaikan */
+    font-size: 1.6rem;
     color: var(--text-color-on-light);
     margin-bottom: 18px;
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--gradient-header-start); /* Border lebih tipis */
-    display: inline-block; /* Agar border hanya selebar teks */
+    border-bottom: 2px solid var(--gradient-header-start);
+    display: inline-block;
 }
 
-.wadah-peta { /* Mengganti .maps-container agar konsisten dengan JS */
+.wadah-peta {
     width: 100%;
-    height: 300px; /* Atau bisa juga aspect-ratio */
+    height: 300px;
     border-radius: var(--border-radius-card);
     overflow: hidden;
     box-shadow: var(--box-shadow-light);
@@ -102,73 +100,73 @@ body {
     border: none;
 }
 
-.tabel-jadwal-operasional { /* Mengganti .schedule-table */
+.tabel-jadwal-operasional {
     width: 100%;
-    border-collapse: collapse; /* Sebaiknya collapse untuk tabel */
-    background: var(--surface-color); /* Pastikan background putih jika belum */
+    border-collapse: collapse;
+    background: var(--surface-color);
     border-radius: var(--border-radius-card);
-    overflow: hidden; /* Untuk border-radius pada table */
+    overflow: hidden;
     box-shadow: var(--box-shadow-light);
-    font-size: 0.95rem; /* Ukuran font tabel */
+    font-size: 0.95rem;
 }
 
 .tabel-jadwal-operasional th {
-    background: linear-gradient(45deg, var(--gradient-header-start) 0%, var(--gradient-header-end) 100%);
+    background: #1a2c50;
     color: white;
-    padding: 12px 15px; /* Sesuaikan padding header tabel */
+    padding: 12px 15px;
     text-align: left;
     font-weight: 600;
-    text-transform: uppercase; /* Styling tambahan */
+    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .tabel-jadwal-operasional td {
-    padding: 10px 15px; /* Sesuaikan padding sel tabel */
-    border-bottom: 1px solid #e9ecef; /* Warna border lebih soft */
+    padding: 10px 15px;
+    border-bottom: 1px solid #e9ecef;
     color: var(--text-secondary-on-light);
 }
 .tabel-jadwal-operasional tr:last-child td {
-    border-bottom: none; /* Hapus border untuk baris terakhir */
+    border-bottom: none;
 }
 
 .tabel-jadwal-operasional tr:hover {
-    background-color: #f1f3f5; /* Warna hover lebih soft */
+    background-color: #f1f3f5;
 }
 
-.nama-hari { /* Mengganti .day-name */
+.nama-hari {
     font-weight: 600;
     color: var(--text-color-on-light);
 }
 
-.grup-slot-waktu-operasional { /* Mengganti .time-slots */
+.grup-slot-waktu-operasional {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px; /* Jarak antar slot waktu */
+    gap: 6px;
 }
 
-.slot-waktu-operasional { /* Mengganti .time-slot */
-    background: linear-gradient(45deg, var(--gradient-header-start) 0%, var(--gradient-header-end) 90%); /* Gradient sedikit diubah */
+.slot-waktu-operasional {
+    background: #1a2c50;
     color: white;
-    padding: 4px 10px; /* Padding slot waktu */
-    border-radius: 15px; /* Bentuk pil */
+    padding: 4px 10px;
+    border-radius: 15px;
     font-size: 0.85rem;
     font-weight: 500;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.kisi-film-bioskop { /* Mengganti .films-grid */
+.kisi-film-bioskop {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Lebar min kartu film lebih kecil */
-    gap: 20px; /* Jarak antar kartu */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
 }
 
-.kartu-film-bioskop { /* Mengganti .film-card */
-    background: #f8f9fa; /* Latar kartu sedikit berbeda */
+.kartu-film-bioskop {
+    background: #f8f9fa;
     border-radius: var(--border-radius-card);
     overflow: hidden;
     box-shadow: var(--box-shadow-light);
     transition: all 0.25s ease-in-out;
-    border: 1px solid #dee2e6; /* Border halus */
+    border: 1px solid #dee2e6;
 }
 
 .kartu-film-bioskop:hover {
@@ -177,48 +175,40 @@ body {
     border-color: var(--gradient-header-start);
 }
 
-.poster-film-bioskop { /* Mengganti .film-poster (untuk img di kartu film) */
+.poster-film-bioskop {
     width: 100%;
-    height: auto; /* Biarkan tinggi otomatis atau gunakan padding-top trick untuk aspect ratio */
-    /* Jika ingin aspect ratio tetap:
-    padding-top: 150%; 
-    position: relative;
-    img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-    Untuk saat ini, kita asumsikan img langsung dengan height: auto
-    */
-    aspect-ratio: 2/3; /* Cara modern untuk aspect ratio */
+    aspect-ratio: 2/3;
     object-fit: cover;
-    display: block; /* Hilangkan spasi bawah img */
+    display: block;
 }
 
-.info-film-bioskop { /* Mengganti .film-info (untuk info di kartu film) */
-    padding: 15px; /* Padding info film */
+.info-film-bioskop {
+    padding: 15px;
 }
 
-.judul-film-bioskop { /* Mengganti .film-title (untuk judul di kartu film) */
-    font-size: 1.1rem; /* Ukuran judul di kartu */
+.judul-film-bioskop {
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-color-on-light);
     margin-bottom: 8px;
     line-height: 1.3;
 }
 
-.detail-film-bioskop p { /* Wrapper untuk genre, durasi, rating di kartu */
+.detail-film-bioskop p {
     font-size: 0.85rem;
     color: var(--text-secondary-on-light);
     margin-bottom: 4px;
 }
 .detail-film-bioskop p:last-child {
-    margin-bottom: 12px; /* Jarak ke tombol detail */
+    margin-bottom: 12px;
 }
 
-
-.tombol-detail-bioskop { /* Mengganti .detail-btn */
-    background: linear-gradient(45deg, var(--gradient-header-start) 0%, var(--gradient-header-end) 100%);
+.tombol-detail-bioskop {
+    background: #1a2c50;
     color: white;
-    padding: 8px 18px; /* Padding tombol */
+    padding: 8px 18px;
     border: none;
-    border-radius: 20px; /* Border radius tombol */
+    border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
     text-decoration: none;
@@ -228,34 +218,32 @@ body {
 }
 
 .tombol-detail-bioskop:hover {
-    transform: translateY(-2px) scale(1.02); /* Efek hover lebih menarik */
+    transform: translateY(-2px) scale(1.02);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.loading, .error, .info { /* Style untuk pesan loading, error, info */
+.loading, .error, .info {
     text-align: center;
     padding: 40px 20px;
     font-size: 1.1rem;
     color: var(--text-secondary-on-light);
 }
 .error {
-    color: #e74c3c; /* Warna merah untuk error */
+    color: #e74c3c;
 }
-.loading i, .error i, .info i { /* Jika menggunakan ikon Font Awesome */
+.loading i, .error i, .info i {
     font-size: 2rem;
     margin-bottom: 10px;
     display: block;
-    color: var(--primary-color); /* Ikon dengan warna primer */
+    color: var(--primary-color);
 }
 .error i {
     color: #e74c3c;
 }
 
-
-/* Responsive Adjustments (sudah ada, bisa disesuaikan lebih lanjut) */
 @media (max-width: 768px) {
     .nama-bioskop {
-        font-size: 1.8rem; /* Ukuran font lebih kecil di mobile */
+        font-size: 1.8rem;
     }
     .alamat-bioskop {
         flex-direction: column;
@@ -269,20 +257,17 @@ body {
         font-size: 1.4rem;
     }
     .tabel-jadwal-operasional {
-        font-size: 0.85rem; /* Font tabel lebih kecil */
+        font-size: 0.85rem;
     }
     .tabel-jadwal-operasional th, .tabel-jadwal-operasional td {
         padding: 8px 10px;
-    }
-    .grup-slot-waktu-operasional {
-        /* Tidak perlu flex-direction: column, biarkan wrap */
     }
     .slot-waktu-operasional {
         padding: 4px 8px;
         font-size: 0.8rem;
     }
     .kisi-film-bioskop {
-        grid-template-columns: 1fr; /* 1 kolom di mobile */
+        grid-template-columns: 1fr;
         gap: 15px;
     }
     .judul-film-bioskop {
@@ -291,13 +276,9 @@ body {
 }
 
 @media (max-width: 480px) {
-    body { padding: 10px; } /* Kurangi padding body di layar sangat kecil */
+    body { padding: 10px; }
     .container { margin: 10px auto; }
     .header { padding: 20px; }
     .nama-bioskop { font-size: 1.6rem; }
     .section-title { font-size: 1.3rem; }
-    .poster-film-bioskop {
-        /* Jika menggunakan padding-top untuk aspect ratio, tidak perlu height */
-        /* height: 180px;  Atau sesuaikan */
-    }
 }

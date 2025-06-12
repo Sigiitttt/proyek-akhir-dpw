@@ -1,235 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Menu Makanan</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Makanan</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Modal Trigger -->
-  <input type="checkbox" id="toggleMenu">
-
-  <div class="header">
-    <h1>MENU MAKANAN XXI</h1>
-    <p>Jam operasional F&amp;B 11:00 - 20:40 WIB</p>
-  </div>
-
-  <div class="menu-section" id="combo">
-    <h2>Combo</h2>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Combo A</h3>
-        <p>Popcorn Small Salt + XXI Java Tea/Soft Drink Small</p>
-        <div class="combo-price">Rp45.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
+    <div class="header">
+        <h1>MENU MAKANAN XXI</h1>
+        <p>Jam operasional F&B 11:00 - 20:40 WIB</p>
     </div>
 
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Combo B</h3>
-        <p>Popcorn Small Sweet Glaze + XXI Java Tea/Soft Drink Small</p>
-        <div class="combo-price">Rp50.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
+    <div class="container-utama">
+        <h2>Pilih Pesanan Anda</h2>
+        <div class="menu-grid">
+            
+            <a href="../booking/ringkasan order makanan.html?nama=Combo A&harga=45000" class="item-makanan">
+                <img src="" alt="Combo A">
+                <div class="item-details">
+                    <h3>Combo A</h3>
+                    <p>Popcorn Small Salt + Minuman</p>
+                    <div class="item-price">Rp 45.000</div>
+                </div>
+            </a>
+
+            <a href="../booking/ringkasan order makanan.html?nama=Combo B&harga=50000" class="item-makanan">
+                <img src="" alt="Combo B">
+                <div class="item-details">
+                    <h3>Combo B</h3>
+                    <p>Popcorn Small Sweet + Minuman</p>
+                    <div class="item-price">Rp 50.000</div>
+                </div>
+            </a>
+
+            <a href="../booking/ringkasan order makanan.html?nama=Popcorn BBQ&harga=40000" class="item-makanan">
+                <img src="" alt="Popcorn BBQ">
+                <div class="item-details">
+                    <h3>Popcorn BBQ</h3>
+                    <p>Renyah dengan bumbu barbeque</p>
+                    <div class="item-price">Rp 40.000</div>
+                </div>
+            </a>
+            
+            <a href="../booking/ringkasan order makanan.html?nama=Popcorn Milo&harga=60000" class="item-makanan">
+                <img src="" alt="Popcorn Milo">
+                <div class="item-details">
+                    <h3>Popcorn Milo</h3>
+                    <p>Manisnya coklat Milo favorit</p>
+                    <div class="item-price">Rp 60.000</div>
+                </div>
+            </a>
+            <a href="../booking/ringkasan order makanan.html?nama=Kentang Goreng&harga=35000" class="item-makanan">
+                <img src="" alt="Kentang Goreng">
+                <div class="item-details">
+                    <h3>Kentang Goreng</h3>
+                    <p>Renyah di luar, lembut di dalam</p>
+                    <div class="item-price">Rp 35.000</div>
+                </div>
+            </a>
+
+            <a href="../booking/ringkasan order makanan.html?nama=Hot Dog&harga=45000" class="item-makanan">
+                <img src="" alt="Hot Dog">
+                <div class="item-details">
+                    <h3>Hot Dog</h3>
+                    <p>Sosis sapi premium dengan roti lembut</p>
+                    <div class="item-price">Rp 45.000</div>
+                </div>
+            </a>
+
+            <a href="../booking/ringkasan order makanan.html?nama=Nachos Keju&harga=50000" class="item-makanan">
+                <img src="" alt="Nachos Keju">
+                <div class="item-details">
+                    <h3>Nachos Keju</h3>
+                    <p>Keripik jagung dengan saus keju hangat</p>
+                    <div class="item-price">Rp 50.000</div>
+                </div>
+            </a>
+
+            <a href="../booking/ringkasan order makanan.html?nama=Kopi Susu Aren&harga=38000" class="item-makanan">
+                <img src="" alt="Kopi Susu Aren">
+                <div class="item-details">
+                    <h3>Kopi Susu Aren</h3>
+                    <p>Paduan kopi dan manisnya gula aren</p>
+                    <div class="item-price">Rp 38.000</div>
+                </div>
+            </a>
+
+            <a href="../booking/ringkasan order makanan.html?nama=Air Mineral&harga=15000" class="item-makanan">
+                <img src="" alt="Air Mineral">
+                <div class="item-details">
+                    <h3>Air Mineral</h3>
+                    <p>Dingin dan menyegarkan</p>
+                    <div class="item-price">Rp 15.000</div>
+                </div>
+            </a>
+            
+            <a href="../booking/ringkasan order makanan.html?nama=Siomay Ayam&harga=42000" class="item-makanan">
+                <img src="" alt="Siomay Ayam">
+                <div class="item-details">
+                    <h3>Siomay Ayam</h3>
+                    <p>Siomay kukus hangat saus kacang</p>
+                    <div class="item-price">Rp 42.000</div>
+                </div>
+            </a>
+        </div>
     </div>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Combo C</h3>
-        <p>Popcorn Cornell Small + XXI Java Tea/Soft Drink Small</p>
-        <div class="combo-price">Rp55.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Snack Combo 2</h3>
-        <p>Popcorn Large Mix + 2 XXI Java Tea/Soft Drink Small</p>
-        <div class="combo-price">Rp105.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="menu-section" id="popcorn">
-    <h2>Popcorn</h2>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Popcron Toffe Nut</h3>
-        <p></p>
-        <div class="combo-price">Rp55.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Popcron BBQ</h3>
-        <p>Popcron XXI Cafe yang renyah dibalut dengan bumbu barbeque khas yang gurih, smoky dan sedikit manis</p>
-        <div class="combo-price">Rp40.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Popcron Milo Dinosaurs M</h3>
-        <p></p>
-        <div class="combo-price">Rp70.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Popcron Milo Dinosaurs </h3>
-        <p></p>
-        <div class="combo-price">Rp60.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-  </div>
-  <div class="menu-section" id="bakery">
-    <h2>Bakery & Pastry</h2>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Dark Choco Peanut</h3>
-        <p></p>
-        <div class="combo-price">Rp10.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Croffle Original (Mini)</h3>
-        <p></p>
-        <div class="combo-price">Rp25.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Java Pia Pandan</h3>
-        <p></p>
-        <div class="combo-price">Rp15.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-
-    <div class="combo">
-      <img src="">
-      <div class="combo-details">
-        <h3>Java Pia Ube</h3>
-        <p></p>
-        <div class="combo-price">Rp15.000</div>
-        <button class="btn-pesan">PESAN</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <label for="toggleMenu" class="semua-menu-btn">SEMUA MENU</label>
-    <button class="btn-lanjut" disabled>LANJUTKAN</button>
-  </div>
-
-  <!-- Modal Content -->
-  <div class="menu-modal">
-    <div class="menu-content">
-      <label for="toggleMenu" class="close-button">✕</label>
-      <div class="handle"></div>
-      <h3 class="menu-title">Semua Menu</h3>
-      <ul class="menu-list">
-        <li><a href="#combo">Combo</a></li>
-        <li><a href="#popcorn">Popcorn</a></li>
-        <li><a href="#bakery">Bakery & Pastry</a></li>
-        <!-- Tambahkan menu lainnya -->
-      </ul>
-    </div>
-  </div>
-
-  <div id="orderModal" class="modal">
-  <div class="modal-content">
-    <span id="closeModal" class="close">&times;</span>
-    <h3 id="modalTitle">Tambahkan ke keranjang?</h3>
-    <div class="modal-buttons">
-      <button id="yesButton">Ya</button>
-      <button id="noButton">Tidak</button>
-    </div>
-  </div>
-</div>
-
-  <script>
-
-    const modal       = document.getElementById('orderModal');
-    const closeModal  = document.getElementById('closeModal');
-    const modalTitle  = document.getElementById('modalTitle');
-    const yesButton   = document.getElementById('yesButton');
-    const noButton    = document.getElementById('noButton');
-
-    // Ambil semua tombol PESAN di seluruh halaman
-    const pesanButtons = document.querySelectorAll('.btn-pesan');
-
-    pesanButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const itemName = button.parentElement.querySelector('h3').textContent;
-        modalTitle.textContent = 'Tambahkan "' + itemName + '" ke keranjang?';
-        modal.style.display = 'block';
-      });
-    });
-
-    // Tombol close & tidak
-    closeModal.addEventListener('click', () => modal.style.display = 'none');
-    noButton.addEventListener('click', () => modal.style.display = 'none');
-
-    // Tombol ya
-    yesButton.addEventListener('click', () => {
-      alert('Item ditambahkan ke keranjang!');
-      modal.style.display = 'none';
-    });
-
-    // Klik luar modal
-    window.addEventListener('click', e => {
-      if (e.target === modal) modal.style.display = 'none';
-    });
-
-  // Smooth scroll and auto-close modal
-  document.querySelectorAll('.menu-list a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault(); // prevent default jump
-      const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
-      
-      // Scroll smooth ke target
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      // Tutup modal (uncheck checkbox)
-      document.getElementById('toggleMenu').checked = false;
-    });
-  });
-</script>
-
 </body>
 </html>

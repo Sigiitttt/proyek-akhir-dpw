@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lupa Password</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="auth-container">
+        <form id="forgotPasswordForm" class="auth-form">
+            <h1>Lupa Password</h1>
+            <p>Masukkan email Anda untuk menerima link reset password.</p>
+            
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email terdaftar Anda" required>
+            </div>
+            
+            <button type="submit" class="auth-button">Kirim Link</button>
+            
+            <div class="auth-footer">
+                <p><a href="login.html">Kembali ke halaman Masuk</a></p>
+            </div>
+        </form>
+    </div>
+
+<script>
+document.getElementById('forgotPasswordForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+
+    if (email === "") {
+        alert('Email harus diisi.');
+        return;
+    }
+
+    alert('Jika email terdaftar, link reset password telah dikirim! (simulasi)');
+    window.location.href = 'login.html';
+});
+</script>
+
+</body>
+</html>

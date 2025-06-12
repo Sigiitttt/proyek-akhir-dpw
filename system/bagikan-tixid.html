@@ -1,4 +1,3 @@
-<!-- SEMUA DALAM SATU FILE -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formulir TIX VIP</title>
   <style>
-    /* ...gabungkan semua style dari kedua file di sini... */
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -94,7 +92,6 @@
       display: none;
     }
 
-    /* OTP */
     .otp-inputs {
       display: flex;
       justify-content: center;
@@ -174,7 +171,6 @@
       font-weight: bold;
     }
 
-    /* Voucher & Coin */
     .progress-bar {
       background: #e0f7fa;
       border-radius: 20px;
@@ -224,7 +220,6 @@
 </head>
 <body>
   <div class="container">
-    <!-- Step 1: Form -->
     <div id="formSection">
       <div class="vip-title">TIX VIP</div>
       <p class="vip-sub">Hadiah lebih, lebih keren, lebih seru!</p>
@@ -243,7 +238,6 @@
       </form>
     </div>
 
-    <!-- Step 2: OTP Verification -->
     <div id="emailVerification">
       <h2>Verifikasi Email</h2>
       <p>Kode dikirim ke <span id="verifEmail">email</span> — <span class="timer" id="timer">15:00</span></p>
@@ -257,7 +251,6 @@
       <p id="otpMessage"></p>
     </div>
 
-    <!-- Step 3: VIP Section (Hidden First) -->
     <div id="vipSection">
       <div class="vip-title">TIX VIP</div>
       <div class="progress-bar">3 transaksi lagi untuk jadi TIX VIP+</div>
@@ -279,7 +272,6 @@
     </div>
   </div>
 
-  <!-- Success Popup -->
   <div id="successPopup">
     <div class="popup-content">
       <div class="checkmark">✅</div>

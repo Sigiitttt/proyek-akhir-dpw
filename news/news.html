@@ -38,11 +38,6 @@
     <script src="../js/main.js"></script>
     <script src="../js/film.js"></script>
     <script>
-        // Fungsi-fungsi spesifik untuk halaman daftar berita
-
-        // Pastikan BantuanData, dataSemuaBerita, renderDaftarBerita, filterBeritaBerdasarkanKategori
-        // sudah tersedia dari data.js dan film.js (atau news.js)
-
         function inisialisasiHalamanBerita() {
             console.log('DOM dimuat, menginisialisasi halaman berita');
 
@@ -55,7 +50,7 @@
 
             if (typeof renderDaftarBerita === 'function') {
                 console.log('Data berita tersedia:', dataSemuaBerita.length, 'item');
-                renderDaftarBerita(dataSemuaBerita); // Memanggil fungsi dari film.js/news.js
+                renderDaftarBerita(dataSemuaBerita);
             } else {
                 console.error('Fungsi renderDaftarBerita tidak terdefinisi.');
             }
@@ -63,26 +58,22 @@
 
         document.addEventListener('DOMContentLoaded', inisialisasiHalamanBerita);
 
-        // Handler untuk pencarian berita
-        function tanganiPencarianBerita(event) { // handleSearch -> tanganiPencarianBerita
-            const keyword = event.target.value.toLowerCase(); // query -> keyword
+        function tanganiPencarianBerita(event) {
+            const keyword = event.target.value.toLowerCase();
 
-            // Fungsi pencarian berita mungkin perlu dibuat atau disesuaikan di BantuanData
-            // Untuk sementara, kita buat placeholder atau asumsikan ada BantuanData.cariBerita(keyword)
-            if (event.key === 'Enter' || keyword.length === 0 || keyword.length > 2) { // Cari jika Enter, kosong, atau lebih dari 2 karakter
+            if (event.key === 'Enter' || keyword.length === 0 || keyword.length > 2) {
                 if (keyword.length === 0) {
                     if (typeof renderDaftarBerita === 'function' && typeof dataSemuaBerita !== 'undefined') {
                         renderDaftarBerita(dataSemuaBerita);
                     }
                 } else if (keyword.length > 2) {
-                    if (typeof BantuanData !== 'undefined' && typeof BantuanData.cariBerita === 'function') { // Asumsi ada fungsi ini di BantuanData
+                    if (typeof BantuanData !== 'undefined' && typeof BantuanData.cariBerita === 'function') {
                         const hasilPencarian = BantuanData.cariBerita(keyword);
                         if (typeof renderDaftarBerita === 'function') {
                             renderDaftarBerita(hasilPencarian);
                         }
                     } else {
                         console.warn("Fungsi BantuanData.cariBerita tidak tersedia. Menggunakan filter judul sederhana.");
-                        // Fallback filter judul sederhana jika BantuanData.cariBerita tidak ada
                         const hasilPencarianSederhana = dataSemuaBerita.filter(berita =>
                             berita.judul.toLowerCase().includes(keyword) ||
                             berita.ringkasan.toLowerCase().includes(keyword)
@@ -95,29 +86,23 @@
             }
         }
 
-        // Handler untuk filter kategori berita
-        function jalankanFilterBerita(kategori, tombol) { // filterNews -> jalankanFilterBerita, category -> kategori, button -> tombol
+        function jalankanFilterBerita(kategori, tombol) {
             document.querySelectorAll('.tombol-filter').forEach(btn => {
                 btn.classList.remove('aktif');
             });
             tombol.classList.add('aktif');
 
             if (typeof filterBeritaBerdasarkanKategori === 'function') {
-                filterBeritaBerdasarkanKategori(kategori); // Memanggil fungsi dari film.js/news.js
+                filterBeritaBerdasarkanKategori(kategori);
             } else {
                 console.error("Fungsi filterBeritaBerdasarkanKategori tidak terdefinisi.");
             }
         }
 
-        // Fungsi navigasi (jika belum ada di film.js/news.js atau ingin spesifik)
-        // Fungsi navigasiKeDetailBerita sudah ada di film.js dan diekspos ke window
-        // jadi bisa dipanggil langsung dari onclick di HTML yang dirender.
-        // Contoh: onclick="navigasiKeDetailBerita(id)"
-
-        function tesNavigasi() { // testNavigation -> tesNavigasi
+        function tesNavigasi() {
             console.log('Menguji navigasi...');
             if (typeof navigasiKeDetailBerita === 'function') {
-                navigasiKeDetailBerita(1); // Asumsi ID berita 1 ada
+                navigasiKeDetailBerita(1);
             } else {
                 console.error("Fungsi navigasiKeDetailBerita tidak terdefinisi.");
             }

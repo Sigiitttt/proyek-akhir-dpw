@@ -138,9 +138,6 @@
                     const urlParams = new URLSearchParams(window.location.search);
                     const filmId = urlParams.get('id');
                     if (filmId) {
-                        // Pastikan path ini sesuai dengan struktur folder Anda
-                        // Jika detail-film.html ada di folder /film/, maka ../booking/seat.html sudah benar
-                        // Jika tidak, sesuaikan pathnya.
                         window.location.href = `../booking/seat.html?filmId=${filmId}`;
                     } else {
                         alert('Film ID tidak ditemukan!');
@@ -148,14 +145,9 @@
                 });
             }
 
-            // Event listener untuk jadwal tayang statis (showtime-item) SEBAIKNYA DIHAPUS
-            // jika renderJadwalTayang() di film.js sudah menangani pembuatan
-            // item jadwal dengan onclick="pilihJadwalTayang(...)".
-            // Menghapus ini akan mencegah potensi konflik.
 
             document.addEventListener('click', function (e) {
                 if (e.target.closest('.showtime-item')) {
-                    // Logika ini akan ditangani oleh pilihJadwalTayang() dari film.js
                 }
             });
 

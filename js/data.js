@@ -1,7 +1,5 @@
-// data.js - Berisi data mentah aplikasi seperti daftar film, bioskop, dan berita.
-
 // Data Film
-const dataSemuaFilm = [ // filmsData -> dataSemuaFilm
+const dataSemuaFilm = [ 
     {
         id: 1,
         judul: "Avengers: Endgame",
@@ -208,94 +206,11 @@ const dataSemuaFilm = [ // filmsData -> dataSemuaFilm
                 jam: ["11:00", "14:30", "18:00", "21:30"]
             }
         ]
-    },
-    {
-        id: 7,
-        judul: "Dune: Part Two",
-        genre: ["Adventure", "Drama", "Sci-Fi"],
-        durasi: 166,
-        rating: 8.8,
-        tahun: 2024,
-        sutradara: "Denis Villeneuve",
-        pemeran: ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson", "Austin Butler", "Florence Pugh"],
-        sinopsis: "Paul Atreides bersatu dengan kaum Fremen untuk membalas dendam atas kehancuran keluarganya. Ia harus memilih antara cinta dan takdir sebagai penyelamat umat manusia sembari menghadapi peperangan antargalaksi.",
-        poster: "../img/assets/dune.jpg",
-        trailer: "https://www.youtube.com/watch?v=Way9Dexny3w",
-        status: "coming_soon",
-        jadwal: [
-            {
-                bioskop: "Cinépolis FX Sudirman",
-                tanggal: "2024-06-08",
-                jam: ["12:00", "15:30", "19:00"]
-            },
-            {
-                bioskop: "CGV AEON Mall BSD City",
-                tanggal: "2024-06-08",
-                jam: ["13:30", "17:00", "20:30"]
-            }
-        ]
-    },
-     {
-        id: 8,
-        judul: "Avatar: Fire and Ash",
-        genre: ["Sci-Fi", "Adventure", "Drama"],
-        durasi: 195,
-        rating: 8.8,
-        tahun: 2025,
-        sutradara: "James Cameron",
-        pemeran: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver", "Stephen Lang", "Kate Winslet"],
-        sinopsis: "Jake Sully dan keluarganya menjelajahi wilayah baru Pandora, menemukan suku Na'vi yang hidup di daerah vulkanik. Mereka harus menghadapi ancaman baru dari RDA yang kembali dengan teknologi yang lebih canggih.",
-        poster: "../img/assets/avatar.jpg",
-        trailer: "https://www.youtube.com/watch?v=example2",
-        status: "now_snowing",
-        jadwal: [
-            {
-                bioskop: "XXI Grand Indonesia",
-                tanggal: "2025-05-27",
-                jam: ["12:00", "16:00", "20:00"]
-            },
-            {
-                bioskop: "CGV Pacific Place",
-                tanggal: "2025-05-27",
-                jam: ["13:00", "17:00", "21:00"]
-            },
-            {
-                bioskop: "IMAX Jakarta",
-                tanggal: "2025-05-27",
-                jam: ["14:00", "18:30"]
-            }
-        ]
-    },
-     {
-        id: 9,
-        judul: "Moana 2",
-        genre: ["Animation", "Adventure", "Family"],
-        durasi: 107,
-        rating: 8.2,
-        tahun: 2025,
-        sutradara: "Dave Derrick Jr.",
-        pemeran: ["Auli'i Cravalho", "Dwayne Johnson", "Rachel House", "Temuera Morrison", "Nicole Scherzinger"],
-        sinopsis: "Moana melakukan perjalanan baru melintasi lautan untuk mencari pulau-pulau yang hilang. Bersama Maui dan teman-teman baru, dia menghadapi tantangan yang akan menguji keberanian dan kepemimpinannya.",
-        poster: "../img/assets/moana.jpg",
-        trailer: "https://www.youtube.com/watch?v=example12",
-         status: "now_snowing",
-        jadwal: [
-            {
-                bioskop: "XXI Kelapa Gading",
-                tanggal: "2025-05-27",
-                jam: ["09:30", "12:00", "14:30", "17:00"]
-            },
-            {
-                bioskop: "CGV Mall of Indonesia",
-                tanggal: "2025-05-27",
-                jam: ["10:00", "12:30", "15:00", "17:30"]
-            }
-        ]
     }
 ];
 
-// Data Detail Bioskop (sebelumnya cinemaData)
-const detailSemuaBioskop = { // cinemaData -> detailSemuaBioskop
+// Data Detail Bioskop 
+const detailSemuaBioskop = { 
     1: {
         id: 1,
         name: "GRAND GALAXY PARK XXI",
@@ -892,7 +807,7 @@ const detailSemuaBioskop = { // cinemaData -> detailSemuaBioskop
 
 
 
-const dataBioskopPerKota = { // bioskopData -> dataBioskopPerKota
+const dataBioskopPerKota = { 
      "surabaya": [
         { id: 1, nama: "GRAND GALAXY PARK XXI", kota: "surabaya" },
         { id: 2, nama: "TUNJUNGAN PLAZA XXI", kota: "surabaya" },
@@ -1002,8 +917,8 @@ const dataBioskopPerKota = { // bioskopData -> dataBioskopPerKota
 
 
 
-// Daftar Kota yang Tersedia (sebelumnya kotaList)
-const daftarKotaTersedia = { // kotaList -> daftarKotaTersedia
+// Daftar Kota 
+const daftarKotaTersedia = {
     "jakarta": "Jakarta",
     "bogor": "Bogor",
     "depok": "Depok",
@@ -1033,20 +948,20 @@ const daftarKotaTersedia = { // kotaList -> daftarKotaTersedia
     "cilegon": "Cilegon"
 };
 
-// Data Berita Film (sebelumnya newsData)
-const dataSemuaBerita = [ // newsData -> dataSemuaBerita
+// Data Berita Film 
+const dataSemuaBerita = [ 
     {
         id: 1,
-        judul: "HALABALA, Horor Asal Thailand Yang Ngeri Abis!", // title -> judul
+        judul: "HALABALA, Horor Asal Thailand Yang Ngeri Abis!", 
         ringkasan: "Film horor Thailand terbaru yang memberikan pengalaman menakutkan bagi penonton dengan cerita yang menegangkan dan efek visual yang memukau.", // summary -> ringkasan
         konten: `Film horor Thailand "HALABALA" telah menjadi perbincangan hangat di kalangan pecinta film horor. Dengan cerita yang mengangkat legenda lokal Thailand, film ini berhasil menghadirkan ketakutan yang autentik.\n\nDisutradarai oleh Prachya Pinkaew, film ini mengisahkan tentang sekelompok mahasiswa yang terjebak dalam ritual kuno yang mengerikan. Dengan sinematografi yang apik dan akting yang meyakinkan, HALABALA memberikan pengalaman horor yang tak terlupakan.\n\nFilm ini telah mendapat rating tinggi dari berbagai platform review film internasional dan menjadi trending topic di media sosial. Para kritikus memuji kemampuan film ini dalam memadukan horor tradisional dengan teknologi modern.\n\nBagi pecinta film horor, HALABALA wajib masuk dalam daftar tontonan. Film ini tidak hanya mengandalkan jump scare, tetapi juga membangun atmosfer mencekam yang bertahan hingga akhir film.`, // content -> konten (paragraf dipisahkan \n\n)
-        gambar: "https://via.placeholder.com/400x300/1a1a1a/ffffff?text=HALABALA", // image -> gambar
-        jumlahDilihat: "5K", // views -> jumlahDilihat
-        jumlahSuka: "8", // likes -> jumlahSuka
-        waktuUnggah: "1 hari lalu", // timeAgo -> waktuUnggah
-        kategori: "Horor", // category -> kategori, "Horror" -> "Horor"
-        penulis: "Admin TIX", // author -> penulis
-        tanggalPublikasi: "26 Mei 2025" // publishDate -> tanggalPublikasi
+        gambar: "https://via.placeholder.com/400x300/1a1a1a/ffffff?text=HALABALA", 
+        jumlahDilihat: "5K", 
+        jumlahSuka: "8", 
+        waktuUnggah: "1 hari lalu", 
+        kategori: "Horor", 
+        penulis: "Admin TIX", 
+        tanggalPublikasi: "26 Mei 2025" 
     },
     {
         id: 2,
@@ -1057,7 +972,7 @@ const dataSemuaBerita = [ // newsData -> dataSemuaBerita
         jumlahDilihat: "6K",
         jumlahSuka: "24",
         waktuUnggah: "3 hari lalu",
-        kategori: "Aksi", // "Action" -> "Aksi"
+        kategori: "Aksi", 
         penulis: "Sarah Johnson",
         tanggalPublikasi: "24 Mei 2025"
     },
@@ -1070,8 +985,8 @@ const dataSemuaBerita = [ // newsData -> dataSemuaBerita
         jumlahDilihat: "805",
         jumlahSuka: "6",
         waktuUnggah: "4 hari lalu",
-        kategori: "Keluarga", // "Family" -> "Keluarga"
-        penulis: "Tim Disney", // "Disney Team" -> "Tim Disney"
+        kategori: "Keluarga", 
+        penulis: "Tim Disney", 
         tanggalPublikasi: "23 Mei 2025"
     },
     {
@@ -1084,46 +999,43 @@ const dataSemuaBerita = [ // newsData -> dataSemuaBerita
         jumlahSuka: "1",
         waktuUnggah: "4 hari lalu",
         kategori: "Horor",
-        penulis: "Berita Game", // "Game News" -> "Berita Game"
+        penulis: "Berita Game", 
         tanggalPublikasi: "23 Mei 2025"
     },
     {
         id: 5,
-        judul: "Sejak Kapan Emu Akan Berkolaborasi Untuk Anak Yang Hilang", // Judul agak aneh, mungkin "Sejak Kapan: Kolaborasi Emu untuk Anak yang Hilang"
-        ringkasan: "Film drama terbaru yang mengangkat isu sosial tentang anak hilang dengan pendekatan yang sensitif dan penuh empati.",
+        judul: "Sejak Kapan Emu Akan Berkolaborasi Untuk Anak Yang Hilang", 
         konten: `Film "Sejak Kapan" mengangkat isu sensitif tentang anak hilang dengan pendekatan yang sangat humanis dan penuh empati. Sutradara muda berbakat berhasil menghadirkan cerita yang menyentuh hati namun tidak eksploitatif.\n\nFilm ini bercerita tentang perjuangan seorang ibu dalam mencari anaknya yang hilang, serta dampak psikologis yang dialami oleh keluarga dan masyarakat sekitar. Akting yang natural dari seluruh cast membuat emosi penonton ikut terbawa.\n\nCinematography yang indah kontras dengan tema berat yang diangkat, menciptakan visual yang memukau namun tetap menghormati keseriusan topik. Film ini juga menghadirkan pesan tentang pentingnya kepedulian sosial dan kekuatan komunitas.\n\nDiharapkan film ini dapat meningkatkan awareness masyarakat tentang isu anak hilang dan mendorong partisipasi aktif dalam menjaga keamanan anak-anak di lingkungan sekitar.`,
         gambar: "https://via.placeholder.com/400x300/708090/ffffff?text=Sejak+Kapan",
         jumlahDilihat: "450",
         jumlahSuka: "12",
         waktuUnggah: "5 hari lalu",
         kategori: "Drama",
-        penulis: "Pengamat Isu Sosial", // "Social Issues" -> "Pengamat Isu Sosial"
+        penulis: "Pengamat Isu Sosial", 
         tanggalPublikasi: "22 Mei 2025"
     }
 ];
-
-// Objek Helper untuk Fungsi-fungsi terkait Data (sebelumnya DataHelper)
-const BantuanData = { // DataHelper -> BantuanData
-    dapatkanSemuaFilm: () => dataSemuaFilm, // getAllFilms -> dapatkanSemuaFilm
-    dapatkanFilmBerdasarkanId: (id) => dataSemuaFilm.find(film => film.id === parseInt(id)), // getFilmById -> dapatkanFilmBerdasarkanId
-    dapatkanFilmBerdasarkanStatus: (status) => dataSemuaFilm.filter(film => film.status === status), // getFilmsByStatus -> dapatkanFilmBerdasarkanStatus
-    cariFilm: (keywordPencarian) => { // searchFilms -> cariFilm, query -> keywordPencarian
-        const kataKunci = keywordPencarian.toLowerCase(); // searchTerm -> kataKunci
+const BantuanData = {
+    dapatkanSemuaFilm: () => dataSemuaFilm, 
+    dapatkanFilmBerdasarkanId: (id) => dataSemuaFilm.find(film => film.id === parseInt(id)), 
+    dapatkanFilmBerdasarkanStatus: (status) => dataSemuaFilm.filter(film => film.status === status),
+    cariFilm: (keywordPencarian) => { 
+        const kataKunci = keywordPencarian.toLowerCase(); 
         return dataSemuaFilm.filter(film =>
             film.judul.toLowerCase().includes(kataKunci) ||
-            film.genre.some(g => g.toLowerCase().includes(kataKunci)) || // Perhatikan: genre sudah diterjemahkan, jadi pencarian harus sesuai
+            film.genre.some(g => g.toLowerCase().includes(kataKunci)) || 
             film.sutradara.toLowerCase().includes(kataKunci) ||
             film.pemeran.some(p => p.toLowerCase().includes(kataKunci))
         );
     },
 
-    formatDurasi: (menit) => { // formatDuration -> formatDurasi, minutes -> menit
-        const jam = Math.floor(menit / 60); // hours -> jam
-        const sisaMenit = menit % 60; // mins -> sisaMenit
+    formatDurasi: (menit) => { 
+        const jam = Math.floor(menit / 60); 
+        const sisaMenit = menit % 60; 
         return `${jam}j ${sisaMenit}m`;
     },
 
-    formatHarga: (harga) => { // formatPrice -> formatHarga, price -> harga
+    formatHarga: (harga) => { 
         return new Intl.NumberFormat('id-ID', {
             style: 'currency',
             currency: 'IDR',
@@ -1131,40 +1043,34 @@ const BantuanData = { // DataHelper -> BantuanData
         }).format(harga);
     },
 
-    formatTanggal: (stringTanggal) => { // formatDate -> formatTanggal, dateString -> stringTanggal
-        const opsi = { // options -> opsi
-            weekday: 'long', // nama hari panjang
-            year: 'numeric', // tahun numerik
-            month: 'long', // nama bulan panjang
-            day: 'numeric' // tanggal numerik
+    formatTanggal: (stringTanggal) => {
+        const opsi = {
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
         };
         return new Date(stringTanggal).toLocaleDateString('id-ID', opsi);
     },
 
-    // Fungsi baru untuk mendapatkan detail bioskop berdasarkan ID
     dapatkanDetailBioskopBerdasarkanId: (idBioskop) => {
         return detailSemuaBioskop[idBioskop] || null;
     },
 
-    // Fungsi baru untuk mendapatkan daftar bioskop di suatu kota
     dapatkanBioskopBerdasarkanKota: (kodeKota) => {
         return dataBioskopPerKota[kodeKota.toLowerCase()] || [];
     },
 
-    // Fungsi baru untuk mendapatkan semua berita
     dapatkanSemuaBerita: () => dataSemuaBerita,
 
-    // Fungsi baru untuk mendapatkan berita berdasarkan ID
     dapatkanBeritaBerdasarkanId: (idBerita) => {
         return dataSemuaBerita.find(berita => berita.id === parseInt(idBerita));
     }
 };
 
-// Ekspor modul jika lingkungan mendukung (misalnya, Node.js untuk testing atau SSR)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         dataSemuaFilm,
-        // foodData, // foodData tidak ada di file ini, hapus jika tidak digunakan
         detailSemuaBioskop,
         dataBioskopPerKota,
         dataSemuaBerita,

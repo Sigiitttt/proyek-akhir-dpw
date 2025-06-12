@@ -1,13 +1,10 @@
-// booking.js - Logika untuk semua halaman booking film
-
 class CinemaBooking {
     constructor() {
         this.selectedSeats = [];
         this.seatPrice = 50000;
         this.selectedPaymentMethod = null;
         this.bookingData = null;
-        
-        // Movie data
+
         this.movieData = {
             title: 'AVENGERS: ENDGAME',
             studio: 'Studio 1',
@@ -20,7 +17,6 @@ class CinemaBooking {
     }
 
     init() {
-        // Initialize based on current page
         const currentPage = this.getCurrentPage();
         
         switch(currentPage) {
@@ -52,13 +48,11 @@ class CinemaBooking {
         return 'seat';
     }
 
-    // SEAT PAGE FUNCTIONS
-    initSeatPage() {
-        // Reset booking data when starting fresh seat selection
+    initSeatPage() {        
         this.clearBookingData();
         this.createSeatMap();
         this.setupSeatListeners();
-        this.updateSeatInfo(); // Initialize seat info display
+        this.updateSeatInfo(); 
     }
 
     createSeatMap() {
@@ -66,13 +60,9 @@ class CinemaBooking {
         if (!seatMap) return;
 
         const rows = ['A', 'B', 'C', 'D', 'E'];
-        const cols = 8;
-        
-        // Simulasi kursi yang sudah terisi
-        const occupiedSeats = ['A3', 'A4', 'B5', 'C2', 'C6', 'D1', 'D7', 'E4', 'E5'];
-        
-        seatMap.innerHTML = ''; // Clear existing seats
-        
+        const cols = 8;        
+        const occupiedSeats = ['A3', 'A4', 'B5', 'C2', 'C6', 'D1', 'D7', 'E4', 'E5'];        
+        seatMap.innerHTML = '';         
         for (let row of rows) {
             for (let col = 1; col <= cols; col++) {
                 const seatId = `${row}${col}`;
@@ -87,8 +77,7 @@ class CinemaBooking {
                 } else {
                     seat.classList.add('available');
                     seat.addEventListener('click', () => this.selectSeat(seatId));
-                }
-                
+                }                
                 seatMap.appendChild(seat);
             }
         }
@@ -108,17 +97,14 @@ class CinemaBooking {
         const seatElement = document.querySelector(`[data-seat-id="${seatId}"]`);
         
         if (this.selectedSeats.includes(seatId)) {
-            // Deselect seat
             this.selectedSeats = this.selectedSeats.filter(id => id !== seatId);
             seatElement.classList.remove('selected');
             seatElement.classList.add('available');
         } else {
-            // Select seat
             this.selectedSeats.push(seatId);
             seatElement.classList.remove('available');
             seatElement.classList.add('selected');
-        }
-        
+        }        
         this.updateSeatInfo();
     }
 
@@ -140,8 +126,6 @@ class CinemaBooking {
             continueButton.disabled = this.selectedSeats.length === 0;
         }
     }
-
-    // SUMMARY PAGE FUNCTIONS
     loadSummaryPage() {
         this.loadBookingFromStorage();
         
@@ -162,8 +146,6 @@ class CinemaBooking {
             summaryTotal.textContent = `Rp ${(this.selectedSeats.length * this.seatPrice).toLocaleString('id-ID')}`;
         }
     }
-
-    // PAYMENT PAGE FUNCTIONS
     loadPaymentPage() {
         this.loadBookingFromStorage();
         
@@ -189,27 +171,20 @@ class CinemaBooking {
     }
 
     setupPaymentListeners() {
-        // Payment method selection
         const paymentMethods = document.querySelectorAll('.payment-method');
         const payButton = document.getElementById('payButton');
         
         paymentMethods.forEach(method => {
             method.addEventListener('click', () => {
-                // Remove selected class from all methods
                 paymentMethods.forEach(m => m.classList.remove('selected'));
-                
-                // Add selected class to clicked method
                 method.classList.add('selected');
                 this.selectedPaymentMethod = method.dataset.method;
-                
-                // Enable pay button
                 if (payButton) {
                     payButton.disabled = false;
                 }
             });
         });
 
-        // Pay button click
         if (payButton) {
             payButton.addEventListener('click', () => {
                 this.processPayment();
@@ -218,10 +193,8 @@ class CinemaBooking {
     }
 
     processPayment() {
-        // Generate booking ID
         const bookingId = this.generateBookingId();
         
-        // Create booking data
         this.bookingData = {
             id: bookingId,
             movie: this.movieData.title,
@@ -234,20 +207,14 @@ class CinemaBooking {
             status: 'PAID',
             timestamp: new Date().toISOString()
         };
-
-        // Save to localStorage
         this.saveBookingToStorage();
-
-        // Redirect to success page
         window.location.href = 'success.html';
     }
 
-    // SUCCESS PAGE FUNCTIONS
     loadSuccessPage() {
         this.loadBookingFromStorage();
         
         if (!this.bookingData) {
-            // If no booking data, redirect to seat page
             window.location.href = 'seat.html';
             return;
         }
@@ -274,13 +241,10 @@ class CinemaBooking {
             successTotal.textContent = `Rp ${this.bookingData.total.toLocaleString('id-ID')}`;
         }
     }
-
-    // TICKET PAGE FUNCTIONS
     loadTicketPage() {
         this.loadBookingFromStorage();
         
         if (!this.bookingData) {
-            // If no booking data, redirect to seat page
             window.location.href = 'seat.html';
             return;
         }
@@ -306,8 +270,6 @@ class CinemaBooking {
             ticketMovie.textContent = this.bookingData.movie;
         }
     }
-
-    // UTILITY FUNCTIONS
     generateBookingId() {
         const now = new Date();
         const dateStr = now.getFullYear().toString().slice(-2) + 
@@ -341,7 +303,6 @@ class CinemaBooking {
             }
         } catch (error) {
             console.error('Error loading booking data:', error);
-            // Reset to default state
             this.selectedSeats = [];
             this.selectedPaymentMethod = null;
             this.bookingData = null;
@@ -355,14 +316,10 @@ class CinemaBooking {
         this.bookingData = null;
     }
 }
-
-// Initialize booking system when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Create global booking instance
     window.cinemaBooking = new CinemaBooking();
 });
 
-// Global utility functions
 function formatCurrency(amount) {
     return `Rp ${amount.toLocaleString('id-ID')}`;
 }

@@ -19,7 +19,6 @@
             min-height: 100vh;
         }
 
-        /* Header */
         .header {
             background-color: #fff;
             padding: 16px 20px;
@@ -77,7 +76,6 @@
             background-color: #f1f3f4;
         }
 
-        /* Tabs */
         .tabs-container {
             background-color: #fff;
             padding: 0 20px;
@@ -130,7 +128,6 @@
             margin-left: 4px;
         }
 
-        /* Notifications */
         .notifications-container {
             padding: 0;
             background-color: #f8f9fa;
@@ -222,7 +219,6 @@
             overflow: hidden;
         }
 
-        /* Empty State */
         .empty-state {
             padding: 80px 20px;
             text-align: center;
@@ -314,7 +310,6 @@
             transform: translateY(0);
         }
 
-        /* Tab Content */
         .tab-content {
             display: none;
         }
@@ -323,7 +318,6 @@
             display: block;
         }
 
-        /* Mark as read indicator */
         .notification-item.unread {
             background-color: #f7fafc;
             border-left: 3px solid #1a365d;
@@ -333,7 +327,6 @@
             color: #1a365d;
         }
 
-        /* Dropdown menu */
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -358,6 +351,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -381,7 +375,6 @@
             border-bottom: none;
         }
 
-        /* Responsive */
         @media (max-width: 480px) {
             .header {
                 padding: 12px 16px;
@@ -422,7 +415,6 @@
             }
         }
 
-        /* Loading Animation */
         .loading {
             display: inline-block;
             width: 20px;
@@ -434,34 +426,57 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
-        /* Fade animations */
         .fade-in {
             animation: fadeIn 0.5s ease-in;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Toast animations */
         @keyframes slideUp {
-            from { transform: translateX(-50%) translateY(100%); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            from {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
         }
 
         @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(0); opacity: 1; }
-            to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+            from {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <div class="header">
         <div class="header-left">
             <button class="back-button" onclick="goBack()">←</button>
@@ -477,7 +492,6 @@
         </div>
     </div>
 
-    <!-- Tabs -->
     <div class="tabs-container">
         <div class="tabs">
             <button class="tab active" onclick="switchTab('untukmu')">
@@ -488,9 +502,7 @@
         </div>
     </div>
 
-    <!-- Content -->
     <div class="notifications-container">
-        <!-- Untukmu Tab -->
         <div id="untukmu-content" class="tab-content active">
             <div class="notification-item unread" onclick="openNotification(1)">
                 <div class="notification-icon berita">📰</div>
@@ -535,7 +547,6 @@
             </div>
         </div>
 
-        <!-- Inbox Tab -->
         <div id="inbox-content" class="tab-content">
             <div class="empty-state fade-in">
                 <div class="empty-icon">
@@ -551,7 +562,6 @@
     </div>
 
     <script>
-        // Global variables
         let currentTab = 'untukmu';
         let notifications = {
             untukmu: [
@@ -586,14 +596,12 @@
             inbox: []
         };
 
-        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Notifikasi page loaded');
             updateNotificationDot();
             loadNotifications();
         });
 
-        // Navigation functions
         function goBack() {
             console.log('Going back...');
             if (confirm('Kembali ke halaman sebelumnya?')) {
@@ -604,7 +612,6 @@
         function goToMainPage() {
             console.log('Go to main page clicked');
             
-            // Add loading state
             const button = event.target;
             const originalText = button.textContent;
             button.innerHTML = '<span class="loading"></span> Loading...';
@@ -614,12 +621,10 @@
                 button.textContent = originalText;
                 button.disabled = false;
                 
-                // In a real app, this would navigate to the main page
                 alert('Navigasi ke halaman utama TIX ID');
             }, 1500);
         }
 
-        // Menu functions
         function toggleMenu() {
             const dropdown = document.getElementById('dropdownMenu');
             dropdown.classList.toggle('show');
@@ -630,7 +635,6 @@
                 notification.unread = false;
             });
             
-            // Update UI
             document.querySelectorAll('.notification-item.unread').forEach(item => {
                 item.classList.remove('unread');
             });
@@ -655,15 +659,12 @@
             alert('Membuka pengaturan notifikasi');
         }
 
-        // Tab switching
         function switchTab(tabName) {
-            // Update tab buttons
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             event.target.classList.add('active');
 
-            // Update tab content
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
@@ -679,7 +680,6 @@
             loadNotifications();
         }
 
-        // Load notifications
         function loadNotifications() {
             const container = document.getElementById(currentTab + '-content');
             const notificationList = notifications[currentTab];
@@ -729,7 +729,6 @@
             `).join('');
         }
 
-        // Update notification dot
         function updateNotificationDot() {
             const unreadCount = notifications.untukmu.filter(n => n.unread).length;
             const dot = document.getElementById('untukmuDot');
@@ -741,24 +740,19 @@
             }
         }
 
-        // Open notification
         function openNotification(notificationId) {
             const notification = notifications[currentTab].find(n => n.id === notificationId);
             
             if (notification) {
-                // Mark as read
                 notification.unread = false;
                 
-                // Update UI
                 event.currentTarget.classList.remove('unread');
                 updateNotificationDot();
                 
-                // Show notification detail
                 showNotificationDetail(notification);
             }
         }
 
-        // Show notification detail
         function showNotificationDetail(notification) {
             const modal = document.createElement('div');
             modal.style.cssText = `
@@ -819,7 +813,6 @@
             modal.className = 'modal';
             document.body.appendChild(modal);
             
-            // Close on backdrop click
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     modal.remove();
@@ -827,7 +820,6 @@
             });
         }
 
-        // Show toast notification
         function showToast(message) {
             const toast = document.createElement('div');
             toast.style.cssText = `
@@ -857,7 +849,6 @@
             }, 3000);
         }
 
-        // Add new notification (for demo)
         function addNotification(notification) {
             notifications.untukmu.unshift({
                 ...notification,
@@ -873,7 +864,6 @@
             showToast('Notifikasi baru diterima');
         }
 
-        // Add inbox notification
         function addInboxNotification(notification) {
             notifications.inbox.unshift({
                 ...notification,
@@ -888,7 +878,6 @@
             showToast('Pesan baru diterima di inbox');
         }
 
-        // Demo functions
         function addSampleNotification() {
             addNotification({
                 source: 'Promo',
@@ -907,7 +896,6 @@
             });
         }
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             const dropdown = document.getElementById('dropdownMenu');
             const menuButton = document.querySelector('.menu-button');
@@ -917,16 +905,13 @@
             }
         });
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', function(e) {
-            // Tab navigation with arrow keys
             if (e.key === 'ArrowLeft' && currentTab === 'inbox') {
                 document.querySelector('.tab').click();
             } else if (e.key === 'ArrowRight' && currentTab === 'untukmu') {
                 document.querySelectorAll('.tab')[1].click();
             }
             
-            // Escape to go back or close modal
             if (e.key === 'Escape') {
                 const modal = document.querySelector('.modal');
                 if (modal) {
@@ -936,16 +921,14 @@
                 }
             }
             
-            // Mark all as read with Ctrl+A
             if (e.ctrlKey && e.key === 'a') {
                 e.preventDefault();
                 markAllAsRead();
             }
         });
 
-        // Simulate receiving new notifications
         setInterval(() => {
-            if (Math.random() < 0.05) { // 5% chance every interval
+            if (Math.random() < 0.05) {
                 const sampleNotifications = [
                     {
                         source: 'Promo',
@@ -964,7 +947,7 @@
                 const randomNotification = sampleNotifications[Math.floor(Math.random() * sampleNotifications.length)];
                 addNotification(randomNotification);
             }
-        }, 45000); // Check every 45 seconds
+        }, 45000);
 
         console.log('Notifikasi page initialized successfully!');
         console.log('Use arrow keys to navigate tabs, Ctrl+A to mark all as read, Escape to go back');

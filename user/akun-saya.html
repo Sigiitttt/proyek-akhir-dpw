@@ -78,7 +78,6 @@
             border-radius: 50%;
         }
 
-        /* Biometric Banner */
         .biometric-banner {
             background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 100%);
             color: white;
@@ -139,7 +138,6 @@
             border-radius: 50%;
         }
 
-        /* Profile Section */
         .profile-section {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
             padding: 24px 20px;
@@ -180,7 +178,6 @@
             font-weight: 400;
         }
 
-        /* Guest Profile State */
         .profile-guest {
             text-align: center;
             width: 100%;
@@ -216,7 +213,6 @@
             transform: translateY(-1px);
         }
 
-        /* TIX VIP Section */
         .tix-vip-section {
             background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 50%, #ffcc02 100%);
             margin: 0 20px;
@@ -298,7 +294,6 @@
             z-index: 2;
         }
 
-        /* DANA Section */
         .dana-section {
             background: white;
             margin: 20px;
@@ -352,7 +347,6 @@
             background: #0d7bc7;
         }
 
-        /* Menu Items */
         .menu-section {
             margin: 20px;
         }
@@ -442,7 +436,6 @@
             text-decoration: none;
             color: inherit;
         }
-        /* Login Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -574,7 +567,6 @@
             color: #333;
         }
 
-        /* Toast */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -601,12 +593,10 @@
             background: #f44336;
         }
 
-        /* Hidden state */
         .hidden {
             display: none !important;
         }
 
-        /* Animations */
         @keyframes slideUp {
             from {
                 transform: translateX(-50%) translateY(100%);
@@ -631,7 +621,6 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 480px) {
             .header {
                 padding: 12px 16px;
@@ -667,7 +656,6 @@
 </head>
 
 <body>
-    <!-- Header -->
     <div class="header">
         <div class="header-left">
             <button class="back-button" onclick="goBack()">←</button>
@@ -679,7 +667,6 @@
 
     </div>
 
-    <!-- Biometric Banner -->
     <div class="biometric-banner" id="biometricBanner">
         <div class="banner-content">
             <div class="banner-text">Aktifkan biometrik untuk pengalaman lebih baik.</div>
@@ -690,15 +677,12 @@
         </div>
     </div>
 
-    <!-- Profile Section -->
     <div class="profile-section">
-        <!-- Logged In User Profile -->
         <div class="profile-info" id="userProfile" style="display: none;">
             <div class="profile-name" id="profileName"></div>
             <div class="profile-phone" id="profilePhone"></div>
         </div>
 
-        <!-- Guest Profile (No User Logged In) -->
         <div class="profile-guest" id="guestProfile">
             <div class="guest-message">Selamat datang di TIX ID</div>
             <div class="guest-subtitle">Masuk atau daftar untuk mengakses fitur lengkap</div>
@@ -706,7 +690,6 @@
         </div>
     </div>
 
-    <!-- TIX VIP Section -->
     <div class="tix-vip-section" onclick="openTixVip()">
         <div class="vip-content">
             <div class="vip-logo"></div>
@@ -721,7 +704,6 @@
         <div class="arrow-right">→</div>
     </div>
 
-    <!-- DANA Section -->
     <div class="dana-section">
         <div class="dana-content">
             <div class="dana-logo">DANA</div>
@@ -730,9 +712,7 @@
         <button class="dana-activate-button" onclick="activateDana()">AKTIFKAN</button>
     </div>
 
-    <!-- Menu Items -->
     <div class="menu-section">
-        <!-- Voucher Saya -->
         <div class="menu-item" onclick="openVoucher()">
             <div class="menu-item-content">
                 <div class="menu-icon voucher">🎫</div>
@@ -743,7 +723,6 @@
             </div>
         </div>
 
-        <!-- Film Saya -->
         <div class="menu-item" onclick="openFilmSaya()">
             <div class="menu-item-content">
                 <div class="menu-icon film">🎬</div>
@@ -754,7 +733,6 @@
             </div>
         </div>
 
-        <!-- Konten Yang Disukai -->
         <div class="menu-item" onclick="openLikedContent()">
             <div class="menu-item-content">
                 <div class="menu-icon like">👍</div>
@@ -765,7 +743,6 @@
             </div>
         </div>
 
-        <!-- Bagikan TIX ID & Dapatkan Koin -->
         <div class="menu-item" onclick="shareAndEarn()">
             <div class="menu-item-content">
                 <div class="menu-icon share">📤</div>
@@ -778,7 +755,6 @@
         </div>
     </div>
 
-    <!-- Login/Register Modal -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -786,7 +762,6 @@
                 <p class="modal-subtitle">Masuk atau daftar untuk melanjutkan</p>
             </div>
 
-            <!-- Login Form -->
             <div id="loginForm">
                 <div class="form-group">
                     <label class="form-label" for="loginEmail">Email</label>
@@ -809,7 +784,6 @@
                         style="color: #1565c0; text-decoration: none;">Daftar di sini</a>
                 </div>
             </div>
-            <!-- Register Form -->
             <div id="registerForm" style="display: none;">
                 <div class="form-group">
                     <label class="form-label" for="registerName">Nama Lengkap</label>
@@ -853,33 +827,27 @@
     </div>
 
     <script>
-        // User data and authentication state
         let currentUser = null;
         let registeredUsers = [];
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Akun Saya page loaded');
             loadSavedData();
             updateProfileDisplay();
         });
 
-        // Load saved data from localStorage
         function loadSavedData() {
-            // Load registered users
             const savedUsers = localStorage.getItem('tixid_users');
             if (savedUsers) {
                 registeredUsers = JSON.parse(savedUsers);
             }
 
-            // Load current user
             const savedCurrentUser = localStorage.getItem('tixid_current_user');
             if (savedCurrentUser) {
                 currentUser = JSON.parse(savedCurrentUser);
             }
         }
 
-        // Save data to localStorage
         function saveData() {
             localStorage.setItem('tixid_users', JSON.stringify(registeredUsers));
             if (currentUser) {
@@ -887,7 +855,6 @@
             }
         }
 
-        // Update profile display based on authentication state
         function updateProfileDisplay() {
             const userProfile = document.getElementById('userProfile');
             const guestProfile = document.getElementById('guestProfile');
@@ -895,13 +862,11 @@
             const profilePhone = document.getElementById('profilePhone');
 
             if (currentUser) {
-                // User is logged in - show their information
                 userProfile.style.display = 'block';
                 guestProfile.style.display = 'none';
 
                 profileName.textContent = currentUser.name;
 
-                // Format phone number
                 if (currentUser.phone) {
                     profilePhone.textContent = currentUser.phone;
                 } else if (currentUser.countryCode && currentUser.phoneNumber) {
@@ -910,25 +875,21 @@
                     profilePhone.textContent = '';
                 }
             } else {
-                // No user logged in - show guest state
                 userProfile.style.display = 'none';
                 guestProfile.style.display = 'block';
             }
         }
 
-        // Show login modal
         function showLoginModal() {
             const modal = document.getElementById('loginModal');
             modal.classList.add('active');
             showLoginForm();
         }
 
-        // Close login modal
         function closeLoginModal() {
             const modal = document.getElementById('loginModal');
             modal.classList.remove('active');
 
-            // Clear forms
             document.getElementById('loginEmail').value = '';
             document.getElementById('loginPassword').value = '';
             document.getElementById('registerName').value = '';
@@ -938,19 +899,16 @@
             document.getElementById('registerPassword').value = '';
         }
 
-        // Show login form
         function showLoginForm() {
             document.getElementById('loginForm').style.display = 'block';
             document.getElementById('registerForm').style.display = 'none';
         }
 
-        // Show register form
         function showRegisterForm() {
             document.getElementById('loginForm').style.display = 'none';
             document.getElementById('registerForm').style.display = 'block';
         }
 
-        // Handle login
         function handleLogin() {
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
@@ -960,7 +918,6 @@
                 return;
             }
 
-            // Find user in registered users
             const user = registeredUsers.find(u => u.email === email && u.password === password);
 
             if (user) {
@@ -974,7 +931,6 @@
             }
         }
 
-        // Handle registration
         function handleRegister() {
             const name = document.getElementById('registerName').value.trim();
             const email = document.getElementById('registerEmail').value.trim();
@@ -987,13 +943,11 @@
                 return;
             }
 
-            // Check if email already exists
             if (registeredUsers.find(u => u.email === email)) {
                 showToast('Email sudah terdaftar', 'error');
                 return;
             }
 
-            // Validate phone if provided
             if (phoneNumber && !/^\d+$/.test(phoneNumber)) {
                 showToast('Nomor handphone hanya boleh berisi angka', 'error');
                 return;
@@ -1004,7 +958,6 @@
                 return;
             }
 
-            // Create new user
             const newUser = {
                 id: Date.now(),
                 name: name,
@@ -1025,7 +978,6 @@
             showToast(`Pendaftaran berhasil! Selamat datang, ${name}!`, 'success');
         }
 
-        // Logout function (can be called from settings)
         function logout() {
             if (confirm('Apakah Anda yakin ingin keluar?')) {
                 currentUser = null;
@@ -1035,12 +987,10 @@
             }
         }
 
-        // Navigation functions
         function goBack() {
             showToast('Navigasi kembali', 'info');
         }
 
-        // Banner functions
         function activateBiometric() {
             if (!currentUser) {
                 showToast('Silakan masuk terlebih dahulu', 'info');
@@ -1063,7 +1013,6 @@
             }, 300);
         }
 
-        // Feature functions
         function openTixVip() {
             if (!currentUser) {
                 showToast('Silakan masuk terlebih dahulu untuk mengakses TIX VIP', 'info');
@@ -1073,7 +1022,7 @@
             showToast('Membuka halaman TIX VIP...', 'info');
             setTimeout(() => {
                 window.location.href = '../system/bagikan-tixid.html';
-            }, 1000); // beri jeda biar toast sempat tampil
+            }, 1000);
         }
 
         function activateDana() {
@@ -1083,7 +1032,6 @@
                 return;
             }
             showToast('Mengaktifkan integrasi DANA...', 'success');
-            // tidak diarahkan karena hanya aktivasi, bukan halaman
         }
 
         function openVoucher() {
@@ -1142,7 +1090,6 @@
             }, 500);
         }
 
-        // Show toast notification
         function showToast(message, type = 'info') {
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
@@ -1160,14 +1107,12 @@
             }, 3000);
         }
 
-        // Click outside modal to close
         document.getElementById('loginModal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeLoginModal();
             }
         });
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 const modal = document.getElementById('loginModal');
@@ -1179,6 +1124,8 @@
 
         console.log('Dynamic Akun Saya page initialized successfully!');
     </script>
-    <a href="../system/konten disukai.html" </body>
+    <a href="../system/konten disukai.html">
+
+</body>
 
 </html>

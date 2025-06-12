@@ -1,14 +1,13 @@
-/* GLOBAL STYLES & VARIABLES */
 :root {
-    --primary-color: #0d6efd; /* Biru primer untuk tombol dan aksen */
-    --secondary-color: #6c757d; /* Abu-abu untuk elemen sekunder */
-    --background-color: #121212; /* Latar belakang gelap utama */
-    --surface-color: #1e1e1e; /* Warna permukaan untuk kartu, modal, dll. */
-    --text-color: #ffffff; /* Warna teks utama */
-    --text-secondary-color: #c5c5c5; /* Warna teks sekunder */
-    --accent-color: #fca311; /* Warna aksen (misal: rating, highlight) */
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --background-color: #253443;
+    --surface-color: #192836;
+    --text-color: #ffffff;
+    --text-secondary-color: #c5c5c5;
+    --accent-color: #fca311;
     --border-radius: 8px;
-    --font-family: 'Roboto', sans-serif; /* Ganti dengan font pilihan Anda */
+    --font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -41,7 +40,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* LOADING & NOT FOUND STATES */
 .loading-state, .not-found {
     display: flex;
     flex-direction: column;
@@ -71,11 +69,10 @@ a:hover {
     margin-bottom: 20px;
 }
 
-/* HERO SECTION */
 .film-hero {
     position: relative;
     padding: 60px 0;
-    min-height: 70vh; /* Sesuaikan tinggi sesuai kebutuhan */
+    min-height: 70vh;
     display: flex;
     align-items: center;
     background-size: cover;
@@ -83,7 +80,7 @@ a:hover {
     background-repeat: no-repeat;
 }
 
-.film-hero-bg { /* Ini adalah elemen yang background image-nya di-set oleh JS */
+.film-hero-bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -94,14 +91,14 @@ a:hover {
     z-index: 1;
 }
 
-.film-hero::before { /* Overlay gelap */
+.film-hero::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.75); /* Overlay lebih gelap */
+    background-color: #2c3e50;
     z-index: 2;
 }
 
@@ -113,7 +110,7 @@ a:hover {
 .film-hero-content {
     display: flex;
     gap: 40px;
-    align-items: flex-start; /* Poster dan info tidak harus sama tinggi */
+    align-items: flex-start;
 }
 
 .film-poster {
@@ -122,10 +119,9 @@ a:hover {
 }
 
 .film-poster img {
-    width: 280px; /* Lebar poster */
+    width: 280px;
     height: auto;
     border-radius: var(--border-radius);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     display: block;
 }
 
@@ -144,8 +140,8 @@ a:hover {
 }
 .film-rating .rating-star {
     margin-right: 5px;
-    font-size: 1rem; /* Ukuran bintang sedikit lebih besar */
-    color: #fff; /* Bintang putih jika background aksen */
+    font-size: 1rem;
+    color: #fff;
 }
 
 .film-info {
@@ -162,8 +158,8 @@ a:hover {
 .film-meta {
     margin-bottom: 20px;
     display: flex;
-    gap: 15px; /* Jarak antar item meta */
-    flex-wrap: wrap; /* Agar wrap jika terlalu banyak item */
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .film-meta .meta-item {
@@ -192,37 +188,32 @@ a:hover {
     flex-wrap: wrap;
 }
 
-/* BUTTON STYLES */
 .btn, .booking-btn, .tab-button, .slot-waktu {
     padding: 10px 20px;
-    border: none;
-    border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: bold;
-    text-transform: uppercase;
     font-size: 0.9rem;
-    transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-.btn-primary, .booking-btn { /* Tombol utama */
+.btn-primary, .booking-btn {
     background-color: var(--primary-color);
     color: #fff;
 }
 .btn-primary:hover, .booking-btn:hover {
-    background-color: #0b5ed7; /* Warna hover lebih gelap */
+    background-color: #0b5ed7;
     transform: translateY(-1px);
 }
 
-.btn-secondary { /* Tombol Trailer */
+.btn-secondary {
     background-color: var(--accent-color);
-    color: var(--background-color); /* Teks gelap agar kontras */
+    color: var(--background-color);
 }
 .btn-secondary:hover {
     background-color: #e08e0b;
     transform: translateY(-1px);
 }
 
-.btn-outline { /* Tombol Favorit */
+.btn-outline {
     background-color: transparent;
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
@@ -232,13 +223,11 @@ a:hover {
     color: #fff;
     transform: translateY(-1px);
 }
-.btn-outline.aktif { /* Jika film sudah jadi favorit */
+.btn-outline.aktif {
     background-color: var(--primary-color);
     color: #fff;
 }
 
-
-/* TAB NAVIGATION */
 .tab-navigation {
     background-color: var(--surface-color);
     padding: 10px 0;
@@ -248,10 +237,10 @@ a:hover {
 
 .tab-nav {
     display: flex;
-    justify-content: center; /* Pusatkan tombol tab */
-    gap: 10px; /* Jarak antar tombol tab */
+    justify-content: center;
+    gap: 10px;
     width: 90%;
-    max-width: 600px; /* Batasi lebar kontainer tab */
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -260,14 +249,14 @@ a:hover {
     color: var(--text-secondary-color);
     padding: 12px 25px;
     border: none;
-    border-bottom: 3px solid transparent; /* Indikator tidak aktif */
+    border-bottom: 3px solid transparent;
     font-size: 1rem;
     text-transform: none;
 }
 
 .tab-button.active {
     color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color); /* Indikator aktif */
+    border-bottom: 3px solid var(--primary-color);
     font-weight: bold;
 }
 
@@ -275,9 +264,8 @@ a:hover {
     color: var(--text-color);
 }
 
-/* TAB CONTENT */
 .tab-pane {
-    display: none; /* Sembunyikan semua pane secara default */
+    display: none;
     padding: 20px;
     background-color: var(--surface-color);
     border-radius: var(--border-radius);
@@ -285,7 +273,7 @@ a:hover {
 }
 
 .tab-pane.active {
-    display: block; /* Tampilkan pane yang aktif */
+    display: block;
 }
 
 .film-synopsis h2, .showtimes h2, .related-films h2 {
@@ -302,15 +290,14 @@ a:hover {
     text-align: justify;
 }
 
-/* SHOWTIMES SECTION */
 .showtimes-grid {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Jarak antar bioskop */
+    gap: 30px;
 }
 
 .item-jadwal {
-    background-color: #2a2a2a; /* Warna sedikit berbeda untuk item jadwal */
+    background-color: #2a2a2a;
     padding: 20px;
     border-radius: var(--border-radius);
 }
@@ -352,40 +339,32 @@ a:hover {
     font-weight: bold;
 }
 
-/* RELATED FILMS (Styling untuk gridnya, kartu film akan mengikuti style dari film.js/main.js) */
 .films-grid {
     display: grid;
-    /* Opsi 1: Kartu sedikit lebih kecil */
-    /* grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); */
-
-    /* Opsi 2: Kartu lebih kecil lagi */
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px; /* Jarak antar kartu */
-}
-//* ... CSS Anda yang lain ... */
-
-/* RELATED FILMS */
-.related-films { /* Ini sudah ada di CSS Anda, mungkin perlu sedikit penyesuaian margin/padding */
-    padding: 30px 0; /* Tambah padding atas bawah */
-    border-top: 1px solid var(--surface-color); /* Garis pemisah */
-    margin-top: 40px; /* Jarak dari konten di atasnya */
+    gap: 20px;
 }
 
-.related-films h2 { /* Style untuk judul "Film Lainnya" */
-    font-size: 1.75rem; /* Sesuaikan ukuran judul */
-    margin-bottom: 25px; /* Jarak ke grid film */
+.related-films {
+    padding: 30px 0;
+    border-top: 1px solid var(--surface-color);
+    margin-top: 40px;
+}
+
+.related-films h2 {
+    font-size: 1.75rem;
+    margin-bottom: 25px;
     color: var(--text-color);
 }
 
-/* Style untuk Kartu Film di bagian Film Lainnya */
 .kartu-film {
     background-color: var(--surface-color);
     border-radius: var(--border-radius);
-    overflow: hidden; /* Penting agar poster tidak keluar dari border-radius */
+    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    cursor: pointer; /* Tambahkan cursor pointer */
-    display: flex; /* Untuk mengatur tata letak vertikal konten */
+    cursor: pointer;
+    display: flex;
     flex-direction: column;
 }
 
@@ -394,11 +373,11 @@ a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.kartu-film .poster-film { /* Wrapper untuk gambar poster */
+.kartu-film .poster-film {
     width: 100%;
-    padding-top: 150%; /* Aspect ratio 2:3 (tinggi 1.5x lebar). Sesuaikan jika poster Anda beda. */
+    padding-top: 150%;
     position: relative;
-    background-color: #333; /* Fallback jika gambar tidak ada */
+    background-color: #333;
 }
 
 .kartu-film .poster-film img {
@@ -407,41 +386,40 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Pastikan gambar mengisi area tanpa distorsi */
+    object-fit: cover;
     display: block;
 }
 
 .kartu-film .info-film-kartu {
-    padding: 12px; /* Padding lebih kecil untuk kartu yang lebih kecil */
-    flex-grow: 1; /* Agar info mengisi sisa ruang jika kartu memiliki tinggi tetap */
+    padding: 12px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Sebarkan konten di dalam info */
+    justify-content: space-between;
 }
 
-.kartu-film .info-film-kartu .judul-film-kartu { /* Target judul di kartu */
-    font-size: 0.95rem; /* Ukuran font judul lebih kecil */
+.kartu-film .info-film-kartu .judul-film-kartu {
+    font-size: 0.95rem;
     color: var(--text-color);
     margin-bottom: 5px;
-    font-weight: 600; /* Bold untuk judul */
-    /* Batasi teks jika terlalu panjang */
+    font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .kartu-film .info-film-kartu .genre-film-kartu,
-.kartu-film .info-film-kartu .rating-film-kartu, /* Asumsi ada kelas ini jika menampilkan rating di kartu */
-.kartu-film .info-film-kartu .meta-film-kartu { /* Asumsi ada kelas ini untuk tahun/durasi */
-    font-size: 0.8rem; /* Font lebih kecil untuk detail */
+.kartu-film .info-film-kartu .rating-film-kartu,
+.kartu-film .info-film-kartu .meta-film-kartu {
+    font-size: 0.8rem;
     color: var(--text-secondary-color);
     margin-bottom: 4px;
 }
-/* Jika ada tombol detail di kartu, style juga: */
-.kartu-film .tombol-detail-kartu { /* Buat kelas ini jika ada tombol di kartu */
+
+.kartu-film .tombol-detail-kartu {
     font-size: 0.8rem;
     padding: 6px 10px;
-    margin-top: auto; /* Dorong tombol ke bawah jika info-film-kartu adalah flex column */
+    margin-top: auto;
     background-color: var(--primary-color);
     color: white;
     text-align: center;
@@ -451,11 +429,7 @@ a:hover {
     background-color: #0b5ed7;
 }
 
-
-/* ... CSS Anda yang lain untuk .films-grid ... */
-/* TRAILER MODAL */
 .modal {
-    /* display: none; (sudah diatur oleh JS) */
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -463,8 +437,8 @@ a:hover {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.85); /* Latar belakang lebih gelap */
-    display: flex; /* Untuk memusatkan modal-content (JS juga mengatur ini) */
+    background-color: rgba(0,0,0,0.85);
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -472,10 +446,10 @@ a:hover {
 .modal-content {
     background-color: var(--surface-color);
     margin: auto;
-    padding: 0; /* Hapus padding agar video bisa full */
+    padding: 0;
     border-radius: var(--border-radius);
     width: 90%;
-    max-width: 800px; /* Lebar maksimum modal */
+    max-width: 800px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     position: relative;
 }
@@ -486,6 +460,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 .modal-header h3 {
     margin: 0;
@@ -494,47 +469,33 @@ a:hover {
 
 .modal-close {
     color: var(--text-secondary-color);
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
     background: none;
     border: none;
     padding: 0 10px;
+    line-height: 1;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 10;
+    transition: color 0.2s ease;
 }
 .modal-close:hover,
 .modal-close:focus {
     color: #fff;
     text-decoration: none;
-    cursor: pointer;
 }
 
-.modal-body {
-    padding: 0; /* Hapus padding agar video container bisa full */
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-}
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none; /* Hilangkan border iframe */
-}
-
-/* RESPONSIVE SUGGESTIONS (Dasar) */
 @media (max-width: 768px) {
     .film-hero-content {
         flex-direction: column;
-        align-items: center; /* Pusatkan poster dan info di layar kecil */
+        align-items: center;
         text-align: center;
     }
     .film-poster img {
-        width: 220px; /* Poster lebih kecil */
+        width: 220px;
         margin-bottom: 20px;
     }
     .film-info h1 {
@@ -545,7 +506,7 @@ a:hover {
     }
     .tab-nav {
         max-width: 100%;
-        justify-content: space-around; /* Tombol tab agar memenuhi lebar */
+        justify-content: space-around;
     }
     .tab-button {
         padding: 10px 15px;
@@ -567,38 +528,4 @@ a:hover {
     .modal-content {
         width: 95%;
     }
-}
-
-.modal-header {
-    padding: 15px 20px;
-    border-bottom: 1px solid #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative; /* Tambahkan ini agar z-index pada anak elemen bekerja baik */
-}
-.modal-header h3 {
-    margin: 0;
-    font-size: 1.3rem;
-}
-
-.modal-close {
-    color: var(--text-secondary-color);
-    font-size: 2.2rem; /* Sedikit perbesar agar mudah di-tap/klik */
-    font-weight: bold; /* bold agar lebih terlihat */
-    background: none;
-    border: none;
-    padding: 0 10px; /* Beri sedikit padding area klik */
-    line-height: 1; /* Sesuaikan line-height */
-    cursor: pointer;
-    position: absolute; /* Posisikan absolut relatif ke modal-header */
-    top: 10px; /* Sesuaikan posisi dari atas */
-    right: 15px; /* Sesuaikan posisi dari kanan */
-    z-index: 10; /* Pastikan di atas judul header jika ada tumpang tindih */
-    transition: color 0.2s ease; /* Transisi halus */
-}
-.modal-close:hover,
-.modal-close:focus {
-    color: #fff;
-    text-decoration: none;
 }
