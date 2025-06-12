@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riwayat Pesanan Tiket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .order-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+    .order-item:last-child {
+      border-bottom: none;
+    }
+    .order-item p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Riwayat Pesanan Anda</h2>
+    <div id="riwayat-pesanan"></div>
+  </div>
+
+  <script>
+    const riwayat = JSON.parse(localStorage.getItem("riwayatPesanan")) || [];
+    const container = document.getElementById("riwayat-pesanan");
+
+    if (riwayat.length === 0) {
+      container.innerHTML = "<p>Belum ada riwayat pesanan.</p>";
+    } else {
+      riwayat.forEach((tiket, index) => {
+        const item = document.createElement("div");
+        item.className = "order-item";
+        item.innerHTML = `
+          <p><strong>Film:</strong> ${tiket.judul}</p>
+          <p><strong>Lokasi:</strong> ${tiket.lokasi}</p>
+          <p><strong>Waktu:</strong> ${tiket.waktu}</p>
+          <p><strong>Kursi:</strong> ${tiket.kursi}</p>
+          <p><strong>Total:</strong> ${tiket.total}</p>
+        `;
+        container.appendChild(item);
+      });
+    }
+  </script>
+</body>
+</html>
