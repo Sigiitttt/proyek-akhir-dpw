@@ -1,51 +1,178 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk ke Akun Anda</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .auth-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .auth-form h1 {
+            color: #1a2c50;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .auth-form p {
+            color: #606770;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #1a2c50;
+        }
+
+        .auth-link {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #1a2c50;
+            text-decoration: none;
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a2c50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .auth-footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #606770;
+        }
+
+        .auth-footer a {
+            color: #1a2c50;
+            font-weight: 600;
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="auth-container">
         <form id="loginForm" class="auth-form">
             <h1>Masuk</h1>
             <p>Selamat datang kembali!</p>
-            
+
             <div class="input-group">
                 <input type="email" id="email" placeholder="Email" required>
             </div>
-            
+
             <div class="input-group">
                 <input type="password" id="password" placeholder="Password" required>
             </div>
-            
+
             <a href="forgot.html" class="auth-link">Lupa Password?</a>
-            
+
             <button type="submit" class="auth-button">Masuk</button>
-            
+
             <div class="auth-footer">
                 <p>Belum punya akun? <a href="register.html">Daftar di sini</a></p>
             </div>
         </form>
     </div>
 
-<script>
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    <script>
+        const daftarPengguna = [
+            {
+                email: 'user@gmail.com',
+                password: 'user123',
+                role: 'user'
+            },
+            {
+                email: 'admin@gmail.com',
+                password: 'admin123',
+                role: 'admin'
+            }
+        ];
 
-    if (email === "" || password === "") {
-        alert('Email dan password harus diisi.');
-        return;
-    }
-    
-    alert('Login berhasil! (simulasi)\nMengarahkan ke halaman utama...');
-    window.location.href = 'index.html'; 
-});
-</script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Mencegah form me-reload halaman
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === "" || password === "") {
+                alert('Email dan password harus diisi.');
+                return;
+            }
+
+            // Cari pengguna di dalam array 'daftarPengguna' dari data.js
+            const penggunaDitemukan = daftarPengguna.find(
+                user => user.email === email && user.password === password
+            );
+
+            if (penggunaDitemukan) {
+                // Jika pengguna ditemukan
+                alert('Login berhasil!');
+
+                // Simpan status login di sessionStorage
+                sessionStorage.setItem('penggunaLogin', JSON.stringify(penggunaDitemukan));
+
+                // Arahkan berdasarkan peran (role)
+                if (penggunaDitemukan.role === 'admin') {
+                    // Jika admin, arahkan ke dasbor admin
+                    // Ganti 'admin/dashboard.html' dengan path halaman admin Anda
+                    window.location.href = 'admin/dasboard.html';
+                } else {
+                    // Jika user biasa, arahkan ke halaman utama
+                    // Ganti 'index.html' dengan path halaman utama Anda
+                    window.location.href = 'index.html';
+                }
+            } else {
+                // Jika pengguna tidak ditemukan
+                alert('Email atau password salah.');
+            }
+        });
+    </script>
+
 
 </body>
+
 </html>

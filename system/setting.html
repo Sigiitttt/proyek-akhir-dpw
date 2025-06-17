@@ -67,8 +67,7 @@
     <a href="../user/settingprofile.html" class="menu-item">Akun</a>
     <a href="tentangkami.html" class="menu-item">Tentang Kami</a>
     <a href="hubungi_kami.html" class="menu-item">Hubungi Kami</a>
-    <a href="FAQ.html" class="menu-item">FAQ</a>
-    <!-- <a href="../system/history.html" class="menu-item">History</a> -->
+    <a href="FAQ.html" class="menu-item" onclick="logout()">FAQ</a>
 
     <div class="version">
         <span>Versi App</span>
@@ -76,6 +75,15 @@
     </div>
 
     <a href="../register.html" class="logout">Keluar</a>
+    <script>
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                sessionStorage.removeItem('penggunaLogin');
+                alert("Anda telah berhasil keluar.");
+                window.location.reload();
+            }
+        }
+    </script>
 
 </body>
 

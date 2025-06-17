@@ -432,10 +432,12 @@
             color: #ccc;
             font-size: 16px;
         }
-        .header a{
+
+        .header a {
             text-decoration: none;
             color: inherit;
         }
+
         .modal {
             position: fixed;
             top: 0;
@@ -686,7 +688,7 @@
         <div class="profile-guest" id="guestProfile">
             <div class="guest-message">Selamat datang di TIX ID</div>
             <div class="guest-subtitle">Masuk atau daftar untuk mengakses fitur lengkap</div>
-            <button class="login-button" onclick="showLoginModal()">Masuk / Daftar</button>
+            <button class="login-button" onclick="window.location.href='login.html'">Masuk / Daftar</button>
         </div>
     </div>
 
@@ -753,18 +755,15 @@
                 <div class="menu-arrow">→</div>
             </div>
         </div>
-        <div class="menu-item">
-                <div class="menu-item-content">
-                    <div class="menu-icon like">👍</div>
-                    <div class="menu-text">history</div>
-                </div>
-                <div class="menu-right">
-                    <a>
-
-                        <div class="menu-arrow">→</div>
-                    </a>
-                </div>
+        <div class="menu-item" onclick="openHistory()">
+            <div class="menu-item-content">
+                <div class="menu-icon film">⏲️</div>
+                <div class="menu-text">History</div>
             </div>
+            <div class="menu-right">
+                <div class="menu-arrow">→</div>
+            </div>
+        </div>
     </div>
 
     <div class="modal" id="loginModal">
@@ -849,14 +848,20 @@
         });
 
         function loadSavedData() {
+            const penggunaDariSession = sessionStorage.getItem('penggunaLogin');
+
+            if (penggunaDariSession) {
+                currentUser = JSON.parse(penggunaDariSession);
+
+                if (!currentUser.name) {
+                    currentUser.name = currentUser.email;
+                }
+            } else {
+                currentUser = null;
+            }
             const savedUsers = localStorage.getItem('tixid_users');
             if (savedUsers) {
                 registeredUsers = JSON.parse(savedUsers);
-            }
-
-            const savedCurrentUser = localStorage.getItem('tixid_current_user');
-            if (savedCurrentUser) {
-                currentUser = JSON.parse(savedCurrentUser);
             }
         }
 
@@ -1067,6 +1072,17 @@
             showToast('Membuka Film Saya...', 'info');
             setTimeout(() => {
                 window.location.href = 'filmsayaa.html';
+            }, 1000);
+        }
+        function openHistory() {
+            if (!currentUser) {
+                showToast('Silakan masuk terlebih dahulu', 'info');
+                showLoginModal();
+                return;
+            }
+            showToast('Membuka Film Saya...', 'info');
+            setTimeout(() => {
+                window.location.href = '../system/history.html';
             }, 1000);
         }
 
