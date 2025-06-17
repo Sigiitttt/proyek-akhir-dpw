@@ -449,7 +449,7 @@
         <h2 class="registration-title">Buat Akun Baru</h2>
         <p class="registration-description">Daftarkan akun Anda untuk mengisi informasi profil</p>
         
-        <button class="btn btn-register" onclick="showRegistrationForm()">Daftar Akun Baru</button>
+        <button class="btn btn-register" onclick="window.location.href='./login.html'">Daftar Akun Baru</button>
         <button class="btn btn-clear" onclick="clearAllData()">Hapus Semua Data</button>
     </div>
 
@@ -523,9 +523,23 @@
         });
 
         function loadUserData() {
-            const savedData = localStorage.getItem('tixid_user_data');
-            if (savedData) {
-                userData = { ...userData, ...JSON.parse(savedData) };
+            const penggunaDariSession = sessionStorage.getItem('penggunaLogin');
+            
+            if (penggunaDariSession) {
+                const penggunaLogin = JSON.parse(penggunaDariSession);
+             
+                userData = {
+                    fullName: penggunaLogin.email,
+                    countryCode: '', 
+                    phoneNumber: '', 
+                    password: penggunaLogin.password 
+                };
+
+            } else {
+                const savedData = localStorage.getItem('tixid_user_data');
+                if (savedData) {
+                    userData = { ...userData, ...JSON.parse(savedData) };
+                }
             }
         }
 
