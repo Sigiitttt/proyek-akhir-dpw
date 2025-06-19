@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-     let films = [ { id: 1, title: "Agak Laen", synopsis: "Empat sekawan penjaga rumah hantu...", posterUrl: "https://upload.wikimedia.org/wikipedia/id/1/15/Agak_Laen_poster.jpg", duration: 119, status: "Sedang Tayang" } ];
+    let films = [ { id: 1, title: "Agak Laen", synopsis: "Empat sekawan penjaga rumah hantu...", posterUrl: "https://upload.wikimedia.org/wikipedia/id/1/15/Agak_Laen_poster.jpg", duration: 119, status: "Sedang Tayang" } ];
     let makanan = [ { id: 1, nama: "Popcorn Caramel", kategori: "Makanan", harga: 50000, imgUrl: "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2021/10/27042528/Ini-Resep-Popcorn-Caramel-ala-Bioskop-yang-Bisa-Dicoba-di-Rumah.jpg" } ];
     let berita = [ { id: 1, judul: "Promo Beli 1 Gratis 1 Tiket!", konten: "Nikmati promo spesial...", tanggal: "2025-06-12" } ];
 
@@ -11,11 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = link.dataset.target;
 
-            // Atur class 'active' pada link
             navLinks.forEach(nav => nav.classList.remove('active'));
             link.classList.add('active');
 
-            // Tampilkan konten yang sesuai
             contentSections.forEach(section => {
                 if (section.id === `${targetId}-section`) {
                     section.classList.add('active');
