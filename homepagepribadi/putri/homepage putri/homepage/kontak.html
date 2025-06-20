@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kontak Saya</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9; color: #333; line-height: 1.6;
+    }
+    header {
+      background-color: #4CAF50; color: white;
+      padding: 20px 0; text-align: center; position: relative;
+    }
+    nav {
+      background-color: #388E3C; text-align: center; padding: 10px 0;
+    }
+    nav a {
+      color: white; margin: 0 15px; text-decoration: none; font-weight: bold;
+    }
+    .container {
+      display: flex; flex-wrap: wrap;
+      max-width: 1100px; margin: 20px auto; padding: 0 15px;
+    }
+    .main {
+      flex: 3; min-width: 300px; margin-right: 20px;
+    }
+    .post {
+      background-color: white; margin-bottom: 20px;
+      padding: 20px; border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .post h2 { margin-bottom: 10px; color: #4CAF50; }
+    .post p, .post li { margin-bottom: 10px; }
+    ul { list-style: none; padding-left: 0; }
+    a { color: #388E3C; }
+    @media (max-width: 768px) {
+      .container { flex-direction: column; }
+      .main { margin-right: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kontak Saya</h1>
+    <p>Saya senang terhubung dengan Anda</p>
+  </header>
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang Saya</a>
+    <a href="kontak.html">Kontak</a>
+  </nav>
+  <div class="container">
+    <div class="main">
+      <div class="post">
+        <h2>Hubungi Saya</h2>
+        <p>Berikut beberapa cara untuk menghubungi saya:</p>
+        <ul>
+          <li><strong>📱 WhatsApp:</strong> <a href="https://wa.me/6281234567890" target="_blank">087704754919</a></li>
+          <li><strong>📷 Instagram:</strong> <a href="https://instagram.com/ptrxlf" target="_blank">@ptrxlf</a></li>
+          <li><strong>📘 Facebook:</strong> <a href="https://facebook.com/namauser" target="_blank">putri</a></li>
+          <li><strong>📧 Email:</strong> <a href="mailto:saya@email.com">putrilifi4@gmail.com</a></li>
+        </ul>
+        <p>Silakan hubungi saya kapan saja, saya akan senang menerima pesan dari Anda 😊</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

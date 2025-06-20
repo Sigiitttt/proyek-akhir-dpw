@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Pantau TIX VIP</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+      color: #333;
+    }
+    .panel {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #001e4f;
+      margin-bottom: 20px;
+    }
+    .data {
+      font-size: 16px;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #001e4f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #003580;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>Admin Pantau TIX VIP</h2>
+    <div class="data">
+      <strong>Jumlah Transaksi User:</strong> <span id="transaksiUser">0</span>
+    </div>
+    <div class="data">
+      <strong>Jumlah Koin User:</strong> <span id="koinUser">0</span>
+    </div>
+    <button onclick="refreshData()">Refresh Data</button>
+    <button onclick="window.location.href='index.html'">Kembali ke Halaman User</button>
+  </div>
+
+  <script>
+    function loadUserData() {
+      const transaksi = localStorage.getItem('jumlahTransaksi') || '0';
+      const coins = localStorage.getItem('userCoins') || '0';
+      document.getElementById('transaksiUser').textContent = transaksi;
+      document.getElementById('koinUser').textContent = coins;
+    }
+
+    function refreshData() {
+      loadUserData();
+      alert('Data diperbarui.');
+    }
+
+    // Saat pertama kali load
+    loadUserData();
+  </script>
+</body>
+</html>

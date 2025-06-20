@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Homepage Pribadi</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Garamond', 'Times New Roman', serif;
+      font-size: 20px;
+      background: linear-gradient(to bottom, #4B0082, #0000FF);
+      margin: 0;
+      padding: 0;
+      color: white;
+    }
+
+    .navbar {
+      background: black;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .navbar ul li {
+      position: relative;
+      margin-right: 20px;
+    }
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+      transition: 0.3s;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .navbar ul li a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background: #333;
+      padding: 10px;
+      border-radius: 8px;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+    }
+    .dropdown-menu li {
+      margin: 5px 0;
+    }
+    .dropdown-menu li a {
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .dropdown-menu li a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      padding: 5px;
+    }
+
+    .content-wrapper {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .profile-section {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      padding: 40px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 1100px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 30px;
+      color: white;
+      margin: auto;
+    }
+    .profile-section img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+    }
+    .profile-info {
+      text-align: left;
+    }
+
+    .fancy-table {
+      width: 95%;
+      margin: 30px auto;
+      border-collapse: separate;
+      border-spacing: 0 15px;
+      font-size: 18px;
+    }
+    .fancy-table thead th {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 14px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .fancy-table tbody tr {
+      background: white;
+      color: #222;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease-in-out;
+      border-radius: 12px;
+    }
+    .fancy-table tbody tr:hover {
+      transform: scale(1.01);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+    .fancy-table td {
+      padding: 12px;
+      text-align: center;
+      font-weight: 600;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Warna Deskripsi */
+    .desc1 { background-color: #ffe4e1; }
+    .desc2 { background-color: #e0ffff; }
+    .desc3 { background-color: #f5f5dc; }
+    .desc4 { background-color: #e6e6fa; }
+    .desc5 { background-color: #f0fff0; }
+
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      color: white;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background-color: white;
+      color: black;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+    }
+    .close {
+      color: red;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#">Login</a></li>
+        <li>
+          <a onclick="toggleDropdown()">About Us ▼</a>
+          <ul class="dropdown-menu" id="aboutDropdown">
+            <li><a onclick="showModal('firstya')">Muhammad Firstya Ibrah Fakkar</a></li>
+            <li><a onclick="showModal('alisha')">Alisha Salsabila A</a></li>
+            <li><a onclick="showModal('muamanah')">Muamanah Nur Cahyanti</a></li>
+            <li><a onclick="showModal('sigit')">Moch Sigit Aringga</a></li>
+            <li><a onclick="showModal('cintya')">Cintya Margareth Sihombing</a></li>
+            <li><a onclick="showModal('putri')">Putri Alifia</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <h1>Welcome to My Homepage</h1>
+  </header>
+
+  <div class="content-wrapper">
+    <div class="profile-section">
+      <img src="Gambar_WhatsApp_2024-08-25_pukul_12.35.15_aaf0a2de.png" alt="Cintya Margareth Sihombing">
+      <div class="profile-info">
+        <h3>Nama : CINTYA MARGARETH SIHOMBING</h3>
+        <p><strong>NIM :</strong> 230411100072</p>
+        <p><strong>Kelas :</strong> DPW IF 2G</p>
+      </div>
+    </div>
+
+    <h2>Project Akhir</h2>
+    <h3>Judul : Web Pemesanan Tiket Bioskop </h3>
+    <h4>Deskripsi Interface</h4>
+
+    <table class="fancy-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>NIM</th>
+          <th>Nama</th>
+          <th>Deskripsi 1</th>
+          <th>Deskripsi 2</th>
+          <th>Deskripsi 3</th>
+          <th>Deskripsi 4</th>
+          <th>Deskripsi 5</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>23-107</td>
+          <td>Muhammad Firstya Ibrah Fakkar</td>
+          <td class="desc1">Register</td>
+          <td class="desc2">Login</td>
+          <td class="desc3">Lupa Password</td>
+          <td class="desc4">News</td>
+          <td class="desc5">Detail News</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>23-118</td>
+          <td>Alisha Salsabila A</td>
+          <td class="desc1">Film sedang aktif</td>
+          <td class="desc2">Film yang akan datang</td>
+          <td class="desc3">Pilihan makanan</td>
+          <td class="desc4">Pilihan variasi</td>
+          <td class="desc5">Voucher</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>23-050</td>
+          <td>Muamanah Nur Cahyanti</td>
+          <td class="desc1">Film saya</td>
+          <td class="desc2">Tentang kami</td>
+          <td class="desc3">Setting profile</td>
+          <td class="desc4">Akun saya</td>
+          <td class="desc5">Notification</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>23-104</td>
+          <td>Moch Sigit Aringga</td>
+          <td class="desc1">Home</td>
+          <td class="desc2">Detail film (jadwal tayang)</td>
+          <td class="desc3">Detail kursi (pilih kursi sebelum pesan tiket)</td>
+          <td class="desc4">Ringkasan order tiket film (detail transaksi, pembayaran)</td>
+          <td class="desc5">Detail film (sinopsis)</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>23-072</td>
+          <td>Cintya Margareth Sihombing</td>
+          <td class="desc1">FAQ</td>
+          <td class="desc2">Ringkasan order makanan</td>
+          <td class="desc3">Konten disukai</td>
+          <td class="desc4">Hubungi kami</td>
+          <td class="desc5">Bagikan TIX VIP & Dapatkan Koin</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>23-146</td>
+          <td>Putri Alifia</td>
+          <td class="desc1">Tiket</td>
+          <td class="desc2">Pembayaran berhasil (nav ke halaman cetak tiket)</td>
+          <td class="desc3">History Pemesanan</td>
+          <td class="desc4">Pembayaran</td>
+          <td class="desc5">Cetak tiket</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="modalPopup" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Deskripsi Tugas</h2>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Cintya Margareth Sihombing. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const deskripsi = {
+      firstya: "Register, Login, Lupa Password, News, Detail News",
+      alisha: "Film sedang aktif, Film yang akan datang, Pilihan makanan, Pilihan variasi, Voucher",
+      muamanah: "Film saya, Tentang kami, Setting profile, Akun saya, Notification",
+      sigit: "Home, Detail film (jadwal tayang), Detail kursi (pilih kursi sebelum pesan tiket), Ringkasan order tiket film (detail transaksi pembayaran), Detail film (sinopsis)",
+      cintya: "FAQ, Ringkasan order makanan, Konten disukai, Hubungi kami, Bagikan TIX VIP & Dapatkan Koin",
+      putri: "Tiket, Pembayaran berhasil (nav ke halaman cetak tiket), History Pemesanan, Pembayaran, Cetak tiket"
+    };
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById("aboutDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    function showModal(nama) {
+      document.getElementById("modalText").innerText = deskripsi[nama];
+      document.getElementById("modalPopup").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("modalPopup").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("modalPopup");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>
